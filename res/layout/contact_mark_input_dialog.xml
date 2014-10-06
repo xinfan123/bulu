@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:id="@+id/AlertDialogContent_Layout"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/alertdialog_bg" >
+
+        <EditText
+            android:id="@+id/input_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_margin="10dp"
+            android:text="ssssssssssss"
+            android:textColor="@color/black"
+            android:textSize="18sp" >
+
+            <requestFocus />
+        </EditText>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/AlertDialogEnd_Layout"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/AlertDialogContent_Layout"
+        android:background="@drawable/alertdialogend_bg" >
+
+        <RelativeLayout
+            android:id="@+id/AlertDialogBtn_Layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="5dp" >
+
+            <!-- 确认按钮 -->
+
+            <Button
+                android:id="@+id/btn_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/alertdialog_btn_bg"
+                android:text="确定"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+            <!-- 取消按钮 -->
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

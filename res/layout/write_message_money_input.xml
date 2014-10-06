@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="240dip"
+    android:layout_height="280dip"
+    android:layout_gravity="center_vertical|center_horizontal"
+    android:background="#eee"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:padding="15dp"
+        android:text="请输入您希望的有偿金额（元）"
+        android:textColor="#000"
+        android:textSize="16dip" />
+
+    <EditText
+        android:id="@+id/write_money_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="3332223"
+        android:textColor="@color/darkcyan" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/write_money_yes_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20.0dip"
+        android:background="@drawable/selector_green_corners_button"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:textSize="@dimen/submit_text_size"
+        android:width="200dp" />
+
+</LinearLayout>

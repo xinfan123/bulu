@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <RelativeLayout
+        android:id="@+id/AlertDialogTop_Layout"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/alertdialogtop_bg" >
+
+        <!-- 弹窗Title -->
+
+        <TextView
+            android:id="@+id/AlertDialogTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/skyblue"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/btn_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/alertdialog_close" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/AlertDialogContent_Layout"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/AlertDialogTop_Layout"
+        android:background="@drawable/alertdialog_bg" >
+
+        <TextView
+            android:id="@+id/AlertDialogText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_margin="10dp"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/AlertDialogEnd_Layout"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/AlertDialogContent_Layout"
+        android:background="@drawable/alertdialogend_bg" >
+
+        <RelativeLayout
+            android:id="@+id/AlertDialogBtn_Layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="5dp" >
+
+            <!-- 确认按钮 -->
+
+            <Button
+                android:id="@+id/btn_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/alertdialog_btn_bg"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+            <!-- 取消按钮 -->
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/btn_ok"
+                android:background="@drawable/alertdialog_btn_bg"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

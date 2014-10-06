@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/gray_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/rl_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/title_bar"
+        android:gravity="center_vertical" >
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/title_btn_back"
+            android:onClick="send_msg_back"
+            android:text="返回"
+            android:textColor="#fff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="写消息"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/message_content_edit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dip"
+            android:background="@drawable/selector_text_field"
+            android:gravity="top|left|center"
+            android:hint="请输入消息内容"
+            android:includeFontPadding="false"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:textColor="@color/color_9"
+            android:textColorHint="@color/color_9"
+            android:textSize="16.0sp" />
+
+        <EditText
+            android:id="@+id/message_more_edit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dip"
+            android:background="@drawable/selector_text_field"
+            android:gravity="top|left|center"
+            android:hint="请输入消息内容"
+            android:includeFontPadding="false"
+            android:inputType="textMultiLine"
+            android:minLines="4"
+            android:textColor="@color/color_9"
+            android:textColorHint="@color/color_9"
+            android:textSize="16.0sp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/message_more_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:height="15dip"
+            android:text="更多输入>>"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/time_select_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/cell_height"
+            android:layout_weight="1"
+            android:background="@drawable/selector_text_field"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/content_padding"
+            android:paddingRight="@dimen/content_padding"
+            android:text="有效时间"
+            android:textColor="@color/color_3"
+            android:textSize="16.0sp" />
+
+        <TextView
+            android:id="@+id/time_select_label"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/cell_height"
+            android:layout_weight="1"
+            android:background="@drawable/selector_text_field"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/content_padding"
+            android:paddingRight="@dimen/content_padding"
+            android:text="有效时间"
+            android:textColor="@color/color_3"
+            android:textSize="16.0sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/area_select_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/cell_height"
+            android:layout_weight="1"
+            android:background="@drawable/selector_text_field"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/content_padding"
+            android:paddingRight="@dimen/content_padding"
+            android:text="地域范围"
+            android:textColor="@color/color_3"
+            android:textSize="16.0sp" />
+
+        <TextView
+            android:id="@+id/area_select_label"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/cell_height"
+            android:layout_weight="1"
+            android:background="@drawable/selector_text_field"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/content_padding"
+            android:paddingRight="@dimen/content_padding"
+            android:text="地域范围"
+            android:textColor="@color/color_3"
+            android:textSize="16.0sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal" 
+        android:id="@+id/money_select_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/cell_height"
+            android:layout_weight="1"
+            android:background="@drawable/selector_text_field"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/content_padding"
+            android:paddingRight="@dimen/content_padding"
+            android:text="有偿金额（元）"
+            android:textColor="@color/color_3"
+            android:textSize="16.0sp" />
+
+        <TextView
+            android:id="@+id/money_select_label"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/cell_height"
+            android:layout_weight="1"
+            android:background="@drawable/selector_text_field"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/content_padding"
+            android:paddingRight="@dimen/content_padding"
+            android:text="有偿金额"
+            android:textColor="@color/color_3"
+            android:textSize="16.0sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/send_message_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/cell_height"
+            android:layout_marginTop="20.0dip"
+            android:background="@drawable/selector_green_corners_button"
+            android:gravity="center"
+            android:text="发送"
+            android:textColor="@color/white"
+            android:textSize="@dimen/submit_text_size" />
+    </LinearLayout>
+
+</LinearLayout>

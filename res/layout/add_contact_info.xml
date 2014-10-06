@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="18.0sp" android:textColor="#ff999999" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/content_padding" android:layout_marginTop="14.0dip" android:layout_marginRight="@dimen/content_padding" android:layout_marginBottom="10.0dip" android:text="添加新地址" />
+    <FrameLayout  android:paddingLeft="@dimen/content_margin" android:paddingRight="@dimen/content_margin" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <TextView android:textSize="19.0sp" android:textColor="@color/white" android:gravity="center" android:background="@drawable/selector_green_corners_button" android:layout_width="fill_parent" android:layout_height="@dimen/cell_height" android:layout_marginLeft="@dimen/content_margin" android:layout_marginTop="20.0dip" android:layout_marginRight="@dimen/content_margin" android:layout_marginBottom="12.0dip" android:text="确认" />
+</LinearLayout>

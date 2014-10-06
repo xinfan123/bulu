@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/theme_item"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/text_field_without_top_border"
+        android:paddingBottom="@dimen/content_padding"
+        android:paddingLeft="@dimen/content_padding"
+        android:paddingRight="@dimen/content_padding"
+        android:paddingTop="10.0dip"
+        android:text="我要要么上山打老虎我要要么上山打老虎我要要么上山打老虎我要要么上山打老虎我要要么上山打老虎"
+        android:textColor="#ff555555"
+        android:textSize="15.0sp" />
+
+</LinearLayout>

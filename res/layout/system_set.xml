@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#eee"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/system_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_bar"
+        android:gravity="center_vertical" >
+
+        <Button
+            android:id="@+id/complain_reback_btn"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/title_btn_back"
+            android:onClick="SystemSetBack"
+            android:text="返回"
+            android:textColor="#fff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="系统设置"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/contact_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/title_btn_right"
+            android:onClick="Save_SystemSet"
+            android:src="@drawable/mm_title_btn_menu" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/system_title" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/cell_height"
+                android:background="@drawable/selector_text_field"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/content_padding"
+                android:paddingRight="@dimen/content_padding" >
+
+                <TextView
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:text="新消息通知"
+                    android:textColor="@color/color_3"
+                    android:textSize="14.0sp" />
+
+                <CheckBox
+                    android:id="@+id/system_messageNotice_btn"
+                    android:layout_width="44dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="System_MessageSet"
+                    android:text="CheckBox" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/cell_height"
+                android:background="@drawable/selector_text_field"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/content_padding"
+                android:paddingRight="@dimen/content_padding" >
+
+                <TextView
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:text="声音"
+                    android:textColor="@color/color_3"
+                    android:textSize="14.0sp" />
+
+                <CheckBox
+                    android:id="@+id/System_voice_btn"
+                    android:layout_width="44dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="SystemVoiceSet"
+                    android:text="CheckBox" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cell_height"
+                android:background="@drawable/selector_text_field"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/content_padding"
+                android:paddingRight="@dimen/content_padding" >
+
+                <TextView
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:text="振动"
+                    android:textColor="@color/color_3"
+                    android:textSize="14.0sp" />
+
+                <CheckBox
+                    android:id="@+id/system_vibrate_btn"
+                    android:layout_width="44dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="SystemVibrateSet"
+                    android:text="CheckBox" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/receivenum_sytem_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/cell_height"
+                android:background="@drawable/selector_text_field"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/content_padding"
+                android:paddingRight="@dimen/content_padding" >
+
+                <TextView
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:text="接收数量(/天)"
+                    android:textColor="@color/color_3"
+                    android:textSize="14.0sp" />
+
+                <TextView
+                    android:id="@+id/receivenum_sytem_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20条"
+                    android:textColor="@color/color_3"
+                    android:textSize="12.0sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/similarity_sytem_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cell_height"
+                android:background="@drawable/selector_text_field"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/content_padding"
+                android:paddingRight="@dimen/content_padding" >
+
+                <TextView
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:text="消息相似度"
+                    android:textColor="@color/color_3"
+                    android:textSize="14.0sp" />
+
+                <TextView
+                    android:id="@+id/similarity_sytem_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="一级"
+                    android:textColor="@color/color_3"
+                    android:textSize="12.0sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/paid_sytem_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/cell_height"
+                android:background="@drawable/selector_text_field"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/content_padding"
+                android:paddingRight="@dimen/content_padding" >
+
+                <TextView
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:text="有偿设置"
+                    android:textColor="@color/color_3"
+                    android:textSize="14.0sp" />
+
+                <TextView
+                    android:id="@+id/paid_sytem_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="所有"
+                    android:textColor="@color/color_3"
+                    android:textSize="12.0sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/reputation_sytem_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/cell_height"
+                android:background="@drawable/selector_text_field"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/content_padding"
+                android:paddingRight="@dimen/content_padding" >
+
+                <TextView
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:text="信誉等级"
+                    android:textColor="@color/color_3"
+                    android:textSize="14.0sp" />
+
+                <TextView
+                    android:id="@+id/reputation_sytem_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="所有"
+                    android:textColor="@color/color_3"
+                    android:textSize="12.0sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/goup_system_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/cell_height"
+                android:background="@drawable/selector_text_field"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/content_padding"
+                android:paddingRight="@dimen/content_padding" >
+
+                <TextView
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:text="系统升级"
+                    android:textColor="@color/color_3"
+                    android:textSize="14.0sp" />
+
+                <TextView
+                    android:id="@+id/goup_sytem_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NEW"
+                    android:textColor="@color/red"
+                    android:textSize="12.0sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/about_us_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/cell_height"
+                android:background="@drawable/selector_text_field"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/content_padding"
+                android:paddingRight="@dimen/content_padding" >
+
+                <TextView
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:text="关于我们"
+                    android:textColor="@color/color_3"
+                    android:textSize="14.0sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

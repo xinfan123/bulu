@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="rev_report_list">
+        <item>黄色</item>
+        <item>暴力</item>
+        <item>违法</item>
+        <item>其它</item>
+    </string-array>
+    
+    <string-array name="message_num_list">
+        <item>20条</item>
+        <item>50条</item>
+        <item>100条</item>
+    </string-array>
+
+</resources>

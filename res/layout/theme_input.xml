@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/selector_text_field"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/rl_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/title_bar"
+        android:gravity="center_vertical" >
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/title_btn_back"
+            android:onClick="send_msg_back"
+            android:text="返回"
+            android:textColor="#fff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="主题设置"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+    
+ <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="10dip"
+        android:layout_marginTop="15.0dip"
+ />
+
+    <EditText
+        android:id="@+id/theme_text"
+        android:layout_width="fill_parent"
+        android:layout_height="48.0dip"
+        android:layout_marginTop="5.0dip"
+        android:background="@drawable/text_field"
+        android:hint="请输入您好的消息设置"
+        android:paddingLeft="@dimen/content_padding"
+        android:paddingRight="@dimen/content_padding"
+        android:singleLine="true"
+        android:textColor="#ff555555"
+        android:textColorHint="#ffaaaaaa"
+        android:textSize="16.0sp" />
+
+    <TextView
+        android:id="@+id/click_ok"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/cell_height"
+        android:layout_marginTop="15.0dip"
+        android:background="@drawable/selector_green_corners_button"
+        android:gravity="center"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="@dimen/submit_text_size" />
+
+</LinearLayout>
