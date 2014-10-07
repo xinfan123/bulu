@@ -1,68 +1,67 @@
 package com.xinfan.blueblue.activity.systemset;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.SystemSet;
 import com.xinfan.blueblue.util.ToastUtil;
 
 public class MessageNumSelectActivity extends Activity {
-	private Spinner messagenumSr;
+	private ListView messagenumSr;
 
-	private static String[] m = { "20条", "50条", "100条" };
+	public ArrayList<SelectVo> list = new ArrayList<SelectVo>();
 
-	private ArrayAdapter<String> adapter;
-
-	private boolean isValid;
+	private SystemSetAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.set_massage_num);
 
-		messagenumSr = (Spinner) findViewById(R.id.message_select_type);
+		messagenumSr = (ListView) findViewById(R.id.message_select_type);
 
-		m = this.getResources().getStringArray(R.array.message_num_list);
-		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, m);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		init();
 
-		//messagenumSr.setSelection(0, true);
-		messagenumSr.setOnItemSelectedListener(new OnItemSelectedListener() {
+		adapter = new SystemSetAdapter(this, list);
 
-			@Override
-			public void onItemSelected(AdapterView<?> arg0, View v, int arg2, long arg3) {
-				SaveMessage(v);
-			}
+		messagenumSr.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-
+			public void onItemClick(AdapterView<?> arg0, View v, int arg2, long arg3) {
+				SaveMessage(arg2);
 			}
+
 		});
 
 		// 将adapter 添加到spinner中
 		messagenumSr.setAdapter(adapter);
-		messagenumSr.setPrompt(this.getResources().getString(R.string.message_num_tip));
-
+		adapter.notifyDataSetChanged();
 	}
 
-	public void SaveMessage(View v) {
+	public void init() {
+		SelectVo one = new SelectVo("20", "20条");
+		SelectVo two = new SelectVo("50", "50条");
+		SelectVo three = new SelectVo("100", "100条");
 
-		if (isValid) {
-			String typeStr = m[messagenumSr.getSelectedItemPosition()];
-			SystemSet.instance.SetMessageNum(typeStr);
-			ToastUtil.showMessage(this, "设置接收数量成功");
-			this.finish();
-		}
+		list.add(one);
+		list.add(two);
+		list.add(three);
+	}
 
-		isValid = !isValid;
+	public void SaveMessage(int arg2) {
+
+		SelectVo select = list.get(arg2);
+		SystemSet.instance.SetMessageNum(select.getText());
+		ToastUtil.showMessage(this, "设置接收数量成功");
+		this.finish();
 
 	}
 
