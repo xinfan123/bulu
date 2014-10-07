@@ -4,6 +4,7 @@ package com.xinfan.blueblue.activity.systemset;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -41,5 +42,10 @@ public class SimilaritySet extends Activity {
 		SystemSet.instance.SetSimilarity(typeStr);
 		ToastUtil.showMessage(this, "设置消息相似度成功");
 		this.finish();
+	}
+	
+	public boolean onTouchEvent(MotionEvent event) {
+		finish();
+		return true;
 	}
 }

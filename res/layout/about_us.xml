@@ -32,14 +32,4 @@
         android:layout_weight="0.34"
         android:text="长沙新帆网络科技有限公司asdlkasdjlajsdljjlkajsldkjaslkjlkajsdlkjsalkdjalskjdlkasjdlkasjdlkjasldkjlaksjdkl~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" />
 
-    <Button
-        android:id="@+id/about_edt"
-        android:layout_width="79dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/btn_cancle"
-        android:onClick="AboutEsc"
-        android:text="退出" 
-        android:textColor="@color/black"/>
-
 </LinearLayout>

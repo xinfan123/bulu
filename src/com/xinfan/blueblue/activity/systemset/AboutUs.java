@@ -1,15 +1,12 @@
 package com.xinfan.blueblue.activity.systemset;
 
-
-
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import com.xinfan.blueblue.activity.R;
 
-
 public class AboutUs extends Activity {
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,4 +18,10 @@ public class AboutUs extends Activity {
 	public void AboutEsc(View v) {
 		this.finish();
 	}
+
+	public boolean onTouchEvent(MotionEvent event) {
+		finish();
+		return true;
+	}
+
 }

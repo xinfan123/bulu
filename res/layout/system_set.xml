@@ -32,16 +32,6 @@
             android:textColor="#ffffff"
             android:textSize="20sp" />
 
-        <ImageButton
-            android:id="@+id/contact_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/title_btn_right"
-            android:onClick="Save_SystemSet"
-            android:src="@drawable/mm_title_btn_menu" />
     </RelativeLayout>
 
     <ScrollView
