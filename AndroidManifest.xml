@@ -149,6 +149,10 @@
         <activity
             android:name=".SystemSet"
             android:theme="@style/Anim_style2" />
+         <activity
+            android:name=".Complian"
+            android:theme="@style/Anim_style2" />       
+        
          <!--系统升级-->
         <activity
             android:name=".UpdateVersionActivity"
