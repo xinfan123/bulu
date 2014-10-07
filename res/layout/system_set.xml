@@ -178,7 +178,7 @@
                     android:id="@+id/similarity_sytem_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="一级"
+                    android:text="三级"
                     android:textColor="@color/color_3"
                     android:textSize="12.0sp" />
             </LinearLayout>

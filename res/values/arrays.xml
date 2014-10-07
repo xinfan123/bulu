@@ -13,5 +13,28 @@
         <item>50条</item>
         <item>100条</item>
     </string-array>
-
+    
+    <string-array name="similarity_set_list">
+        <item>一级（100%）</item>
+        <item>二级（80%）</item>
+        <item>三级（60%）</item>
+        <item>四级（40%）</item>
+        <item>五级（20%）</item>
+    </string-array>
+    
+    <string-array name="paid_set_list">
+        <item>全部</item>
+        <item>10元以上</item>
+        <item>100元以上</item>
+        <item>1000元以上</item>
+    </string-array>
+    
+        <string-array name="reputation_set_list">
+        <item>全部</item>
+        <item>一星</item>
+        <item>二星</item>
+        <item>三星</item>
+         <item>四星</item>
+          <item>五星</item>
+    </string-array>
 </resources>

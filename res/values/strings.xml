@@ -9,5 +9,7 @@
     
     <string name="rev_report_tip">选择举报类型</string>
     <string name="message_num_tip">选择收取消息数量</string>
-
+    <string name="similarity_Set_tip">选择相似度</string>
+	<string name="paid_Set_tip">选择有偿额度</string>
+		<string name="reputation_Set_tip">选择有偿额度</string>
 </resources>

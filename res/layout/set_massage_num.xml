@@ -3,7 +3,7 @@
     android:layout_width="240dip"
     android:layout_height="180dip"
     android:layout_gravity="center_vertical|center_horizontal"
-    android:background="#eee"
+    android:background="#FFCC00"
     android:orientation="vertical" >
 	
   <ImageView
@@ -24,12 +24,14 @@
         android:layout_height="2.0dip"
         android:layout_marginTop="5.0dip"
         android:src="@color/darkgray" />
-    <Spinner
-        android:id="@+id/message_select_type"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:popupBackground="@color/black"
-        android:textColor="#ffffff" />
+
+<Spinner
+    android:id="@+id/message_select_type"
+    android:layout_width="match_parent"
+    android:layout_height="44dp"
+    android:popupBackground="@color/black"
+    android:textColor="#000000" />
+
    <ImageView
         android:layout_width="fill_parent"
         android:layout_height="2.0dip"
@@ -40,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@color/green"
-        android:onClick="submit"
+        android:onClick="SaveMessage"
         android:text="提交" />
 
 </LinearLayout>
