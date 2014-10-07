@@ -161,6 +161,22 @@
         <activity
             android:name=".systemset.MessageNumSelectActivity"
             android:theme="@style/MyDialogStyle" />
+          <!--设置相似度-->
+        <activity
+            android:name=".systemset.SimilaritySet"
+            android:theme="@style/MyDialogStyle" />
+         <!--设置有偿额度-->
+        <activity
+            android:name=".systemset.PaidSet"
+            android:theme="@style/MyDialogStyle" />
+         <!--设置信誉等级-->
+        <activity
+            android:name=".systemset.ReputationSet"
+            android:theme="@style/MyDialogStyle" />
+         <!--关于我们-->
+        <activity
+            android:name=".systemset.AboutUs"
+            android:theme="@style/MyDialogStyle" />
         <activity
             android:name=".ThemeInputActivity"
             android:theme="@style/Anim_style2" />
