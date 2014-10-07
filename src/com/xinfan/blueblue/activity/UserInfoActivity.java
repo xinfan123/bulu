@@ -19,8 +19,8 @@ public class UserInfoActivity extends Activity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.user_info);
-		mnickName=(TextView) findViewById(R.id.nickname_info_edit);
-		mpassword=(TextView) findViewById(R.id.password_update_edit);
+		mnickName=(TextView) findViewById(R.id.nickname_info_layout);
+		mpassword=(TextView) findViewById(R.id.password_update_layout);
 		mnickName.setOnClickListener(new OnClickListener() {
 			
 			@Override
