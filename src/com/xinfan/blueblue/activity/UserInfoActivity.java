@@ -23,7 +23,7 @@ public class UserInfoActivity extends Activity {
 		setContentView(R.layout.user_info);
 		mnickName=(RelativeLayout) findViewById(R.id.nickname_info_layout);
 		nickName=(TextView) findViewById(R.id.nickname_info_edit);
-		mpassword= (RelativeLayout) findViewById(R.id.password_update_edit);
+		mpassword= (RelativeLayout) findViewById(R.id.password_update_layout);
 		mnickName.setOnClickListener(new OnClickListener() {
 			
 			@Override
