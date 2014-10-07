@@ -72,6 +72,7 @@
                 android:orientation="vertical" >
 				
              <RelativeLayout
+                    android:id="@+id/nickname_info_layout"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/preference_first_item"
@@ -149,6 +150,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/password_update_layout"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/preference_item"
