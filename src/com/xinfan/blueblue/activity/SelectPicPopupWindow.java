@@ -19,7 +19,7 @@ public class SelectPicPopupWindow extends PopupWindow {
 	private Button  btn_complain;//意见反馈按钮
 	private Button  btn_cancel;//退出按钮
 	private Button btn_account;//我的账户
-	private Button btn_system;//我的账户
+	private Button btn_system;//系统设置
 	private View mMenuView;
 
 	public SelectPicPopupWindow(final Activity context,OnClickListener itemsOnClick) {
@@ -104,7 +104,7 @@ public class SelectPicPopupWindow extends PopupWindow {
 						return true;
 					}
 				});
-		//监听退出按钮
+		//监听我的账户
 		btn_account.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -115,7 +115,7 @@ public class SelectPicPopupWindow extends PopupWindow {
 		    	SelectPicPopupWindow.this.dismiss();
 			}
 		});
-		
+		//监听退出
 		btn_cancel.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {

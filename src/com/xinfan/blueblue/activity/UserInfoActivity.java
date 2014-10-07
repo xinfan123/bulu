@@ -6,21 +6,24 @@ import android.graphics.Interpolator;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class UserInfoActivity extends Activity {
 	
 	public static UserInfoActivity instance;
 	
-	private TextView mnickName;
-	private  TextView mpassword;
+	private RelativeLayout mnickName;
+	private TextView nickName;
+	private  RelativeLayout mpassword;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.user_info);
-		mnickName=(TextView) findViewById(R.id.nickname_info_layout);
-		mpassword=(TextView) findViewById(R.id.password_update_layout);
+		mnickName=(RelativeLayout) findViewById(R.id.nickname_info_layout);
+		nickName=(TextView) findViewById(R.id.nickname_info_edit);
+		mpassword= (RelativeLayout) findViewById(R.id.password_update_edit);
 		mnickName.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -57,7 +60,7 @@ public class UserInfoActivity extends Activity {
 	}
 	
 	public void updateNickName(String name){
-		mnickName.setText(name);
+		nickName.setText(name);
 	}
 	/*
 	 * public void head_xiaohei(View v) { Intent intent = new Intent();
