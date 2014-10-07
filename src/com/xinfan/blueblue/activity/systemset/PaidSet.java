@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.SystemSet;
@@ -17,6 +19,8 @@ public class PaidSet extends Activity {
 	private static String[] m = { "全部", "10元以上", "100以上", "1000以上" };
 
 	private ArrayAdapter<String> adapter;
+
+	private boolean isValid;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +36,33 @@ public class PaidSet extends Activity {
 		// 将adapter 添加到spinner中
 		messageSr.setAdapter(adapter);
 		messageSr.setPrompt(this.getResources().getString(R.string.paid_Set_tip));
+
+		// messagenumSr.setSelection(0, true);
+		messageSr.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View v, int arg2, long arg3) {
+				SaveMessage(v);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+
+			}
+		});
 	}
 
 	public void SaveMessage(View v) {
-		String typeStr = m[messageSr.getSelectedItemPosition()];
-		SystemSet.instance.SetPaid(typeStr);
-		ToastUtil.showMessage(this, "设置有偿额度成功");
-		this.finish();
+
+		if (isValid) {
+			String typeStr = m[messageSr.getSelectedItemPosition()];
+			SystemSet.instance.SetPaid(typeStr);
+			ToastUtil.showMessage(this, "设置有偿额度成功");
+			this.finish();
+		}
+
+		isValid = !isValid;
+
 	}
 
 	public boolean onTouchEvent(MotionEvent event) {
