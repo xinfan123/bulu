@@ -38,7 +38,6 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	public ContactListView listview3;
 
 	SelectPicPopupWindow menuWindow;
-	SelectAddPopupWindow menuWindow2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,27 +55,25 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		listview1 = (MessageListView) findViewById(R.id.listView1);
 		listview2 = (SendedMessageListView) findViewById(R.id.listView2);
 		listview3 = (ContactListView) findViewById(R.id.listView3);
-		
 
 		View footer = LayoutInflater.from(this).inflate(R.layout.footer, null);
 
 		listview1.setContext(this);
 		listview1.setFooter(footer);
 		listview1.loadData();
-		
+
 		View footer2 = LayoutInflater.from(this).inflate(R.layout.footer, null);
 
 		listview2.setContext(this);
 		listview2.setFooter(footer2);
 		listview2.loadData();
-		
-		
+
 		View footer3 = LayoutInflater.from(this).inflate(R.layout.footer, null);
 
 		listview3.setContext(this);
 		listview3.setFooter(footer3);
 		listview3.loadData();
-		
+
 		mScrollLayout = (MyScrollLayout) findViewById(R.id.ScrollLayout);
 		LinearLayout linearLayout = (LinearLayout) findViewById(R.id.lllayout);
 		mViewCount = mScrollLayout.getChildCount();
@@ -137,13 +134,6 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 
 		public void onClick(View v) {
 			menuWindow.dismiss();
-		}
-	};
-
-	private OnClickListener itemsOnClick2 = new OnClickListener() {
-
-		public void onClick(View v) {
-			menuWindow2.dismiss();
 		}
 	};
 

@@ -138,7 +138,7 @@
             android:name="ViewMessageActivity"
             android:theme="@style/Anim_style2" />
         <activity
-            android:name="UserInfoActivity"
+            android:name="AccountInfoActivity"
             android:theme="@style/Anim_style2" />
         <activity
             android:name="ContactInfoActivity"

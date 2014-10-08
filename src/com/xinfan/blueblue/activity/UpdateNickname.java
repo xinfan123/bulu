@@ -28,7 +28,7 @@ public class UpdateNickname extends Activity {
 		if (newNickname == null || newNickname.equals("")) {
 			ToastUtil.showMessage(UpdateNickname.this, "昵称不能为空！");
 		} else {
-			UserInfoActivity.instance.updateNickName(newNickname);
+			AccountInfoActivity.instance.updateNickName(newNickname);
 			ToastUtil.showMessage(this, "修改成功！");
 			this.finish();
 		}

@@ -9,9 +9,9 @@ import android.view.View.OnClickListener;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class UserInfoActivity extends Activity {
+public class AccountInfoActivity extends Activity {
 	
-	public static UserInfoActivity instance;
+	public static AccountInfoActivity instance;
 	
 	private RelativeLayout mnickName;
 	private TextView nickName;
@@ -30,7 +30,7 @@ public class UserInfoActivity extends Activity {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
-		        intent.setClass(UserInfoActivity.this,UpdateNickname.class);
+		        intent.setClass(AccountInfoActivity.this,UpdateNickname.class);
 		        startActivity(intent);
 
 			}
@@ -41,7 +41,7 @@ public class UserInfoActivity extends Activity {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
-		        intent.setClass(UserInfoActivity.this,UpdatePassword.class);
+		        intent.setClass(AccountInfoActivity.this,UpdatePassword.class);
 		        startActivity(intent);
 			}
 		});

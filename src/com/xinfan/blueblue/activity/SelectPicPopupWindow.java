@@ -110,7 +110,7 @@ public class SelectPicPopupWindow extends PopupWindow {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent();
-		    	intent.setClass(v.getContext(),UserInfoActivity.class);
+		    	intent.setClass(v.getContext(),AccountInfoActivity.class);
 		    	v.getContext().startActivity(intent);	
 		    	SelectPicPopupWindow.this.dismiss();
 			}
