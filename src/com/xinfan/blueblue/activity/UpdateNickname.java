@@ -11,8 +11,9 @@ import android.view.View;
 import android.widget.EditText;
 
 public class UpdateNickname extends Activity {
-	private EditText mNewNickname; 
+	private EditText mNewNickname;
 	private String newNickname;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -20,16 +21,13 @@ public class UpdateNickname extends Activity {
 
 		mNewNickname = (EditText) findViewById(R.id.new_nickname_edit);
 
-
-
 	}
 
 	public void set_nickname(View v) {
-		newNickname=mNewNickname.getText().toString();
-		if (newNickname==null||newNickname.equals("")){
+		newNickname = mNewNickname.getText().toString();
+		if (newNickname == null || newNickname.equals("")) {
 			ToastUtil.showMessage(UpdateNickname.this, "昵称不能为空！");
-		} 																								
-		else {
+		} else {
 			UserInfoActivity.instance.updateNickName(newNickname);
 			ToastUtil.showMessage(this, "修改成功！");
 			this.finish();
@@ -39,6 +37,5 @@ public class UpdateNickname extends Activity {
 	public void nickname_back(View v) {
 		this.finish();
 	}
-
 
 }
