@@ -30,25 +30,22 @@
             android:text="主题设置"
             android:textColor="#ffffff"
             android:textSize="20sp" />
-
     </RelativeLayout>
-    
- <TextView
+
+    <TextView
         android:layout_width="fill_parent"
         android:layout_height="10dip"
-        android:layout_marginTop="15.0dip"
- />
+        android:layout_marginTop="15.0dip" />
 
     <EditText
         android:id="@+id/theme_text"
         android:layout_width="fill_parent"
-        android:layout_height="48.0dip"
-        android:layout_marginTop="5.0dip"
+        android:layout_height="wrap_content"
         android:background="@drawable/text_field"
         android:hint="请输入您好的消息设置"
+        android:lines="4"
         android:paddingLeft="@dimen/content_padding"
         android:paddingRight="@dimen/content_padding"
-        android:singleLine="true"
         android:textColor="#ff555555"
         android:textColorHint="#ffaaaaaa"
         android:textSize="16.0sp" />
