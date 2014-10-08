@@ -173,7 +173,8 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/preference_last_item"
-                    android:clickable="true" >
+                    android:clickable="true" android:focusable="true"
+                    android:id="@+id/user_info_exit">
 
                     <TextView
                         android:layout_width="wrap_content"
