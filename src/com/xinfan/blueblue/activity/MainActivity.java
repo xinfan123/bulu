@@ -179,6 +179,11 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		if ((keyCode == KeyEvent.KEYCODE_MENU)) {
 			return true;
 		}
+		
+	    if(keyCode == KeyEvent.KEYCODE_BACK){   
+	        return false;   
+	    }
+		
 		return super.onKeyDown(keyCode, event);
 	}
 
