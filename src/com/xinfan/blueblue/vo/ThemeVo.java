@@ -3,7 +3,6 @@ package com.xinfan.blueblue.vo;
 public class ThemeVo {
 	String id;
 	String text;
-
 	public String getId() {
 		return id;
 	}
