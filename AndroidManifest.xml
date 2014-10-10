@@ -178,6 +178,10 @@
         <activity
             android:name=".systemset.AboutUs"
             android:theme="@style/MyDialogStyle" />
+         <!--注消账号-->
+        <activity
+            android:name=".AccountEscActivity"
+            android:theme="@style/MyDialogStyle" />
         <activity
             android:name=".ThemeInputActivity"
             android:theme="@style/Anim_style2" />
