@@ -54,8 +54,9 @@ public class AccountInfoActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				ActivityManager manager = (ActivityManager)getSystemService(ACTIVITY_SERVICE);    
-				manager.restartPackage(getPackageName());  
+				Intent intent=new Intent();
+				intent.setClass(AccountInfoActivity.this, AccountEscActivity.class);
+				startActivity(intent);
 			}
 		});
 
@@ -74,6 +75,7 @@ public class AccountInfoActivity extends Activity {
 	public void updateNickName(String name) {
 		nickName.setText(name);
 	}
+	
 	/*
 	 * public void head_xiaohei(View v) { Intent intent = new Intent();
 	 * intent.setClass(InfoXiaohei.this,InfoXiaoheiHead.class);
