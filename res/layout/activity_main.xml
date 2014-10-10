@@ -40,14 +40,22 @@
             </com.xinfan.blueblue.activity.MessageListView>
         </com.xinfan.blueblue.activity.main.RefreshableView>
 
-        <com.xinfan.blueblue.activity.SendedMessageListView
-            android:id="@+id/listView2"
+        <com.xinfan.blueblue.activity.main.RefreshableView
+            android:id="@+id/list2_refresh_view"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:background="@color/white" >
-        </com.xinfan.blueblue.activity.SendedMessageListView>
 
-        <FrameLayout
+            <com.xinfan.blueblue.activity.SendedMessageListView
+                android:id="@+id/listView2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/white" >
+            </com.xinfan.blueblue.activity.SendedMessageListView>
+        </com.xinfan.blueblue.activity.main.RefreshableView>
+
+        <com.xinfan.blueblue.activity.main.RefreshableView
+            android:id="@+id/list3_refresh_view"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@color/white" >
@@ -59,7 +67,7 @@
                 android:cacheColorHint="@android:color/transparent"
                 android:divider="@drawable/reader_item_divider" >
             </com.xinfan.blueblue.activity.ContactListView>
-        </FrameLayout>
+        </com.xinfan.blueblue.activity.main.RefreshableView>
     </com.xinfan.blueblue.activity.MyScrollLayout>
 
 </RelativeLayout>

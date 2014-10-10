@@ -254,8 +254,7 @@ public class RefreshableView extends LinearLayout implements OnTouchListener {
 				break;
 			}
 			// 时刻记得更新下拉头中的信息
-			if (currentStatus == STATUS_PULL_TO_REFRESH
-					|| currentStatus == STATUS_RELEASE_TO_REFRESH) {
+			if (currentStatus == STATUS_PULL_TO_REFRESH || currentStatus == STATUS_RELEASE_TO_REFRESH) {
 				updateHeaderView();
 				// 当前正处于下拉或释放状态，要让ListView失去焦点，否则被点击的那一项会一直处于选中状态
 				listView.setPressed(false);
@@ -503,6 +502,14 @@ public class RefreshableView extends LinearLayout implements OnTouchListener {
 		 */
 		void onRefresh();
 
+	}
+
+	public int getmId() {
+		return mId;
+	}
+
+	public void setmId(int mId) {
+		this.mId = mId;
 	}
 
 }

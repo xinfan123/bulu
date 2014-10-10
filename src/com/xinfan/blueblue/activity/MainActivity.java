@@ -38,10 +38,12 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	public MessageListView listview1;
 	public SendedMessageListView listview2;
 	public ContactListView listview3;
-	
-	public RefreshableView list1_refresh_view;
 
-	SelectPicPopupWindow menuWindow; 
+	public RefreshableView list1_refresh_view;
+	public RefreshableView list2_refresh_view;
+	public RefreshableView list3_refresh_view;
+
+	SelectPicPopupWindow menuWindow;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +61,10 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		listview1 = (MessageListView) findViewById(R.id.listView1);
 		listview2 = (SendedMessageListView) findViewById(R.id.listView2);
 		listview3 = (ContactListView) findViewById(R.id.listView3);
-		
-		list1_refresh_view = (RefreshableView)findViewById(R.id.list1_refresh_view);
+
+		list1_refresh_view = (RefreshableView) findViewById(R.id.list1_refresh_view);
+		list2_refresh_view = (RefreshableView) findViewById(R.id.list2_refresh_view);
+		list3_refresh_view = (RefreshableView) findViewById(R.id.list3_refresh_view);
 
 		View footer = LayoutInflater.from(this).inflate(R.layout.footer, null);
 
@@ -116,20 +120,46 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 				uploadImage2(MainActivity.this);
 			}
 		});
-		
-		list1_refresh_view.setOnRefreshListener(new PullToRefreshListener() {  
-	            @Override  
-	            public void onRefresh() {  
-	                try {  
-	                    Thread.sleep(3000);  
-	                } catch (InterruptedException e) {  
-	                    e.printStackTrace();  
-	                }  
-	                list1_refresh_view.finishRefreshing();  
-	            }  
-	        }, 0);  
-		
-		
+
+		list1_refresh_view.setmId(1);
+		list2_refresh_view.setmId(2);
+		list3_refresh_view.setmId(3);
+		list1_refresh_view.setOnRefreshListener(new PullToRefreshListener() {
+			@Override
+			public void onRefresh() {
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				list1_refresh_view.finishRefreshing();
+			}
+		}, 0);
+
+		list2_refresh_view.setOnRefreshListener(new PullToRefreshListener() {
+			@Override
+			public void onRefresh() {
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				list2_refresh_view.finishRefreshing();
+			}
+		}, 0);
+
+		list3_refresh_view.setOnRefreshListener(new PullToRefreshListener() {
+			@Override
+			public void onRefresh() {
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				list3_refresh_view.finishRefreshing();
+			}
+		}, 0);
+
 	}
 
 	public void uploadImage(final Activity context) {
@@ -199,11 +229,11 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		if ((keyCode == KeyEvent.KEYCODE_MENU)) {
 			return true;
 		}
-		
-	    if(keyCode == KeyEvent.KEYCODE_BACK){   
-	        return false;   
-	    }
-		
+
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			return false;
+		}
+
 		return super.onKeyDown(keyCode, event);
 	}
 
