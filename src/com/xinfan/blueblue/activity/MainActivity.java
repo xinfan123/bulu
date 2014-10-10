@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.xinfan.blueblue.activity.main.RefreshableView;
+import com.xinfan.blueblue.activity.main.RefreshableView.PullToRefreshListener;
 import com.xinfan.blueblue.activity.send.SendMessageActivity;
 
 public class MainActivity extends Activity implements OnViewChangeListener, OnClickListener {
@@ -36,8 +38,10 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	public MessageListView listview1;
 	public SendedMessageListView listview2;
 	public ContactListView listview3;
+	
+	public RefreshableView list1_refresh_view;
 
-	SelectPicPopupWindow menuWindow;
+	SelectPicPopupWindow menuWindow; 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,8 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		listview1 = (MessageListView) findViewById(R.id.listView1);
 		listview2 = (SendedMessageListView) findViewById(R.id.listView2);
 		listview3 = (ContactListView) findViewById(R.id.listView3);
+		
+		list1_refresh_view = (RefreshableView)findViewById(R.id.list1_refresh_view);
 
 		View footer = LayoutInflater.from(this).inflate(R.layout.footer, null);
 
@@ -110,6 +116,20 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 				uploadImage2(MainActivity.this);
 			}
 		});
+		
+		list1_refresh_view.setOnRefreshListener(new PullToRefreshListener() {  
+	            @Override  
+	            public void onRefresh() {  
+	                try {  
+	                    Thread.sleep(3000);  
+	                } catch (InterruptedException e) {  
+	                    e.printStackTrace();  
+	                }  
+	                list1_refresh_view.finishRefreshing();  
+	            }  
+	        }, 0);  
+		
+		
 	}
 
 	public void uploadImage(final Activity context) {

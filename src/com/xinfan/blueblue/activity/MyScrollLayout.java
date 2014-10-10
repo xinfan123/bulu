@@ -53,7 +53,7 @@ public class MyScrollLayout extends ViewGroup{
 
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
-		 if (changed) {    
+		// if (changed) {    
 	            int childLeft = 0;    
 	            final int childCount = getChildCount();    	                
 	            for (int i=0; i<childCount; i++) {    
@@ -65,7 +65,7 @@ public class MyScrollLayout extends ViewGroup{
 	                    childLeft += childWidth;    
 	                }    
 	            }    
-	        }    
+	    //    }    
 	}
 
 	@Override
