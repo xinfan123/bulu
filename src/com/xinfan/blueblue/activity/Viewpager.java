@@ -15,6 +15,9 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 
+import com.xinfan.blueblue.request.Constants;
+import com.xinfan.blueblue.request.SharePreferenceUtil;
+
 public class Viewpager extends Activity {
 	private ViewPager mViewPager;
 	private PagerTitleStrip mPagerTitleStrip;
@@ -230,11 +233,14 @@ public class Viewpager extends Activity {
 	}
 
 	public void startbutton(View v) {
+		
+		SharePreferenceUtil util = new SharePreferenceUtil(Viewpager.this, Constants.USER_INFO);
+		util.setIsFirst(false);
 
 		Intent intent = new Intent(Viewpager.this, Welcome.class);
 		startActivity(intent);
 		Viewpager.this.finish();
-
+		
 	}
 
 }
