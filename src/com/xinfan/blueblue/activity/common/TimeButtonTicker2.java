@@ -13,6 +13,8 @@ public class TimeButtonTicker2 {
 
 	Handler hander = null;
 
+	private boolean running;
+
 	public TimeButtonTicker2(Context context, final Button button) {
 		rawText = button.getText().toString();
 
@@ -23,9 +25,11 @@ public class TimeButtonTicker2 {
 				if (msg.what == 1) {
 					button.setText("" + time + "秒");
 					button.setClickable(false);
+					running = true;
 				} else if (msg.what == 2) {
 					button.setClickable(true);
 					button.setText("重新获取");
+					running = false;
 				}
 				super.handleMessage(msg);
 			}
@@ -33,44 +37,47 @@ public class TimeButtonTicker2 {
 	}
 
 	public void start() {
-		new Thread() {
 
-			@Override
-			public void run() {
-				while (true) {
+		if (!running) {
 
-					time--;
+			new Thread() {
 
-					Message msg = new Message();
+				@Override
+				public void run() {
+					while (true) {
 
-					msg.what = 1;
-					msg.obj = time;
+						time--;
 
-					hander.sendMessage(msg);
+						Message msg = new Message();
 
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+						msg.what = 1;
+						msg.obj = time;
 
-					if (time <= 0) {
-						time = 60;
+						hander.sendMessage(msg);
 
-						Message msg2 = new Message();
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 
-						msg2.what = 2;
-						msg2.obj = time;
+						if (time <= 0) {
+							time = 60;
 
-						hander.sendMessage(msg2);
+							Message msg2 = new Message();
 
-						break;
+							msg2.what = 2;
+							msg2.obj = time;
+
+							hander.sendMessage(msg2);
+
+							break;
+						}
 					}
 				}
-			}
 
-		}.start();
-
+			}.start();
+		}
 	}
 
 }

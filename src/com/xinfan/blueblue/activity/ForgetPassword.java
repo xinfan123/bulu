@@ -32,6 +32,8 @@ public class ForgetPassword extends Activity {
 	private final Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
 
 	private Button forget_get_btn;
+	
+	private TimeButtonTicker2 ticker;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,8 @@ public class ForgetPassword extends Activity {
 				}
 			}
 		};
+		
+		ticker = new TimeButtonTicker2(ForgetPassword.this, forget_get_btn);
 	}
 
 	public Handler getHandler() {
@@ -104,7 +108,7 @@ public class ForgetPassword extends Activity {
 		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
 			public void call(Request data) {
 				ToastUtil.showMessage(ForgetPassword.this, "验证码发送成功，请查收短信!");
-				new TimeButtonTicker2(ForgetPassword.this, forget_get_btn).start();
+				ticker.start();
 			}
 		});
 
