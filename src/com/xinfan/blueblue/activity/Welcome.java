@@ -23,7 +23,7 @@ public class Welcome extends Activity {
       	Intent intent = new Intent();
 		intent.setClass(Welcome.this,Register.class);
 		startActivity(intent);
-		AccountInfoActivity.instance.finish();
+		//AccountInfoActivity.instance.finish();
       }  
    
 }
