@@ -31,8 +31,8 @@ import com.xinfan.msgbox.http.service.vo.result.BaseResult;
 
 public class AnsynHttpRequest {
 
-	public static final int REQUEST_TIMEOUT = 30 * 1000;// 设置请求超时10秒钟
-	public static final int SO_TIMEOUT = 30 * 1000; // 设置等待数据超时时间10秒钟
+	public static final int REQUEST_TIMEOUT = 20 * 1000;// 设置请求超时30秒钟
+	public static final int SO_TIMEOUT = 20 * 1000; // 设置等待数据超时时间30秒钟
 	static final int POST = 1; // post 提交
 	static final int GET = 2; // get 提交
 
@@ -193,11 +193,8 @@ class MyRunnable implements Runnable {
 				data = null;
 			}
 		} catch (Exception e) {
-			LogUtil.e(AnsynHttpRequest.tag, e.getMessage());
-			if (!request.isCache()) {
-				// AnsynHttpRequest.sendBroadcastReceiverMessage(context,
-				// R.string.network_show_error);
-			}
+			LogUtil.e(AnsynHttpRequest.tag, e);
+			ToastUtil.showMessage(context, "网络通信异常");
 			data = null;
 		} finally {
 			if (request.isShowDialog()) {
@@ -225,6 +222,7 @@ class MyRunnable implements Runnable {
 			}
 		} catch (Exception e) {
 			LogUtil.e(e.getMessage(), e);
+			ToastUtil.showMessage(context, "请求数据异常");
 		}
 
 	}
