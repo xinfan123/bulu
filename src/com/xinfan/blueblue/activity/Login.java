@@ -72,6 +72,8 @@ public class Login extends Activity {
 				Intent intent = new Intent();
 				intent.setClass(Login.this, MainActivity.class);
 				startActivity(intent);
+				
+				Login.this.finish();
 			}
 		});
 
