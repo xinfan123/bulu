@@ -16,7 +16,8 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.RESTART_PACKAGES"/> 
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -76,11 +77,11 @@
         <activity
             android:name=".ForgetPassword"
             android:theme="@style/Anim_style2" />
-         <!-- 重设密码 -->
+        <!-- 重设密码 -->
         <activity
             android:name=".UpdatePassword"
             android:theme="@style/Anim_style2" />
-         <!--重设昵称-->
+        <!-- 重设昵称 -->
         <activity
             android:name=".UpdateNickname"
             android:theme="@style/Anim_style2" />
@@ -150,35 +151,35 @@
         <activity
             android:name=".SystemSet"
             android:theme="@style/Anim_style2" />
-         <activity
+        <activity
             android:name=".Complian"
-            android:theme="@style/Anim_style2" />       
-        
-         <!--系统升级-->
+            android:theme="@style/Anim_style2" />
+
+        <!-- 系统升级 -->
         <activity
             android:name=".UpdateVersionActivity"
             android:theme="@style/MyDialogStyle" />
-         <!--设置接收消息数量-->
+        <!-- 设置接收消息数量 -->
         <activity
             android:name=".systemset.MessageNumSelectActivity"
             android:theme="@style/MyDialogStyle" />
-          <!--设置相似度-->
+        <!-- 设置相似度 -->
         <activity
             android:name=".systemset.SimilaritySet"
             android:theme="@style/MyDialogStyle" />
-         <!--设置有偿额度-->
+        <!-- 设置有偿额度 -->
         <activity
             android:name=".systemset.PaidSet"
             android:theme="@style/MyDialogStyle" />
-         <!--设置信誉等级-->
+        <!-- 设置信誉等级 -->
         <activity
             android:name=".systemset.ReputationSet"
             android:theme="@style/MyDialogStyle" />
-         <!--关于我们-->
+        <!-- 关于我们 -->
         <activity
             android:name=".systemset.AboutUs"
             android:theme="@style/MyDialogStyle" />
-         <!--注消账号-->
+        <!-- 注消账号 -->
         <activity
             android:name=".AccountEscActivity"
             android:theme="@style/MyDialogStyle" />
