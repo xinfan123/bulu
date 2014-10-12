@@ -25,7 +25,7 @@ public class TimeButtonTicker2 {
 					button.setClickable(false);
 				} else if (msg.what == 2) {
 					button.setClickable(true);
-					button.setText(rawText);
+					button.setText("重新获取");
 				}
 				super.handleMessage(msg);
 			}
