@@ -7,28 +7,30 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 
 /**
  * JSON工具类
+ * 
  * @author cyp
- *
+ * 
  */
 public class JSONUtils {
-	
-	public static SerializerFeature[] features = {
-			SerializerFeature.WriteMapNullValue,
-			SerializerFeature.WriteEnumUsingToString,
-			SerializerFeature.WriteNullListAsEmpty,
-			SerializerFeature.WriteNullStringAsEmpty,
-			SerializerFeature.WriteTabAsSpecial };
+
+	public static SerializerFeature[] features = { SerializerFeature.WriteMapNullValue, SerializerFeature.WriteEnumUsingToString,
+			SerializerFeature.WriteNullListAsEmpty, SerializerFeature.WriteNullStringAsEmpty, SerializerFeature.WriteTabAsSpecial,
+			SerializerFeature.WriteClassName };
 
 	public static <T> T parseObject(String text, Class<T> pojoClass) {
 		return JSON.parseObject(text, pojoClass);
 	}
-	
+
 	public static JSONObject parseObject(String text) {
 		return JSON.parseObject(text);
 	}
-	
+
 	public static JSONArray parseArray(String text) {
 		return JSON.parseArray(text);
+	}
+
+	public static JSONObject toJSONObject(Object javaObject) {
+		return (JSONObject) JSON.toJSON(javaObject);
 	}
 
 	public static String toJSONString(Object pojo) {
@@ -38,6 +40,5 @@ public class JSONUtils {
 	public static final Object parse(String text) {
 		return JSON.parse(text);
 	}
-	
-	
+
 }

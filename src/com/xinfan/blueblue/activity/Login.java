@@ -1,14 +1,17 @@
 package com.xinfan.blueblue.activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 
-import com.xinfan.blueblue.common.LoadingDialogFragment;
+import com.xinfan.blueblue.request.AnsynHttpRequest;
+import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.util.ToastUtil;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.LoginParam;
 
 public class Login extends Activity {
 	private EditText mUser;
@@ -33,37 +36,33 @@ public class Login extends Activity {
 
 	public void login_mainweixin(View v) {
 
-		if ("1".equals(mUser.getText().toString()) && "1".equals(mPassword.getText().toString()))
+		String username = mUser.getText().toString();
+		String passwd = mPassword.getText().toString();
 
-		{
-			final LoadingDialogFragment loading = LoadingDialogFragment.newInstance("正在登录...");
-			loading.open(this);
-
-			new Handler().postDelayed(new Runnable() {
-
-				@Override
-				public void run() {
-					loading.close();
-					Login.this.finish();
-
-					Intent intent = new Intent();
-					intent.setClass(Login.this, MainActivity.class);
-					startActivity(intent);
-
-				}
-
-			}, 2000);
-
-		} else if ("".equals(mUser.getText().toString()) || "".equals(mPassword.getText().toString()))
-
-		{
-			new AlertDialog.Builder(Login.this).setIcon(getResources().getDrawable(R.drawable.login_error_icon)).setTitle("登录失败").setMessage("密码错误").create()
-					.show();
-		} else {
-
-			new AlertDialog.Builder(Login.this).setIcon(getResources().getDrawable(R.drawable.login_error_icon)).setTitle("登录失败").setMessage("登录失败").create()
-					.show();
+		if (username.length() == 0 || passwd.length() == 0) {
+			ToastUtil.showMessage(this, "用户名密码不能为空");
+			return;
 		}
+
+		Request request = new Request(FunIdConstants.LOGIN);
+
+		LoginParam param = new LoginParam();
+		param.setMobile(username);
+		param.setPasswd(passwd);
+		request.setParam(param);
+
+		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
+
+			public void call(Request data) {
+
+				ToastUtil.showMessage(Login.this, "登录成功");
+
+				Intent intent = new Intent();
+				intent.setClass(Login.this, MainActivity.class);
+				startActivity(intent);
+			}
+		});
+
 	}
 
 	public void login_back(View v) {

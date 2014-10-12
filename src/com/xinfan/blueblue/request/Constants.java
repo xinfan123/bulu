@@ -76,7 +76,7 @@ public final class Constants {
     	public static final String CType = "1";
     	public static final String CChannel = "dev";
     	public static boolean isInstall = false;
-    	public static final String http_request_head = "https://www.baidu.com";
+    	public static final String http_request_head = "http://192.168.1.104:7001/MainService";
     	public static String http_img = "";
 
     	/*** http 标识配置 */
