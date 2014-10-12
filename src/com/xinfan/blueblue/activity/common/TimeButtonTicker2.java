@@ -59,8 +59,8 @@ public class TimeButtonTicker2 {
 
 						Message msg2 = new Message();
 
-						msg.what = 2;
-						msg.obj = time;
+						msg2.what = 2;
+						msg2.obj = time;
 
 						hander.sendMessage(msg2);
 
