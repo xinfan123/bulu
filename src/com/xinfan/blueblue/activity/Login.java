@@ -7,12 +7,15 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.xinfan.blueblue.request.AnsynHttpRequest;
+import com.xinfan.blueblue.request.Constants;
 import com.xinfan.blueblue.request.ObserverCallBack;
 import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.SharePreferenceUtil;
 import com.xinfan.blueblue.util.Md5PwdFactory;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.LoginParam;
+import com.xinfan.msgbox.http.service.vo.result.LoginResult;
 
 public class Login extends Activity {
 	private EditText mUser;
@@ -51,7 +54,7 @@ public class Login extends Activity {
 		param.setMobile(username);
 		param.setPasswd(passwd);
 		request.setParam(param);
-		
+
 		passwd = Md5PwdFactory.getUserMd5PwdEncoder().encodePassword(passwd);
 
 		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
@@ -59,9 +62,12 @@ public class Login extends Activity {
 			public void call(Request data) {
 
 				ToastUtil.showMessage(Login.this, "登录成功");
-				
-				data.getResult();
-				
+
+				LoginResult result = (LoginResult) data.getResult();
+				SharePreferenceUtil util = new SharePreferenceUtil(Login.this, Constants.USER_INFO);
+				util.setUserId(result.getUserId());
+				util.setMobile(util.getMobile());
+				util.setUsername(result.getUserName());
 
 				Intent intent = new Intent();
 				intent.setClass(Login.this, MainActivity.class);

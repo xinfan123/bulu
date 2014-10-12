@@ -36,21 +36,31 @@ public class SharePreferenceUtil {
 		editor.commit();
 	}
 
-	public void setSessionId(String id) {
-		editor.putString("sessionid", id);
+	public void setUserId(Long userid) {
+		editor.putLong("userid", userid);
 		editor.commit();
 	}
 
-	public String getSessionId() {
-		return sp.getString("sessionid", "");
+	public String getUserId() {
+		return sp.getString("userid", "");
 	}
 
-	public Integer getConsumerId() {
-		return sp.getInt("consumerid", 0);
+	public String getUsername() {
+		return sp.getString("username", "");
 	}
 
-	public String getIdcard() {
-		return sp.getString("idcard", "");
+	public void setUsername(String username) {
+		editor.putString("username", username);
+		editor.commit();
+	}
+
+	public void setMobile(String mobile) {
+		editor.putString("mobile", mobile);
+		editor.commit();
+	}
+
+	public String getMobile() {
+		return sp.getString("mobile", "");
 	}
 
 	public void setIdcard(String idcard) {
