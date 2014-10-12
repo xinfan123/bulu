@@ -9,6 +9,7 @@ import android.widget.EditText;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.ObserverCallBack;
 import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.util.Md5PwdFactory;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.LoginParam;
@@ -50,12 +51,17 @@ public class Login extends Activity {
 		param.setMobile(username);
 		param.setPasswd(passwd);
 		request.setParam(param);
+		
+		passwd = Md5PwdFactory.getUserMd5PwdEncoder().encodePassword(passwd);
 
 		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
 
 			public void call(Request data) {
 
 				ToastUtil.showMessage(Login.this, "登录成功");
+				
+				data.getResult();
+				
 
 				Intent intent = new Intent();
 				intent.setClass(Login.this, MainActivity.class);
