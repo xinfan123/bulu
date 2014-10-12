@@ -224,7 +224,7 @@ class MyRunnable implements Runnable {
 				}
 			}
 		} catch (Exception e) {
-			LogUtil.e(AnsynHttpRequest.tag, e.getMessage());
+			LogUtil.e(e.getMessage(), e);
 		}
 
 	}

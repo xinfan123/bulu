@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.xinfan.blueblue.activity.main.RefreshableView;
 import com.xinfan.blueblue.activity.main.RefreshableView.PullToRefreshListener;
 import com.xinfan.blueblue.activity.send.SendMessageActivity;
+import com.xinfan.blueblue.request.Constants;
+import com.xinfan.blueblue.request.SharePreferenceUtil;
 
 public class MainActivity extends Activity implements OnViewChangeListener, OnClickListener {
 
@@ -43,7 +45,7 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	public RefreshableView list2_refresh_view;
 	public RefreshableView list3_refresh_view;
 
-	SelectPicPopupWindow menuWindow;
+	MainTopMenu menuWindow;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -162,8 +164,9 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 
 	}
 
+
 	public void uploadImage(final Activity context) {
-		menuWindow = new SelectPicPopupWindow(MainActivity.this, itemsOnClick);
+		menuWindow = new MainTopMenu(MainActivity.this, itemsOnClick);
 		menuWindow.showAtLocation(MainActivity.this.findViewById(R.id.set), Gravity.TOP | Gravity.RIGHT, 10, 230);
 	}
 

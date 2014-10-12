@@ -47,15 +47,15 @@ public class Login extends Activity {
 			ToastUtil.showMessage(this, "用户名密码不能为空");
 			return;
 		}
-
+		
+		passwd = Md5PwdFactory.getUserMd5PwdEncoder().encodePassword(passwd);
+		
 		Request request = new Request(FunIdConstants.LOGIN);
 
 		LoginParam param = new LoginParam();
 		param.setMobile(username);
 		param.setPasswd(passwd);
 		request.setParam(param);
-
-		passwd = Md5PwdFactory.getUserMd5PwdEncoder().encodePassword(passwd);
 
 		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
 

@@ -36,9 +36,10 @@
                     android:textSize="15dp" />
 
                 <TextView
+                    android:id="@+id/menu_userid_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="83738382"
+                    android:text="aaa"
                     android:textColor="@color/white"
                     android:textSize="15dp"
                     android:layout_marginLeft="20dp" />
@@ -59,6 +60,7 @@
                     android:textSize="15dp" />
 
                 <TextView
+                    android:id="@+id/menu_username_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="xiaoxiu439594"

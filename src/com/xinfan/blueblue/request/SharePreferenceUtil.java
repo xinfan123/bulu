@@ -41,8 +41,8 @@ public class SharePreferenceUtil {
 		editor.commit();
 	}
 
-	public String getUserId() {
-		return sp.getString("userid", "");
+	public Long getUserId() {
+		return sp.getLong("userid", 0);
 	}
 
 	public String getUsername() {
