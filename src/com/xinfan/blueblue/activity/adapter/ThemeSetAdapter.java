@@ -51,7 +51,7 @@ public class ThemeSetAdapter extends BaseAdapter {
 		}
 
 		TextView tView = (TextView) view.findViewById(R.id.theme_item);
-		tView.setText(item.getText());
+		tView.setText(item.getUserSent());
 		tView.setTag(item.getId());
 
 		return view;

@@ -1,22 +1,46 @@
 package com.xinfan.blueblue.vo;
 
+import java.util.Date;
+
 public class ThemeVo {
-	String id; 
-	String text;
-	public String getId() {
+	private Long id;
+
+	private Long userId;
+
+	private String userSent;
+
+	private Date createTime;
+
+	public Long getId() {
 		return id;
 	}
-   
-	public void setId(String id) {
-		this.id = id; 
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getText() {
-		return text;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public String getUserSent() {
+		return userSent;
+	}
+
+	public void setUserSent(String userSent) {
+		this.userSent = userSent;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
 }

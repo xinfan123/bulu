@@ -163,7 +163,7 @@ class MyRunnable implements Runnable {
 				// post.setHeader("User-Agent", sUserAgent.toString());
 				List<NameValuePair> params = new ArrayList<NameValuePair>();
 				JSONObject map = JSONUtils.toJSONObject(request.getRequestParamter());
-				
+
 				map.put("class", String.valueOf(request.getRequestParamter().getClass().getName()));
 
 				if (map != null && map.size() > 0) {
@@ -216,7 +216,11 @@ class MyRunnable implements Runnable {
 					if (request.getCode() < 0) {
 						ToastUtil.showMessage(context, request.getMessage());
 					} else {
-						callBack.call(request);
+						((Activity) context).runOnUiThread(new Runnable() {
+							public void run() {
+								callBack.call(request);
+							}
+						});
 					}
 				}
 			}
