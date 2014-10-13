@@ -49,6 +49,7 @@ public class ThemeInputActivity extends Activity {
 				UserSentParam param = new UserSentParam();
 				param.setUserId(LoginUserContext.getUserId(ThemeInputActivity.this));
 				param.setUserSent(str);
+				request.setParam(param);
 
 				AnsynHttpRequest.requestSimpleByPost(ThemeInputActivity.this, request, new ObserverCallBack() {
 					public void call(Request request) {

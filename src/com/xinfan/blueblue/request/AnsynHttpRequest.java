@@ -15,8 +15,10 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
+import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.util.EntityUtils;
 
 import android.app.Activity;
@@ -125,6 +127,8 @@ class MyRunnable implements Runnable {
 		String data = null;
 		LoadingDialogFragment loading = null;
 
+		request.setShowDialog(false);
+
 		if (Network.checkNetWorkType(context) == Network.NONETWORK) {
 			ToastUtil.showMessage(context, "没有网络连接，请检查网络");
 			return;
@@ -141,6 +145,7 @@ class MyRunnable implements Runnable {
 			BasicHttpParams httpParams = new BasicHttpParams();
 			HttpConnectionParams.setConnectionTimeout(httpParams, AnsynHttpRequest.REQUEST_TIMEOUT);
 			HttpConnectionParams.setSoTimeout(httpParams, AnsynHttpRequest.SO_TIMEOUT);
+
 			if (AnsynHttpRequest.mHttpClient == null) {
 				// AnsynHttpRequest.mHttpClient = new
 				// DefaultHttpClient(httpParams);
@@ -148,6 +153,8 @@ class MyRunnable implements Runnable {
 				ClientConnectionManager mgr = client.getConnectionManager();
 				HttpParams params = client.getParams();
 				client = new DefaultHttpClient(new ThreadSafeClientConnManager(params, mgr.getSchemeRegistry()), params);
+				//client.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET, "UTF-8");
+				client.getParams().setParameter(HttpProtocolParams.HTTP_CONTENT_CHARSET, "UTF-8");
 				AnsynHttpRequest.mHttpClient = client;
 			}
 			// HttpClient httpClient = HttpUtils.getNewHttpClient(context);
@@ -156,10 +163,13 @@ class MyRunnable implements Runnable {
 			case AnsynHttpRequest.GET: // get 方式提交
 				HttpGet get = new HttpGet(request.getAddress());
 				// get.setHeader("User-Agent", sUserAgent.toString());
+				//get.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET, "UTF-8");
 				response = AnsynHttpRequest.mHttpClient.execute(get);
 				break;
 			case AnsynHttpRequest.POST: // post 方式提交
 				HttpPost post = new HttpPost(request.getAddress());
+				//post.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET, "UTF-8");
+
 				// post.setHeader("User-Agent", sUserAgent.toString());
 				List<NameValuePair> params = new ArrayList<NameValuePair>();
 				JSONObject map = JSONUtils.toJSONObject(request.getRequestParamter());

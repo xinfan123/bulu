@@ -2,7 +2,6 @@ package com.xinfan.blueblue.activity;
 
 import java.util.ArrayList;
 
-import org.apache.commons.beanutils.BeanUtils;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -66,7 +65,7 @@ public class ThemeSetActivity extends Activity {
 				ThemeVo vo = (ThemeVo) list.get(position);
 				if (vo != null) {
 					Intent intent = new Intent();
-					intent.putExtra("themeid", vo.getId());
+					intent.putExtra("id", vo.getId());
 					intent.setClass(ThemeSetActivity.this, ThemeSetMenu.class);
 					startActivity(intent);
 				}
@@ -96,13 +95,13 @@ public class ThemeSetActivity extends Activity {
 			public void call(Request request) {
 				UserSentListResult sentList = (UserSentListResult) request.getResult();
 
-				list = new ArrayList();
+				list.clear();
 
 				for (UserSentResult item : sentList.getList()) {
 					ThemeVo vo = new ThemeVo();
 
 					try {
-						BeanUtils.copyProperties(vo, item);
+						com.xinfan.blueblue.util.BeanUtils.copyProperty(item, vo);
 					} catch (Exception e) {
 						e.printStackTrace();
 						LogUtil.e(e.getMessage(), e);
