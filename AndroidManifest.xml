@@ -65,7 +65,7 @@
             android:name=".Login"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
-            android:name=".Register"
+            android:name=".RegisterActivity"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name=".Welcome"

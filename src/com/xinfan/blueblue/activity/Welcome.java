@@ -21,7 +21,7 @@ public class Welcome extends Activity {
       }  
     public void welcome_register(View v) {  
       	Intent intent = new Intent();
-		intent.setClass(Welcome.this,Register.class);
+		intent.setClass(Welcome.this,RegisterActivity.class);
 		startActivity(intent);
 		//AccountInfoActivity.instance.finish();
       }  
