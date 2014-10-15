@@ -1,6 +1,16 @@
 package com.xinfan.blueblue.activity;
 
+import com.xinfan.blueblue.request.AnsynHttpRequest;
+import com.xinfan.blueblue.request.Constants;
+import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.SharePreferenceUtil;
 import com.xinfan.blueblue.util.ToastUtil;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.ChangePasswdAfterLoginParam;
+import com.xinfan.msgbox.http.service.vo.param.LoginParam;
+import com.xinfan.msgbox.http.service.vo.result.BaseResult;
+import com.xinfan.msgbox.http.service.vo.result.LoginResult;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -36,8 +46,29 @@ public class UpdatePassword extends Activity {
 			 ToastUtil.showMessage(UpdatePassword.this, "两次密码不一致");
 		}
 		else {
-			ToastUtil.showMessage(this, "修改成功！");
-			this.finish();
+			Request request = new Request(FunIdConstants.CHANGE_PASSWD_AFTER_LOGIN);
+			ChangePasswdAfterLoginParam param = new ChangePasswdAfterLoginParam();
+			SharePreferenceUtil util = new SharePreferenceUtil(UpdatePassword.this, Constants.USER_INFO);
+			Long userId=util.getUserId();
+			param.setNewPasswd(newPassword);
+			param.setOldPasswd(rePassword);
+			param.setUserId(userId);
+			request.setParam(param);
+			
+
+			AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
+
+				public void call(Request data) {
+
+				
+
+					BaseResult result = (BaseResult) data.getResult();
+					ToastUtil.showMessage(UpdatePassword.this, result.getMsg());		
+				
+				}
+			});
+
+		
 		}
 	}
 

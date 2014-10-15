@@ -51,7 +51,6 @@ public class Login extends Activity {
 		passwd = Md5PwdFactory.getUserMd5PwdEncoder().encodePassword(passwd);
 		
 		Request request = new Request(FunIdConstants.LOGIN);
-
 		LoginParam param = new LoginParam();
 		param.setMobile(username);
 		param.setPasswd(passwd);
@@ -61,19 +60,25 @@ public class Login extends Activity {
 
 			public void call(Request data) {
 
-				ToastUtil.showMessage(Login.this, "登录成功");
-
-				LoginResult result = (LoginResult) data.getResult();
-				SharePreferenceUtil util = new SharePreferenceUtil(Login.this, Constants.USER_INFO);
-				util.setUserId(result.getUserId());
-				util.setMobile(util.getMobile());
-				util.setUsername(result.getUserName());
-
-				Intent intent = new Intent();
-				intent.setClass(Login.this, MainActivity.class);
-				startActivity(intent);
 				
-				Login.this.finish();
+				LoginResult result = (LoginResult) data.getResult();
+				if(result.getResult()==1){
+					
+					ToastUtil.showMessage(Login.this,result.getMsg());
+					
+					SharePreferenceUtil util = new SharePreferenceUtil(Login.this, Constants.USER_INFO);
+					util.setUserId(result.getUserId());
+					util.setMobile(result.getMobile());
+					util.setUsername(result.getUserName());
+					
+					Intent intent = new Intent();
+					intent.setClass(Login.this, MainActivity.class);
+					startActivity(intent);
+					Login.this.finish();
+				}else{
+					ToastUtil.showMessage(Login.this,result.getMsg());
+				}
+			
 			}
 		});
 
