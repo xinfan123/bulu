@@ -18,7 +18,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
     <uses-permission android:name="android.permission.INTERNET" />
-
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />  
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -192,6 +192,11 @@
         <activity
             android:name="com.xinfan.blueblue.activity.MainActivity"
             android:screenOrientation="portrait" />
+        
+           <!-- 您的发布产品中请不要使用这个 key !!! -->
+        <meta-data
+            android:name="TencentMapSDK"
+            android:value="EXLBZ-B7TH5-CTZIK-QNQFR-76OGO-GNFCS" />
     </application>
 
 </manifest>
