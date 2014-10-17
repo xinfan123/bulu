@@ -12,7 +12,15 @@ import android.widget.ListView;
 
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.SystemSet;
+import com.xinfan.blueblue.request.AnsynHttpRequest;
+import com.xinfan.blueblue.request.Constants;
+import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.SharePreferenceUtil;
 import com.xinfan.blueblue.util.ToastUtil;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.UserSetParam;
+import com.xinfan.msgbox.http.service.vo.result.BaseResult;
 
 public class ReputationSet extends Activity {
 
@@ -66,10 +74,38 @@ public class ReputationSet extends Activity {
 
 	public void SaveMessage(int v) {
 
-		SelectVo type = list.get(v);
-		SystemSet.instance.SetReputation(type.getText());
-		ToastUtil.showMessage(this, "设置信誉等级成功");
-		this.finish();
+		final SelectVo select = list.get(v);
+		
+		Integer requtation=Integer.parseInt(select.getId());
+		
+		SharePreferenceUtil util = new SharePreferenceUtil(ReputationSet.this, Constants.USER_INFO);
+		Long userId=util.getUserId();
+		
+		Request request = new Request(FunIdConstants.SET_USERSET);
+		UserSetParam param = new UserSetParam();
+		param.setMinCredit(requtation);
+		param.setUserId(userId);
+		request.setParam(param);
+		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
+			
+		public void call(Request data) {
+			
+		BaseResult result = (BaseResult) data.getResult();
+		System.out.println(result.getResult());
+		if(result.getResult()==1){
+			
+			ToastUtil.showMessage(ReputationSet.this,result.getMsg());
+			
+			
+			SystemSet.instance.SetMessageNum(select.getText());
+			ReputationSet.this.finish();
+		}else{
+			ToastUtil.showMessage(ReputationSet.this,result.getMsg());
+		}
+	
+	}
+});
+		
 
 	}
 

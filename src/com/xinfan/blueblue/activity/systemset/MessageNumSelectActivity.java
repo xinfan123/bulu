@@ -10,9 +10,20 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+
+import com.xinfan.blueblue.activity.Login;
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.SystemSet;
+import com.xinfan.blueblue.request.AnsynHttpRequest;
+import com.xinfan.blueblue.request.Constants;
+import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.SharePreferenceUtil;
 import com.xinfan.blueblue.util.ToastUtil;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.UserSetParam;
+import com.xinfan.msgbox.http.service.vo.result.BaseResult;
+
 
 public class MessageNumSelectActivity extends Activity {
 	private ListView messagenumSr;
@@ -58,10 +69,39 @@ public class MessageNumSelectActivity extends Activity {
 
 	public void SaveMessage(int arg2) {
 
-		SelectVo select = list.get(arg2);
-		SystemSet.instance.SetMessageNum(select.getText());
-		ToastUtil.showMessage(this, "设置接收数量成功");
-		this.finish();
+		final SelectVo select = list.get(arg2);
+		
+		Integer maxCount=Integer.parseInt(select.getId());
+		
+		SharePreferenceUtil util = new SharePreferenceUtil(MessageNumSelectActivity.this, Constants.USER_INFO);
+		Long userId=util.getUserId();
+		
+		Request request = new Request(FunIdConstants.SET_USERSET);
+		UserSetParam param = new UserSetParam();
+		param.setMaxCount(maxCount);
+		param.setUserId(userId);
+		request.setParam(param);
+		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
+			
+		public void call(Request data) {
+			
+		BaseResult result = (BaseResult) data.getResult();
+		System.out.println(result.getResult());
+		if(result.getResult()==1){
+			
+			ToastUtil.showMessage(MessageNumSelectActivity.this,result.getMsg());
+			
+			
+			SystemSet.instance.SetMessageNum(select.getText());
+			MessageNumSelectActivity.this.finish();
+		}else{
+			ToastUtil.showMessage(MessageNumSelectActivity.this,result.getMsg());
+		}
+	
+	}
+});
+		
+	
 
 	}
 

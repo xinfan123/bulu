@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 public class AccountEscActivity extends Activity {
 	//private MyDialog dialog;
 	private LinearLayout layout;

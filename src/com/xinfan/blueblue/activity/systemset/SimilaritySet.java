@@ -12,7 +12,15 @@ import android.widget.ListView;
 
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.SystemSet;
+import com.xinfan.blueblue.request.AnsynHttpRequest;
+import com.xinfan.blueblue.request.Constants;
+import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.SharePreferenceUtil;
 import com.xinfan.blueblue.util.ToastUtil;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.UserSetParam;
+import com.xinfan.msgbox.http.service.vo.result.BaseResult;
 
 public class SimilaritySet extends Activity {
 
@@ -66,11 +74,39 @@ public class SimilaritySet extends Activity {
 
 
 	public void SaveMessage(int v) {
-
-		SelectVo type = list.get(v);
-		SystemSet.instance.SetSimilarity(type.getText());
-		ToastUtil.showMessage(this, "设置消息相似度成功");
-		this.finish();
+		
+	final SelectVo select = list.get(v);
+		
+		Integer similarLevel=Integer.parseInt(select.getId());
+		
+		SharePreferenceUtil util = new SharePreferenceUtil(SimilaritySet.this, Constants.USER_INFO);
+		Long userId=util.getUserId();
+		
+		Request request = new Request(FunIdConstants.SET_USERSET);
+		UserSetParam param = new UserSetParam();
+		param.setSimilarLevel(similarLevel);
+		param.setUserId(userId);
+		request.setParam(param);
+		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
+			
+		public void call(Request data) {
+			
+		BaseResult result = (BaseResult) data.getResult();
+		System.out.println(result.getResult());
+		if(result.getResult()==1){
+			
+			ToastUtil.showMessage(SimilaritySet.this,result.getMsg());
+			
+			
+			SystemSet.instance.SetMessageNum(select.getText());
+			SimilaritySet.this.finish();
+		}else{
+			ToastUtil.showMessage(SimilaritySet.this,result.getMsg());
+		}
+	
+	}
+});
+		
 
 	}
 

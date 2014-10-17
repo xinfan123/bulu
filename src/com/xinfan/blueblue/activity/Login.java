@@ -42,7 +42,7 @@ public class Login extends Activity {
 
 		String username = mUser.getText().toString();
 		String passwd = mPassword.getText().toString();
-
+		
 		if (username.length() == 0 || passwd.length() == 0) {
 			ToastUtil.showMessage(this, "用户名密码不能为空");
 			return;

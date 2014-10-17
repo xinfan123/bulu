@@ -14,7 +14,15 @@ import android.widget.Spinner;
 
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.SystemSet;
+import com.xinfan.blueblue.request.AnsynHttpRequest;
+import com.xinfan.blueblue.request.Constants;
+import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.SharePreferenceUtil;
 import com.xinfan.blueblue.util.ToastUtil;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.UserSetParam;
+import com.xinfan.msgbox.http.service.vo.result.BaseResult;
 
 public class PaidSet extends Activity {
 	private ListView messageSr;
@@ -62,10 +70,37 @@ public class PaidSet extends Activity {
 
 	public void SaveMessage(int index) {
 
-		SelectVo type = list.get(index);
-		SystemSet.instance.SetPaid(type.getText());
-		ToastUtil.showMessage(this, "设置有偿额度成功");
-		this.finish();
+final SelectVo select = list.get(index);
+		
+		Integer minAmmount=Integer.parseInt(select.getId());
+		
+		SharePreferenceUtil util = new SharePreferenceUtil(PaidSet.this, Constants.USER_INFO);
+		Long userId=util.getUserId();
+		
+		Request request = new Request(FunIdConstants.SET_USERSET);
+		UserSetParam param = new UserSetParam();
+		param.setMinAmmount(minAmmount);
+		param.setUserId(userId);
+		request.setParam(param);
+		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
+			
+		public void call(Request data) {
+			
+		BaseResult result = (BaseResult) data.getResult();
+		System.out.println(result.getResult());
+		if(result.getResult()==1){
+			
+			ToastUtil.showMessage(PaidSet.this,result.getMsg());
+			
+			
+			SystemSet.instance.SetMessageNum(select.getText());
+			PaidSet.this.finish();
+		}else{
+			ToastUtil.showMessage(PaidSet.this,result.getMsg());
+		}
+	
+	}
+});
 
 	}
 
