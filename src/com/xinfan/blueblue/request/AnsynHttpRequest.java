@@ -145,7 +145,7 @@ class MyRunnable implements Runnable {
 			BasicHttpParams httpParams = new BasicHttpParams();
 			HttpConnectionParams.setConnectionTimeout(httpParams, AnsynHttpRequest.REQUEST_TIMEOUT);
 			HttpConnectionParams.setSoTimeout(httpParams, AnsynHttpRequest.SO_TIMEOUT);
-
+			
 			if (AnsynHttpRequest.mHttpClient == null) {
 				// AnsynHttpRequest.mHttpClient = new
 				// DefaultHttpClient(httpParams);
@@ -156,6 +156,7 @@ class MyRunnable implements Runnable {
 				//client.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET, "UTF-8");
 				client.getParams().setParameter(HttpProtocolParams.HTTP_CONTENT_CHARSET, "UTF-8");
 				AnsynHttpRequest.mHttpClient = client;
+			
 			}
 			// HttpClient httpClient = HttpUtils.getNewHttpClient(context);
 			HttpResponse response = null;
@@ -188,7 +189,7 @@ class MyRunnable implements Runnable {
 			default:
 				break;
 			}
-
+			System.out.println("~~~~~~~~~~~~~~~~~~~~"+(response.getStatusLine().getStatusCode()));
 			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 				// httpClient.getCookieStore().getCookies().g
 				data = EntityUtils.toString(response.getEntity());
