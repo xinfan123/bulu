@@ -1,5 +1,8 @@
 package com.xinfan.blueblue.activity.contact;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
@@ -12,10 +15,19 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 
 import com.xinfan.blueblue.activity.ContactInfoActivity;
+import com.xinfan.blueblue.activity.ContactListView;
 import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
+import com.xinfan.blueblue.request.AnsynHttpRequest;
+import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.util.BeanUtils;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.blueblue.vo.ContactVo;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.UserLinkmanParam;
+import com.xinfan.msgbox.http.service.vo.result.UserLinkmanListResult;
+import com.xinfan.msgbox.http.service.vo.result.UserLinkmanResult;
 
 public class ContactInfoMenu extends PopupWindow {
 
@@ -64,12 +76,22 @@ public class ContactInfoMenu extends PopupWindow {
 	public void onClickDelete(View v) {
 
 		ContactVo vo = ContactInfoActivity.instance.vo;
-
-		//MainActivity.instance.listview3.list.remove(vo.getIndex());
-		MainActivity.instance.listview3.ad.notifyDataSetChanged();
-
-		ToastUtil.showMessage(v.getContext(), "删除成功");
-		ContactInfoActivity.instance.finish();
+		
+		Request request = new Request(FunIdConstants.DELETE_USER_LINKMAN);
+		
+		UserLinkmanParam param = new UserLinkmanParam();
+		param.setLinkUserId(vo.getLinkUserId());
+		param.setUserId(vo.getUserId());
+		
+		request.setParam(param);
+		
+		AnsynHttpRequest.requestSimpleByPost(ContactInfoActivity.instance, request, new ObserverCallBack() {
+			public void call(Request data) {
+				MainActivity.instance.listview3.refresh();
+				ToastUtil.showMessage(ContactInfoActivity.instance, "删除成功");
+				ContactInfoActivity.instance.finish();
+			}
+		});
 	}
 
 	public void onClickMark(final View v) {
@@ -87,13 +109,33 @@ public class ContactInfoMenu extends PopupWindow {
 					ToastUtil.showMessage(v.getContext(), "内容过长");
 					return;
 				}
-
+				
+				ContactVo vo = ContactInfoActivity.instance.vo;
 				ContactInfoActivity.instance.updateMark(str);
 				ToastUtil.showMessage(v.getContext(), "修改成功");
 				window.dismiss();
+				
+				
+				Request request = new Request(FunIdConstants.UPDATE_USER_LINKMAN);
+				
+				UserLinkmanParam param = new UserLinkmanParam();
+				param.setLinkUserId(vo.getLinkUserId());
+				param.setUserId(vo.getUserId());
+				param.setLinkRemark(str);
+				
+				request.setParam(param);
+				request.setShowDialog(false);
+				
+				AnsynHttpRequest.requestSimpleByPost(ContactInfoActivity.instance, request, new ObserverCallBack() {
+					public void call(Request data) {
+						MainActivity.instance.listview3.refresh();
+						//ToastUtil.showMessage(ContactInfoActivity.instance, "删除成功");
+					}
+				});
 			}
 
 		});
+		
 		View parent = ContactInfoActivity.instance.findViewById(R.id.contact_layout_top);
 		window.showAtLocation(parent, Gravity.CENTER, 0, 0);
 	}
