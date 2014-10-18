@@ -43,8 +43,6 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	public ContactListView listview3;
 
 	public RefreshableView list1_refresh_view;
-	public RefreshableView list2_refresh_view;
-	
 
 	MainTopMenu menuWindow;
 
@@ -66,7 +64,6 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		listview3 = (ContactListView) findViewById(R.id.listView3);
 
 		list1_refresh_view = (RefreshableView) findViewById(R.id.list1_refresh_view);
-		list2_refresh_view = (RefreshableView) findViewById(R.id.list2_refresh_view);
 
 		View footer = LayoutInflater.from(this).inflate(R.layout.footer, null);
 
@@ -74,12 +71,7 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		listview1.setFooter(footer);
 		listview1.loadData();
 
-		View footer2 = LayoutInflater.from(this).inflate(R.layout.footer, null);
-
-		listview2.setContext(this);
-		listview2.setFooter(footer2);
-		listview2.loadData();
-
+		listview2.init(this);
 		listview3.init(this);
 
 		mScrollLayout = (MyScrollLayout) findViewById(R.id.ScrollLayout);
@@ -120,7 +112,6 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		});
 
 		list1_refresh_view.setmId(1);
-		list2_refresh_view.setmId(2);
 		list1_refresh_view.setOnRefreshListener(new PullToRefreshListener() {
 			@Override
 			public void onRefresh() {
@@ -132,19 +123,7 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 				list1_refresh_view.finishRefreshing();
 			}
 		}, 0);
-
-		list2_refresh_view.setOnRefreshListener(new PullToRefreshListener() {
-			@Override
-			public void onRefresh() {
-				try {
-					Thread.sleep(3000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				list2_refresh_view.finishRefreshing();
-			}
-		}, 0);
-
+		
 	}
 
 

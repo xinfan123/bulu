@@ -13,7 +13,15 @@ import android.widget.PopupWindow;
 import com.xinfan.blueblue.activity.ContactInfoActivity;
 import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
+import com.xinfan.blueblue.activity.context.LoginUserContext;
+import com.xinfan.blueblue.request.AnsynHttpRequest;
+import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.util.ToastUtil;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.MessageParam;
+import com.xinfan.msgbox.http.service.vo.result.MessageResult;
+import com.xinfan.msgbox.http.service.vo.result.MessageVO;
 
 public class SeeMessageMenu extends PopupWindow {
 
@@ -21,8 +29,13 @@ public class SeeMessageMenu extends PopupWindow {
 	private View btnResend;
 	private View mMenuView;
 
+	public Activity context;
+
 	public SeeMessageMenu(final Activity context) {
 		super(context);
+
+		this.context = context;
+
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		mMenuView = inflater.inflate(R.layout.see_message_menu, null);
 
@@ -62,14 +75,41 @@ public class SeeMessageMenu extends PopupWindow {
 
 		SendMessageVo vo = SeeMessageActivity.instance.vo;
 
-		MainActivity.instance.listview2.list.remove(vo.getIndex());
-		MainActivity.instance.listview2.ad.notifyDataSetChanged();
+		Request request = new Request(FunIdConstants.DELETE_MESSAGE);
+		MessageParam param = new MessageParam();
+		param.setUserId(LoginUserContext.getUserId(this.context));
+		param.setMsgId(vo.getMsgId());
 
-		ToastUtil.showMessage(v.getContext(), "删除成功");
-		SeeMessageActivity.instance.finish();
+		request.setParam(param);
+
+		AnsynHttpRequest.requestSimpleByPost(this.context, request, new ObserverCallBack() {
+
+			public void call(Request data) {
+				ToastUtil.showMessage(SeeMessageActivity.instance, "删除成功");
+				MainActivity.instance.listview2.refresh();
+				SeeMessageActivity.instance.finish();
+			}
+		});
 	}
 
 	public void onClickResend(View v) {
-		ToastUtil.showMessage(v.getContext(), "重新发送成功");
+
+		SendMessageVo vo = SeeMessageActivity.instance.vo;
+
+		Request request = new Request(FunIdConstants.RESEND_MESSAGE);
+		MessageParam param = new MessageParam();
+		param.setUserId(LoginUserContext.getUserId(this.context));
+		param.setMsgId(vo.getMsgId());
+
+		request.setParam(param);
+
+		AnsynHttpRequest.requestSimpleByPost(this.context, request, new ObserverCallBack() {
+
+			public void call(Request data) {
+				ToastUtil.showMessage(SeeMessageActivity.instance, "重新发送成功");
+				MainActivity.instance.listview2.refresh();
+				SeeMessageActivity.instance.load();
+			}
+		});
 	}
 }

@@ -53,8 +53,8 @@ public class SendHistoryAdapter extends BaseAdapter {
 
 		// h.pic.setImageResource(Integer.parseInt(hh.getTxPath()));
 		name.setText(hh.getTitle());
-		time.setText(hh.getTime());
-		lastmsg.setText(hh.getContent());
+		time.setText(hh.getTitle());
+		lastmsg.setText(hh.getTitle());
 
 		return view;
 	}

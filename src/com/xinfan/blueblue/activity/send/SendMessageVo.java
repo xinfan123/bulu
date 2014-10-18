@@ -1,27 +1,36 @@
 package com.xinfan.blueblue.activity.send;
 
-public class SendMessageVo implements java.io.Serializable {
+import java.util.Date;
 
-	private int index;
+public class SendMessageVo implements java.io.Serializable {
+	private Long msgId;
 
 	private String title;
 
-	private String content;
+	private Integer amountStatus;
 
-	private String time;
+	private Long amount;
 
-	private String area;
+	private Date validTime;
 
-	private String money;
+	private Integer publishCount;
 
-	private int isMoney;
+	private Integer readCount;
 
-	public int getIndex() {
-		return index;
+	private Date sendTime;
+
+	private Integer newReplyForSend;
+
+	private Integer msgStatus;
+
+	private Date createTime;
+
+	public Long getMsgId() {
+		return msgId;
 	}
 
-	public void setIndex(int index) {
-		this.index = index;
+	public void setMsgId(Long msgId) {
+		this.msgId = msgId;
 	}
 
 	public String getTitle() {
@@ -32,44 +41,76 @@ public class SendMessageVo implements java.io.Serializable {
 		this.title = title;
 	}
 
-	public String getContent() {
-		return content;
+	public Integer getAmountStatus() {
+		return amountStatus;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setAmountStatus(Integer amountStatus) {
+		this.amountStatus = amountStatus;
 	}
 
-	public String getTime() {
-		return time;
+	public Long getAmount() {
+		return amount;
 	}
 
-	public void setTime(String time) {
-		this.time = time;
+	public void setAmount(Long amount) {
+		this.amount = amount;
 	}
 
-	public String getArea() {
-		return area;
+	public Date getValidTime() {
+		return validTime;
 	}
 
-	public void setArea(String area) {
-		this.area = area;
+	public void setValidTime(Date validTime) {
+		this.validTime = validTime;
 	}
 
-	public String getMoney() {
-		return money;
+	public Integer getPublishCount() {
+		return publishCount;
 	}
 
-	public void setMoney(String money) {
-		this.money = money;
+	public void setPublishCount(Integer publishCount) {
+		this.publishCount = publishCount;
 	}
 
-	public int getIsMoney() {
-		return isMoney;
+	public Integer getReadCount() {
+		return readCount;
 	}
 
-	public void setIsMoney(int isMoney) {
-		this.isMoney = isMoney;
+	public void setReadCount(Integer readCount) {
+		this.readCount = readCount;
+	}
+
+	public Date getSendTime() {
+		return sendTime;
+	}
+
+	public void setSendTime(Date sendTime) {
+		this.sendTime = sendTime;
+	}
+
+	public Integer getNewReplyForSend() {
+		return newReplyForSend;
+	}
+
+	public void setNewReplyForSend(Integer newReplyForSend) {
+		this.newReplyForSend = newReplyForSend;
+	}
+
+	public Integer getMsgStatus() {
+		return msgStatus;
+	}
+
+	public void setMsgStatus(Integer msgStatus) {
+		this.msgStatus = msgStatus;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
 }

@@ -137,7 +137,6 @@ public class SendMessageActivity extends Activity implements OnClickListener {
 	}
 
 	public void sendMessage() {
-		SendMessageVo message = new SendMessageVo();
 
 		String title = message_content_edit.getText().toString();
 		String content = message_more_edit.getText().toString();
@@ -145,19 +144,17 @@ public class SendMessageActivity extends Activity implements OnClickListener {
 		String area = area_select_label.getText().toString();
 		String money = money_select_label.getText().toString();
 
-		message.setTitle(title);
-		message.setTime(time);
-		message.setContent(content);
-		message.setArea(area);
-		message.setMoney(money);
+		//message.setTitle(title);
+		//message.setTime(time);
+		//message.setContent(content);
+		//message.setArea(area);
+		//message.setMoney(money);
 		
-
 		Request request = new Request(FunIdConstants.SEND_MESSAGE);
 		MessageParam param = new MessageParam();
 		param.setTitle(title);
 		param.setContext(content);
-		
-		param.setAmountStatus(1);
+		param.setCreateUserId(LoginUserContext.getUserId(this));
 		param.setUserId(LoginUserContext.getUserId(this));
 		
 		request.setParam(param);
@@ -165,6 +162,7 @@ public class SendMessageActivity extends Activity implements OnClickListener {
 		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
 
 			public void call(Request data) {
+				MainActivity.instance.listview2.refresh();
 				//刷新历史信息
 				ToastUtil.showMessage(SendMessageActivity.this, "发送成功");
 				SendMessageActivity.this.finish();

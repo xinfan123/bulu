@@ -46,7 +46,7 @@ public class MessageListDataService {
 
 	public static List<SendMessageVo> getSendMessageData(int pageSize, int page) {
 		List<SendMessageVo> list = new ArrayList<SendMessageVo>();
-		int index = (pageSize * (page - 1) + 1);
+	/*	int index = (pageSize * (page - 1) + 1);
 		int max = pageSize * page;
 		for (int i = index; i <= max; i++) {
 			SendMessageVo map = new SendMessageVo();
@@ -58,7 +58,7 @@ public class MessageListDataService {
 			map.setTime("时间："+i);
 
 			list.add(map);
-		}
+		}*/
 		return list;
 	}
 

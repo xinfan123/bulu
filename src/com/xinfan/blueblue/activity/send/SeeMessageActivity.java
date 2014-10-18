@@ -8,6 +8,14 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.R;
+import com.xinfan.blueblue.activity.context.LoginUserContext;
+import com.xinfan.blueblue.request.AnsynHttpRequest;
+import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.Request;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.MessageParam;
+import com.xinfan.msgbox.http.service.vo.result.MessageResult;
+import com.xinfan.msgbox.http.service.vo.result.MessageVO;
 
 public class SeeMessageActivity extends Activity implements OnClickListener {
 
@@ -26,7 +34,7 @@ public class SeeMessageActivity extends Activity implements OnClickListener {
 	public static SeeMessageActivity instance;
 
 	public SeeMessageMenu menu;
-	
+
 	public SendMessageVo vo;
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,23 +50,41 @@ public class SeeMessageActivity extends Activity implements OnClickListener {
 
 		instance = this;
 		Bundle data = this.getIntent().getExtras();
-
 		vo = (SendMessageVo) data.getSerializable("vo");
+	}
 
-		if (vo.getContent() == null || vo.getContent().length() <= 1) {
-			see_message_more_edit.setVisibility(View.GONE);
-		} else {
-			see_message_more_edit.setVisibility(View.VISIBLE);
-			see_message_more_edit.setText(vo.getContent());
-		}
+	public void load() {
 
-		see_message_content_edit.setText(vo.getTitle());
+		Request request = new Request(FunIdConstants.GET_MESSAGE);
+		MessageParam param = new MessageParam();
+		param.setUserId(LoginUserContext.getUserId(this));
+		param.setMsgId(vo.getMsgId());
 
-		see_time_select_label.setText(vo.getTime());
-		see_area_select_label.setText(vo.getArea());
-		see_message_credit.setText("信用：100");
-		see_money_select_label.setText(vo.getMoney());
+		request.setParam(param);
 
+		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
+
+			public void call(Request data) {
+
+				MessageResult result = (MessageResult) data.getResult();
+
+				MessageVO messageVo = result.getMessage();
+
+				if (messageVo.getTitle() == null || vo.getTitle().length() <= 1) {
+					see_message_more_edit.setVisibility(View.GONE);
+				} else {
+					see_message_more_edit.setVisibility(View.VISIBLE);
+					see_message_more_edit.setText(vo.getTitle());
+				}
+
+				see_message_content_edit.setText(vo.getTitle());
+
+				see_time_select_label.setText(vo.getTitle());
+				see_area_select_label.setText(vo.getTitle());
+				see_message_credit.setText("信用：100");
+				see_money_select_label.setText(String.valueOf(vo.getAmount()));
+			}
+		});
 	}
 
 	public void send_msg_back(View view) {
