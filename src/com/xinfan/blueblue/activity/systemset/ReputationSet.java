@@ -91,13 +91,13 @@ public class ReputationSet extends Activity {
 		public void call(Request data) {
 			
 		BaseResult result = (BaseResult) data.getResult();
-		System.out.println(result.getResult());
+	
 		if(result.getResult()==1){
 			
 			ToastUtil.showMessage(ReputationSet.this,result.getMsg());
 			
 			
-			SystemSet.instance.SetMessageNum(select.getText());
+			SystemSet.instance.SetReputation(select.getText());
 			ReputationSet.this.finish();
 		}else{
 			ToastUtil.showMessage(ReputationSet.this,result.getMsg());

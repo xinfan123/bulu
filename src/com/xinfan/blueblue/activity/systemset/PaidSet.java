@@ -87,13 +87,13 @@ final SelectVo select = list.get(index);
 		public void call(Request data) {
 			
 		BaseResult result = (BaseResult) data.getResult();
-		System.out.println(result.getResult());
+	
 		if(result.getResult()==1){
 			
 			ToastUtil.showMessage(PaidSet.this,result.getMsg());
 			
 			
-			SystemSet.instance.SetMessageNum(select.getText());
+			SystemSet.instance.SetPaid(select.getText());
 			PaidSet.this.finish();
 		}else{
 			ToastUtil.showMessage(PaidSet.this,result.getMsg());

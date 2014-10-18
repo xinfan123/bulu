@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 
 
+
 import com.tencent.map.geolocation.TencentLocation;
 import com.tencent.map.geolocation.TencentLocationListener;
 import com.tencent.map.geolocation.TencentLocationManager;
@@ -104,9 +105,11 @@ public class RegisterActivity extends Activity implements OnClickListener,Tencen
       	   }
  	   };
     }
+    
     public Handler getHandler(){
     	return this.handler;
     	}
+    
     public void register(View v) {
 		mobile=mMobile.getText().toString();
     	password=mPassword.getText().toString();
@@ -139,6 +142,8 @@ public class RegisterActivity extends Activity implements OnClickListener,Tencen
     		param.setMobile(mobile);
     		param.setPasswd(password);
     		param.setValidCode(gencode);
+    		param.setRegGpsx(userLocation.getLatitude().toString());
+    		param.setRegGpsy(userLocation.getLongitude().toString());
     		request.setParam(param);
     		
     		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
@@ -150,7 +155,7 @@ public class RegisterActivity extends Activity implements OnClickListener,Tencen
     				
     				if(result.getResult()==1){
     					
-    					ToastUtil.showMessage(RegisterActivity.this,"验证码已经发送请注意查收");
+    					ToastUtil.showMessage(RegisterActivity.this,result.getMsg());
     					SharePreferenceUtil util = new SharePreferenceUtil(RegisterActivity.this, Constants.USER_INFO);
     					util.setMobile(mobile);
     					  Intent intent = new Intent();
@@ -159,7 +164,7 @@ public class RegisterActivity extends Activity implements OnClickListener,Tencen
     			           RegisterActivity.this.finish();
     					
     				}else{
-    					ToastUtil.showMessage(RegisterActivity.this,"发送不成功");
+    					ToastUtil.showMessage(RegisterActivity.this,result.getMsg());
     				}
     				
     			}

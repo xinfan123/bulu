@@ -92,13 +92,13 @@ public class SimilaritySet extends Activity {
 		public void call(Request data) {
 			
 		BaseResult result = (BaseResult) data.getResult();
-		System.out.println(result.getResult());
+	
 		if(result.getResult()==1){
 			
 			ToastUtil.showMessage(SimilaritySet.this,result.getMsg());
 			
 			
-			SystemSet.instance.SetMessageNum(select.getText());
+			SystemSet.instance.SetSimilarity(select.getText());
 			SimilaritySet.this.finish();
 		}else{
 			ToastUtil.showMessage(SimilaritySet.this,result.getMsg());

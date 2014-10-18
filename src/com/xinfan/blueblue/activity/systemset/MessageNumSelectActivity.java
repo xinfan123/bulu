@@ -86,7 +86,7 @@ public class MessageNumSelectActivity extends Activity {
 		public void call(Request data) {
 			
 		BaseResult result = (BaseResult) data.getResult();
-		System.out.println(result.getResult());
+	
 		if(result.getResult()==1){
 			
 			ToastUtil.showMessage(MessageNumSelectActivity.this,result.getMsg());

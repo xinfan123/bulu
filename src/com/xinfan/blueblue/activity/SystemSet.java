@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,11 +17,23 @@ import com.xinfan.blueblue.activity.systemset.MessageNumSelectActivity;
 import com.xinfan.blueblue.activity.systemset.PaidSet;
 import com.xinfan.blueblue.activity.systemset.ReputationSet;
 import com.xinfan.blueblue.activity.systemset.SimilaritySet;
+import com.xinfan.blueblue.request.AnsynHttpRequest;
+import com.xinfan.blueblue.request.Constants;
+import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.SharePreferenceUtil;
+import com.xinfan.blueblue.util.ToastUtil;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.UserSetParam;
+import com.xinfan.msgbox.http.service.vo.result.BaseResult;
 
 
 
 public class SystemSet extends Activity {
 	 public static SystemSet instance;
+	 private CheckBox messageNoticeBtn;//震动
+	 private CheckBox voiceBtn;//震动
+	 private CheckBox vibrateBtn;//震动
 	 private TextView receivenumText;//消息数量
 	 private TextView similarityText;//相似度
 	 private TextView paidText;//相似度
@@ -30,11 +43,131 @@ public class SystemSet extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.system_set);
+		messageNoticeBtn=(CheckBox) findViewById(R.id.system_messageNotice_btn);
+		voiceBtn=(CheckBox) findViewById(R.id.System_voice_btn);
+		vibrateBtn=(CheckBox) findViewById(R.id.system_vibrate_btn);
 		receivenumText=(TextView) findViewById(R.id.receivenum_sytem_tv);
 		similarityText=(TextView) findViewById(R.id.similarity_sytem_tv);
 		paidText=(TextView) findViewById(R.id.paid_sytem_tv);
 		reputationText=(TextView) findViewById(R.id.reputation_sytem_tv);
 		
+		// 监听是否接收消息
+		messageNoticeBtn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				final boolean is=messageNoticeBtn.isChecked();
+				SharePreferenceUtil util = new SharePreferenceUtil(SystemSet.this, Constants.USER_INFO);
+				Long userId=util.getUserId();
+				
+				Request request = new Request(FunIdConstants.SET_USERSET);
+				UserSetParam param = new UserSetParam();
+				if(is){
+				param.setNewMsgNotify(1);
+				}else{
+				param.setNewMsgNotify(0);
+				}
+				param.setUserId(userId);
+				request.setParam(param);
+				AnsynHttpRequest.requestSimpleByPost(SystemSet.this, request, new ObserverCallBack() {
+					
+				public void call(Request data) {
+					
+				BaseResult result = (BaseResult) data.getResult();
+
+				if(result.getResult()==1){
+					
+					ToastUtil.showMessage(SystemSet.this,result.getMsg());
+					
+					
+					messageNoticeBtn.setChecked(is);
+				
+				}else{
+					ToastUtil.showMessage(SystemSet.this,result.getMsg());
+				}
+			
+			}
+		});
+			}
+		});
+		// 监听声音开关
+		vibrateBtn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				final boolean is=vibrateBtn.isChecked();
+				SharePreferenceUtil util = new SharePreferenceUtil(SystemSet.this, Constants.USER_INFO);
+				Long userId=util.getUserId();
+				
+				Request request = new Request(FunIdConstants.SET_USERSET);
+				UserSetParam param = new UserSetParam();
+				if(is){
+				param.setVibrate(1);
+				}else{
+				param.setVibrate(0);
+				}
+				param.setUserId(userId);
+				request.setParam(param);
+				AnsynHttpRequest.requestSimpleByPost(SystemSet.this, request, new ObserverCallBack() {
+					
+				public void call(Request data) {
+					
+				BaseResult result = (BaseResult) data.getResult();
+			
+				if(result.getResult()==1){
+					
+					ToastUtil.showMessage(SystemSet.this,result.getMsg());
+					
+					
+					vibrateBtn.setChecked(is);
+				
+				}else{
+					ToastUtil.showMessage(SystemSet.this,result.getMsg());
+				}
+			
+			}
+		});
+			}
+		});
+		// 监听震动开关
+		voiceBtn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				final boolean is=voiceBtn.isChecked();
+				SharePreferenceUtil util = new SharePreferenceUtil(SystemSet.this, Constants.USER_INFO);
+				Long userId=util.getUserId();
+				
+				Request request = new Request(FunIdConstants.SET_USERSET);
+				UserSetParam param = new UserSetParam();
+				if(is){
+				param.setVoice(1);
+				}else{
+				param.setVoice(0);
+				}
+				param.setUserId(userId);
+				request.setParam(param);
+				AnsynHttpRequest.requestSimpleByPost(SystemSet.this, request, new ObserverCallBack() {
+					
+				public void call(Request data) {
+					
+				BaseResult result = (BaseResult) data.getResult();
+			
+				if(result.getResult()==1){
+					
+					ToastUtil.showMessage(SystemSet.this,result.getMsg());
+					
+					
+					voiceBtn.setChecked(is);
+				
+				}else{
+					ToastUtil.showMessage(SystemSet.this,result.getMsg());
+				}
+			
+			}
+		});
+			}
+		});
 		// 监听接收数量设置
 		LinearLayout receivenum = (LinearLayout) findViewById(R.id.receivenum_sytem_layout);
 		receivenum.setOnClickListener(new OnClickListener() {
