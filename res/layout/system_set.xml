@@ -45,6 +45,7 @@
             android:orientation="vertical" >
 
             <LinearLayout
+                android:id="@+id/messageNotice_sytem_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/cell_height"
                 android:background="@drawable/selector_text_field"
@@ -70,6 +71,7 @@
             </LinearLayout>
 
             <LinearLayout
+                 android:id="@+id/voice_sytem_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/cell_height"
                 android:background="@drawable/selector_text_field"
@@ -95,6 +97,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/vibrate_sytem_layout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/cell_height"
                 android:background="@drawable/selector_text_field"
