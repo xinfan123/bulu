@@ -26,7 +26,7 @@ public final class Constants {
 	
 	public static final String DEFAULT_PORT = "7001";
 	
-	
+	public static final String DETAULT_VERSION = "1.0.0";
 	/**
 	 * 显示屏信息
 	 * @author chen

@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.xinfan.blueblue.activity.context.VersionManager;
 import com.xinfan.blueblue.activity.main.RefreshableView;
 import com.xinfan.blueblue.activity.main.RefreshableView.PullToRefreshListener;
 import com.xinfan.blueblue.activity.send.SendMessageActivity;
@@ -50,6 +51,8 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		setContentView(R.layout.activity_main);
 		init();
 		instance = this;
+		
+		checkversion();
 	}
 
 	private void init() {
@@ -60,7 +63,6 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		listview1 = (MessageListView) findViewById(R.id.listView1);
 		listview2 = (SendedMessageListView) findViewById(R.id.listView2);
 		listview3 = (ContactListView) findViewById(R.id.listView3);
-
 
 		listview1.init(this);
 		listview2.init(this);
@@ -103,7 +105,6 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 			}
 		});
 	}
-
 
 	public void uploadImage(final Activity context) {
 		menuWindow = new MainTopMenu(MainActivity.this, itemsOnClick);
@@ -178,6 +179,12 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		}
 
 		return super.onKeyDown(keyCode, event);
+	}
+
+	public void checkversion() {
+
+		VersionManager manager = new VersionManager(this);
+		manager.checkUpdate();
 	}
 
 }

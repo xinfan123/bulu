@@ -124,4 +124,14 @@ public class SharePreferenceUtil {
 	public boolean getisFirst() {
 		return sp.getBoolean("isFirst", true);
 	}
+
+	public void setVersion(String version) {
+		editor.putString("version", version);
+		editor.commit();
+	}
+
+	public String getVersion() {
+		return sp.getString("version", "");
+	}
+
 }

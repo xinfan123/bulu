@@ -10,8 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.xinfan.blueblue.activity.R.id;
-import com.xinfan.blueblue.activity.send.SendMessageActivity;
+import com.xinfan.blueblue.activity.context.VersionManager;
 import com.xinfan.blueblue.activity.systemset.AboutUs;
 import com.xinfan.blueblue.activity.systemset.MessageNumSelectActivity;
 import com.xinfan.blueblue.activity.systemset.PaidSet;
@@ -90,10 +89,10 @@ public class SystemSet extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent intent = new Intent();
-				intent.setClass(SystemSet.this, UpdateVersionActivity.class);
-				startActivity(intent);
+
+				VersionManager manager = new VersionManager(SystemSet.this);
+				manager.checkManualUpdate();
+				
 			}
 		});
 		// 监听关于我们
