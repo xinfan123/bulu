@@ -54,11 +54,6 @@
             </com.xinfan.blueblue.activity.SendedMessageListView>
         </com.xinfan.blueblue.activity.main.RefreshableView>
 
-        <com.xinfan.blueblue.activity.main.RefreshableView
-            android:id="@+id/list3_refresh_view"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white" >
 
             <com.xinfan.blueblue.activity.ContactListView
                 android:id="@+id/listView3"
@@ -67,7 +62,6 @@
                 android:cacheColorHint="@android:color/transparent"
                 android:divider="@drawable/reader_item_divider" >
             </com.xinfan.blueblue.activity.ContactListView>
-        </com.xinfan.blueblue.activity.main.RefreshableView>
     </com.xinfan.blueblue.activity.MyScrollLayout>
 
 </RelativeLayout>

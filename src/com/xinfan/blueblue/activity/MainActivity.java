@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -43,7 +44,7 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 
 	public RefreshableView list1_refresh_view;
 	public RefreshableView list2_refresh_view;
-	public RefreshableView list3_refresh_view;
+	
 
 	MainTopMenu menuWindow;
 
@@ -66,7 +67,6 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 
 		list1_refresh_view = (RefreshableView) findViewById(R.id.list1_refresh_view);
 		list2_refresh_view = (RefreshableView) findViewById(R.id.list2_refresh_view);
-		list3_refresh_view = (RefreshableView) findViewById(R.id.list3_refresh_view);
 
 		View footer = LayoutInflater.from(this).inflate(R.layout.footer, null);
 
@@ -80,11 +80,7 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		listview2.setFooter(footer2);
 		listview2.loadData();
 
-		View footer3 = LayoutInflater.from(this).inflate(R.layout.footer, null);
-
-		listview3.setContext(this);
-		listview3.setFooter(footer3);
-		listview3.init();
+		listview3.init(this);
 
 		mScrollLayout = (MyScrollLayout) findViewById(R.id.ScrollLayout);
 		LinearLayout linearLayout = (LinearLayout) findViewById(R.id.lllayout);
@@ -125,7 +121,6 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 
 		list1_refresh_view.setmId(1);
 		list2_refresh_view.setmId(2);
-		list3_refresh_view.setmId(3);
 		list1_refresh_view.setOnRefreshListener(new PullToRefreshListener() {
 			@Override
 			public void onRefresh() {
@@ -147,18 +142,6 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 					e.printStackTrace();
 				}
 				list2_refresh_view.finishRefreshing();
-			}
-		}, 0);
-
-		list3_refresh_view.setOnRefreshListener(new PullToRefreshListener() {
-			@Override
-			public void onRefresh() {
-				try {
-					Thread.sleep(3000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				list3_refresh_view.finishRefreshing();
 			}
 		}, 0);
 
