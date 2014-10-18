@@ -42,8 +42,6 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	public SendedMessageListView listview2;
 	public ContactListView listview3;
 
-	public RefreshableView list1_refresh_view;
-
 	MainTopMenu menuWindow;
 
 	@Override
@@ -63,14 +61,8 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		listview2 = (SendedMessageListView) findViewById(R.id.listView2);
 		listview3 = (ContactListView) findViewById(R.id.listView3);
 
-		list1_refresh_view = (RefreshableView) findViewById(R.id.list1_refresh_view);
 
-		View footer = LayoutInflater.from(this).inflate(R.layout.footer, null);
-
-		listview1.setContext(this);
-		listview1.setFooter(footer);
-		listview1.loadData();
-
+		listview1.init(this);
 		listview2.init(this);
 		listview3.init(this);
 
@@ -110,20 +102,6 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 				uploadImage2(MainActivity.this);
 			}
 		});
-
-		list1_refresh_view.setmId(1);
-		list1_refresh_view.setOnRefreshListener(new PullToRefreshListener() {
-			@Override
-			public void onRefresh() {
-				try {
-					Thread.sleep(3000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				list1_refresh_view.finishRefreshing();
-			}
-		}, 0);
-		
 	}
 
 

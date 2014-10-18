@@ -24,21 +24,14 @@
         android:layout_alignParentBottom="true"
         android:layout_below="@id/llayout" >
 
-        <com.xinfan.blueblue.activity.main.RefreshableView
-            android:id="@+id/list1_refresh_view"
+        <com.xinfan.blueblue.activity.MessageListView
+            android:id="@+id/listView1"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white" >
-
-            <com.xinfan.blueblue.activity.MessageListView
-                android:id="@+id/listView1"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:cacheColorHint="@android:color/transparent"
-                android:divider="@drawable/reader_item_divider"
-                android:listSelector="@android:color/transparent" >
-            </com.xinfan.blueblue.activity.MessageListView>
-        </com.xinfan.blueblue.activity.main.RefreshableView>
+            android:layout_height="fill_parent"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@drawable/reader_item_divider"
+            android:listSelector="@android:color/transparent" >
+        </com.xinfan.blueblue.activity.MessageListView>
 
         <com.xinfan.blueblue.activity.SendedMessageListView
             android:id="@+id/listView2"
