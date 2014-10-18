@@ -9,9 +9,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.xinfan.blueblue.activity.Login;
 import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
+import com.xinfan.blueblue.activity.context.LoginUserContext;
+import com.xinfan.blueblue.request.AnsynHttpRequest;
+import com.xinfan.blueblue.request.Constants;
+import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.SharePreferenceUtil;
 import com.xinfan.blueblue.util.ToastUtil;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.MessageParam;
+import com.xinfan.msgbox.http.service.vo.result.LoginResult;
 
 public class SendMessageActivity extends Activity implements OnClickListener {
 
@@ -140,13 +150,29 @@ public class SendMessageActivity extends Activity implements OnClickListener {
 		message.setContent(content);
 		message.setArea(area);
 		message.setMoney(money);
+		
 
-		ToastUtil.showMessage(this, "发送成功");
+		Request request = new Request(FunIdConstants.SEND_MESSAGE);
+		MessageParam param = new MessageParam();
+		param.setTitle(title);
+		param.setContext(content);
+		
+		param.setAmountStatus(1);
+		param.setUserId(LoginUserContext.getUserId(this));
+		
+		request.setParam(param);
 
-		MainActivity.instance.listview2.addItem(message);
+		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
 
-		this.finish();
-
+			public void call(Request data) {
+				//刷新历史信息
+				ToastUtil.showMessage(SendMessageActivity.this, "发送成功");
+				SendMessageActivity.this.finish();
+			}
+		});
+		
+		//////////////////////////////////////////////////////////////////////////////
+		//MainActivity.instance.listview2.addItem(message);
 	}
 
 }
