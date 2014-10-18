@@ -45,10 +45,10 @@ public class RevAddContactActivity extends Activity implements OnClickListener {
 				RevMessageVo messageVo = RevSeeMessageActivity.instance.vo;
 
 				ContactVo vo = new ContactVo();
-				vo.setMark(value);
+				//vo.setMark(value);
 
-				vo.setAccountId("2");
-				vo.setIndex(0);
+				//vo.setAccountId("2");
+				//vo.setIndex(0);
 
 				MainActivity.instance.listview3.list.add(vo);
 				MainActivity.instance.listview3.ad.notifyDataSetChanged();

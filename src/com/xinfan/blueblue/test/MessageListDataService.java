@@ -24,24 +24,6 @@ public class MessageListDataService {
 		return list;
 	}
 
-	public static List<ContactVo> getContactData(int pageSize, int page) {
-		List<ContactVo> list = new ArrayList<ContactVo>();
-		int index = (pageSize * (page - 1) + 1);
-		int max = pageSize * page;
-		for (int i = index; i <= max; i++) {
-			ContactVo map = new ContactVo();
-			map.setId(String.valueOf(index));
-			map.setAccountId("帐号:" + i);
-			map.setMark("备注:" + i);
-			map.setUserid("userid" + i);
-			map.setUsername("用户名:" + i);
-			map.setCredit("10");
-			list.add(map);
-		}
-		return list;
-	}
-	
-	
 
 	public static List<RevMessageVo> getRevMessageData(int pageSize, int page) {
 		List<RevMessageVo> list = new ArrayList<RevMessageVo>();

@@ -65,7 +65,7 @@ public class ContactInfoMenu extends PopupWindow {
 
 		ContactVo vo = ContactInfoActivity.instance.vo;
 
-		MainActivity.instance.listview3.list.remove(vo.getIndex());
+		//MainActivity.instance.listview3.list.remove(vo.getIndex());
 		MainActivity.instance.listview3.ad.notifyDataSetChanged();
 
 		ToastUtil.showMessage(v.getContext(), "删除成功");

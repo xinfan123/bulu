@@ -37,10 +37,10 @@ public class ContactInfoActivity extends Activity {
 		usernameView = (TextView) this.findViewById(R.id.contact_username);
 		markView = (TextView) this.findViewById(R.id.contact_mark);
 
-		accountView.setText(vo.getAccountId());
-		creditView.setText(vo.getCredit());
-		usernameView.setText(vo.getUsername());
-		markView.setText(vo.getMark());
+		//accountView.setText(vo.getLinkUserId());
+		//creditView.setText("0");
+		//usernameView.setText(vo.get);
+		//markView.setText(vo.getMark());
 	}
 
 	public void btn_back(View v) {
@@ -66,10 +66,10 @@ public class ContactInfoActivity extends Activity {
 	
 	public void updateMark(String mark){
 		markView.setText(mark);
-		vo.setMark(mark);
+		//vo.setMark(mark);
 		
-		ContactVo update = MainActivity.instance.listview3.list.get(vo.getIndex());
-		update.setMark(mark);
+		//ContactVo update = MainActivity.instance.listview3.list.get(vo.getIndex());
+		//update.setMark(mark);
 	}
 
 	/*

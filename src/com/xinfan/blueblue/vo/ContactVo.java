@@ -1,75 +1,56 @@
 package com.xinfan.blueblue.vo;
 
+import java.util.Date;
+
 public class ContactVo implements java.io.Serializable {
+	private Long userId;
 
-	private String id;
+	private Long linkUserId;
 
-	private String accountId;
+	private String linkRemark;
 
-	private String userid;
+	private Date createTime;
 
-	private String username;
+	private String userName;
 
-	private String credit;
-
-	private String mark;
-
-	private int index;
-
-	public int getIndex() {
-		return index;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setIndex(int index) {
-		this.index = index;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
-	public String getUserid() {
-		return userid;
+	public Long getLinkUserId() {
+		return linkUserId;
 	}
 
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setLinkUserId(Long linkUserId) {
+		this.linkUserId = linkUserId;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getLinkRemark() {
+		return linkRemark;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setLinkRemark(String linkRemark) {
+		this.linkRemark = linkRemark;
 	}
 
-	public String getMark() {
-		return mark;
+	public Date getCreateTime() {
+		return createTime;
 	}
 
-	public void setMark(String mark) {
-		this.mark = mark;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
-	public String getAccountId() {
-		return accountId;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setAccountId(String accountId) {
-		this.accountId = accountId;
-	}
-
-	public String getCredit() {
-		return credit;
-	}
-
-	public void setCredit(String credit) {
-		this.credit = credit;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 }

@@ -84,7 +84,7 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 
 		listview3.setContext(this);
 		listview3.setFooter(footer3);
-		listview3.loadData();
+		listview3.init();
 
 		mScrollLayout = (MyScrollLayout) findViewById(R.id.ScrollLayout);
 		LinearLayout linearLayout = (LinearLayout) findViewById(R.id.lllayout);

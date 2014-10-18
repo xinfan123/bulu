@@ -48,7 +48,7 @@ public class Contact2Adapter extends BaseAdapter {
 		ImageView pic = (ImageView) view.findViewById(R.id.tx1);
 		TextView name = (TextView) view.findViewById(R.id.tx2);
 
-		name.setText(hh.getMark());
+		name.setText(hh.getLinkRemark());
 		view.setTag(hh);
 
 		return view;

@@ -3,7 +3,9 @@ package com.xinfan.blueblue.util;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -103,6 +105,26 @@ public class BeanUtils {
 			e.printStackTrace();
 			LogUtil.e(e.getMessage(), e);
 		}
+	}
+
+	public static <T, S> List<S> copyList(List<T> src, Class<S> cls) {
+
+		ArrayList<S> target = new ArrayList<S>();
+
+		if (src != null) {
+			for (int i = 0; i < src.size(); i++) {
+				try {
+					S item = (S) cls.newInstance();
+					copyProperty(src.get(i), item);
+					target.add(item);
+				} catch (Exception e) {
+					e.printStackTrace();
+					LogUtil.e(e.getMessage(), e);
+				}
+			}
+		}
+
+		return target;
 	}
 
 }
