@@ -43,13 +43,13 @@
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="0dp" >
 
                 <TextView
+                    android:id="@+id/user_info_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -61,25 +61,20 @@
                     android:textSize="15sp" />
             </RelativeLayout>
 
-          
-
- 
-            
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:orientation="vertical" >
-				
-             <RelativeLayout
+
+                <RelativeLayout
                     android:id="@+id/nickname_info_layout"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/preference_first_item"
                     android:clickable="true"
                     android:gravity="center_vertical" >
-            
-                
+
                     <TextView
                         android:id="@+id/nickname_info_edit"
                         android:layout_width="wrap_content"
@@ -87,16 +82,14 @@
                         android:layout_centerVertical="true"
                         android:padding="8dp"
                         android:text="黑暗游侠"
-                        android:textSize="17sp" 
                         android:textColor="@color/aquamarine"
-                        />
+                        android:textSize="17sp" />
+                </RelativeLayout>
 
-                    </RelativeLayout>
-                    
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                     android:background="@drawable/preference_item"
+                    android:background="@drawable/preference_item"
                     android:clickable="true"
                     android:gravity="center_vertical" >
 
@@ -110,6 +103,7 @@
                         android:textSize="17sp" />
 
                     <TextView
+                        android:id="@+id/user_info_credit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -146,7 +140,7 @@
                         android:padding="8dp"
                         android:text="18782339283"
                         android:textColor="#000"
-                        android:textSize="15sp" />
+                        android:textSize="15sp" android:id="@+id/user_info_phone"/>
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -170,11 +164,12 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/user_info_exit"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/preference_last_item"
-                    android:clickable="true" android:focusable="true"
-                    android:id="@+id/user_info_exit">
+                    android:clickable="true"
+                    android:focusable="true" >
 
                     <TextView
                         android:layout_width="wrap_content"
