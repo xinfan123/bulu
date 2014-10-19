@@ -13,7 +13,7 @@ import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.ObserverCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
-import com.xinfan.msgbox.http.service.vo.param.MessageParam;
+import com.xinfan.msgbox.http.service.vo.param.SendMessageParam;
 import com.xinfan.msgbox.http.service.vo.result.MessageResult;
 import com.xinfan.msgbox.http.service.vo.result.MessageVO;
 
@@ -35,7 +35,7 @@ public class SeeMessageActivity extends Activity implements OnClickListener {
 
 	public SeeMessageMenu menu;
 
-	public SendMessageVo vo;
+	public SendMessageSummaryVO vo;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,13 +50,13 @@ public class SeeMessageActivity extends Activity implements OnClickListener {
 
 		instance = this;
 		Bundle data = this.getIntent().getExtras();
-		vo = (SendMessageVo) data.getSerializable("vo");
+		vo = (SendMessageSummaryVO) data.getSerializable("vo");
 	}
 
 	public void load() {
 
 		Request request = new Request(FunIdConstants.GET_MESSAGE);
-		MessageParam param = new MessageParam();
+		SendMessageParam param = new SendMessageParam();
 		param.setUserId(LoginUserContext.getUserId(this));
 		param.setMsgId(vo.getMsgId());
 

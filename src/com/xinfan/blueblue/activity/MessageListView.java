@@ -27,7 +27,7 @@ import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.activity.rev.RevMessageListAdapter;
 import com.xinfan.blueblue.activity.rev.RevMessageVo;
 import com.xinfan.blueblue.activity.rev.RevSeeMessageActivity;
-import com.xinfan.blueblue.activity.send.SendMessageVo;
+import com.xinfan.blueblue.activity.send.SendMessageSummaryVO;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.ObserverCallBack;
 import com.xinfan.blueblue.request.Request;

@@ -25,7 +25,7 @@ import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.activity.send.SeeMessageActivity;
-import com.xinfan.blueblue.activity.send.SendMessageVo;
+import com.xinfan.blueblue.activity.send.SendMessageSummaryVO;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.ObserverCallBack;
 import com.xinfan.blueblue.request.Request;
@@ -33,6 +33,8 @@ import com.xinfan.blueblue.util.BeanUtils;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.UserMessageListParam;
 import com.xinfan.msgbox.http.service.vo.result.MessageListResult;
+import com.xinfan.msgbox.http.service.vo.result.MessageSendListResult;
+import com.xinfan.msgbox.http.service.vo.result.MessageSendSummaryVO;
 import com.xinfan.msgbox.http.service.vo.result.MessageVO;
 
 public class SendedMessageListView extends ListView implements OnScrollListener, OnItemClickListener {
@@ -381,7 +383,7 @@ public class SendedMessageListView extends ListView implements OnScrollListener,
 		}, 1000);
 	}
 
-	public ArrayList<SendMessageVo> list = new ArrayList<SendMessageVo>();
+	public ArrayList<SendMessageSummaryVO> list = new ArrayList<SendMessageSummaryVO>();
 
 	public SendHistoryAdapter ad;
 
@@ -417,9 +419,9 @@ public class SendedMessageListView extends ListView implements OnScrollListener,
 
 			public void call(Request data) {
 
-				MessageListResult result = (MessageListResult) data.getResult();
-				List<MessageVO> rList = result.getList();
-				List<SendMessageVo> addList = (ArrayList<SendMessageVo>) BeanUtils.copyList(rList, SendMessageVo.class);
+				MessageSendListResult result = (MessageSendListResult) data.getResult();
+				List<MessageSendSummaryVO> rList = result.getList();
+				List<SendMessageSummaryVO> addList = (ArrayList<SendMessageSummaryVO>) BeanUtils.copyList(rList, SendMessageSummaryVO.class);
 				
 				SendedMessageListView.this.list.clear();
 				SendedMessageListView.this.list.addAll(addList);
@@ -444,7 +446,7 @@ public class SendedMessageListView extends ListView implements OnScrollListener,
 
 				MessageListResult result = (MessageListResult) data.getResult();
 				List<MessageVO> rList = result.getList();
-				List<SendMessageVo> addList = (ArrayList<SendMessageVo>) BeanUtils.copyList(rList, SendMessageVo.class);
+				List<SendMessageSummaryVO> addList = (ArrayList<SendMessageSummaryVO>) BeanUtils.copyList(rList, SendMessageSummaryVO.class);
 			
 				if (addList.size() > 0) {
 					page++;
@@ -461,7 +463,7 @@ public class SendedMessageListView extends ListView implements OnScrollListener,
 		Intent intent = new Intent();
 		intent.setClass(MainActivity.instance, SeeMessageActivity.class);
 
-		SendMessageVo vo = list.get(arg2-1);
+		SendMessageSummaryVO vo = list.get(arg2-1);
 		Bundle data = new Bundle();
 		data.putSerializable("vo", vo);
 

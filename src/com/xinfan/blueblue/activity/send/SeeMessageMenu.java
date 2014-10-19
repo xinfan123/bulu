@@ -7,10 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.Button;
 import android.widget.PopupWindow;
 
-import com.xinfan.blueblue.activity.ContactInfoActivity;
 import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
@@ -19,9 +17,7 @@ import com.xinfan.blueblue.request.ObserverCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
-import com.xinfan.msgbox.http.service.vo.param.MessageParam;
-import com.xinfan.msgbox.http.service.vo.result.MessageResult;
-import com.xinfan.msgbox.http.service.vo.result.MessageVO;
+import com.xinfan.msgbox.http.service.vo.param.SendMessageParam;
 
 public class SeeMessageMenu extends PopupWindow {
 
@@ -73,10 +69,10 @@ public class SeeMessageMenu extends PopupWindow {
 
 	public void onClickDelete(View v) {
 
-		SendMessageVo vo = SeeMessageActivity.instance.vo;
+		SendMessageSummaryVO vo = SeeMessageActivity.instance.vo;
 
 		Request request = new Request(FunIdConstants.DELETE_MESSAGE);
-		MessageParam param = new MessageParam();
+		SendMessageParam param = new SendMessageParam();
 		param.setUserId(LoginUserContext.getUserId(this.context));
 		param.setMsgId(vo.getMsgId());
 
@@ -94,10 +90,10 @@ public class SeeMessageMenu extends PopupWindow {
 
 	public void onClickResend(View v) {
 
-		SendMessageVo vo = SeeMessageActivity.instance.vo;
+		SendMessageSummaryVO vo = SeeMessageActivity.instance.vo;
 
 		Request request = new Request(FunIdConstants.RESEND_MESSAGE);
-		MessageParam param = new MessageParam();
+		SendMessageParam param = new SendMessageParam();
 		param.setUserId(LoginUserContext.getUserId(this.context));
 		param.setMsgId(vo.getMsgId());
 

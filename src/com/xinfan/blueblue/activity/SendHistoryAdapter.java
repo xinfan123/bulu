@@ -10,13 +10,13 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.xinfan.blueblue.activity.send.SendMessageVo;
+import com.xinfan.blueblue.activity.send.SendMessageSummaryVO;
 
 public class SendHistoryAdapter extends BaseAdapter {
 	private Context context;
-	private ArrayList<SendMessageVo> list = new ArrayList<SendMessageVo>();
+	private ArrayList<SendMessageSummaryVO> list = new ArrayList<SendMessageSummaryVO>();
 
-	public SendHistoryAdapter(Context context, ArrayList<SendMessageVo> list) {
+	public SendHistoryAdapter(Context context, ArrayList<SendMessageSummaryVO> list) {
 		this.context = context;
 		this.list = list;
 	}
@@ -40,7 +40,7 @@ public class SendHistoryAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View view, ViewGroup parent) {
-		SendMessageVo hh = list.get(position);
+		SendMessageSummaryVO hh = list.get(position);
 		if (view == null) {
 			view = LayoutInflater.from(context).inflate(R.layout.send_history, parent, false);
 			// h.pic = (ImageView)view.findViewById(R.id.l1);

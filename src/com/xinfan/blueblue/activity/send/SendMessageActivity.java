@@ -9,19 +9,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.xinfan.blueblue.activity.Login;
 import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
-import com.xinfan.blueblue.request.Constants;
 import com.xinfan.blueblue.request.ObserverCallBack;
 import com.xinfan.blueblue.request.Request;
-import com.xinfan.blueblue.request.SharePreferenceUtil;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
-import com.xinfan.msgbox.http.service.vo.param.MessageParam;
-import com.xinfan.msgbox.http.service.vo.result.LoginResult;
+import com.xinfan.msgbox.http.service.vo.param.SendMessageParam;
 
 public class SendMessageActivity extends Activity implements OnClickListener {
 
@@ -140,37 +136,67 @@ public class SendMessageActivity extends Activity implements OnClickListener {
 
 		String title = message_content_edit.getText().toString();
 		String content = message_more_edit.getText().toString();
-		String time = time_select_label.getText().toString();
-		String area = area_select_label.getText().toString();
-		String money = money_select_label.getText().toString();
 
-		//message.setTitle(title);
-		//message.setTime(time);
-		//message.setContent(content);
-		//message.setArea(area);
-		//message.setMoney(money);
-		
+		TimeListVo timeListVo = (TimeListVo) time_select_label.getTag();
+
+		int time = 30;
+		if (timeListVo != null) {
+			time = Integer.parseInt(timeListVo.getId());
+		}
+
+		AreaListVo areaListVo = (AreaListVo) area_select_label.getTag();
+
+		int area = 1;
+		if (areaListVo != null) {
+			area = Integer.parseInt(areaListVo.getId());
+		}
+
+		String money = money_select_label.getText().toString();
+		int amountStatus = 0;
+		long amount = 0;
+
+		if (money != null && money.length() > 0) {
+			amountStatus = 1;
+			amount = Long.parseLong(money);
+		}
+
+		// message.setTitle(title);
+		// message.setTime(time);
+		// message.setContent(content);
+		// message.setArea(area);
+		// message.setMoney(money);
+
 		Request request = new Request(FunIdConstants.SEND_MESSAGE);
-		MessageParam param = new MessageParam();
+		SendMessageParam param = new SendMessageParam();
 		param.setTitle(title);
 		param.setContext(content);
 		param.setCreateUserId(LoginUserContext.getUserId(this));
 		param.setUserId(LoginUserContext.getUserId(this));
-		
+
+		param.setDurationTime(time);
+		param.setAmount(amount);
+		param.setAmountStatus(amountStatus);
+		param.setSendType(area);
+		param.setPublishType(1);
+
+		param.setReginCode("长沙市");
+		param.setGpsx("0");
+		param.setGpsy("0");
+
 		request.setParam(param);
 
 		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
 
 			public void call(Request data) {
 				MainActivity.instance.listview2.refresh();
-				//刷新历史信息
+				// 刷新历史信息
 				ToastUtil.showMessage(SendMessageActivity.this, "发送成功");
 				SendMessageActivity.this.finish();
 			}
 		});
-		
-		//////////////////////////////////////////////////////////////////////////////
-		//MainActivity.instance.listview2.addItem(message);
+
+		// ////////////////////////////////////////////////////////////////////////////
+		// MainActivity.instance.listview2.addItem(message);
 	}
 
 }

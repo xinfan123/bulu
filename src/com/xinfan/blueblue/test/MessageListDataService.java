@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.xinfan.blueblue.activity.HuiHua;
 import com.xinfan.blueblue.activity.rev.RevMessageVo;
-import com.xinfan.blueblue.activity.send.SendMessageVo;
+import com.xinfan.blueblue.activity.send.SendMessageSummaryVO;
 import com.xinfan.blueblue.vo.ContactVo;
 
 public class MessageListDataService {
@@ -44,8 +44,8 @@ public class MessageListDataService {
 	}
 	
 
-	public static List<SendMessageVo> getSendMessageData(int pageSize, int page) {
-		List<SendMessageVo> list = new ArrayList<SendMessageVo>();
+	public static List<SendMessageSummaryVO> getSendMessageData(int pageSize, int page) {
+		List<SendMessageSummaryVO> list = new ArrayList<SendMessageSummaryVO>();
 	/*	int index = (pageSize * (page - 1) + 1);
 		int max = pageSize * page;
 		for (int i = index; i <= max; i++) {
