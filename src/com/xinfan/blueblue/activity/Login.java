@@ -90,7 +90,7 @@ public class Login extends Activity {
 
 	public void login_pw(View v) {
 		Intent intent = new Intent();
-		intent.setClass(Login.this, ForgetPassword.class);
+		intent.setClass(Login.this, ForgetPasswordStep1.class);
 		startActivity(intent);
 		// Intent intent = new Intent();
 		// intent.setClass(Login.this,Whatsnew.class);

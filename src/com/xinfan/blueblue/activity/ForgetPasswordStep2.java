@@ -14,7 +14,7 @@ import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.ChangePasswdBeforeLoginParam;
 import com.xinfan.msgbox.http.service.vo.result.BaseResult;
 
-public class ModifyForgetPassword extends Activity {
+public class ForgetPasswordStep2 extends Activity {
 	private EditText mNewPassword;
 	private EditText mRePassword;
 	private String newPassword;
@@ -42,12 +42,12 @@ public class ModifyForgetPassword extends Activity {
 		newPassword = mNewPassword.getText().toString();
 		rePassword = mRePassword.getText().toString();
 		if (newPassword == null || newPassword.equals("")) {
-			ToastUtil.showMessage(ModifyForgetPassword.this, "密码不能为空！");
+			ToastUtil.showMessage(ForgetPasswordStep2.this, "密码不能为空！");
 			return;
 		}
 
 		if (!(newPassword.equals(rePassword))) {
-			ToastUtil.showMessage(ModifyForgetPassword.this, "两次密码不一致");
+			ToastUtil.showMessage(ForgetPasswordStep2.this, "两次密码不一致");
 			return;
 		}
 
@@ -65,13 +65,13 @@ public class ModifyForgetPassword extends Activity {
 			public void call(Request data) {
 
 				BaseResult result = (BaseResult) data.getResult();
-				ToastUtil.showMessage(ModifyForgetPassword.this, result.getMsg());
+				ToastUtil.showMessage(ForgetPasswordStep2.this, result.getMsg());
 
 				Intent intent = new Intent();
-				intent.setClass(ModifyForgetPassword.this, Login.class);
+				intent.setClass(ForgetPasswordStep2.this, Login.class);
 				startActivity(intent);
 
-				ModifyForgetPassword.this.finish();
+				ForgetPasswordStep2.this.finish();
 			}
 		});
 	}

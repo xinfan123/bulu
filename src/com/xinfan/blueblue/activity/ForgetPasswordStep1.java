@@ -19,7 +19,7 @@ import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.ChangePasswdBeforeLoginParam;
 import com.xinfan.msgbox.http.service.vo.param.ValidCodeParam;
 
-public class ForgetPassword extends Activity {
+public class ForgetPasswordStep1 extends Activity {
 	private EditText mMobile; // 手机号码编辑框
 	private EditText mRanCode; // 验证码编辑框
 	private static String mobile, rancode;
@@ -38,20 +38,20 @@ public class ForgetPassword extends Activity {
 		mRanCode = (EditText) findViewById(R.id.forget_rancode_edit);
 		forget_get_btn = (Button) findViewById(R.id.forget_get_btn);
 
-		ticker = new TimeButtonTicker2(ForgetPassword.this, forget_get_btn);
+		ticker = new TimeButtonTicker2(ForgetPasswordStep1.this, forget_get_btn);
 	}
 
 	public void forgetPassword(View v) {
 		mobile = mMobile.getText().toString();
 		rancode = mRanCode.getText().toString();
 		if (!((p.matcher(mobile)).matches())) {// 判断手机号码格式
-			new AlertDialog.Builder(ForgetPassword.this).setIcon(getResources().getDrawable(R.drawable.login_error_icon)).setMessage("手机号码为空或格式不正确！").create()
+			new AlertDialog.Builder(ForgetPasswordStep1.this).setIcon(getResources().getDrawable(R.drawable.login_error_icon)).setMessage("手机号码为空或格式不正确！").create()
 					.show();
 			return;
 		}
 
 		if (rancode == null || rancode.length() <= 0) {
-			new AlertDialog.Builder(ForgetPassword.this).setIcon(getResources().getDrawable(R.drawable.login_error_icon)).setMessage("验证码不能为空！").create()
+			new AlertDialog.Builder(ForgetPasswordStep1.this).setIcon(getResources().getDrawable(R.drawable.login_error_icon)).setMessage("验证码不能为空！").create()
 					.show();
 			return;
 		}
@@ -72,7 +72,7 @@ public class ForgetPassword extends Activity {
 				bundle.putString("mobile", mobile);
 				bundle.putString("rancode", rancode);
 				intent.putExtras(bundle);
-				intent.setClass(ForgetPassword.this, ModifyForgetPassword.class);
+				intent.setClass(ForgetPasswordStep1.this, ForgetPasswordStep2.class);
 				startActivity(intent);
 			}
 		});
@@ -104,7 +104,7 @@ public class ForgetPassword extends Activity {
 		
 		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
 			public void call(Request data) {
-				ToastUtil.showMessage(ForgetPassword.this, "验证码发送成功，请查收短信!");
+				ToastUtil.showMessage(ForgetPasswordStep1.this, "验证码发送成功，请查收短信!");
 			}
 		});
 
