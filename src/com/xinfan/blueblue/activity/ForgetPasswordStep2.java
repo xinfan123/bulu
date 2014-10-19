@@ -27,7 +27,7 @@ public class ForgetPasswordStep2 extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.forget_update_password);
+		setContentView(R.layout.forget_password_step2);
 
 		mNewPassword = (EditText) findViewById(R.id.new_password_edit);
 		mRePassword = (EditText) findViewById(R.id.re_password_edit);

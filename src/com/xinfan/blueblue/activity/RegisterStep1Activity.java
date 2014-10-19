@@ -32,7 +32,7 @@ public class RegisterStep1Activity extends Activity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.register_verify);
+		setContentView(R.layout.register_step1);
 		mMobile = (EditText) findViewById(R.id.regirst_verofy_mobile_edit);
 		mRanCode = (EditText) findViewById(R.id.regirst_verofy_rancode_edit);
 		sendBtn = (Button) findViewById(R.id.regirst_verofy_get_btn);

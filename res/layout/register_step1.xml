@@ -14,12 +14,12 @@
         android:background="@drawable/title_bar" >
 
         <Button
-            android:id="@+id/forget_reback_btn"
+            android:id="@+id/regirst_verofy_btn"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:background="@drawable/title_btn_back"
-            android:onClick="forget_back"
+            android:onClick="regirst_verofy_back"
             android:text="返回"
             android:textColor="#fff"
             android:textSize="14sp" />
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="忘记密码"
+            android:text="手机验证"
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -42,7 +42,7 @@
         android:padding="20dp" >
 
         <TextView
-            android:id="@+id/forget_warn_text"
+            android:id="@+id/regirst_verofy_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -50,12 +50,12 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:singleLine="true"
-            android:text="登陆之后请尽快修改密码！避免不必要的损失！"
+            android:text="手机号码为用户登录名"
             android:textColor="@color/red"
             android:textSize="12sp" />
 
         <EditText
-            android:id="@+id/forget_mobile_edit"
+            android:id="@+id/regirst_verofy_mobile_edit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -76,7 +76,7 @@
             android:orientation="horizontal" >
 
             <EditText
-                android:id="@+id/forget_rancode_edit"
+                android:id="@+id/regirst_verofy_rancode_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -88,7 +88,7 @@
                 android:textSize="15sp" />
 
             <Button
-                android:id="@+id/forget_get_btn"
+                android:id="@+id/regirst_verofy_get_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -103,12 +103,12 @@
             android:orientation="vertical" >
 
             <Button
-                android:id="@+id/forget_login_btn"
+                android:id="@+id/regirst_verofy_btn"
                 android:layout_width="90dp"
                 android:layout_height="40dp"
                 android:background="@drawable/btn_style_green"
-                android:onClick="forgetPassword"
-                android:text="提交"
+                android:onClick="regirstVerofy"
+                android:text="下一步"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
         </LinearLayout>

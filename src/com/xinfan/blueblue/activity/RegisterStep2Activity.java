@@ -27,7 +27,6 @@ import com.xinfan.msgbox.http.service.vo.result.BaseResult;
 
 public class RegisterStep2Activity extends Activity implements OnClickListener, TencentLocationListener {
 
-	private EditText mMobile; // 手机号码编辑框
 	private EditText mPassword; // 密码编辑框
 	private EditText mNickname; // 昵称编辑框
 	private String mobile, password, nickname;
@@ -44,7 +43,7 @@ public class RegisterStep2Activity extends Activity implements OnClickListener, 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.register);
+		setContentView(R.layout.register_step2);
 		mPassword = (EditText) findViewById(R.id.register_passwd_edit);
 		mNickname = (EditText) findViewById(R.id.register_nickname_edit);
 
@@ -79,7 +78,6 @@ public class RegisterStep2Activity extends Activity implements OnClickListener, 
 	}
 
 	public void register(View v) {
-		mobile = mMobile.getText().toString();
 		password = mPassword.getText().toString();
 		nickname = mNickname.getText().toString();
 
@@ -124,10 +122,6 @@ public class RegisterStep2Activity extends Activity implements OnClickListener, 
 			}
 		});
 
-	}
-
-	public void mobile_set(String name) {
-		mMobile.setText(name);
 	}
 
 	public void register_back(View v) { // 返回

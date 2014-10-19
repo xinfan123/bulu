@@ -33,7 +33,7 @@ public class ForgetPasswordStep1 extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.forget_password);
+		setContentView(R.layout.forget_password_step1);
 		mMobile = (EditText) findViewById(R.id.forget_mobile_edit);
 		mRanCode = (EditText) findViewById(R.id.forget_rancode_edit);
 		forget_get_btn = (Button) findViewById(R.id.forget_get_btn);
