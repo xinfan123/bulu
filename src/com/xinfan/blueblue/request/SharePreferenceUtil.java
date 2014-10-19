@@ -134,4 +134,12 @@ public class SharePreferenceUtil {
 		return sp.getString("version", "");
 	}
 
+	public void setAddress(String version) {
+		editor.putString("adress", version);
+		editor.commit();
+	}
+
+	public String getAddress() {
+		return sp.getString("adress", "");
+	}
 }

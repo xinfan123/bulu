@@ -97,7 +97,7 @@ public class RegisterStep2Activity extends Activity implements OnClickListener, 
 		param.setMobile(mobile);
 		param.setPasswd(password);
 		param.setValidCode(randcode);
-		param.setRegEarea(userLocation.getAddress());
+		param.setRegEarea(userLocation.getCity());
 		param.setRegGpsx(userLocation.getLatitude().toString());
 		param.setRegGpsy(userLocation.getLongitude().toString());
 		request.setParam(param);
@@ -155,7 +155,7 @@ public class RegisterStep2Activity extends Activity implements OnClickListener, 
 	private void startLocation() {
 		TencentLocationRequest request = TencentLocationRequest.create();
 		mLocationManager = TencentLocationManager.getInstance(this);
-		request.setInterval(5000);
+		request.setInterval(5000).setRequestLevel(TencentLocationRequest.REQUEST_LEVEL_ADMIN_AREA);
 		mLocationManager.requestLocationUpdates(request, this);
 
 	}

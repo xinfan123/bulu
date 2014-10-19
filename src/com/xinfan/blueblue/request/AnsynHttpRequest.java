@@ -24,6 +24,7 @@ import org.apache.http.util.EntityUtils;
 import android.app.Activity;
 
 import com.alibaba.fastjson.JSONObject;
+import com.xinfan.blueblue.activity.context.SystemConfigContext;
 import com.xinfan.blueblue.common.LoadingDialogFragment;
 import com.xinfan.blueblue.dao.DBHelper;
 import com.xinfan.blueblue.util.JSONUtils;
@@ -84,7 +85,7 @@ public class AnsynHttpRequest {
 
 		// 组织URL
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(Constants.http.http_request_head);
+		buffer.append("http://" + SystemConfigContext.getAddress(context) + "/" + Constants.http.http_request_uri);
 		// buffer.append(context.getResources().getString(url));
 
 		String requestUrl = buffer.toString();
@@ -98,7 +99,7 @@ public class AnsynHttpRequest {
 
 		// 组织URL
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(Constants.http.http_request_head);
+		buffer.append("http://" + SystemConfigContext.getAddress(context) + "/" + Constants.http.http_request_uri);
 
 		String requestUrl = buffer.toString();
 		// requestUrl = requestUrl.substring(0,requestUrl.length()-1);
@@ -107,7 +108,6 @@ public class AnsynHttpRequest {
 		// 异步请求数据
 		doAsynRequest(context, request, callBack);
 	}
-
 }
 
 class MyRunnable implements Runnable {
@@ -127,7 +127,7 @@ class MyRunnable implements Runnable {
 		String data = null;
 		LoadingDialogFragment loading = null;
 
-		request.setShowDialog(false);
+		// /request.setShowDialog(false);
 
 		if (Network.checkNetWorkType(context) == Network.NONETWORK) {
 			ToastUtil.showMessage(context, "没有网络连接，请检查网络");
@@ -145,7 +145,7 @@ class MyRunnable implements Runnable {
 			BasicHttpParams httpParams = new BasicHttpParams();
 			HttpConnectionParams.setConnectionTimeout(httpParams, AnsynHttpRequest.REQUEST_TIMEOUT);
 			HttpConnectionParams.setSoTimeout(httpParams, AnsynHttpRequest.SO_TIMEOUT);
-			
+
 			if (AnsynHttpRequest.mHttpClient == null) {
 				// AnsynHttpRequest.mHttpClient = new
 				// DefaultHttpClient(httpParams);
@@ -153,10 +153,11 @@ class MyRunnable implements Runnable {
 				ClientConnectionManager mgr = client.getConnectionManager();
 				HttpParams params = client.getParams();
 				client = new DefaultHttpClient(new ThreadSafeClientConnManager(params, mgr.getSchemeRegistry()), params);
-				//client.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET, "UTF-8");
+				// client.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET,
+				// "UTF-8");
 				client.getParams().setParameter(HttpProtocolParams.HTTP_CONTENT_CHARSET, "UTF-8");
 				AnsynHttpRequest.mHttpClient = client;
-			
+
 			}
 			// HttpClient httpClient = HttpUtils.getNewHttpClient(context);
 			HttpResponse response = null;
@@ -164,12 +165,14 @@ class MyRunnable implements Runnable {
 			case AnsynHttpRequest.GET: // get 方式提交
 				HttpGet get = new HttpGet(request.getAddress());
 				// get.setHeader("User-Agent", sUserAgent.toString());
-				//get.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET, "UTF-8");
+				// get.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET,
+				// "UTF-8");
 				response = AnsynHttpRequest.mHttpClient.execute(get);
 				break;
 			case AnsynHttpRequest.POST: // post 方式提交
 				HttpPost post = new HttpPost(request.getAddress());
-				//post.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET, "UTF-8");
+				// post.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET,
+				// "UTF-8");
 
 				// post.setHeader("User-Agent", sUserAgent.toString());
 				List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -189,7 +192,7 @@ class MyRunnable implements Runnable {
 			default:
 				break;
 			}
-			System.out.println("~~~~~~~~~~~~~~~~~~~~"+(response.getStatusLine().getStatusCode()));
+			System.out.println("~~~~~~~~~~~~~~~~~~~~" + (response.getStatusLine().getStatusCode()));
 			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 				// httpClient.getCookieStore().getCookies().g
 				data = EntityUtils.toString(response.getEntity());

@@ -20,12 +20,7 @@ public final class Constants {
 
 	public static final int NOTIFY_ID = 0x911;// 通知ID
 
-	
 	public static final String SERVER_SUFFIX = "servlet.s";
-	
-	public static final String DEFAULT_IP = "192.168.1.100";
-	
-	public static final String DEFAULT_PORT = "8080";
 
 	public static final String DETAULT_VERSION = "1.0.0";
 
@@ -81,7 +76,9 @@ public final class Constants {
     	public static final String CType = "1";
     	public static final String CChannel = "dev";
     	public static boolean isInstall = false;
-    	public static final String http_request_head = "http://192.168.1.102:7001/MainService";
+    	public static final String http_request_uri = "MainService";
+    	public static final String http_request_ip = "192.168.1.102:7001";
+    	//public static final String http_request_head = "http://192.168.1.102:7001/MainService";
     	public static String http_img = "";
 
 
@@ -92,27 +89,7 @@ public final class Constants {
 		public static final int http_menu = 0xffffff01;
 		public static final int http_adv = 0xffffff02;
 
-		/** 替换https 为http */
-		public static String httpPic() {
-			if (http_request_head.startsWith("https:"))
-				return http_request_head.replaceAll("https:", "http:");
-			return http_request_head;
-		}
-
-		public static String joinUrl(Map<String, String> map) {
-			StringBuffer buffer = new StringBuffer();
-			buffer.append(Constants.http.http_request_head)
-			// .append(context.getResources().getString(url))
-					.append("?");
-			if (map != null && map.size() > 0)
-				for (String key : map.keySet()) {
-					buffer.append(key).append("=").append(map.get(key)).append("&");
-				}
-			String requestUrl = buffer.toString();
-			requestUrl = requestUrl.substring(0, requestUrl.length() - 1);
-			return requestUrl;
-		}
-	}
+    }
 
 	public static final class message_title {
 		public static final String success = "SUCCESS";
