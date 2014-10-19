@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.widget.EditText;
 
+import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.activity.context.SystemConfigContext;
 import com.xinfan.blueblue.request.Constants;
 
@@ -23,6 +24,12 @@ public class Welcome extends Activity {
 		SystemConfigContext.init(this);
 
 		init();
+		
+		autoLogin();
+	}
+	
+	public void autoLogin(){
+			
 	}
 
 	public void init() {

@@ -63,48 +63,6 @@ public class SharePreferenceUtil {
 		return sp.getString("mobile", "");
 	}
 
-	public void setIdcard(String idcard) {
-		editor.putString("idcard", idcard);
-		editor.commit();
-	}
-
-	public String getName() {
-		return sp.getString("relname", "");
-	}
-
-	public void setName(String name) {
-		editor.putString("relname", name);
-		editor.commit();
-	}
-
-	// 用户的邮箱
-	public String getEmail() {
-		return sp.getString("email", "");
-	}
-
-	public void setEmail(String email) {
-		editor.putString("email", email);
-		editor.commit();
-	}
-
-	public String getServerAddress() {
-		return sp.getString("server_address", "");
-	}
-
-	public void setServerAddress(String address) {
-		editor.putString("server_address", address);
-		editor.commit();
-	}
-
-	public String getServerPort() {
-		return sp.getString("server_port", "");
-	}
-
-	public void setServerPort(String ip) {
-		editor.putString("server_port", ip);
-		editor.commit();
-	}
-
 	// 是否在后台运行标记
 	public void setIsStart(boolean isStart) {
 		editor.putBoolean("isStart", isStart);
@@ -113,6 +71,15 @@ public class SharePreferenceUtil {
 
 	public boolean getIsStart() {
 		return sp.getBoolean("isStart", false);
+	}
+
+	public void setIsLogin(boolean login) {
+		editor.putBoolean("isLogin", login);
+		editor.commit();
+	}
+
+	public boolean getIsLogin() {
+		return sp.getBoolean("isLogin", false);
 	}
 
 	// 是否第一次运行本应用

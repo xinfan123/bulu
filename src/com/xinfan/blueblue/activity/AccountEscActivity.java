@@ -1,6 +1,8 @@
 package com.xinfan.blueblue.activity;
 
 
+import com.xinfan.blueblue.activity.context.LoginUserContext;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,10 +41,14 @@ public class AccountEscActivity extends Activity {
     	this.finish();    	
       }  
 	public void escbutton0(View v) {  
+		
+		LoginUserContext.setIsLogin(AccountEscActivity.this, false);
+		
 		Intent intent=new Intent();
     	intent.setClass(AccountEscActivity.this, Login.class);
     	startActivity(intent);
     	this.finish();
+    	
 //    	MainWeixin.instance.finish();
       }  
 	

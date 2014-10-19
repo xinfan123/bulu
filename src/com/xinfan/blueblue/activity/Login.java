@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
 import com.xinfan.blueblue.request.ObserverCallBack;
@@ -48,12 +49,12 @@ public class Login extends Activity {
 			return;
 		}
 		
-		passwd = Md5PwdFactory.getUserMd5PwdEncoder().encodePassword(passwd);
+		final String enPasswd = Md5PwdFactory.getUserMd5PwdEncoder().encodePassword(passwd);
 		
 		Request request = new Request(FunIdConstants.LOGIN);
 		LoginParam param = new LoginParam();
 		param.setMobile(username);
-		param.setPasswd(passwd);
+		param.setPasswd(enPasswd);
 		request.setParam(param);
 
 		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
@@ -70,11 +71,15 @@ public class Login extends Activity {
 					util.setUserId(result.getUserId());
 					util.setMobile(result.getMobile());
 					util.setUsername(result.getUserName());
+					util.setPasswd(enPasswd);
 					
 					Intent intent = new Intent();
 					intent.setClass(Login.this, MainActivity.class);
 					startActivity(intent);
 					Login.this.finish();
+					
+					LoginUserContext.setIsLogin(Login.this, true);
+					
 				}else{
 					ToastUtil.showMessage(Login.this,result.getMsg());
 				}

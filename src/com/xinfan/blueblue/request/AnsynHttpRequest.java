@@ -22,15 +22,22 @@ import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.util.EntityUtils;
 
 import android.app.Activity;
+import android.content.Intent;
 
 import com.alibaba.fastjson.JSONObject;
+import com.xinfan.blueblue.activity.Login;
+import com.xinfan.blueblue.activity.MainActivity;
+import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.activity.context.SystemConfigContext;
 import com.xinfan.blueblue.common.LoadingDialogFragment;
 import com.xinfan.blueblue.dao.DBHelper;
 import com.xinfan.blueblue.util.JSONUtils;
 import com.xinfan.blueblue.util.LogUtil;
 import com.xinfan.blueblue.util.ToastUtil;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.LoginParam;
 import com.xinfan.msgbox.http.service.vo.result.BaseResult;
+import com.xinfan.msgbox.http.service.vo.result.LoginResult;
 
 public class AnsynHttpRequest {
 
@@ -108,6 +115,7 @@ public class AnsynHttpRequest {
 		// 异步请求数据
 		doAsynRequest(context, request, callBack);
 	}
+
 }
 
 class MyRunnable implements Runnable {
@@ -244,4 +252,28 @@ class MyRunnable implements Runnable {
 		}
 
 	}
+
+	public void autoLogin(final ObserverCallBack call) {
+
+		boolean login = LoginUserContext.getIsLogin(context);
+		if (login) {
+
+			String mobile = LoginUserContext.getMobile(context);
+			String enPasswd = LoginUserContext.getPassword(context);
+
+			Request loginRequest = new Request(FunIdConstants.LOGIN);
+			LoginParam param = new LoginParam();
+			param.setMobile(mobile);
+			param.setPasswd(enPasswd);
+			loginRequest.setParam(param);
+
+			AnsynHttpRequest.requestSimpleByPost(context, loginRequest, new ObserverCallBack() {
+				public void call(Request data) {
+					call.call(request);
+				}
+			});
+		}
+	}
+	
+	
 }
