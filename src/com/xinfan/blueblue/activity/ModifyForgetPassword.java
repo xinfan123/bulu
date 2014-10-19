@@ -34,7 +34,7 @@ public class ModifyForgetPassword extends Activity {
 
 		Bundle bundle = this.getIntent().getExtras();
 		mobile = bundle.getString("mobile");
-		randcode = bundle.getString("bundle");
+		randcode = bundle.getString("rancode");
 
 	}
 

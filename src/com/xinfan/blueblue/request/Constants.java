@@ -81,7 +81,7 @@ public final class Constants {
     	public static final String CType = "1";
     	public static final String CChannel = "dev";
     	public static boolean isInstall = false;
-    	public static final String http_request_head = "http://192.168.1.100:8080/MainService";
+    	public static final String http_request_head = "http://192.168.1.102:7001/MainService";
     	public static String http_img = "";
 
 

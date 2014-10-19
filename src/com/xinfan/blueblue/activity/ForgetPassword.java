@@ -93,7 +93,7 @@ public class ForgetPassword extends Activity {
 			return;
 		}
 
-		Request request = new Request(FunIdConstants.GET_USERREGISTER_VALIDCODE);
+		Request request = new Request(FunIdConstants.GET_CHANGE_PASSWORD_VALID_CODE);
 
 		ValidCodeParam param = new ValidCodeParam();
 		param.setMobile(mobile);
