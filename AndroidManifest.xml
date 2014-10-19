@@ -66,10 +66,10 @@
             android:name=".Login"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".RegisterStep2Activity"
             android:theme="@android:style/Theme.NoTitleBar" />
               <activity
-            android:name=".RegisterVerifyActivity"
+            android:name=".RegisterStep1Activity"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name=".Welcome"
