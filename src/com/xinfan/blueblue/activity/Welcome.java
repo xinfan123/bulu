@@ -15,16 +15,12 @@ import com.xinfan.blueblue.request.Constants;
 
 public class Welcome extends Activity {
 
-	String address;
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome);
 
 		SystemConfigContext.init(this);
-
-		address = SystemConfigContext.getAddress(this);
 
 		init();
 	}
@@ -60,7 +56,7 @@ public class Welcome extends Activity {
 		View view = inflater.inflate(R.layout.config, null);
 		final EditText config_address = (EditText) view.findViewById(R.id.config_address);
 
-		config_address.setText(address);
+		config_address.setText(SystemConfigContext.getAddress(this));
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setIcon(android.R.drawable.ic_dialog_info);
@@ -76,7 +72,7 @@ public class Welcome extends Activity {
 		builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				address = config_address.getText().toString().trim();
+				String address = config_address.getText().toString().trim();
 				SystemConfigContext.setAddress(Welcome.this, address);
 			}
 		}).setNegativeButton("取消", new DialogInterface.OnClickListener() {
