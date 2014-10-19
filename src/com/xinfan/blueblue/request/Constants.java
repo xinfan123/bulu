@@ -20,8 +20,6 @@ public final class Constants {
 
 	public static final int NOTIFY_ID = 0x911;// 通知ID
 
-	public static final String SERVER_SUFFIX = "servlet.s";
-
 	public static final String DETAULT_VERSION = "1.0.0";
 
 	/**

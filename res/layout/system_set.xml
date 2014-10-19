@@ -241,6 +241,7 @@
                 android:paddingRight="@dimen/content_padding" >
 
                 <TextView
+                    android:id="@+id/system_set_version_text"
                     android:layout_width="0.0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.0"
