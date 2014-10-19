@@ -20,6 +20,13 @@ public final class Constants {
 
 	public static final int NOTIFY_ID = 0x911;// 通知ID
 
+	
+	public static final String SERVER_SUFFIX = "servlet.s";
+	
+	public static final String DEFAULT_IP = "192.168.1.100";
+	
+	public static final String DEFAULT_PORT = "8080";
+
 	public static final String DETAULT_VERSION = "1.0.0";
 
 	/**
@@ -63,19 +70,21 @@ public final class Constants {
 	/** google 统计前缀 */
 	public static final String GA_TITLE = "/Android/app/";
 
-	/**
-	 * 网络连接
-	 * 
-	 * @author chen
-	 * @date 2012-10-25 下午3:14:36
-	 */
-	public static final class http {
-		/** 服务器地址 */
-		public static final String CType = "1";
-		public static final String CChannel = "dev";
-		public static boolean isInstall = false;
-		public static final String http_request_head = "http://192.168.1.102:7001/MainService";
-		public static String http_img = "";
+
+    /**
+     * 网络连接
+     * @author chen
+     * @date 2012-10-25 下午3:14:36
+     */
+    public static final class http {
+    	/** 服务器地址 */
+    	public static final String CType = "1";
+    	public static final String CChannel = "dev";
+    	public static boolean isInstall = false;
+    	public static final String http_request_head = "http://192.168.1.100:8080/MainService";
+    	public static String http_img = "";
+
+
 
 		/*** http 标识配置 */
 		// public static final int http_area = "http_area".hashCode(); //待优化

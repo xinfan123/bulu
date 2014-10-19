@@ -41,17 +41,15 @@ import android.widget.EditText;
 public class RegisterActivity extends Activity implements OnClickListener,TencentLocationListener {
 	private EditText mMobile; // 手机号码编辑框
 	private EditText mPassword; // 密码编辑框
-	private EditText mRanCode; // 验证码编辑框
 	private EditText mNickname; // 昵称编辑框
-	private Button  sendBtn;//获取验证码按钮
-	private  static String mobile,password,nickname,rancode,sendBtnStr;
+	private  static String mobile,password,nickname;
 	private static String gencode;//生成验证码
 	
 	private TencentLocationManager mLocationManager;
 	private static  LocationEntity userLocation;
-	private Handler handler;
+
 	private Handler handlerlocation;
-	private final Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");  
+	public static RegisterActivity instance;
     @SuppressLint("HandlerLeak")
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,41 +58,8 @@ public class RegisterActivity extends Activity implements OnClickListener,Tencen
         mMobile = (EditText)findViewById(R.id.register_mobile_edit);
         mPassword = (EditText)findViewById(R.id.register_passwd_edit);
         mNickname = (EditText)findViewById(R.id.register_nickname_edit);
-        mRanCode = (EditText)findViewById(R.id.register_rancode_edit);
-        sendBtn=(Button) findViewById(R.id.register_rancode_btn);
+   
      
-    	  sendBtn.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				new Thread(new Runnable() {
-					   @Override
-				
-			        public void run() {
-						   for(int i=60;i>=0;i--){
-							  try {
-									Message message = Message.obtain();
-									message.obj=i;
-									handler.sendMessage(message);
-								Thread.sleep(1000);
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						   }
-					   }
-					   }).start();	
-			}
-		});
-    	  handler=new Handler(){
-       	   public void handleMessage(Message msg){ 		 
-       		Integer message=(Integer)msg.obj;//obj可以是任何类型
-       		if(message.equals(0)){
-       		 	sendBtn.setText("获取验证码");
-       		}else{
-       	   	sendBtn.setText("过期还剩"+message+"s");
-       		}
-           } 
-  	   };
   	//获取位置信息
   	startLocation();
   	 handlerlocation=new Handler(){
@@ -106,42 +71,27 @@ public class RegisterActivity extends Activity implements OnClickListener,Tencen
  	   };
     }
     
-    public Handler getHandler(){
-    	return this.handler;
-    	}
+ 
     
     public void register(View v) {
 		mobile=mMobile.getText().toString();
     	password=mPassword.getText().toString();
     	nickname=mNickname.getText().toString();
-    	rancode=mRanCode.getText().toString();
-    	sendBtnStr=sendBtn.getText().toString();
-       if(!((p.matcher(mobile)).matches())){//判断手机号码格式
-        	ToastUtil.showMessage(RegisterActivity.this,"手机号码为空或格式不正确！！");
-        }
-       else if(nickname==null||nickname.length()<=0){//判断昵称是否为空
+ 
+      if(nickname==null||nickname.length()<=0){//判断昵称是否为空
           	ToastUtil.showMessage(RegisterActivity.this,"昵称不能为空！");
           }
     	else if(password==null||password.length()<=0)   //判断密码是否为空
         {
     		ToastUtil.showMessage(RegisterActivity.this,"密码不能为空！");
           }
-        else if(rancode==null||rancode.length()<=0){
-        	ToastUtil.showMessage(RegisterActivity.this,"验证码不能为空");
-        }
-        else if(sendBtnStr.equals("获取验证码")){
-        	ToastUtil.showMessage(RegisterActivity.this,"请先获取验证码");
-        }
-        else if(!(rancode.equals(gencode))){
-        	ToastUtil.showMessage(RegisterActivity.this,"验证码不正确");
-        }
 
         else{
         	Request request = new Request(FunIdConstants.GET_USERREGISTER_VALIDCODE);
         	RegisterParam param = new RegisterParam();
     		param.setMobile(mobile);
     		param.setPasswd(password);
-    		param.setValidCode(gencode);
+    		param.setRegEarea(userLocation.getAddress());
     		param.setRegGpsx(userLocation.getLatitude().toString());
     		param.setRegGpsy(userLocation.getLongitude().toString());
     		request.setParam(param);
@@ -172,44 +122,14 @@ public class RegisterActivity extends Activity implements OnClickListener,Tencen
           
         }
     }
- 
+    public void mobile_set(String name){
+    	mMobile.setText(name);
+    }
 	public void register_back(View v) { // 返回
 		this.finish();
 	}
 
-	// 发送信息
-
-	public void sendSMS(View v) {
-		mobile = mMobile.getText().toString();
-		if (!((p.matcher(mobile)).matches())) {
-			new AlertDialog.Builder(RegisterActivity.this).setIcon(getResources().getDrawable(R.drawable.login_error_icon)).setMessage("手机号码为空或格式不正确！").create().show();
-			return;
-		}
-		Request request = new Request(FunIdConstants.GET_USERREGISTER_VALIDCODE);
-		ValidCodeParam param = new ValidCodeParam();
-		param.setMobile(mobile);
-		request.setParam(param);
-		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
-
-			public void call(Request data) {
-
-				
-				ValidCodeResult result = (ValidCodeResult) data.getResult();
-				
-				if(result.getResult()==1){
-					
-					ToastUtil.showMessage(RegisterActivity.this,"验证码已经发送请注意查收");
-					gencode=result.getValidCode();
-					
-				
-				}else{
-					ToastUtil.showMessage(RegisterActivity.this,"发送不成功");
-				}
-				
-			}
-		});
-		
-    }
+	
     
 	@Override
 	public void onLocationChanged(TencentLocation location, int error,
