@@ -15,6 +15,7 @@ import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.ObserverCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.util.ToastUtil;
+import com.xinfan.blueblue.util.ValidationUtils;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.ValidCodeParam;
 import com.xinfan.msgbox.http.service.vo.result.BaseResult;
@@ -24,9 +25,7 @@ public class RegisterStep1Activity extends Activity {
 	private Button sendBtn;// 获取验证码按钮
 	private EditText mRanCode; // 验证码编辑框
 
-	private static String mobile, rancode, sendBtnStr;
-
-	private final Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
+	private static String mobile, randcode;
 
 	private TimeButtonTicker2 ticker;
 
@@ -52,7 +51,7 @@ public class RegisterStep1Activity extends Activity {
 	public void sendSMS(View v) {
 		mobile = mMobile.getText().toString();
 
-		if (!((p.matcher(mobile)).matches())) {
+		if (!ValidationUtils.isMobile(mobile)) {
 			ToastUtil.showMessage(this, "手机号码为空或格式不正确！");
 			return;
 		}
@@ -76,28 +75,22 @@ public class RegisterStep1Activity extends Activity {
 	// 提交验证
 	public void regirstVerofy(View v) {
 		mobile = mMobile.getText().toString();
-		rancode = mRanCode.getText().toString();
-		sendBtnStr = sendBtn.getText().toString();
+		randcode = mRanCode.getText().toString();
 
-		if (!((p.matcher(mobile)).matches())) {// 判断手机号码格式
-			ToastUtil.showMessage(RegisterStep1Activity.this, "手机号码为空或格式不正确！！");
+		if (!ValidationUtils.isMobile(mobile)) {
+			ToastUtil.showMessage(this, "手机号码为空或格式不正确！");
 			return;
 		}
-
-		if (sendBtnStr.equals("获取验证码")) {
-			ToastUtil.showMessage(RegisterStep1Activity.this, "请先获取验证码");
-			return;
-		}
-		if (rancode == null || rancode.length() <= 0) {
+		
+		if (randcode == null || randcode.length() <= 0) {
 			ToastUtil.showMessage(RegisterStep1Activity.this, "验证码不能为空");
 			return;
-
 		}
 
 		Request request = new Request(FunIdConstants.VALID_USER_REGISTER_VALIDCODE);
 		ValidCodeParam param = new ValidCodeParam();
 		param.setMobile(mobile);
-		param.setValidCode(rancode);
+		param.setValidCode(randcode);
 		request.setParam(param);
 
 		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
@@ -106,18 +99,18 @@ public class RegisterStep1Activity extends Activity {
 
 				BaseResult result = (BaseResult) data.getResult();
 
-					ToastUtil.showMessage(RegisterStep1Activity.this, result.getMsg());
-					Intent intent = new Intent();
+				ToastUtil.showMessage(RegisterStep1Activity.this, result.getMsg());
+				Intent intent = new Intent();
 
-					Bundle bundle = new Bundle();
-					bundle.putString("mobile", mobile);
-					bundle.putString("rancode", rancode);
-					intent.putExtras(bundle);
+				Bundle bundle = new Bundle();
+				bundle.putString("mobile", mobile);
+				bundle.putString("randcode", randcode);
+				intent.putExtras(bundle);
 
-					intent.setClass(RegisterStep1Activity.this, RegisterStep2Activity.class);
-					startActivity(intent);
+				intent.setClass(RegisterStep1Activity.this, RegisterStep2Activity.class);
+				startActivity(intent);
 
-					RegisterStep1Activity.this.finish();
+				RegisterStep1Activity.this.finish();
 			}
 		});
 

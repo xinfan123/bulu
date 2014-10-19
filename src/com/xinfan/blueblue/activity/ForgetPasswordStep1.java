@@ -15,6 +15,7 @@ import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.ObserverCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.util.ToastUtil;
+import com.xinfan.blueblue.util.ValidationUtils;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.ChangePasswdBeforeLoginParam;
 import com.xinfan.msgbox.http.service.vo.param.ValidCodeParam;
@@ -23,8 +24,6 @@ public class ForgetPasswordStep1 extends Activity {
 	private EditText mMobile; // 手机号码编辑框
 	private EditText mRanCode; // 验证码编辑框
 	private static String mobile, rancode;
-
-	private final Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
 
 	private Button forget_get_btn;
 
@@ -44,15 +43,14 @@ public class ForgetPasswordStep1 extends Activity {
 	public void forgetPassword(View v) {
 		mobile = mMobile.getText().toString();
 		rancode = mRanCode.getText().toString();
-		if (!((p.matcher(mobile)).matches())) {// 判断手机号码格式
-			new AlertDialog.Builder(ForgetPasswordStep1.this).setIcon(getResources().getDrawable(R.drawable.login_error_icon)).setMessage("手机号码为空或格式不正确！").create()
-					.show();
+
+		if (!ValidationUtils.isMobile(mobile)) {
+			ToastUtil.showMessage(this, "手机号码为空或格式不正确！");
 			return;
 		}
 
 		if (rancode == null || rancode.length() <= 0) {
-			new AlertDialog.Builder(ForgetPasswordStep1.this).setIcon(getResources().getDrawable(R.drawable.login_error_icon)).setMessage("验证码不能为空！").create()
-					.show();
+			ToastUtil.showMessage(this, "验证码不能为空");
 			return;
 		}
 
@@ -88,7 +86,7 @@ public class ForgetPasswordStep1 extends Activity {
 	public void sendCode(View v) {
 		mobile = mMobile.getText().toString();
 
-		if (!((p.matcher(mobile)).matches())) {
+		if (!ValidationUtils.isMobile(mobile)) {
 			ToastUtil.showMessage(this, "手机号码为空或格式不正确！");
 			return;
 		}
@@ -99,9 +97,9 @@ public class ForgetPasswordStep1 extends Activity {
 		param.setMobile(mobile);
 		request.setParam(param);
 		request.setShowDialog(false);
-		
+
 		ticker.start();
-		
+
 		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
 			public void call(Request data) {
 				ToastUtil.showMessage(ForgetPasswordStep1.this, "验证码发送成功，请查收短信!");
