@@ -135,7 +135,7 @@ class MyRunnable implements Runnable {
 		String data = null;
 		LoadingDialogFragment loading = null;
 
-		// /request.setShowDialog(false);
+		request.setShowDialog(false);
 
 		if (Network.checkNetWorkType(context) == Network.NONETWORK) {
 			ToastUtil.showMessage(context, "没有网络连接，请检查网络");
