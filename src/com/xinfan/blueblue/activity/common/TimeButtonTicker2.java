@@ -23,7 +23,7 @@ public class TimeButtonTicker2 {
 			@Override
 			public void handleMessage(Message msg) {
 				if (msg.what == 1) {
-					button.setText("" + time + "秒");
+					button.setText("重新获取（" + time + "秒）");
 					button.setClickable(false);
 					running = true;
 				} else if (msg.what == 2) {
