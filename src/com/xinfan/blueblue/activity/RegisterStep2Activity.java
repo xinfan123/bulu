@@ -96,6 +96,7 @@ public class RegisterStep2Activity extends Activity implements OnClickListener, 
 		RegisterParam param = new RegisterParam();
 		param.setMobile(mobile);
 		param.setPasswd(password);
+		param.setUserName(nickname);
 		param.setValidCode(randcode);
 		param.setRegEarea(userLocation.getCity());
 		param.setRegGpsx(userLocation.getLatitude().toString());
