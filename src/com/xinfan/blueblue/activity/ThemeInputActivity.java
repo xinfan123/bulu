@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
-import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.blueblue.vo.ThemeVo;
@@ -51,7 +51,7 @@ public class ThemeInputActivity extends Activity {
 				param.setUserSent(str);
 				request.setParam(param);
 
-				AnsynHttpRequest.requestSimpleByPost(ThemeInputActivity.this, request, new ObserverCallBack() {
+				AnsynHttpRequest.requestSimpleByPost(ThemeInputActivity.this, request, new RequestSucessCallBack() {
 					public void call(Request request) {
 						ThemeSetActivity.instance.load();
 						ToastUtil.showMessage(ThemeInputActivity.this, "添加主题成功");

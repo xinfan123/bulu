@@ -12,7 +12,7 @@ import android.widget.EditText;
 
 import com.xinfan.blueblue.activity.common.TimeButtonTicker2;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
-import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.blueblue.util.ValidationUtils;
@@ -63,7 +63,7 @@ public class RegisterStep1Activity extends Activity {
 		param.setMobile(mobile);
 		request.setParam(param);
 
-		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
+		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
 
 			public void call(Request data) {
 				ToastUtil.showMessage(RegisterStep1Activity.this, "验证码发送成功，请查收短信!");
@@ -93,7 +93,7 @@ public class RegisterStep1Activity extends Activity {
 		param.setValidCode(randcode);
 		request.setParam(param);
 
-		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
+		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
 
 			public void call(Request data) {
 

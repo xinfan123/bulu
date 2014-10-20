@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
-import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.BaseParam;
@@ -93,7 +93,7 @@ public class AccountInfoActivity extends Activity {
 		param.setUserId(LoginUserContext.getUserId(this));
 		request.setParam(param);
 
-		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
+		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
 
 			public void call(Request data) {
 				UserResult result = (UserResult) data.getResult();

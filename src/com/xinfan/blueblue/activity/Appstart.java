@@ -9,7 +9,8 @@ import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.activity.context.VersionContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
-import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.NetworkErrorCallBack;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.request.SharePreferenceUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
@@ -52,7 +53,17 @@ public class Appstart extends Activity {
 						loginRequest.setParam(param);
 						loginRequest.setShowDialog(false);
 
-						AnsynHttpRequest.requestSimpleByPost(Appstart.this, loginRequest, new ObserverCallBack() {
+						loginRequest.setNetworkErrorCallBack(new NetworkErrorCallBack() {
+
+							@Override
+							public void call(Request request) {
+								Intent intent = new Intent(Appstart.this, Welcome.class);
+								startActivity(intent);
+								Appstart.this.finish();
+							}
+						});
+
+						AnsynHttpRequest.requestSimpleByPost(Appstart.this, loginRequest, new RequestSucessCallBack() {
 							public void call(Request data) {
 
 								Intent intent = new Intent();

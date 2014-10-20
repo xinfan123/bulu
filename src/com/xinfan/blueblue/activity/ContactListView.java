@@ -25,7 +25,7 @@ import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
-import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.util.BeanUtils;
 import com.xinfan.blueblue.vo.ContactVo;
@@ -412,7 +412,7 @@ public class ContactListView extends ListView implements OnScrollListener ,OnIte
 
 		request.setParam(param);
 
-		AnsynHttpRequest.requestSimpleByPost(context, request, new ObserverCallBack() {
+		AnsynHttpRequest.requestSimpleByPost(context, request, new RequestSucessCallBack() {
 
 			public void call(Request data) {
 
@@ -437,7 +437,7 @@ public class ContactListView extends ListView implements OnScrollListener ,OnIte
 
 		request.setParam(param);
 
-		AnsynHttpRequest.requestSimpleByPost(context, request, new ObserverCallBack() {
+		AnsynHttpRequest.requestSimpleByPost(context, request, new RequestSucessCallBack() {
 
 			public void call(Request data) {
 

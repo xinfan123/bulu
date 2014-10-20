@@ -13,7 +13,7 @@ import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
-import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
@@ -78,7 +78,7 @@ public class SeeMessageMenu extends PopupWindow {
 
 		request.setParam(param);
 
-		AnsynHttpRequest.requestSimpleByPost(this.context, request, new ObserverCallBack() {
+		AnsynHttpRequest.requestSimpleByPost(this.context, request, new RequestSucessCallBack() {
 
 			public void call(Request data) {
 				ToastUtil.showMessage(SeeMessageActivity.instance, "删除成功");
@@ -99,7 +99,7 @@ public class SeeMessageMenu extends PopupWindow {
 
 		request.setParam(param);
 
-		AnsynHttpRequest.requestSimpleByPost(this.context, request, new ObserverCallBack() {
+		AnsynHttpRequest.requestSimpleByPost(this.context, request, new RequestSucessCallBack() {
 
 			public void call(Request data) {
 				ToastUtil.showMessage(SeeMessageActivity.instance, "重新发送成功");

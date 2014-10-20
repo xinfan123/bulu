@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
-import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.blueblue.vo.ThemeVo;
@@ -57,7 +57,7 @@ public class ThemeSetMenu extends Activity {
 		param.setUserId(LoginUserContext.getUserId(ThemeSetMenu.this));
 		request.setParam(param);
 
-		AnsynHttpRequest.requestSimpleByPost(ThemeSetMenu.this, request, new ObserverCallBack() {
+		AnsynHttpRequest.requestSimpleByPost(ThemeSetMenu.this, request, new RequestSucessCallBack() {
 			public void call(Request request) {
 				ThemeSetActivity.instance.load();
 				ThemeSetMenu.this.finish();

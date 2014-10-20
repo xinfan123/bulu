@@ -19,7 +19,7 @@ import com.xinfan.blueblue.activity.ContactListView;
 import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
-import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.util.BeanUtils;
 import com.xinfan.blueblue.util.ToastUtil;
@@ -85,7 +85,7 @@ public class ContactInfoMenu extends PopupWindow {
 		
 		request.setParam(param);
 		
-		AnsynHttpRequest.requestSimpleByPost(ContactInfoActivity.instance, request, new ObserverCallBack() {
+		AnsynHttpRequest.requestSimpleByPost(ContactInfoActivity.instance, request, new RequestSucessCallBack() {
 			public void call(Request data) {
 				MainActivity.instance.listview3.refresh();
 				ToastUtil.showMessage(ContactInfoActivity.instance, "删除成功");
@@ -126,7 +126,7 @@ public class ContactInfoMenu extends PopupWindow {
 				request.setParam(param);
 				request.setShowDialog(false);
 				
-				AnsynHttpRequest.requestSimpleByPost(ContactInfoActivity.instance, request, new ObserverCallBack() {
+				AnsynHttpRequest.requestSimpleByPost(ContactInfoActivity.instance, request, new RequestSucessCallBack() {
 					public void call(Request data) {
 						MainActivity.instance.listview3.refresh();
 						//ToastUtil.showMessage(ContactInfoActivity.instance, "删除成功");

@@ -27,7 +27,7 @@ import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.activity.send.SeeMessageActivity;
 import com.xinfan.blueblue.activity.send.SendMessageSummaryVO;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
-import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.util.BeanUtils;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
@@ -415,7 +415,7 @@ public class SendedMessageListView extends ListView implements OnScrollListener,
 
 		request.setParam(param);
 
-		AnsynHttpRequest.requestSimpleByPost(context, request, new ObserverCallBack() {
+		AnsynHttpRequest.requestSimpleByPost(context, request, new RequestSucessCallBack() {
 
 			public void call(Request data) {
 
@@ -440,7 +440,7 @@ public class SendedMessageListView extends ListView implements OnScrollListener,
 
 		request.setParam(param);
 
-		AnsynHttpRequest.requestSimpleByPost(context, request, new ObserverCallBack() {
+		AnsynHttpRequest.requestSimpleByPost(context, request, new RequestSucessCallBack() {
 
 			public void call(Request data) {
 

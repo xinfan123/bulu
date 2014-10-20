@@ -1,6 +1,6 @@
 package com.xinfan.blueblue.request;
 
-public interface CastObserverCallBack<T> extends ObserverCallBack {
+public interface CastObserverCallBack<T> extends RequestSucessCallBack {
 	
-	public void castCall(T bean);
+	public void castCall(T bean); 
 }

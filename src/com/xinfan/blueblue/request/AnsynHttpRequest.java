@@ -15,18 +15,14 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.util.EntityUtils;
 
 import android.app.Activity;
-import android.content.Intent;
 
 import com.alibaba.fastjson.JSONObject;
-import com.xinfan.blueblue.activity.Login;
-import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.activity.context.SystemConfigContext;
 import com.xinfan.blueblue.common.LoadingDialogFragment;
@@ -37,7 +33,6 @@ import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.LoginParam;
 import com.xinfan.msgbox.http.service.vo.result.BaseResult;
-import com.xinfan.msgbox.http.service.vo.result.LoginResult;
 
 public class AnsynHttpRequest {
 
@@ -67,9 +62,10 @@ public class AnsynHttpRequest {
 	 *            是否有提示框
 	 * @param intUrl
 	 */
-	private static void doAsynRequest(final Activity context, final Request request, final ObserverCallBack callBack) {
+	private static void doAsynRequest(final Activity context, final Request request) {
 
-		ThreadPoolUtils.execute(new MyRunnable(context, request, callBack));
+		ThreadPoolUtils.execute(new MyRunnable(context, request));
+
 	}
 
 	/**
@@ -88,7 +84,7 @@ public class AnsynHttpRequest {
 	 * @param isShowDialog
 	 *            是否弹出提示等待框
 	 */
-	public static void requestByPost(Activity context, Request request, final ObserverCallBack callBack) {
+	public static void requestByPost(Activity context, Request request, final RequestSucessCallBack callBack) {
 
 		// 组织URL
 		StringBuffer buffer = new StringBuffer();
@@ -99,10 +95,13 @@ public class AnsynHttpRequest {
 		request.setAddress(requestUrl);
 		// requestUrl = requestUrl.substring(0,requestUrl.length()-1);
 		// 异步请求数据
-		doAsynRequest(context, request, callBack);
+
+		request.setRequestSucessCallBack(callBack);
+
+		doAsynRequest(context, request);
 	}
 
-	public static void requestSimpleByPost(Activity context, final Request request, final ObserverCallBack callBack) {
+	public static void requestSimpleByPost(Activity context, final Request request, final RequestSucessCallBack callBack) {
 
 		// 组织URL
 		StringBuffer buffer = new StringBuffer();
@@ -112,20 +111,21 @@ public class AnsynHttpRequest {
 		// requestUrl = requestUrl.substring(0,requestUrl.length()-1);
 		LogUtil.i("httpurl", requestUrl);
 		request.setAddress(requestUrl);
+
+		request.setRequestSucessCallBack(callBack);
+
 		// 异步请求数据
-		doAsynRequest(context, request, callBack);
+		doAsynRequest(context, request);
 	}
 
 }
 
 class MyRunnable implements Runnable {
 	final Activity context;
-	final ObserverCallBack callBack;
 	final Request request;
 
-	public MyRunnable(final Activity context, final Request request, final ObserverCallBack callBack) {
+	public MyRunnable(final Activity context, final Request request) {
 		this.context = context;
-		this.callBack = callBack;
 		this.request = request;
 
 	}
@@ -218,6 +218,16 @@ class MyRunnable implements Runnable {
 			LogUtil.e(AnsynHttpRequest.tag, e);
 			ToastUtil.showMessage(context, "网络通信异常");
 			data = null;
+
+			if (request.getNetworkErrorCallBack() != null) {
+
+				((Activity) context).runOnUiThread(new Thread() {
+					public void run() {
+						request.getNetworkErrorCallBack().call(request);
+					}
+				});
+			}
+
 		} finally {
 			if (request.isShowDialog()) {
 				if (loading != null) {
@@ -226,34 +236,37 @@ class MyRunnable implements Runnable {
 			}
 		}
 
-		try { // 回调数据
-			if (callBack != null) {
-				if (data != null && data.length() > 0) {
-					BaseResult response = JSONObject.parseObject(data, request.getPath().getResultClass());
+		if (data != null && data.length() > 0) {
+			BaseResult response = JSONObject.parseObject(data, request.getPath().getResultClass());
 
-					request.setResult(response);
-					request.setCode(response.getResult());
-					request.setMessage(response.getMsg());
+			request.setResult(response);
+			request.setCode(response.getResult());
+			request.setMessage(response.getMsg());
 
-					if (request.getCode() < 0) {
-						ToastUtil.showMessage(context, request.getMessage());
-					} else {
-						((Activity) context).runOnUiThread(new Runnable() {
-							public void run() {
-								callBack.call(request);
-							}
-						});
-					}
+			if (request.getCode() < 0) {
+
+				if (request.getRequestErrorCallBack() != null) {
+
+					((Activity) context).runOnUiThread(new Thread() {
+						public void run() {
+							request.getRequestErrorCallBack().call(request);
+						}
+					});
+
+				} else {
+					ToastUtil.showMessage(context, request.getMessage());
 				}
+			} else {
+				((Activity) context).runOnUiThread(new Thread() {
+					public void run() {
+						request.getRequestSucessCallBack().call(request);
+					}
+				});
 			}
-		} catch (Exception e) {
-			LogUtil.e(e.getMessage(), e);
-			ToastUtil.showMessage(context, "请求数据异常");
 		}
-
 	}
 
-	public void autoLogin(final ObserverCallBack call) {
+	public void autoLogin(final RequestSucessCallBack call) {
 
 		boolean login = LoginUserContext.getIsLogin(context);
 		if (login) {
@@ -267,13 +280,12 @@ class MyRunnable implements Runnable {
 			param.setPasswd(enPasswd);
 			loginRequest.setParam(param);
 
-			AnsynHttpRequest.requestSimpleByPost(context, loginRequest, new ObserverCallBack() {
+			AnsynHttpRequest.requestSimpleByPost(context, loginRequest, new RequestSucessCallBack() {
 				public void call(Request data) {
 					call.call(request);
 				}
 			});
 		}
 	}
-	
-	
+
 }

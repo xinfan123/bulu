@@ -12,7 +12,7 @@ import android.widget.EditText;
 
 import com.xinfan.blueblue.activity.common.TimeButtonTicker2;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
-import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.blueblue.util.ValidationUtils;
@@ -63,7 +63,7 @@ public class ForgetPasswordStep1 extends Activity {
 		request.setParam(param);
 		request.setShowDialog(false);
 
-		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
+		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
 			public void call(Request data) {
 				Intent intent = new Intent();
 				Bundle bundle = new Bundle();
@@ -100,7 +100,7 @@ public class ForgetPasswordStep1 extends Activity {
 
 		ticker.start();
 
-		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
+		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
 			public void call(Request data) {
 				ToastUtil.showMessage(ForgetPasswordStep1.this, "验证码发送成功，请查收短信!");
 			}

@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.xinfan.blueblue.activity.adapter.ThemeSetAdapter;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
-import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.util.AlertHelper;
 import com.xinfan.blueblue.util.LogUtil;
@@ -90,7 +90,7 @@ public class ThemeSetActivity extends Activity {
 		request.setParam(param);
 		
 
-		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
+		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
 
 			public void call(Request request) {
 				UserSentListResult sentList = (UserSentListResult) request.getResult();

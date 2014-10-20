@@ -16,7 +16,7 @@ import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.SystemSet;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
-import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.request.SharePreferenceUtil;
 import com.xinfan.blueblue.util.ToastUtil;
@@ -81,7 +81,7 @@ public class MessageNumSelectActivity extends Activity {
 		param.setMaxCount(maxCount);
 		param.setUserId(userId);
 		request.setParam(param);
-		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
+		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
 			
 		public void call(Request data) {
 			

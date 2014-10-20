@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.xinfan.blueblue.activity.UpdateVersionActivity;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
-import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
@@ -29,7 +29,7 @@ public class VersionManager {
 		request.setParam(param);
 		request.setShowDialog(false);
 
-		AnsynHttpRequest.requestSimpleByPost(context, request, new ObserverCallBack() {
+		AnsynHttpRequest.requestSimpleByPost(context, request, new RequestSucessCallBack() {
 			public void call(Request data) {
 
 				ClientVersionResult result = (ClientVersionResult) data.getResult();
@@ -60,7 +60,7 @@ public class VersionManager {
 		request.setParam(param);
 		request.setShowDialog(true);
 
-		AnsynHttpRequest.requestSimpleByPost(context, request, new ObserverCallBack() {
+		AnsynHttpRequest.requestSimpleByPost(context, request, new RequestSucessCallBack() {
 			public void call(Request data) {
 
 				ClientVersionResult result = (ClientVersionResult) data.getResult();

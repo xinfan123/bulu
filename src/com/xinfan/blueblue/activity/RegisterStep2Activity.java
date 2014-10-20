@@ -17,7 +17,7 @@ import com.tencent.map.geolocation.TencentLocationRequest;
 import com.xinfan.blueblue.location.LocationEntity;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
-import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.request.SharePreferenceUtil;
 import com.xinfan.blueblue.util.ToastUtil;
@@ -103,7 +103,7 @@ public class RegisterStep2Activity extends Activity implements OnClickListener, 
 		param.setRegGpsy(userLocation.getLongitude().toString());
 		request.setParam(param);
 
-		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
+		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
 
 			public void call(Request data) {
 

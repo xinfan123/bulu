@@ -26,6 +26,12 @@ public class Request implements java.io.Serializable {
 
 	private String address;
 
+	private RequestErrorCallBack requestErrorCallBack;
+
+	private RequestSucessCallBack requestSucessCallBack;
+
+	private NetworkErrorCallBack networkErrorCallBack;
+
 	public Request(FunIdConstants path) {
 		this.path = path;
 		Class paramClass = path.getParamClass();
@@ -120,6 +126,30 @@ public class Request implements java.io.Serializable {
 
 	public void setSendType(int sendType) {
 		this.sendType = sendType;
+	}
+
+	public RequestErrorCallBack getRequestErrorCallBack() {
+		return requestErrorCallBack;
+	}
+
+	public void setRequestErrorCallBack(RequestErrorCallBack requestErrorCallBack) {
+		this.requestErrorCallBack = requestErrorCallBack;
+	}
+
+	public RequestSucessCallBack getRequestSucessCallBack() {
+		return requestSucessCallBack;
+	}
+
+	public void setRequestSucessCallBack(RequestSucessCallBack requestSucessCallBack) {
+		this.requestSucessCallBack = requestSucessCallBack;
+	}
+
+	public NetworkErrorCallBack getNetworkErrorCallBack() {
+		return networkErrorCallBack;
+	}
+
+	public void setNetworkErrorCallBack(NetworkErrorCallBack networkErrorCallBack) {
+		this.networkErrorCallBack = networkErrorCallBack;
 	}
 
 }

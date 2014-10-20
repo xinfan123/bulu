@@ -9,7 +9,7 @@ import android.widget.EditText;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
-import com.xinfan.blueblue.request.ObserverCallBack;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.request.SharePreferenceUtil;
 import com.xinfan.blueblue.util.Md5PwdFactory;
@@ -57,7 +57,7 @@ public class Login extends Activity {
 		param.setPasswd(enPasswd);
 		request.setParam(param);
 
-		AnsynHttpRequest.requestSimpleByPost(this, request, new ObserverCallBack() {
+		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
 
 			public void call(Request data) {
 
