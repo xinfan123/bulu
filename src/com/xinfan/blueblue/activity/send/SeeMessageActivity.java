@@ -12,6 +12,7 @@ import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.util.BizUtils;
 import com.xinfan.blueblue.util.DateUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.SendMessageParam;
@@ -32,6 +33,12 @@ public class SeeMessageActivity extends Activity implements OnClickListener {
 
 	public TextView see_message_credit;
 
+	public TextView see_message_rev_count;
+
+	public TextView see_message_read_count;
+
+	public TextView see_message_lasttime;
+
 	public static SeeMessageActivity instance;
 
 	public SeeMessageMenu menu;
@@ -49,10 +56,15 @@ public class SeeMessageActivity extends Activity implements OnClickListener {
 		see_message_credit = (TextView) findViewById(R.id.see_message_credit);
 		see_money_select_label = (TextView) findViewById(R.id.see_money_select_label);
 
+		see_message_rev_count = (TextView) findViewById(R.id.see_message_rev_count);
+		see_message_read_count = (TextView) findViewById(R.id.see_message_read_count);
+		see_message_lasttime = (TextView) findViewById(R.id.see_message_lasttime);
+
 		instance = this;
+
 		Bundle data = this.getIntent().getExtras();
 		vo = (SendMessageSummaryVO) data.getSerializable("vo");
-		
+
 		load();
 	}
 
@@ -94,6 +106,10 @@ public class SeeMessageActivity extends Activity implements OnClickListener {
 
 		see_message_credit.setText("发布时间：" + DateUtil.formateLong(messageVo.getCreateTime()));
 		see_money_select_label.setText("有偿金额：" + messageVo.getAmount());
+		see_message_read_count.setText("阅读数：" + messageVo.getReadCount());
+		see_message_rev_count.setText("推送数:" + messageVo.getPublishCount());
+
+		see_message_lasttime.setText(BizUtils.calUsefulTime(messageVo.getCreateTime(), messageVo.getDurationTime()));
 	}
 
 	public void send_msg_back(View view) {

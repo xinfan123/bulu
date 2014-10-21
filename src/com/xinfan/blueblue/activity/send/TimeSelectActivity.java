@@ -28,8 +28,8 @@ public class TimeSelectActivity extends Activity implements OnClickListener {
 		ListView listview = (ListView) findViewById(R.id.time_listView_select);
 		timeList = new ArrayList<TimeListVo>();
 
-		TimeListVo one = new TimeListVo("1", "20分钟");
-		TimeListVo two = new TimeListVo("2", "60分钟");
+		TimeListVo one = new TimeListVo("20", "20分钟");
+		TimeListVo two = new TimeListVo("60", "60分钟");
 		timeList.add(one);
 		timeList.add(two);
 
