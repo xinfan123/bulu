@@ -105,9 +105,9 @@ public class SeeMessageActivity extends Activity implements OnClickListener {
 		see_area_select_label.setText("地址范围：" + (messageVo.getSendType() == 1 ? "附近" : "本市"));
 
 		see_message_credit.setText("发布时间：" + DateUtil.formateLong(messageVo.getCreateTime()));
-		see_money_select_label.setText("有偿金额：" + messageVo.getAmount());
-		see_message_read_count.setText("阅读数：" + messageVo.getReadCount());
-		see_message_rev_count.setText("推送数:" + messageVo.getPublishCount());
+		see_money_select_label.setText("有偿金额：" + (messageVo.getAmount() == null ? 0 : messageVo.getAmount()));
+		see_message_read_count.setText("阅读数：" + (messageVo.getReadCount() == null ? 0 : messageVo.getReadCount()));
+		see_message_rev_count.setText("推送数:" + (messageVo.getPublishCount() == null ? 0 : messageVo.getPublishCount()));
 
 		see_message_lasttime.setText(BizUtils.calUsefulTime(messageVo.getCreateTime(), messageVo.getDurationTime()));
 	}
