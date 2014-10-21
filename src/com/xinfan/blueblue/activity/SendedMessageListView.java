@@ -444,10 +444,10 @@ public class SendedMessageListView extends ListView implements OnScrollListener,
 
 			public void call(Request data) {
 
-				MessageListResult result = (MessageListResult) data.getResult();
-				List<MessageVO> rList = result.getList();
+				MessageSendListResult result = (MessageSendListResult) data.getResult();
+				List<MessageSendSummaryVO> rList = result.getList();
 				List<SendMessageSummaryVO> addList = (ArrayList<SendMessageSummaryVO>) BeanUtils.copyList(rList, SendMessageSummaryVO.class);
-			
+					
 				if (addList.size() > 0) {
 					page++;
 				}

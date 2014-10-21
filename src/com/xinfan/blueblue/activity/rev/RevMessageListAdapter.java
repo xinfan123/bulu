@@ -41,7 +41,7 @@ public class RevMessageListAdapter extends BaseAdapter {
 	public View getView(int position, View view, ViewGroup parent) {
 		RevMessageVo hh = list.get(position);
 		if (view == null) {
-			view = LayoutInflater.from(context).inflate(R.layout.liaotian, parent, false);
+			view = LayoutInflater.from(context).inflate(R.layout.rev_message_list_item, parent, false);
 			// h.pic = (ImageView)view.findViewById(R.id.l1);
 			view.setTag(hh);
 		}

@@ -11,6 +11,15 @@ public class DateUtil {
 	private static final int TEN = 10;
 	private static final int TIME_UNIT = 60;
 
+	private static final String DATE_LONG_PATTERN = "yyyy-MM-dd HH:mm:ss";
+
+	public static String formateLong(Date date) {
+		if (date == null) {
+			return "";
+		}
+		return new SimpleDateFormat(DATE_LONG_PATTERN).format(date);
+	}
+
 	private static String addZero(int paramInt) {
 		if (paramInt < 10)
 			;
@@ -32,8 +41,7 @@ public class DateUtil {
 		}
 
 		try {
-			Date localDate = new SimpleDateFormat(paramString2,
-					Locale.getDefault()).parse(paramString1);
+			Date localDate = new SimpleDateFormat(paramString2, Locale.getDefault()).parse(paramString1);
 			return localDate;
 		} catch (ParseException localParseException) {
 			localParseException.printStackTrace();
@@ -50,8 +58,7 @@ public class DateUtil {
 			paramString = "yyyy-MM-dd";
 
 		try {
-			SimpleDateFormat localSimpleDateFormat = new SimpleDateFormat(
-					paramString, Locale.getDefault());
+			SimpleDateFormat localSimpleDateFormat = new SimpleDateFormat(paramString, Locale.getDefault());
 			return localSimpleDateFormat.format(paramDate);
 		} catch (Exception localException) {
 			throw new RuntimeException("不支持的日期模式", localException);

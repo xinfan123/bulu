@@ -1,13 +1,14 @@
 package com.xinfan.blueblue.activity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.send.SendMessageSummaryVO;
@@ -47,14 +48,43 @@ public class SendHistoryAdapter extends BaseAdapter {
 			view.setTag(hh);
 		}
 
-		TextView name = (TextView) view.findViewById(R.id.name);
-		TextView time = (TextView) view.findViewById(R.id.time);
-		TextView lastmsg = (TextView) view.findViewById(R.id.lastmsg);
+		TextView titleView = (TextView) view.findViewById(R.id.message_title);
+		TextView timeView = (TextView) view.findViewById(R.id.message_time);
+		TextView moreView = (TextView) view.findViewById(R.id.message_more);
 
 		// h.pic.setImageResource(Integer.parseInt(hh.getTxPath()));
-		name.setText(hh.getTitle());
-		time.setText(hh.getTitle());
-		lastmsg.setText(hh.getTitle());
+
+		int dtime = hh.getDurationTime() == null ? 0 : hh.getDurationTime();
+		String time = "";
+
+		Calendar createtime = Calendar.getInstance();
+		createtime.setTime(hh.getCreateTime());
+		createtime.add(Calendar.MINUTE, dtime);
+
+		Calendar currenttime = Calendar.getInstance();
+
+		if (createtime.before(currenttime)) {
+			time = "已过期";
+		} else {
+
+			long lasttime = createtime.getTimeInMillis() - currenttime.getTimeInMillis();
+			int lastmin = (int) lasttime / (1000 * 60);
+			time = lastmin + "分后过期";
+		}
+
+		String title = hh.getTitle();
+		if (hh.getTitle().length() > 20) {
+			title = hh.getTitle().substring(0, 20) + "...";
+		}
+
+		String content = hh.getContext();
+		if (hh.getContext().length() > 30) {
+			content = hh.getContext().substring(0, 30) + "...";
+		}
+
+		titleView.setText(title);
+		moreView.setText(content);
+		timeView.setText(time);
 
 		return view;
 	}

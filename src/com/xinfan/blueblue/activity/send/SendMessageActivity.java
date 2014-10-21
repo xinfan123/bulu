@@ -156,8 +156,8 @@ public class SendMessageActivity extends Activity implements OnClickListener {
 		long amount = 0;
 
 		if (money != null && money.length() > 0) {
-			amountStatus = 1;
 			amount = Long.parseLong(money);
+			amountStatus = amount > 0 ? 1 : 0;
 		}
 
 		// message.setTitle(title);

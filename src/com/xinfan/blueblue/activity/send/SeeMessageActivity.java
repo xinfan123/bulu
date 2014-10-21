@@ -12,6 +12,7 @@ import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.util.DateUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.SendMessageParam;
 import com.xinfan.msgbox.http.service.vo.result.MessageResult;
@@ -51,6 +52,8 @@ public class SeeMessageActivity extends Activity implements OnClickListener {
 		instance = this;
 		Bundle data = this.getIntent().getExtras();
 		vo = (SendMessageSummaryVO) data.getSerializable("vo");
+		
+		load();
 	}
 
 	public void load() {
@@ -70,21 +73,27 @@ public class SeeMessageActivity extends Activity implements OnClickListener {
 
 				MessageVO messageVo = result.getMessage();
 
-				if (messageVo.getTitle() == null || vo.getTitle().length() <= 1) {
-					see_message_more_edit.setVisibility(View.GONE);
-				} else {
-					see_message_more_edit.setVisibility(View.VISIBLE);
-					see_message_more_edit.setText(vo.getTitle());
-				}
-
-				see_message_content_edit.setText(vo.getTitle());
-
-				see_time_select_label.setText(vo.getTitle());
-				see_area_select_label.setText(vo.getTitle());
-				see_message_credit.setText("信用：100");
-				see_money_select_label.setText(String.valueOf(vo.getAmount()));
+				show(messageVo);
 			}
 		});
+	}
+
+	public void show(MessageVO messageVo) {
+
+		if (messageVo.getContext() == null || messageVo.getContext().length() <= 1) {
+			see_message_more_edit.setVisibility(View.GONE);
+		} else {
+			see_message_more_edit.setVisibility(View.VISIBLE);
+			see_message_more_edit.setText(messageVo.getContext());
+		}
+
+		see_message_content_edit.setText(messageVo.getTitle());
+
+		see_time_select_label.setText("有效时间（分）：" + messageVo.getDurationTime());
+		see_area_select_label.setText("地址范围：" + (messageVo.getSendType() == 1 ? "附近" : "本市"));
+
+		see_message_credit.setText("发布时间：" + DateUtil.formateLong(messageVo.getCreateTime()));
+		see_money_select_label.setText("有偿金额：" + messageVo.getAmount());
 	}
 
 	public void send_msg_back(View view) {
