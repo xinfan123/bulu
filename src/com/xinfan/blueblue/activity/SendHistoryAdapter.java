@@ -58,7 +58,7 @@ public class SendHistoryAdapter extends BaseAdapter {
 		String time = "";
 
 		Calendar createtime = Calendar.getInstance();
-		createtime.setTime(hh.getCreateTime());
+		createtime.setTime(hh.getRefreshTime());
 		createtime.add(Calendar.MINUTE, dtime);
 
 		Calendar currenttime = Calendar.getInstance();
