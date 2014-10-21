@@ -31,11 +31,11 @@
                 android:src="@drawable/ofm_setting_icon" />
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="10dp"
                 android:background="@null"
-                android:gravity="center"
+                android:gravity="left|center_vertical"
                 android:text="删除"
                 android:textColor="@color/white"
                 android:textSize="15dip" />
@@ -62,11 +62,11 @@
                 android:src="@drawable/ofm_collect_icon" />
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="10dp"
                 android:background="@null"
-                android:gravity="center"
+                android:gravity="left|center_vertical"
                 android:text="重发"
                 android:textColor="@color/white"
                 android:textSize="15dip" />
