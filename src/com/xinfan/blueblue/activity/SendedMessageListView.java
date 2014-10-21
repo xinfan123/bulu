@@ -25,17 +25,16 @@ import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.activity.send.SeeMessageActivity;
+import com.xinfan.blueblue.activity.send.SendMessageListAdapter;
 import com.xinfan.blueblue.activity.send.SendMessageSummaryVO;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
-import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.util.BeanUtils;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.UserMessageListParam;
-import com.xinfan.msgbox.http.service.vo.result.MessageListResult;
 import com.xinfan.msgbox.http.service.vo.result.MessageSendListResult;
 import com.xinfan.msgbox.http.service.vo.result.MessageSendSummaryVO;
-import com.xinfan.msgbox.http.service.vo.result.MessageVO;
 
 public class SendedMessageListView extends ListView implements OnScrollListener, OnItemClickListener {
 
@@ -385,14 +384,14 @@ public class SendedMessageListView extends ListView implements OnScrollListener,
 
 	public ArrayList<SendMessageSummaryVO> list = new ArrayList<SendMessageSummaryVO>();
 
-	public SendHistoryAdapter ad;
+	public SendMessageListAdapter ad;
 
 	public Activity context;
 
 	public void init(Activity context) {
 		this.context = context;
 
-		ad = new SendHistoryAdapter(context, list);
+		ad = new SendMessageListAdapter(context, list);
 		this.setPullLoadEnable(true);
 		this.setAdapter(ad);
 		this.ad.notifyDataSetChanged();

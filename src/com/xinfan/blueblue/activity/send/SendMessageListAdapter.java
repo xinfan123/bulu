@@ -1,8 +1,7 @@
-package com.xinfan.blueblue.activity;
+package com.xinfan.blueblue.activity.send;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,13 +10,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.xinfan.blueblue.activity.send.SendMessageSummaryVO;
+import com.xinfan.blueblue.activity.R;
 
-public class SendHistoryAdapter extends BaseAdapter {
+public class SendMessageListAdapter extends BaseAdapter {
 	private Context context;
 	private ArrayList<SendMessageSummaryVO> list = new ArrayList<SendMessageSummaryVO>();
 
-	public SendHistoryAdapter(Context context, ArrayList<SendMessageSummaryVO> list) {
+	public SendMessageListAdapter(Context context, ArrayList<SendMessageSummaryVO> list) {
 		this.context = context;
 		this.list = list;
 	}
@@ -43,7 +42,7 @@ public class SendHistoryAdapter extends BaseAdapter {
 	public View getView(int position, View view, ViewGroup parent) {
 		SendMessageSummaryVO hh = list.get(position);
 		if (view == null) {
-			view = LayoutInflater.from(context).inflate(R.layout.send_history, parent, false);
+			view = LayoutInflater.from(context).inflate(R.layout.send_list_item, parent, false);
 			// h.pic = (ImageView)view.findViewById(R.id.l1);
 			view.setTag(hh);
 		}
@@ -51,6 +50,9 @@ public class SendHistoryAdapter extends BaseAdapter {
 		TextView titleView = (TextView) view.findViewById(R.id.message_title);
 		TextView timeView = (TextView) view.findViewById(R.id.message_time);
 		TextView moreView = (TextView) view.findViewById(R.id.message_more);
+		TextView refreshView = (TextView) view.findViewById(R.id.mesage_refresh_count);
+		TextView pushView = (TextView) view.findViewById(R.id.message_push_count);
+		TextView readView = (TextView) view.findViewById(R.id.mesage_read_count);
 
 		// h.pic.setImageResource(Integer.parseInt(hh.getTxPath()));
 
@@ -85,6 +87,9 @@ public class SendHistoryAdapter extends BaseAdapter {
 		titleView.setText(title);
 		moreView.setText(content);
 		timeView.setText(time);
+		refreshView.setText("刷新次数："+String.valueOf(hh.getRefreshCount()));
+		pushView.setText("推送人数："+String.valueOf(hh.getPublishCount()));
+		readView.setText("阅读人数"+String.valueOf(hh.getReadCount()));
 
 		return view;
 	}
