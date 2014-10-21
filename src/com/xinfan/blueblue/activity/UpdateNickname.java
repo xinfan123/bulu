@@ -31,6 +31,11 @@ public class UpdateNickname extends Activity {
 		newNickname = mNewNickname.getText().toString();
 		if (newNickname == null || newNickname.equals("")) {
 			ToastUtil.showMessage(UpdateNickname.this, "昵称不能为空！");
+			return;
+		}
+		else if (newNickname.length()>11) {
+			ToastUtil.showMessage(UpdateNickname.this, "昵称大于11位！");
+			return;
 		} else {
 
 			Request request = new Request(FunIdConstants.SET_USER_NICKNAME);

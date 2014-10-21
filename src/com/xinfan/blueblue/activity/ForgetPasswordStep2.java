@@ -45,7 +45,10 @@ public class ForgetPasswordStep2 extends Activity {
 			ToastUtil.showMessage(ForgetPasswordStep2.this, "密码不能为空！");
 			return;
 		}
-
+		if (newPassword.length()<6||newPassword.length()>11) {
+			ToastUtil.showMessage(ForgetPasswordStep2.this, "请输入6-11位有效数字");
+			return;
+		}
 		if (!(newPassword.equals(rePassword))) {
 			ToastUtil.showMessage(ForgetPasswordStep2.this, "两次密码不一致");
 			return;

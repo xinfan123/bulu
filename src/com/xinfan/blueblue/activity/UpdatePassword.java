@@ -41,7 +41,10 @@ public class UpdatePassword extends Activity {
 		rePassword = mRePassword.getText().toString();
 		if (newPassword == null || newPassword.equals("")) {
 			ToastUtil.showMessage(UpdatePassword.this, "密码不能为空！");
-		} else if (!(newPassword.equals(rePassword))) {
+		} else if (newPassword.length()<6||newPassword.length()>11) {
+			ToastUtil.showMessage(UpdatePassword.this, "请输入6-11位有效数字");
+		}
+		else if (!(newPassword.equals(rePassword))) {
 			ToastUtil.showMessage(UpdatePassword.this, "两次密码不一致");
 		} else {
 			Request request = new Request(FunIdConstants.CHANGE_PASSWD_AFTER_LOGIN);

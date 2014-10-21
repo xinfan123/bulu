@@ -116,6 +116,7 @@ public class AnsynHttpRequest {
 
 		// 异步请求数据
 		doAsynRequest(context, request);
+		System.out.println("~~~~~~~~~~~~~~~~~~~~" + requestUrl);
 	}
 
 }

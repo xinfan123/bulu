@@ -85,6 +85,10 @@ public class RegisterStep2Activity extends Activity implements OnClickListener, 
 			ToastUtil.showMessage(RegisterStep2Activity.this, "昵称不能为空！");
 			return;
 		}
+		if(nickname.length()>11){
+			ToastUtil.showMessage(RegisterStep2Activity.this, "昵称不能大于11位！");
+			return;
+		}
 
 		if (password == null || password.length() <= 0) // 判断密码是否为空
 		{
@@ -115,13 +119,13 @@ public class RegisterStep2Activity extends Activity implements OnClickListener, 
 				util.setMobile(mobile);
 
 				Intent intent = new Intent();
-				intent.setClass(RegisterStep2Activity.this, Login.class);
+				intent.setClass(RegisterStep2Activity.this, MainActivity.class);
 				startActivity(intent);
 
 				RegisterStep2Activity.this.finish();
 
 			}
-		});
+		});  
 
 	}
 

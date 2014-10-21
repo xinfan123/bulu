@@ -75,7 +75,7 @@ public final class Constants {
     	public static final String CChannel = "dev";
     	public static boolean isInstall = false;
     	public static final String http_request_uri = "MainService";
-    	public static final String http_request_ip = "192.168.1.102:7001";
+    	public static final String http_request_ip = "192.168.1.100:8080";
     	//public static final String http_request_head = "http://192.168.1.102:7001/MainService";
     	public static String http_img = "";
 
