@@ -42,7 +42,7 @@ public class RevAddContactActivity extends Activity implements OnClickListener {
 					return;
 				}
 
-				RevMessageVo messageVo = RevSeeMessageActivity.instance.vo;
+				RevMessageSummaryVO messageVo = RevSeeMessageActivity.instance.vo;
 
 				ContactVo vo = new ContactVo();
 				//vo.setMark(value);

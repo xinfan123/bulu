@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.xinfan.blueblue.activity.HuiHua;
-import com.xinfan.blueblue.activity.rev.RevMessageVo;
+import com.xinfan.blueblue.activity.rev.RevMessageSummaryVO;
 import com.xinfan.blueblue.activity.send.SendMessageSummaryVO;
-import com.xinfan.blueblue.vo.ContactVo;
 
 public class MessageListDataService {
 
@@ -25,12 +24,12 @@ public class MessageListDataService {
 	}
 
 
-	public static List<RevMessageVo> getRevMessageData(int pageSize, int page) {
-		List<RevMessageVo> list = new ArrayList<RevMessageVo>();
-		int index = (pageSize * (page - 1) + 1);
+	public static List<RevMessageSummaryVO> getRevMessageData(int pageSize, int page) {
+		List<RevMessageSummaryVO> list = new ArrayList<RevMessageSummaryVO>();
+/*		int index = (pageSize * (page - 1) + 1);
 		int max = pageSize * page;
 		for (int i = index; i <= max; i++) {
-			RevMessageVo map = new RevMessageVo();
+			RevMessageSummaryVO map = new RevMessageSummaryVO();
 			map.setIndex(index);
 			map.setArea("地区：" + i);
 			map.setContent("更多内容：" + i);
@@ -39,7 +38,7 @@ public class MessageListDataService {
 			map.setTime("时间："+i);
 
 			list.add(map);
-		}
+		}*/
 		return list;
 	}
 	

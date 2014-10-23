@@ -53,7 +53,7 @@ public class RevReport extends Activity {
 			return;
 		}
 
-		RevMessageVo vo = RevSeeMessageActivity.instance.vo;
+		RevMessageSummaryVO vo = RevSeeMessageActivity.instance.vo;
 
 		ToastUtil.showMessage(this, "举报成功：" + typeStr);
 		this.finish();

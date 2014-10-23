@@ -28,7 +28,7 @@ public class RevSeeMessageActivity extends Activity implements OnClickListener {
 
 	public RevMessageMenu menu;
 
-	public RevMessageVo vo;
+	public RevMessageSummaryVO vo;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,21 +44,21 @@ public class RevSeeMessageActivity extends Activity implements OnClickListener {
 		instance = this;
 		Bundle data = this.getIntent().getExtras();
 
-		vo = (RevMessageVo) data.getSerializable("vo");
+		vo = (RevMessageSummaryVO) data.getSerializable("vo");
 
-		if (vo.getContent() == null || vo.getContent().length() <= 1) {
+		if (vo.getContext() == null || vo.getContext().length() <= 1) {
 			see_message_more_edit.setVisibility(View.GONE);
 		} else {
 			see_message_more_edit.setVisibility(View.VISIBLE);
-			see_message_more_edit.setText(vo.getContent());
+			see_message_more_edit.setText(vo.getContext());
 		}
 
 		see_message_content_edit.setText(vo.getTitle());
 
-		see_time_select_label.setText(vo.getTime());
-		see_area_select_label.setText(vo.getArea());
+		see_time_select_label.setText(vo.getDurationTime());
+		see_area_select_label.setText(vo.getSendType());
 		see_message_credit.setText("信用：100");
-		see_money_select_label.setText(vo.getMoney());
+		see_money_select_label.setText(String.valueOf(vo.getAmount()));
 
 	}
 

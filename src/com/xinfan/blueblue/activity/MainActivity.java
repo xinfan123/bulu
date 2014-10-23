@@ -4,10 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -15,11 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.context.VersionManager;
-import com.xinfan.blueblue.activity.main.RefreshableView;
-import com.xinfan.blueblue.activity.main.RefreshableView.PullToRefreshListener;
+import com.xinfan.blueblue.activity.rev.RevMessageListView;
 import com.xinfan.blueblue.activity.send.SendMessageActivity;
-import com.xinfan.blueblue.request.Constants;
-import com.xinfan.blueblue.request.SharePreferenceUtil;
 
 public class MainActivity extends Activity implements OnViewChangeListener, OnClickListener {
 
@@ -39,7 +34,7 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 
 	private boolean isOpen = false;
 
-	public MessageListView listview1;
+	public RevMessageListView listview1;
 	public SendedMessageListView listview2;
 	public ContactListView listview3;
 
@@ -60,7 +55,7 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		faxian = (TextView) findViewById(R.id.faxian);
 		tongxunlu = (TextView) findViewById(R.id.tongxunlu);
 
-		listview1 = (MessageListView) findViewById(R.id.listView1);
+		listview1 = (RevMessageListView) findViewById(R.id.listView1);
 		listview2 = (SendedMessageListView) findViewById(R.id.listView2);
 		listview3 = (ContactListView) findViewById(R.id.listView3);
 

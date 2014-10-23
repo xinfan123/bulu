@@ -68,10 +68,10 @@ public class RevMessageMenu extends PopupWindow {
 
 	public void onClickDelete(View v) {
 
-		RevMessageVo vo = RevSeeMessageActivity.instance.vo;
+		RevMessageSummaryVO vo = RevSeeMessageActivity.instance.vo;
 
-		MainActivity.instance.listview1.list.remove(vo.getIndex());
-		MainActivity.instance.listview1.ad.notifyDataSetChanged();
+		//MainActivity.instance.listview1.list.remove(vo.getIndex());
+		///MainActivity.instance.listview1.ad.notifyDataSetChanged();
 
 		ToastUtil.showMessage(v.getContext(), "删除成功");
 		RevSeeMessageActivity.instance.finish();

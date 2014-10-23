@@ -1,4 +1,4 @@
-package com.xinfan.blueblue.activity;
+package com.xinfan.blueblue.activity.rev;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,21 +23,22 @@ import android.widget.RelativeLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
 
+import com.xinfan.blueblue.activity.MainActivity;
+import com.xinfan.blueblue.activity.R;
+import com.xinfan.blueblue.activity.XListViewFooter;
+import com.xinfan.blueblue.activity.XListViewHeader;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
-import com.xinfan.blueblue.activity.rev.RevMessageListAdapter;
-import com.xinfan.blueblue.activity.rev.RevMessageVo;
-import com.xinfan.blueblue.activity.rev.RevSeeMessageActivity;
-import com.xinfan.blueblue.activity.send.SendMessageSummaryVO;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
-import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.util.BeanUtils;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.UserMessageListParam;
-import com.xinfan.msgbox.http.service.vo.result.MessageListResult;
+import com.xinfan.msgbox.http.service.vo.result.MessageRevListResult;
+import com.xinfan.msgbox.http.service.vo.result.MessageRevSummaryVO;
 import com.xinfan.msgbox.http.service.vo.result.MessageVO;
 
-public class MessageListView extends ListView implements OnScrollListener, OnItemClickListener {
+public class RevMessageListView extends ListView implements OnScrollListener, OnItemClickListener {
 
 	private float mLastY = -1; // save event y
 	private Scroller mScroller; // used for scroll back
@@ -79,17 +80,17 @@ public class MessageListView extends ListView implements OnScrollListener, OnIte
 	/**
 	 * @param context
 	 */
-	public MessageListView(Context context) {
+	public RevMessageListView(Context context) {
 		super(context);
 		initWithContext(context);
 	}
 
-	public MessageListView(Context context, AttributeSet attrs) {
+	public RevMessageListView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initWithContext(context);
 	}
 
-	public MessageListView(Context context, AttributeSet attrs, int defStyle) {
+	public RevMessageListView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		initWithContext(context);
 	}
@@ -117,7 +118,7 @@ public class MessageListView extends ListView implements OnScrollListener, OnIte
 				getViewTreeObserver().removeGlobalOnLayoutListener(this);
 			}
 		});
-		
+
 		this.setOnItemClickListener(this);
 	}
 
@@ -367,7 +368,7 @@ public class MessageListView extends ListView implements OnScrollListener, OnIte
 		mhandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				MessageListView.this.refresh();
+				RevMessageListView.this.refresh();
 				onLoad();
 			}
 		}, 1000);
@@ -377,13 +378,13 @@ public class MessageListView extends ListView implements OnScrollListener, OnIte
 		mhandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				MessageListView.this.loadMore();
+				RevMessageListView.this.loadMore();
 				onLoad();
 			}
 		}, 1000);
 	}
 
-	public ArrayList<RevMessageVo> list = new ArrayList<RevMessageVo>();
+	public ArrayList<RevMessageSummaryVO> list = new ArrayList<RevMessageSummaryVO>();
 
 	public RevMessageListAdapter ad;
 
@@ -419,13 +420,13 @@ public class MessageListView extends ListView implements OnScrollListener, OnIte
 
 			public void call(Request data) {
 
-				MessageListResult result = (MessageListResult) data.getResult();
-				List<MessageVO> rList = result.getList();
-				List<RevMessageVo> addList = (ArrayList<RevMessageVo>) BeanUtils.copyList(rList, RevMessageVo.class);
-				
-				MessageListView.this.list.clear();
-				MessageListView.this.list.addAll(addList);
-				MessageListView.this.ad.notifyDataSetChanged();
+				MessageRevListResult result = (MessageRevListResult) data.getResult();
+				List<MessageRevSummaryVO> rList = result.getList();
+				List<RevMessageSummaryVO> addList = (ArrayList<RevMessageSummaryVO>) BeanUtils.copyList(rList, RevMessageSummaryVO.class);
+
+				RevMessageListView.this.list.clear();
+				RevMessageListView.this.list.addAll(addList);
+				RevMessageListView.this.ad.notifyDataSetChanged();
 			}
 		});
 	}
@@ -435,7 +436,7 @@ public class MessageListView extends ListView implements OnScrollListener, OnIte
 		Request request = new Request(FunIdConstants.GET_USER_RECIEVED_MESSAGE_LIST);
 		UserMessageListParam param = new UserMessageListParam();
 		param.setUserId(LoginUserContext.getUserId(context));
-		param.setPageNo(page+1);
+		param.setPageNo(page + 1);
 		param.setPageSize(pageSize);
 
 		request.setParam(param);
@@ -444,27 +445,27 @@ public class MessageListView extends ListView implements OnScrollListener, OnIte
 
 			public void call(Request data) {
 
-				MessageListResult result = (MessageListResult) data.getResult();
-				List<MessageVO> rList = result.getList();
-				List<RevMessageVo> addList = (ArrayList<RevMessageVo>) BeanUtils.copyList(rList, RevMessageVo.class);
-			
+				MessageRevListResult result = (MessageRevListResult) data.getResult();
+				List<MessageRevSummaryVO> rList = result.getList();
+				List<RevMessageSummaryVO> addList = (ArrayList<RevMessageSummaryVO>) BeanUtils.copyList(rList, RevMessageSummaryVO.class);
+
 				if (addList.size() > 0) {
 					page++;
 				}
-				
-				MessageListView.this.list.addAll(addList);
-				MessageListView.this.ad.notifyDataSetChanged();
+
+				RevMessageListView.this.list.addAll(addList);
+				RevMessageListView.this.ad.notifyDataSetChanged();
 			}
 		});
 	}
-	
+
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		Intent intent = new Intent();
 		intent.setClass(MainActivity.instance, RevSeeMessageActivity.class);
 
 		Bundle data = new Bundle();
-		RevMessageVo vo = list.get(arg2-1);
+		RevMessageSummaryVO vo = list.get(arg2 - 1);
 		data.putSerializable("vo", vo);
 
 		intent.putExtras(data);

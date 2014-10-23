@@ -13,9 +13,9 @@ import com.xinfan.blueblue.activity.R;
 
 public class RevMessageListAdapter extends BaseAdapter {
 	private Context context;
-	private ArrayList<RevMessageVo> list = new ArrayList<RevMessageVo>();
+	private ArrayList<RevMessageSummaryVO> list = new ArrayList<RevMessageSummaryVO>();
 
-	public RevMessageListAdapter(Context context, ArrayList<RevMessageVo> list) {
+	public RevMessageListAdapter(Context context, ArrayList<RevMessageSummaryVO> list) {
 		this.context = context;
 		this.list = list;
 	}
@@ -39,7 +39,7 @@ public class RevMessageListAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View view, ViewGroup parent) {
-		RevMessageVo hh = list.get(position);
+		RevMessageSummaryVO hh = list.get(position);
 		if (view == null) {
 			view = LayoutInflater.from(context).inflate(R.layout.rev_message_list_item, parent, false);
 			// h.pic = (ImageView)view.findViewById(R.id.l1);
@@ -52,8 +52,8 @@ public class RevMessageListAdapter extends BaseAdapter {
 
 		// h.pic.setImageResource(Integer.parseInt(hh.getTxPath()));
 		name.setText(hh.getTitle());
-		time.setText(hh.getTime());
-		lastmsg.setText(hh.getContent());
+		time.setText(String.valueOf(hh.getDurationTime()));
+		lastmsg.setText(hh.getContext());
 
 		return view;
 	}
