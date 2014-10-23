@@ -8,7 +8,16 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.R;
-import com.xinfan.blueblue.activity.send.SeeMessageMenu;
+import com.xinfan.blueblue.activity.context.LoginUserContext;
+import com.xinfan.blueblue.request.AnsynHttpRequest;
+import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
+import com.xinfan.blueblue.util.BizUtils;
+import com.xinfan.blueblue.util.DateUtil;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.MessageRevParam;
+import com.xinfan.msgbox.http.service.vo.result.MessageRevDetailVO;
+import com.xinfan.msgbox.http.service.vo.result.MessageRevResult;
 
 public class RevSeeMessageActivity extends Activity implements OnClickListener {
 
@@ -23,6 +32,10 @@ public class RevSeeMessageActivity extends Activity implements OnClickListener {
 	public TextView see_message_more_edit;
 
 	public TextView see_message_credit;
+
+	public TextView rev_message_send_username;
+
+	public TextView rev_message_send_time;
 
 	public static RevSeeMessageActivity instance;
 
@@ -40,26 +53,58 @@ public class RevSeeMessageActivity extends Activity implements OnClickListener {
 		see_area_select_label = (TextView) findViewById(R.id.see_message_area);
 		see_message_credit = (TextView) findViewById(R.id.see_message_credit);
 		see_money_select_label = (TextView) findViewById(R.id.see_money_select_label);
+		rev_message_send_username = (TextView) findViewById(R.id.rev_message_send_username);
+		rev_message_send_time = (TextView) findViewById(R.id.rev_message_send_time);
 
 		instance = this;
 		Bundle data = this.getIntent().getExtras();
 
 		vo = (RevMessageSummaryVO) data.getSerializable("vo");
+		
+		load();
+	}
 
-		if (vo.getContext() == null || vo.getContext().length() <= 1) {
+	public void show(MessageRevDetailVO messageVo) {
+
+		if (messageVo.getContext() == null || messageVo.getContext().length() <= 1) {
 			see_message_more_edit.setVisibility(View.GONE);
 		} else {
 			see_message_more_edit.setVisibility(View.VISIBLE);
-			see_message_more_edit.setText(vo.getContext());
+			see_message_more_edit.setText(messageVo.getContext());
 		}
 
-		see_message_content_edit.setText(vo.getTitle());
+		see_message_content_edit.setText(messageVo.getTitle());
 
-		see_time_select_label.setText(vo.getDurationTime());
-		see_area_select_label.setText(vo.getSendType());
-		see_message_credit.setText("信用：100");
-		see_money_select_label.setText(String.valueOf(vo.getAmount()));
+		String time = BizUtils.calUsefulTime(messageVo.getRefreshTime(), messageVo.getDurationTime());
 
+		see_time_select_label.setText(time);
+		see_area_select_label.setText(messageVo.getSendType() == 1 ? "附近" : "本市");
+		see_message_credit.setText("信用值：" + String.valueOf(messageVo.getSendUserCredit()));
+		see_money_select_label.setText("有偿：" + String.valueOf(messageVo.getAmount()));
+		rev_message_send_username.setText(messageVo.getSendUserName());
+		rev_message_send_time.setText(DateUtil.formateLong(messageVo.getRefreshTime()));
+	}
+
+	public void load() {
+
+		Request request = new Request(FunIdConstants.GET_REV_MESSAGE);
+		MessageRevParam param = new MessageRevParam();
+		param.setUserId(LoginUserContext.getUserId(this));
+		param.setMsgId(vo.getMsgId());
+
+		request.setParam(param);
+
+		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
+
+			public void call(Request data) {
+
+				MessageRevResult result = (MessageRevResult) data.getResult();
+
+				MessageRevDetailVO messageVo = result.getMessage();
+
+				show(messageVo);
+			}
+		});
 	}
 
 	public void send_msg_back(View view) {

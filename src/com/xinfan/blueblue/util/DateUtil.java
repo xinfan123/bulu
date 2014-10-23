@@ -12,12 +12,20 @@ public class DateUtil {
 	private static final int TIME_UNIT = 60;
 
 	private static final String DATE_LONG_PATTERN = "yyyy-MM-dd HH:mm:ss";
+	private static final String DATE_SIMMPLE_PATTERN = "MM-dd HH:mm";
 
 	public static String formateLong(Date date) {
 		if (date == null) {
 			return "";
 		}
 		return new SimpleDateFormat(DATE_LONG_PATTERN).format(date);
+	}
+
+	public static String formateSimple(Date date) {
+		if (date == null) {
+			return "";
+		}
+		return new SimpleDateFormat(DATE_SIMMPLE_PATTERN).format(date);
 	}
 
 	private static String addZero(int paramInt) {

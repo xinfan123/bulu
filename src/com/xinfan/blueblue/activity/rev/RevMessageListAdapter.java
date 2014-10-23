@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.R;
+import com.xinfan.blueblue.util.DateUtil;
 
 public class RevMessageListAdapter extends BaseAdapter {
 	private Context context;
@@ -46,16 +47,29 @@ public class RevMessageListAdapter extends BaseAdapter {
 			view.setTag(hh);
 		}
 
-		TextView name = (TextView) view.findViewById(R.id.name);
-		TextView time = (TextView) view.findViewById(R.id.time);
-		TextView lastmsg = (TextView) view.findViewById(R.id.lastmsg);
+		TextView rev_message_time = (TextView) view.findViewById(R.id.rev_message_time);
+		TextView rev_message_content = (TextView) view.findViewById(R.id.rev_message_content);
+		TextView rev_message_title = (TextView) view.findViewById(R.id.rev_message_title);
+		TextView rev_message_amount = (TextView) view.findViewById(R.id.rev_message_amount);
+		TextView rev_message_send_type = (TextView) view.findViewById(R.id.rev_message_send_type);
+
+		String title = hh.getTitle();
+		if (hh.getTitle().length() > 20) {
+			title = hh.getTitle().substring(0, 20) + "...";
+		}
+
+		String content = hh.getContext();
+		if (hh.getContext().length() > 30) {
+			content = hh.getContext().substring(0, 30) + "...";
+		}
 
 		// h.pic.setImageResource(Integer.parseInt(hh.getTxPath()));
-		name.setText(hh.getTitle());
-		time.setText(String.valueOf(hh.getDurationTime()));
-		lastmsg.setText(hh.getContext());
+		rev_message_time.setText(DateUtil.formateSimple(hh.getPubishTime()));
+		rev_message_content.setText(content);
+		rev_message_title.setText(title);
+		rev_message_amount.setText(hh.getAmountStatus() == 1 ? "有偿消息" : "无偿消息");
+		rev_message_send_type.setText(hh.getSendType() == 1 ? "附近" : "本市");
 
 		return view;
 	}
-
 }

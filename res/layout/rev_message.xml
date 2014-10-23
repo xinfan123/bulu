@@ -48,22 +48,23 @@
         android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:orientation="horizontal" android:padding="10dp" >
+        android:orientation="horizontal"
+        android:padding="10dp" >
 
         <TextView
-            android:id="@+id/textView1"
-            android:layout_alignParentLeft="true"
+            android:id="@+id/rev_message_send_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
             android:text="发送者：老牛"
             android:textColor="@color/blue_renren_pressed" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/rev_message_send_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="时间：2018-10-07"
             android:layout_alignParentRight="true"
+            android:text="时间：2018-10-07"
             android:textColor="@color/blue_renren_pressed" />
     </RelativeLayout>
 
@@ -83,7 +84,8 @@
             android:gravity="top|left|center"
             android:includeFontPadding="false"
             android:minLines="3"
-            android:textColor="@color/color_9"
+            android:text="内容"
+            android:textColor="@color/color_3"
             android:textColorHint="@color/color_9"
             android:textSize="16.0sp" />
 
