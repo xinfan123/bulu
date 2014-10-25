@@ -5,13 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.igexin.sdk.PushManager;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.activity.context.VersionContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
 import com.xinfan.blueblue.request.NetworkErrorCallBack;
-import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.SharePreferenceUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.LoginParam;
@@ -23,6 +24,8 @@ public class Appstart extends Activity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.appstart);
+
+		PushManager.getInstance().initialize(this.getApplicationContext());
 
 		new Handler().postDelayed(new Runnable() {
 			@Override
