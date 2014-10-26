@@ -72,6 +72,7 @@ public class Login extends Activity {
 					util.setMobile(result.getMobile());
 					util.setUsername(result.getUserName());
 					util.setPasswd(enPasswd);
+					util.setCID(result.getCid());
 					
 					Intent intent = new Intent();
 					intent.setClass(Login.this, MainActivity.class);

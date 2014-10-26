@@ -109,4 +109,13 @@ public class SharePreferenceUtil {
 	public String getAddress() {
 		return sp.getString("adress", "");
 	}
+
+	public void setCID(String cid) {
+		editor.putString("cid", cid);
+		editor.commit();
+	}
+
+	public String getCID() {
+		return sp.getString("cid", "");
+	}
 }

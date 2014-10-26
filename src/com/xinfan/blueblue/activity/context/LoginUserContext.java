@@ -31,4 +31,14 @@ public class LoginUserContext {
 		SharePreferenceUtil util = new SharePreferenceUtil(context, Constants.USER_INFO);
 		util.setIsLogin(login);
 	}
+
+	public static String getCID(Context context) {
+		SharePreferenceUtil util = new SharePreferenceUtil(context, Constants.USER_INFO);
+		return util.getCID();
+	}
+
+	public static void setCID(Context context, String cid) {
+		SharePreferenceUtil util = new SharePreferenceUtil(context, Constants.USER_INFO);
+		util.setCID(cid);
+	}
 }
