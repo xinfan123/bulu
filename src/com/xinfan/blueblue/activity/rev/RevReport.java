@@ -95,7 +95,6 @@ public class RevReport extends Activity {
 				RevReport.this.finish();
 			}
 		});
-		ToastUtil.showMessage(RevReport.this,"网络异常！请稍好再试！" );
 	}
 
 	public void back(View v) { // 返回
