@@ -21,6 +21,7 @@ import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.SendMessageParam;
+import com.xinfan.msgbox.service.dao.entity.UserLogin;
 
 public class SendMessageActivity extends Activity implements OnClickListener {
 
@@ -45,6 +46,8 @@ public class SendMessageActivity extends Activity implements OnClickListener {
 	public EditText message_more_edit;
 
 	public static SendMessageActivity instance;
+
+	LocationEntity location;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -92,8 +95,10 @@ public class SendMessageActivity extends Activity implements OnClickListener {
 			@Override
 			public void onLocationSucess(LocationEntity uersLocation) {
 				ToastUtil.showMessage(SendMessageActivity.this, uersLocation.toString());
-				
+
 				LocationManager.getInstance(SendMessageActivity.this).stopLocation();
+
+				location = uersLocation;
 			}
 
 			@Override
@@ -203,9 +208,15 @@ public class SendMessageActivity extends Activity implements OnClickListener {
 		param.setSendType(area);
 		param.setPublishType(1);
 
-		param.setReginCode("长沙市");
-		param.setGpsx("0");
-		param.setGpsy("0");
+		if (location != null) {
+			param.setReginCode(location.getCity());
+			param.setGpsx(String.valueOf(location.getLatitude()));
+			param.setGpsy(String.valueOf(location.getLongitude()));
+		} else {
+			param.setReginCode("长沙市");
+			param.setGpsx("0");
+			param.setGpsy("0");
+		}
 
 		request.setParam(param);
 
@@ -226,10 +237,8 @@ public class SendMessageActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		
+
 		LocationManager.getInstance(this).stopLocation();
 	}
-	
-	
 
 }

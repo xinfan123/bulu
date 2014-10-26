@@ -14,7 +14,10 @@ import com.tencent.map.geolocation.TencentLocation;
 import com.tencent.map.geolocation.TencentLocationListener;
 import com.tencent.map.geolocation.TencentLocationManager;
 import com.tencent.map.geolocation.TencentLocationRequest;
+import com.xinfan.blueblue.activity.send.SendMessageActivity;
 import com.xinfan.blueblue.location.LocationEntity;
+import com.xinfan.blueblue.location.LocationManager;
+import com.xinfan.blueblue.location.LocationManager.LocationListener;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
@@ -25,18 +28,15 @@ import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.RegisterParam;
 import com.xinfan.msgbox.http.service.vo.result.BaseResult;
 
-public class RegisterStep2Activity extends Activity implements OnClickListener, TencentLocationListener {
+public class RegisterStep2Activity extends Activity implements OnClickListener {
 
 	private EditText mPassword; // 密码编辑框
 	private EditText mNickname; // 昵称编辑框
 	private String mobile, password, nickname;
 
-	private TencentLocationManager mLocationManager;
-	private static LocationEntity userLocation;
-
-	private Handler handlerlocation;
-
 	public String randcode;
+
+	LocationEntity location;
 
 	@SuppressLint("HandlerLeak")
 	@Override
@@ -59,22 +59,31 @@ public class RegisterStep2Activity extends Activity implements OnClickListener, 
 	}
 
 	public void location() {
-		// 获取位置信息
-		startLocation();
-		handlerlocation = new Handler() {
-			public void handleMessage(Message msg) {
-				LocationEntity message = (LocationEntity) msg.obj;// obj可以是任何类型
-				userLocation = message;
-				System.out.println(userLocation.getAddress());
+
+		LocationManager.getInstance(this).startLocation(new LocationListener() {
+
+			@Override
+			public void onLocationSucess(LocationEntity uersLocation) {
+				ToastUtil.showMessage(RegisterStep2Activity.this, uersLocation.toString());
+
+				LocationManager.getInstance(RegisterStep2Activity.this).stopLocation();
+
+				location = uersLocation;
 			}
-		};
+
+			@Override
+			public void onLocationError() {
+				ToastUtil.showMessage(RegisterStep2Activity.this, "loation error");
+			}
+
+		});
 
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		mLocationManager.removeUpdates(this);
+		LocationManager.getInstance(this).stopLocation();
 	}
 
 	public void register(View v) {
@@ -85,7 +94,7 @@ public class RegisterStep2Activity extends Activity implements OnClickListener, 
 			ToastUtil.showMessage(RegisterStep2Activity.this, "昵称不能为空！");
 			return;
 		}
-		if(nickname.length()>11){
+		if (nickname.length() > 11) {
 			ToastUtil.showMessage(RegisterStep2Activity.this, "昵称不能大于11位！");
 			return;
 		}
@@ -102,9 +111,19 @@ public class RegisterStep2Activity extends Activity implements OnClickListener, 
 		param.setPasswd(password);
 		param.setUserName(nickname);
 		param.setValidCode(randcode);
-		param.setRegEarea(userLocation.getCity());
-		param.setRegGpsx(userLocation.getLatitude().toString());
-		param.setRegGpsy(userLocation.getLongitude().toString());
+
+		if (location != null) {
+
+			param.setRegEarea(location.getCity());
+			param.setRegGpsx(String.valueOf(location.getLatitude()));
+			param.setRegGpsy(String.valueOf(location.getLongitude()));
+		} else {
+
+			param.setRegEarea("长沙");
+			param.setRegGpsx("0");
+			param.setRegGpsy("0");
+		}
+
 		request.setParam(param);
 
 		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
@@ -125,54 +144,12 @@ public class RegisterStep2Activity extends Activity implements OnClickListener, 
 				RegisterStep2Activity.this.finish();
 
 			}
-		});  
+		});
 
 	}
 
 	public void register_back(View v) { // 返回
 		this.finish();
-	}
-
-	@Override
-	public void onLocationChanged(TencentLocation location, int error, String reason) {
-		LocationEntity uersLocation = new LocationEntity();
-		if (error == TencentLocation.ERROR_OK) {
-
-			uersLocation.setProvince(location.getProvince());
-			uersLocation.setLatitude(location.getLatitude());
-			uersLocation.setLongitude(location.getLongitude());
-			uersLocation.setAddress(location.getAddress());
-			uersLocation.setProvider(location.getProvider());
-			uersLocation.setCity(location.getCity());
-			uersLocation.setDistrict(location.getDistrict());
-			uersLocation.setTown(location.getTown());
-			uersLocation.setVillage(location.getVillage());
-			uersLocation.setStreetNo(location.getStreetNo());
-			Message message = Message.obtain();
-			message.obj = uersLocation;
-			handlerlocation.sendMessage(message);
-
-			stopLocation();
-
-		}
-	}
-
-	private void startLocation() {
-		TencentLocationRequest request = TencentLocationRequest.create();
-		mLocationManager = TencentLocationManager.getInstance(this);
-		request.setInterval(5000).setRequestLevel(TencentLocationRequest.REQUEST_LEVEL_ADMIN_AREA);
-		mLocationManager.requestLocationUpdates(request, this);
-
-	}
-
-	private void stopLocation() {
-		mLocationManager.removeUpdates(this);
-	}
-
-	@Override
-	public void onStatusUpdate(String arg0, int arg1, String arg2) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
