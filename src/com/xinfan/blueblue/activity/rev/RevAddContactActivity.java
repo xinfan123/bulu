@@ -1,6 +1,5 @@
 package com.xinfan.blueblue.activity.rev;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -10,8 +9,12 @@ import android.widget.TextView;
 import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.base.BaseActivity;
+import com.xinfan.blueblue.request.AnsynHttpRequest;
+import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.util.ToastUtil;
-import com.xinfan.blueblue.vo.ContactVo;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.UserLinkmanParam;
 
 public class RevAddContactActivity extends BaseActivity implements OnClickListener {
 
@@ -45,19 +48,24 @@ public class RevAddContactActivity extends BaseActivity implements OnClickListen
 
 				RevMessageSummaryVO messageVo = RevSeeMessageActivity.instance.vo;
 
-				ContactVo vo = new ContactVo();
-				//vo.setMark(value);
+				Request request = new Request(FunIdConstants.ADD_USER_LINKMAN);
+				UserLinkmanParam param = new UserLinkmanParam();
 
-				//vo.setAccountId("2");
-				//vo.setIndex(0);
+				param.setLinkRemark(value);
+				param.setLinkUserId(messageVo.getSendUserid());
+				param.setUserId(messageVo.getReceivedUserid());
 
-				MainActivity.instance.listview3.list.add(vo);
-				MainActivity.instance.listview3.ad.notifyDataSetChanged();
+				request.setParam(param);
+
+				AnsynHttpRequest.requestSimpleByPost(RevSeeMessageActivity.instance, request, new RequestSucessCallBack() {
+
+					public void call(Request data) {
+						ToastUtil.showMessage(RevSeeMessageActivity.instance, data.getResult().getMsg());
+						MainActivity.instance.listview3.refresh();
+					}
+				});
 
 				RevAddContactActivity.this.finish();
-
-				ToastUtil.showMessage(RevAddContactActivity.this, "添加联系人成功");
-
 			}
 		});
 	}

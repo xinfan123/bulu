@@ -10,9 +10,19 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.PopupWindow;
 
+import com.xinfan.blueblue.activity.Login;
 import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
+import com.xinfan.blueblue.activity.context.LoginUserContext;
+import com.xinfan.blueblue.request.AnsynHttpRequest;
+import com.xinfan.blueblue.request.Constants;
+import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
+import com.xinfan.blueblue.request.SharePreferenceUtil;
 import com.xinfan.blueblue.util.ToastUtil;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.MessageRevDelParam;
+import com.xinfan.msgbox.http.service.vo.result.LoginResult;
 
 public class RevMessageMenu extends PopupWindow {
 
@@ -70,11 +80,21 @@ public class RevMessageMenu extends PopupWindow {
 
 		RevMessageSummaryVO vo = RevSeeMessageActivity.instance.vo;
 
-		//MainActivity.instance.listview1.list.remove(vo.getIndex());
-		///MainActivity.instance.listview1.ad.notifyDataSetChanged();
+		Request request = new Request(FunIdConstants.DELETE_REV_MESSAGE);
+		MessageRevDelParam param = new MessageRevDelParam();
 
-		ToastUtil.showMessage(v.getContext(), "删除成功");
-		RevSeeMessageActivity.instance.finish();
+		param.setPublishId(vo.getPublishId());
+		request.setParam(param);
+
+		AnsynHttpRequest.requestSimpleByPost(RevSeeMessageActivity.instance, request, new RequestSucessCallBack() {
+
+			public void call(Request data) {
+				ToastUtil.showMessage(RevSeeMessageActivity.instance, data.getResult().getMsg());
+				RevSeeMessageActivity.instance.finish();
+				MainActivity.instance.listview1.refresh();
+			}
+		});
+
 	}
 
 	public void onClickReport(View v) {
