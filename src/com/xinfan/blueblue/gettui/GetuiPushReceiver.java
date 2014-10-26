@@ -1,6 +1,14 @@
 package com.xinfan.blueblue.gettui;
 
+import java.util.List;
+
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningTaskInfo;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +17,7 @@ import android.util.Log;
 import com.igexin.sdk.PushConsts;
 import com.igexin.sdk.PushManager;
 import com.xinfan.blueblue.activity.MainActivity;
+import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Request;
@@ -83,13 +92,12 @@ public class GetuiPushReceiver extends BroadcastReceiver {
 		if (cidFromServer != null && cidFromServer.length() > 1) {
 
 			if (!cidFromServer.equals(cidFromSession)) {
-				
+
 				LoginUserContext.setCID(context, cidFromServer);
 				Request request = new Request(FunIdConstants.USER_UPDATE_CID);
 				UserCIDParam param = new UserCIDParam();
 				param.setCid(cidFromServer);
 				request.setParam(param);
-				
 
 				AnsynHttpRequest.requestSimpleByPost(MainActivity.instance, request, new RequestSucessCallBack() {
 
@@ -100,6 +108,47 @@ public class GetuiPushReceiver extends BroadcastReceiver {
 			}
 
 		}
+	}
+
+	public void show(Context context) {
+
+		if (!isRunningForeground(context)) {
+			NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+			String title = "通知标题";
+			String content = "通知内容";
+			Notification n = new Notification(R.drawable.ic_launcher, "通知", System.currentTimeMillis());
+			Intent intent = new Intent(context, MainActivity.class);
+			PendingIntent pi = PendingIntent.getActivity(context, 0, intent, 0);
+			n.setLatestEventInfo(context, title, content, pi);
+			nm.notify(1, n);
+		}
 
 	}
+
+	public boolean isRunningForeground(Context context) {
+
+		String packageName = context.getPackageName();
+
+		String topActivityClassName = getTopActivityName(context);
+		System.out.println("packageName=" + packageName + ",topActivityClassName=" + topActivityClassName);
+		if (packageName != null && topActivityClassName != null && topActivityClassName.startsWith(packageName)) {
+			System.out.println("---> isRunningForeGround");
+			return true;
+		} else {
+			System.out.println("---> isRunningBackGround");
+			return false;
+		}
+	}
+
+	public String getTopActivityName(Context context) {
+		String topActivityClassName = null;
+		ActivityManager activityManager = (ActivityManager) (context.getSystemService(android.content.Context.ACTIVITY_SERVICE));
+		List<RunningTaskInfo> runningTaskInfos = activityManager.getRunningTasks(1);
+		if (runningTaskInfos != null) {
+			ComponentName f = runningTaskInfos.get(0).topActivity;
+			topActivityClassName = f.getClassName();
+		}
+		return topActivityClassName;
+	}
+
 }
