@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.xinfan.blueblue.activity.context.AppContext;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
@@ -61,8 +62,8 @@ public class Exit extends Activity {
 
 		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
 			public void call(Request request) {
-				Exit.this.finish();
-				MainActivity.instance.finish();
+
+				AppContext.destroy();
 			}
 		});
 
