@@ -14,6 +14,7 @@ import android.widget.ListView;
 import com.xinfan.blueblue.activity.LoginActivity;
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.SystemSetActivity;
+import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
@@ -25,7 +26,7 @@ import com.xinfan.msgbox.http.service.vo.param.UserSetParam;
 import com.xinfan.msgbox.http.service.vo.result.BaseResult;
 
 
-public class MessageNumSelectActivity extends Activity {
+public class MessageNumSelectActivity extends BaseActivity {
 	private ListView messagenumSr;
 
 	public ArrayList<SelectVo> list = new ArrayList<SelectVo>();

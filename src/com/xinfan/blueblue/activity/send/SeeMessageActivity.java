@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.R;
+import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
@@ -19,7 +20,7 @@ import com.xinfan.msgbox.http.service.vo.param.SendMessageParam;
 import com.xinfan.msgbox.http.service.vo.result.MessageResult;
 import com.xinfan.msgbox.http.service.vo.result.MessageVO;
 
-public class SeeMessageActivity extends Activity implements OnClickListener {
+public class SeeMessageActivity extends BaseActivity implements OnClickListener {
 
 	public TextView see_time_select_label;
 

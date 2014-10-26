@@ -9,10 +9,11 @@ import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
+import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.blueblue.vo.ContactVo;
 
-public class RevAddContactActivity extends Activity implements OnClickListener {
+public class RevAddContactActivity extends BaseActivity implements OnClickListener {
 
 	public TextView rev_add_contact_yes_btn;
 

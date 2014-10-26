@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
+import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.location.LocationEntity;
 import com.xinfan.blueblue.location.LocationManager;
@@ -23,7 +24,7 @@ import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.SendMessageParam;
 import com.xinfan.msgbox.service.dao.entity.UserLogin;
 
-public class SendMessageActivity extends Activity implements OnClickListener {
+public class SendMessageActivity extends BaseActivity implements OnClickListener {
 
 	public Button message_more_btn;
 

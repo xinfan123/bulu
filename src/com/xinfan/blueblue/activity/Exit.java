@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.AppContext;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
@@ -18,7 +19,7 @@ import com.xinfan.blueblue.request.SharePreferenceUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.BaseParam;
 
-public class Exit extends Activity {
+public class Exit extends BaseActivity {
 	// private MyDialog dialog;
 	private LinearLayout layout;
 

@@ -12,8 +12,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.xinfan.blueblue.activity.R;
+import com.xinfan.blueblue.activity.base.BaseActivity;
 
-public class TimeSelectActivity extends Activity implements OnClickListener {
+public class TimeSelectActivity extends BaseActivity implements OnClickListener {
 
 	public WriteMessageTimeAdapter timeAdapter;
 	public View time_select_layout;

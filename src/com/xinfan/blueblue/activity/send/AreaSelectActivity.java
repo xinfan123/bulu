@@ -13,8 +13,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.R;
+import com.xinfan.blueblue.activity.base.BaseActivity;
 
-public class AreaSelectActivity extends Activity implements OnClickListener {
+public class AreaSelectActivity extends BaseActivity implements OnClickListener {
 
 	public WriteMessageAreaAdapter areaAdapter;
 	public View time_select_layout;

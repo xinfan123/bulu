@@ -10,9 +10,10 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.R;
+import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.util.ToastUtil;
 
-public class MoneyInputActivity extends Activity implements OnClickListener {
+public class MoneyInputActivity extends BaseActivity implements OnClickListener {
 
 	public TextView write_money_yes_btn;
 

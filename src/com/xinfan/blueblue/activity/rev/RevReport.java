@@ -11,6 +11,7 @@ import android.widget.Spinner;
 
 import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
+import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.activity.send.SeeMessageActivity;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
@@ -22,7 +23,7 @@ import com.xinfan.msgbox.http.service.vo.param.SendMessageParam;
 import com.xinfan.msgbox.http.service.vo.param.UserReportMessageParam;
 import com.xinfan.msgbox.http.service.vo.result.BaseResult;
 
-public class RevReport extends Activity {
+public class RevReport extends BaseActivity {
 	private EditText rev_report_title;// 文本编辑框
 	private Button rev_report_btn;
 	private Spinner rev_report_type;

@@ -14,6 +14,7 @@ import android.widget.Spinner;
 
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.SystemSetActivity;
+import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
@@ -24,7 +25,7 @@ import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.UserSetParam;
 import com.xinfan.msgbox.http.service.vo.result.BaseResult;
 
-public class PaidSet extends Activity {
+public class PaidSet extends BaseActivity {
 	private ListView messageSr;
 
 	public ArrayList<SelectVo> list = new ArrayList<SelectVo>();
