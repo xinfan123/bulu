@@ -310,13 +310,13 @@
         </receiver>
 
         <!-- 配置第三方Receiver -->
-        <receiver
+<!--         <receiver
             android:name="com.xinfan.blueblue.gettui.PushDemoReceiver"
             android:exported="false" >
             <intent-filter>
                 <action android:name="com.igexin.sdk.action.RyxVL19P9P69Fgs7ysDsVA" />
             </intent-filter>
-        </receiver>
+        </receiver> -->
 
         <provider
             android:name="com.igexin.download.DownloadProvider"

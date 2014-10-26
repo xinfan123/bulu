@@ -8,7 +8,7 @@ public class SharePreferenceUtil {
 	private SharedPreferences.Editor editor;
 
 	public SharePreferenceUtil(Context context, String file) {
-		sp = context.getSharedPreferences(file, context.MODE_PRIVATE);
+		sp = context.getSharedPreferences(file, Context.MODE_PRIVATE);
 		editor = sp.edit();
 	}
 

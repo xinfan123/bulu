@@ -8,19 +8,14 @@ import android.util.Log;
 
 import com.igexin.sdk.PushConsts;
 import com.igexin.sdk.PushManager;
-import com.xinfan.blueblue.activity.Login;
 import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
-import com.xinfan.blueblue.request.Constants;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
-import com.xinfan.blueblue.request.SharePreferenceUtil;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
-import com.xinfan.msgbox.http.service.vo.param.LoginParam;
 import com.xinfan.msgbox.http.service.vo.param.UserCIDParam;
-import com.xinfan.msgbox.http.service.vo.result.LoginResult;
 
 public class PushDemoReceiver extends BroadcastReceiver {
 
@@ -28,6 +23,7 @@ public class PushDemoReceiver extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 		Bundle bundle = intent.getExtras();
 		Log.d("GetuiSdkDemo", "onReceive() action=" + bundle.getInt("action"));
+
 		switch (bundle.getInt(PushConsts.CMD_ACTION)) {
 
 		case PushConsts.GET_MSG_DATA:
@@ -56,7 +52,7 @@ public class PushDemoReceiver extends BroadcastReceiver {
 			String cid = bundle.getString("clientid");
 			Log.d("GetuiSdkDemo", "===============================Got GET_CLIENTID:" + cid);
 
-			updateCID(cid);
+			updateCID(context, cid);
 
 			// if (GetuiSdkDemoActivity.tView != null)
 			// GetuiSdkDemoActivity.tView.setText(cid);
@@ -80,18 +76,20 @@ public class PushDemoReceiver extends BroadcastReceiver {
 		}
 	}
 
-	public void updateCID(String cidFromServer) {
+	public void updateCID(Context context, String cidFromServer) {
 
-		String cidFromSession = LoginUserContext.getCID(MainActivity.instance);
+		String cidFromSession = LoginUserContext.getCID(context);
 
 		if (cidFromServer != null && cidFromServer.length() > 1) {
 
 			if (!cidFromServer.equals(cidFromSession)) {
-
+				
+				LoginUserContext.setCID(context, cidFromServer);
 				Request request = new Request(FunIdConstants.USER_UPDATE_CID);
 				UserCIDParam param = new UserCIDParam();
 				param.setCid(cidFromServer);
 				request.setParam(param);
+				
 
 				AnsynHttpRequest.requestSimpleByPost(MainActivity.instance, request, new RequestSucessCallBack() {
 

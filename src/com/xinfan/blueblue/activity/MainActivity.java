@@ -2,6 +2,7 @@ package com.xinfan.blueblue.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.xinfan.blueblue.activity.context.VersionManager;
 import com.xinfan.blueblue.activity.rev.RevMessageListView;
 import com.xinfan.blueblue.activity.send.SendMessageActivity;
+import com.xinfan.blueblue.gettui.PushDemoReceiver;
 
 public class MainActivity extends Activity implements OnViewChangeListener, OnClickListener {
 
@@ -40,14 +42,31 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 
 	MainTopMenu menuWindow;
 
+	PushDemoReceiver gettuiReceiver;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		init();
 		instance = this;
-		
+
 		checkversion();
+
+		bindReceiver();
+	}
+
+	public void bindReceiver() {
+		gettuiReceiver = new PushDemoReceiver();
+		IntentFilter filter = new IntentFilter();
+		filter.addAction("com.igexin.sdk.action.RyxVL19P9P69Fgs7ysDsVA");
+		registerReceiver(gettuiReceiver, filter);
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		unregisterReceiver(gettuiReceiver);
 	}
 
 	private void init() {
