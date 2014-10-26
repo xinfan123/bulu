@@ -51,6 +51,9 @@ public class GetuiPushReceiver extends BroadcastReceiver {
 				String data = new String(payload);
 
 				Log.d("GetuiSdkDemo", "==============================Got Payload:" + data);
+				
+				show(context);
+				
 				// if (GetuiSdkDemoActivity.tLogView != null)
 				// GetuiSdkDemoActivity.tLogView.append(data + "\n");
 			}
