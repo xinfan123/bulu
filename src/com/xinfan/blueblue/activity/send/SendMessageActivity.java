@@ -12,9 +12,12 @@ import android.widget.TextView;
 import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
+import com.xinfan.blueblue.location.LocationEntity;
+import com.xinfan.blueblue.location.LocationManager;
+import com.xinfan.blueblue.location.LocationManager.LocationListener;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
-import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.SendMessageParam;
@@ -78,6 +81,27 @@ public class SendMessageActivity extends Activity implements OnClickListener {
 		send_message_btn.setOnClickListener(this);
 
 		instance = this;
+
+		location();
+	}
+
+	public void location() {
+
+		LocationManager.getInstance(this).startLocation(new LocationListener() {
+
+			@Override
+			public void onLocationSucess(LocationEntity uersLocation) {
+				ToastUtil.showMessage(SendMessageActivity.this, uersLocation.toString());
+				
+				LocationManager.getInstance(SendMessageActivity.this).stopLocation();
+			}
+
+			@Override
+			public void onLocationError() {
+				ToastUtil.showMessage(SendMessageActivity.this, "loation error");
+			}
+		});
+
 	}
 
 	public void send_msg_back(View view) {
@@ -198,5 +222,14 @@ public class SendMessageActivity extends Activity implements OnClickListener {
 		// ////////////////////////////////////////////////////////////////////////////
 		// MainActivity.instance.listview2.addItem(message);
 	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		
+		LocationManager.getInstance(this).stopLocation();
+	}
+	
+	
 
 }
