@@ -85,6 +85,7 @@ public class RevReport extends BaseActivity {
 		param.setMsgId(vo.getMsgId());
 		param.setReportContext(title);
 		param.setReportType(typeInt);
+		param.setContext(title);
 
 		request.setParam(param);
 
