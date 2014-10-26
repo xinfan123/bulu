@@ -1,6 +1,6 @@
 package com.xinfan.blueblue.activity;
 
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
@@ -16,7 +17,7 @@ import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.BaseParam;
 import com.xinfan.msgbox.http.service.vo.result.UserResult;
 
-public class AccountInfoActivity extends Activity {
+public class AccountInfoActivity extends BaseActivity {
 
 	public static AccountInfoActivity instance;
 
@@ -58,7 +59,7 @@ public class AccountInfoActivity extends Activity {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
-				intent.setClass(AccountInfoActivity.this, UpdateNickname.class);
+				intent.setClass(AccountInfoActivity.this, UpdateNicknameActivity.class);
 				startActivity(intent);
 
 			}
@@ -69,7 +70,7 @@ public class AccountInfoActivity extends Activity {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
-				intent.setClass(AccountInfoActivity.this, UpdatePassword.class);
+				intent.setClass(AccountInfoActivity.this, UpdatePasswordActivity.class);
 				startActivity(intent);
 			}
 		});

@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.adapter.ThemeSetAdapter;
+import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
@@ -25,7 +26,7 @@ import com.xinfan.msgbox.http.service.vo.param.BaseParam;
 import com.xinfan.msgbox.http.service.vo.result.UserSentListResult;
 import com.xinfan.msgbox.http.service.vo.result.UserSentResult;
 
-public class ThemeSetActivity extends Activity {
+public class ThemeSetActivity extends BaseActivity {
 	/** Called when the activity is first created. */
 
 	private ListView themeList;
@@ -66,7 +67,7 @@ public class ThemeSetActivity extends Activity {
 				if (vo != null) {
 					Intent intent = new Intent();
 					intent.putExtra("id", vo.getId());
-					intent.setClass(ThemeSetActivity.this, ThemeSetMenu.class);
+					intent.setClass(ThemeSetActivity.this, ThemeSetMenuActivity.class);
 					startActivity(intent);
 				}
 

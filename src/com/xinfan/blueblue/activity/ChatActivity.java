@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import com.xinfan.blueblue.activity.base.BaseActivity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +17,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 
-public class ChatActivity extends Activity implements OnClickListener{
+public class ChatActivity extends BaseActivity implements OnClickListener{
     /** Called when the activity is first created. */ 
 
 	private Button mBtnSend;

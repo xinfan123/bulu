@@ -2,6 +2,8 @@ package com.xinfan.blueblue.activity;
 
 import java.util.ArrayList;
 
+import com.xinfan.blueblue.activity.base.BaseActivity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
-public class Whatsnew extends Activity {
+public class Whatsnew extends BaseActivity {
 	
 	private ViewPager mViewPager;	
 	private ImageView mPage0;

@@ -13,12 +13,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.VersionManager;
 import com.xinfan.blueblue.activity.rev.RevMessageListView;
 import com.xinfan.blueblue.activity.send.SendMessageActivity;
 import com.xinfan.blueblue.gettui.GetuiPushReceiver;
 
-public class MainActivity extends Activity implements OnViewChangeListener, OnClickListener {
+public class MainActivity extends BaseActivity implements OnViewChangeListener, OnClickListener {
 
 	public static MainActivity instance;
 
@@ -182,23 +183,30 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		mScrollLayout.snapToScreen(pos);
 	}
 
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if ((keyCode == KeyEvent.KEYCODE_MENU)) {
-			return true;
-		}
-
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			return false;
-		}
-
-		return super.onKeyDown(keyCode, event);
-	}
+//	@Override
+//	public boolean onKeyDown(int keyCode, KeyEvent event) {
+//		if ((keyCode == KeyEvent.KEYCODE_MENU)) {
+//			return true;
+//		}
+//
+//		if (keyCode == KeyEvent.KEYCODE_BACK) {
+//			return false;
+//		}
+//
+//		return super.onKeyDown(keyCode, event);
+//	}
 
 	public void checkversion() {
 
 		VersionManager manager = new VersionManager(this);
 		manager.checkUpdate();
 	}
-
+	@Override  
+    public boolean onKeyDown(int keyCode, KeyEvent event) {  
+        if (keyCode == KeyEvent.KEYCODE_BACK) {  
+            moveTaskToBack(false);  
+            return true;  
+        }  
+        return super.onKeyDown(keyCode, event);  
+    }  
 }

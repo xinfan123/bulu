@@ -2,6 +2,8 @@ package com.xinfan.blueblue.activity;
 
 
 
+import com.xinfan.blueblue.activity.base.BaseActivity;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
@@ -10,17 +12,17 @@ import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 
-public class InfoXiaoheiHead extends Activity{
+public class InfoXiaoheiHead extends BaseActivity{
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);	
 		setContentView(R.layout.info_xiaohei_head);
-		//requestWindowFeature(Window.FEATURE_NO_TITLE);//È¥µô±êÌâÀ¸
+		//requestWindowFeature(Window.FEATURE_NO_TITLE);//È¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		//getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-        //        WindowManager.LayoutParams.FLAG_FULLSCREEN);   //È«ÆÁÏÔÊ¾
-		//Toast.makeText(getApplicationContext(), "º¢×Ó£¡ºÃºÃ±³ËÐ£¡", Toast.LENGTH_LONG).show();
+        //        WindowManager.LayoutParams.FLAG_FULLSCREEN);   //È«ï¿½ï¿½ï¿½ï¿½Ê¾
+		//Toast.makeText(getApplicationContext(), "ï¿½ï¿½ï¿½Ó£ï¿½ï¿½ÃºÃ±ï¿½ï¿½Ð£ï¿½", Toast.LENGTH_LONG).show();
 		//overridePendingTransition(R.anim.hyperspace_in, R.anim.hyperspace_out);
 
    }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
@@ -14,7 +15,7 @@ import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.ChangePasswdBeforeLoginParam;
 import com.xinfan.msgbox.http.service.vo.result.BaseResult;
 
-public class ForgetPasswordStep2 extends Activity {
+public class ForgetPasswordStep2 extends BaseActivity {
 	private EditText mNewPassword;
 	private EditText mRePassword;
 	private String newPassword;
@@ -71,7 +72,7 @@ public class ForgetPasswordStep2 extends Activity {
 				ToastUtil.showMessage(ForgetPasswordStep2.this, result.getMsg());
 
 				Intent intent = new Intent();
-				intent.setClass(ForgetPasswordStep2.this, Login.class);
+				intent.setClass(ForgetPasswordStep2.this, LoginActivity.class);
 				startActivity(intent);
 
 				ForgetPasswordStep2.this.finish();

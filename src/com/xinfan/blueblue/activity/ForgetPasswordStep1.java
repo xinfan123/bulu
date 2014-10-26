@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.common.TimeButtonTicker2;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
@@ -20,7 +21,7 @@ import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.ChangePasswdBeforeLoginParam;
 import com.xinfan.msgbox.http.service.vo.param.ValidCodeParam;
 
-public class ForgetPasswordStep1 extends Activity {
+public class ForgetPasswordStep1 extends BaseActivity {
 	private EditText mMobile; // 手机号码编辑框
 	private EditText mRanCode; // 验证码编辑框
 	private static String mobile, rancode;

@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.xinfan.blueblue.activity.R;
-import com.xinfan.blueblue.activity.SystemSet;
+import com.xinfan.blueblue.activity.SystemSetActivity;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
@@ -93,7 +93,7 @@ final SelectVo select = list.get(index);
 			ToastUtil.showMessage(PaidSet.this,result.getMsg());
 			
 			
-			SystemSet.instance.SetPaid(select.getText());
+			SystemSetActivity.instance.SetPaid(select.getText());
 			PaidSet.this.finish();
 		}else{
 			ToastUtil.showMessage(PaidSet.this,result.getMsg());

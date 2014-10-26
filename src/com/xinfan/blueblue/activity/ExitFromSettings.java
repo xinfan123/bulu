@@ -1,6 +1,8 @@
 package com.xinfan.blueblue.activity;
 
 
+import com.xinfan.blueblue.activity.base.BaseActivity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class ExitFromSettings extends Activity {
+public class ExitFromSettings extends BaseActivity {
 	//private MyDialog dialog;
 	private LinearLayout layout;
 	@Override

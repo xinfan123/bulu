@@ -1,5 +1,6 @@
 package com.xinfan.blueblue.activity.rev;
 
+import android.R.integer;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,8 +9,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
+import com.xinfan.blueblue.activity.context.LoginUserContext;
+import com.xinfan.blueblue.activity.send.SeeMessageActivity;
+import com.xinfan.blueblue.request.AnsynHttpRequest;
+import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.util.ToastUtil;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.SendMessageParam;
+import com.xinfan.msgbox.http.service.vo.param.UserReportMessageParam;
+import com.xinfan.msgbox.http.service.vo.result.BaseResult;
 
 public class RevReport extends Activity {
 	private EditText rev_report_title;// 文本编辑框
@@ -41,7 +52,19 @@ public class RevReport extends Activity {
 	public void submit(View v) {
 		Object id = rev_report_type.getSelectedItem();
 		String typeStr = m[rev_report_type.getSelectedItemPosition()];
-
+		Integer typeInt = null;
+		if (typeStr.equals("黄色")){
+			typeInt=1;
+		}
+		else if (typeStr.equals("暴力")){
+			typeInt=2;
+		}
+		else if (typeStr.equals("违法")){
+			typeInt=3;
+		}
+		else if (typeStr.equals("其它")){
+			typeInt=4;
+		}
 		String title = rev_report_title.getText().toString();
 		if (title == null || title.length() == 0) {
 			ToastUtil.showMessage(this, "请输入举报内容");
@@ -54,9 +77,25 @@ public class RevReport extends Activity {
 		}
 
 		RevMessageSummaryVO vo = RevSeeMessageActivity.instance.vo;
+		
+		Request request = new Request(FunIdConstants.REPORT_MESSAGE);
+		UserReportMessageParam param = new UserReportMessageParam();
+		param.setUserId(LoginUserContext.getUserId(this));
+		param.setMsgId(vo.getMsgId());
+		param.setReportContext(title);
+		param.setReportType(typeInt);
 
-		ToastUtil.showMessage(this, "举报成功：" + typeStr);
-		this.finish();
+		request.setParam(param);
+
+		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
+
+			public void call(Request data) {
+				BaseResult result = (BaseResult) data.getResult();
+				ToastUtil.showMessage(RevReport.this,result.getMsg() );
+				RevReport.this.finish();
+			}
+		});
+		ToastUtil.showMessage(RevReport.this,"网络异常！请稍好再试！" );
 	}
 
 	public void back(View v) { // 返回

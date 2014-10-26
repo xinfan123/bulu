@@ -2,13 +2,15 @@ package com.xinfan.blueblue.activity;
 
 
 
+import com.xinfan.blueblue.activity.base.BaseActivity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
 
-public class LoadingActivity extends Activity{
+public class LoadingActivity extends BaseActivity{
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

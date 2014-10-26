@@ -7,11 +7,12 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.contact.ContactInfoMenu;
 import com.xinfan.blueblue.activity.send.SendMessageActivity;
 import com.xinfan.blueblue.vo.ContactVo;
 
-public class ContactInfoActivity extends Activity {
+public class ContactInfoActivity extends BaseActivity {
 
 	public static ContactInfoActivity instance;
 

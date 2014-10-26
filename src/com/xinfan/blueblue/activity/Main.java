@@ -1,5 +1,7 @@
 package com.xinfan.blueblue.activity;
 
+import com.xinfan.blueblue.activity.base.BaseActivity;
+
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -14,14 +16,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 
-public class Main extends Activity {
+public class Main extends BaseActivity {
 
     public static Main instance = null;
 	//public static Main instance ;
     private PopupWindow menuWindow;
     private LinearLayout mClose;
     private LinearLayout mCloseBtn;
-    private LayoutInflater inflater; //Õâ¸öÊÇ½«xmlÖÐµÄ²¼¾ÖÏÔÊ¾ÔÚÆÁÄ»ÉÏµÄ¹Ø¼üÀà
+    private LayoutInflater inflater; //ï¿½ï¿½ï¿½ï¿½Ç½ï¿½xmlï¿½ÐµÄ²ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ÏµÄ¹Ø¼ï¿½ï¿½ï¿½
     private View layout;	
 	private boolean menu_display = false;
 	
@@ -37,60 +39,60 @@ public class Main extends Activity {
     }
 	public void restartbutton(View v) {  
       	Intent intent = new Intent();
-		intent.setClass(Main.this,Viewpager.class);
+		intent.setClass(Main.this,ViewpagerActivity.class);
 		startActivity(intent);
 		this.finish();
       }  
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-    	if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {  //»ñÈ¡ back¼ü
+    	if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {  //ï¿½ï¿½È¡ backï¿½ï¿½
     		
-        	if(menu_display){         //Èç¹û MenuÒÑ¾­´ò¿ª £¬ÏÈ¹Ø±ÕMenu
+        	if(menu_display){         //ï¿½ï¿½ï¿½ Menuï¿½Ñ¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½È¹Ø±ï¿½Menu
         		menuWindow.dismiss();
         		menu_display = false;
         		}
         	else {
         		Intent intent = new Intent();
-            	intent.setClass(Main.this,Exit.class);
+            	intent.setClass(Main.this,ExitActivity.class);
             	startActivity(intent);
         	}
     	}
     	
-    	else if(keyCode == KeyEvent.KEYCODE_MENU){   //»ñÈ¡ Menu¼ü			
+    	else if(keyCode == KeyEvent.KEYCODE_MENU){   //ï¿½ï¿½È¡ Menuï¿½ï¿½			
 			if(!menu_display){
-				//»ñÈ¡LayoutInflaterÊµÀý
+				//ï¿½ï¿½È¡LayoutInflaterÊµï¿½ï¿½
 				inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-				//ÕâÀïµÄmain²¼¾ÖÊÇÔÚinflateÖÐ¼ÓÈëµÄÅ¶£¬ÒÔÇ°¶¼ÊÇÖ±½Óthis.setContentView()µÄ°É£¿ºÇºÇ
-				//¸Ã·½·¨·µ»ØµÄÊÇÒ»¸öViewµÄ¶ÔÏó£¬ÊÇ²¼¾ÖÖÐµÄ¸ù
+				//ï¿½ï¿½ï¿½ï¿½ï¿½mainï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½inflateï¿½Ð¼ï¿½ï¿½ï¿½ï¿½Å¶ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½this.setContentView()ï¿½Ä°É£ï¿½ï¿½Çºï¿½
+				//ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½Ò»ï¿½ï¿½Viewï¿½Ä¶ï¿½ï¿½ï¿½ï¿½Ç²ï¿½ï¿½ï¿½ï¿½ÐµÄ¸ï¿½
 				layout = inflater.inflate(R.layout.main_menu, null);
 				
-				//ÏÂÃæÎÒÃÇÒª¿¼ÂÇÁË£¬ÎÒÔõÑù½«ÎÒµÄlayout¼ÓÈëµ½PopupWindowÖÐÄØ£¿£¿£¿ºÜ¼òµ¥
-				menuWindow = new PopupWindow(layout,LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT); //ºóÁ½¸ö²ÎÊýÊÇwidthºÍheight
-				//menuWindow.showAsDropDown(layout); //ÉèÖÃµ¯³öÐ§¹û
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½layoutï¿½ï¿½ï¿½ëµ½PopupWindowï¿½ï¿½ï¿½Ø£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü¼ï¿½
+				menuWindow = new PopupWindow(layout,LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½widthï¿½ï¿½height
+				//menuWindow.showAsDropDown(layout); //ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½Ð§ï¿½ï¿½
 				//menuWindow.showAsDropDown(null, 0, layout.getHeight());
-				menuWindow.showAtLocation(this.findViewById(R.id.main), Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0); //ÉèÖÃlayoutÔÚPopupWindowÖÐÏÔÊ¾µÄÎ»ÖÃ
-				//ÈçºÎ»ñÈ¡ÎÒÃÇmainÖÐµÄ¿Ø¼þÄØ£¿Ò²ºÜ¼òµ¥
+				menuWindow.showAtLocation(this.findViewById(R.id.main), Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0); //ï¿½ï¿½ï¿½ï¿½layoutï¿½ï¿½PopupWindowï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»ï¿½ï¿½
+				//ï¿½ï¿½Î»ï¿½È¡ï¿½ï¿½ï¿½ï¿½mainï¿½ÐµÄ¿Ø¼ï¿½ï¿½Ø£ï¿½Ò²ï¿½Ü¼ï¿½
 				mClose = (LinearLayout)layout.findViewById(R.id.menu_close);
 				mCloseBtn = (LinearLayout)layout.findViewById(R.id.menu_close_btn);
 				
 				
-				//ÏÂÃæ¶ÔÃ¿Ò»¸öLayout½øÐÐµ¥»÷ÊÂ¼þµÄ×¢²á°É¡£¡£¡£
-				//±ÈÈçµ¥»÷Ä³¸öMenuItemµÄÊ±ºò£¬ËûµÄ±³¾°É«¸Ä±ä
-				//ÊÂÏÈ×¼±¸ºÃÒ»Ð©±³¾°Í¼Æ¬»òÕßÑÕÉ«
+				//ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿Ò»ï¿½ï¿½Layoutï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½×¢ï¿½ï¿½É¡ï¿½ï¿½ï¿½ï¿½ï¿½
+				//ï¿½ï¿½ï¿½çµ¥ï¿½ï¿½Ä³ï¿½ï¿½MenuItemï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½É«ï¿½Ä±ï¿½
+				//ï¿½ï¿½ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½Ò»Ð©ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«
 				mCloseBtn.setOnClickListener (new View.OnClickListener() {					
 					@Override
 					public void onClick(View arg0) {						
-						//Toast.makeText(Main.this, "ÍË³ö", Toast.LENGTH_LONG).show();
+						//Toast.makeText(Main.this, "ï¿½Ë³ï¿½", Toast.LENGTH_LONG).show();
 						Intent intent = new Intent();
-			        	intent.setClass(Main.this,Exit.class);
+			        	intent.setClass(Main.this,ExitActivity.class);
 			        	startActivity(intent);
-			        	menuWindow.dismiss(); //ÏìÓ¦µã»÷ÊÂ¼þÖ®ºó¹Ø±ÕMenu
+			        	menuWindow.dismiss(); //ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½Â¼ï¿½Ö®ï¿½ï¿½Ø±ï¿½Menu
 					}
 				});				
 				menu_display = true;				
 			}else{
-				//Èç¹ûµ±Ç°ÒÑ¾­ÎªÏÔÊ¾×´Ì¬£¬ÔòÒþ²ØÆðÀ´
+				//ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½Ñ¾ï¿½Îªï¿½ï¿½Ê¾×´Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				menuWindow.dismiss();
 				menu_display = false;
 				}
@@ -105,7 +107,7 @@ public class Main extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	
-    	menu.add(Menu.NONE, Menu.FIRST +1, 1, "ÍË³ö").setIcon(R.drawable.btn_close);
+    	menu.add(Menu.NONE, Menu.FIRST +1, 1, "ï¿½Ë³ï¿½").setIcon(R.drawable.btn_close);
         return true;
     }
     @Override

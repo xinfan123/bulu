@@ -1,6 +1,7 @@
 package com.xinfan.blueblue.activity;
 
 
+import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 
 import android.app.Activity;
@@ -11,7 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-public class AccountEscActivity extends Activity {
+public class AccountEscActivity extends BaseActivity {
 	//private MyDialog dialog;
 	private LinearLayout layout;
 	@Override
@@ -45,7 +46,7 @@ public class AccountEscActivity extends Activity {
 		LoginUserContext.setIsLogin(AccountEscActivity.this, false);
 		
 		Intent intent=new Intent();
-    	intent.setClass(AccountEscActivity.this, Login.class);
+    	intent.setClass(AccountEscActivity.this, LoginActivity.class);
     	startActivity(intent);
     	this.finish();
     	

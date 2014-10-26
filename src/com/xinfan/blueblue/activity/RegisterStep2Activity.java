@@ -4,17 +4,12 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 
-import com.tencent.map.geolocation.TencentLocation;
-import com.tencent.map.geolocation.TencentLocationListener;
-import com.tencent.map.geolocation.TencentLocationManager;
-import com.tencent.map.geolocation.TencentLocationRequest;
-import com.xinfan.blueblue.activity.send.SendMessageActivity;
+
+import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.location.LocationEntity;
 import com.xinfan.blueblue.location.LocationManager;
 import com.xinfan.blueblue.location.LocationManager.LocationListener;
@@ -28,7 +23,7 @@ import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.RegisterParam;
 import com.xinfan.msgbox.http.service.vo.result.BaseResult;
 
-public class RegisterStep2Activity extends Activity implements OnClickListener {
+public class RegisterStep2Activity extends BaseActivity implements OnClickListener {
 
 	private EditText mPassword; // 密码编辑框
 	private EditText mNickname; // 昵称编辑框

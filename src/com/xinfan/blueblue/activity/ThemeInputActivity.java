@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
+import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
@@ -15,7 +16,7 @@ import com.xinfan.blueblue.vo.ThemeVo;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.UserSentParam;
 
-public class ThemeInputActivity extends Activity {
+public class ThemeInputActivity extends BaseActivity {
 
 	private TextView ok;
 

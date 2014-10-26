@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.common.TimeButtonTicker2;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
@@ -20,7 +21,7 @@ import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.ValidCodeParam;
 import com.xinfan.msgbox.http.service.vo.result.BaseResult;
 
-public class RegisterStep1Activity extends Activity {
+public class RegisterStep1Activity extends BaseActivity {
 	private EditText mMobile; // 手机号码编辑框
 	private Button sendBtn;// 获取验证码按钮
 	private EditText mRanCode; // 验证码编辑框

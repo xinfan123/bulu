@@ -11,9 +11,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 
-import com.xinfan.blueblue.activity.Login;
+import com.xinfan.blueblue.activity.LoginActivity;
 import com.xinfan.blueblue.activity.R;
-import com.xinfan.blueblue.activity.SystemSet;
+import com.xinfan.blueblue.activity.SystemSetActivity;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
@@ -92,7 +92,7 @@ public class MessageNumSelectActivity extends Activity {
 			ToastUtil.showMessage(MessageNumSelectActivity.this,result.getMsg());
 			
 			
-			SystemSet.instance.SetMessageNum(select.getText());
+			SystemSetActivity.instance.SetMessageNum(select.getText());
 			MessageNumSelectActivity.this.finish();
 		}else{
 			ToastUtil.showMessage(MessageNumSelectActivity.this,result.getMsg());

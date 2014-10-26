@@ -18,8 +18,9 @@ import android.widget.SlidingDrawer.OnDrawerOpenListener;
 import android.widget.Toast;
 
 import com.xinfan.blueblue.activity.ShakeListener.OnShakeListener;
+import com.xinfan.blueblue.activity.base.BaseActivity;
 
-public class ShakeActivity extends Activity{
+public class ShakeActivity extends BaseActivity{
 	
 	ShakeListener mShakeListener = null;
 	Vibrator mVibrator;
@@ -35,7 +36,7 @@ public class ShakeActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);	
 		setContentView(R.layout.shake_activity);
-		//drawerSet ();//ÉèÖÃ  drawer¼àÌý    ÇÐ»» °´Å¥µÄ·½Ïò
+		//drawerSet ();//ï¿½ï¿½ï¿½ï¿½  drawerï¿½ï¿½ï¿½ï¿½    ï¿½Ð»ï¿½ ï¿½ï¿½Å¥ï¿½Ä·ï¿½ï¿½ï¿½
 		
 		mVibrator = (Vibrator)getApplication().getSystemService(VIBRATOR_SERVICE);
 		
@@ -55,7 +56,7 @@ public class ShakeActivity extends Activity{
 				mTitle.startAnimation(titleup);
 			}
 		});
-		 /* Éè¶¨SlidingDrawer±»¹Ø±ÕµÄÊÂ¼þ´¦Àí */
+		 /* ï¿½è¶¨SlidingDrawerï¿½ï¿½ï¿½Ø±Õµï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ */
 		mDrawer.setOnDrawerCloseListener(new OnDrawerCloseListener()
 		{	public void onDrawerClosed()
 			{	
@@ -70,17 +71,17 @@ public class ShakeActivity extends Activity{
 		mShakeListener = new ShakeListener(this);
         mShakeListener.setOnShakeListener(new OnShakeListener() {
 			public void onShake() {
-				//Toast.makeText(getApplicationContext(), "±§Ç¸£¬ÔÝÊ±Ã»ÓÐÕÒµ½ÔÚÍ¬Ò»Ê±¿ÌÒ¡Ò»Ò¡µÄÈË¡£\nÔÙÊÔÒ»´Î°É£¡", Toast.LENGTH_SHORT).show();
-				startAnim();  //¿ªÊ¼ Ò¡Ò»Ò¡ÊÖÕÆ¶¯»­
+				//Toast.makeText(getApplicationContext(), "ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½Ê±Ã»ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½Í¬Ò»Ê±ï¿½ï¿½Ò¡Ò»Ò¡ï¿½ï¿½ï¿½Ë¡ï¿½\nï¿½ï¿½ï¿½ï¿½Ò»ï¿½Î°É£ï¿½", Toast.LENGTH_SHORT).show();
+				startAnim();  //ï¿½ï¿½Ê¼ Ò¡Ò»Ò¡ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½
 				mShakeListener.stop();
-				startVibrato(); //¿ªÊ¼ Õð¶¯
+				startVibrato(); //ï¿½ï¿½Ê¼ ï¿½ï¿½
 				new Handler().postDelayed(new Runnable(){
 					@Override
 					public void run(){
-						//Toast.makeText(getApplicationContext(), "±§Ç¸£¬ÔÝÊ±Ã»ÓÐÕÒµ½\nÔÚÍ¬Ò»Ê±¿ÌÒ¡Ò»Ò¡µÄÈË¡£\nÔÙÊÔÒ»´Î°É£¡", 500).setGravity(Gravity.CENTER,0,0).show();
+						//Toast.makeText(getApplicationContext(), "ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½Ê±Ã»ï¿½ï¿½ï¿½Òµï¿½\nï¿½ï¿½Í¬Ò»Ê±ï¿½ï¿½Ò¡Ò»Ò¡ï¿½ï¿½ï¿½Ë¡ï¿½\nï¿½ï¿½ï¿½ï¿½Ò»ï¿½Î°É£ï¿½", 500).setGravity(Gravity.CENTER,0,0).show();
 						Toast mtoast;
 						mtoast = Toast.makeText(getApplicationContext(),
-							     "±§Ç¸£¬ÔÝÊ±Ã»ÓÐÕÒµ½\nÔÚÍ¬Ò»Ê±¿ÌÒ¡Ò»Ò¡µÄÈË¡£\nÔÙÊÔÒ»´Î°É£¡", 10);
+							     "ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½Ê±Ã»ï¿½ï¿½ï¿½Òµï¿½\nï¿½ï¿½Í¬Ò»Ê±ï¿½ï¿½Ò¡Ò»Ò¡ï¿½ï¿½ï¿½Ë¡ï¿½\nï¿½ï¿½ï¿½ï¿½Ò»ï¿½Î°É£ï¿½", 10);
 							   //mtoast.setGravity(Gravity.CENTER, 0, 0);
 							   mtoast.show();
 							   mVibrator.cancel();
@@ -90,7 +91,7 @@ public class ShakeActivity extends Activity{
 			}
 		});
    }
-	public void startAnim () {   //¶¨ÒåÒ¡Ò»Ò¡¶¯»­¶¯»­
+	public void startAnim () {   //ï¿½ï¿½ï¿½ï¿½Ò¡Ò»Ò¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		AnimationSet animup = new AnimationSet(true);
 		TranslateAnimation mytranslateanimup0 = new TranslateAnimation(Animation.RELATIVE_TO_SELF,0f,Animation.RELATIVE_TO_SELF,0f,Animation.RELATIVE_TO_SELF,0f,Animation.RELATIVE_TO_SELF,-0.5f);
 		mytranslateanimup0.setDuration(1000);
@@ -111,14 +112,14 @@ public class ShakeActivity extends Activity{
 		animdn.addAnimation(mytranslateanimdn1);
 		mImgDn.startAnimation(animdn);	
 	}
-	public void startVibrato(){		//¶¨ÒåÕð¶¯
-		mVibrator.vibrate( new long[]{500,200,500,200}, -1); //µÚÒ»¸ö£û£ýÀïÃæÊÇ½Ú×àÊý×é£¬ µÚ¶þ¸ö²ÎÊýÊÇÖØ¸´´ÎÊý£¬-1Îª²»ÖØ¸´£¬·Ç-1¶íÈÕ´ÓpatternµÄÖ¸¶¨ÏÂ±ê¿ªÊ¼ÖØ¸´
+	public void startVibrato(){		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		mVibrator.vibrate( new long[]{500,200,500,200}, -1); //ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é£¬ ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-1Îªï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½-1ï¿½ï¿½ï¿½Õ´ï¿½patternï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Â±ê¿ªÊ¼ï¿½Ø¸ï¿½
 	}
 	
-	public void shake_activity_back(View v) {     //±êÌâÀ¸ ·µ»Ø°´Å¥
+	public void shake_activity_back(View v) {     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø°ï¿½Å¥
       	this.finish();
       }  
-	public void linshi(View v) {     //±êÌâÀ¸
+	public void linshi(View v) {     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		startAnim();
       }  
 	@Override

@@ -11,7 +11,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.xinfan.blueblue.activity.R;
-import com.xinfan.blueblue.activity.SystemSet;
+import com.xinfan.blueblue.activity.SystemSetActivity;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
@@ -98,7 +98,7 @@ public class SimilaritySet extends Activity {
 			ToastUtil.showMessage(SimilaritySet.this,result.getMsg());
 			
 			
-			SystemSet.instance.SetSimilarity(select.getText());
+			SystemSetActivity.instance.SetSimilarity(select.getText());
 			SimilaritySet.this.finish();
 		}else{
 			ToastUtil.showMessage(SimilaritySet.this,result.getMsg());

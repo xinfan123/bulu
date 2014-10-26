@@ -11,7 +11,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.xinfan.blueblue.activity.R;
-import com.xinfan.blueblue.activity.SystemSet;
+import com.xinfan.blueblue.activity.SystemSetActivity;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
@@ -97,7 +97,7 @@ public class ReputationSet extends Activity {
 			ToastUtil.showMessage(ReputationSet.this,result.getMsg());
 			
 			
-			SystemSet.instance.SetReputation(select.getText());
+			SystemSetActivity.instance.SetReputation(select.getText());
 			ReputationSet.this.finish();
 		}else{
 			ToastUtil.showMessage(ReputationSet.this,result.getMsg());
