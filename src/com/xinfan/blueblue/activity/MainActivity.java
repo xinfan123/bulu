@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.xinfan.blueblue.activity.context.VersionManager;
 import com.xinfan.blueblue.activity.rev.RevMessageListView;
 import com.xinfan.blueblue.activity.send.SendMessageActivity;
-import com.xinfan.blueblue.gettui.PushDemoReceiver;
+import com.xinfan.blueblue.gettui.GetuiPushReceiver;
 
 public class MainActivity extends Activity implements OnViewChangeListener, OnClickListener {
 
@@ -42,7 +42,7 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 
 	MainTopMenu menuWindow;
 
-	PushDemoReceiver gettuiReceiver;
+	GetuiPushReceiver gettuiReceiver;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	}
 
 	public void bindReceiver() {
-		gettuiReceiver = new PushDemoReceiver();
+		gettuiReceiver = new GetuiPushReceiver();
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("com.igexin.sdk.action.RyxVL19P9P69Fgs7ysDsVA");
 		registerReceiver(gettuiReceiver, filter);

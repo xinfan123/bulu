@@ -17,7 +17,7 @@ import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.UserCIDParam;
 
-public class PushDemoReceiver extends BroadcastReceiver {
+public class GetuiPushReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
