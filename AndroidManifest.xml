@@ -69,9 +69,6 @@
         </activity>
         -->
         <activity
-            android:name=".MainWeixin"
-            android:theme="@style/Anim_style2" />
-        <activity
             android:name=".LoginActivity"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
@@ -102,17 +99,8 @@
             android:name=".UpdateNicknameActivity"
             android:theme="@style/Anim_style2" />
         <activity
-            android:name=".ChatActivity"
-            android:theme="@android:style/Theme.NoTitleBar" />
-        <activity
             android:name=".ShakeActivity"
             android:theme="@android:style/Theme.NoTitleBar" />
-        <activity
-            android:name=".InfoXiaohei"
-            android:theme="@android:style/Theme.NoTitleBar" />
-        <activity
-            android:name="ExitFromSettings"
-            android:theme="@style/MyDialogStyleBottom" />
         <activity
             android:name="InfoXiaoheiHead"
             android:theme="@style/HeadScale" />
