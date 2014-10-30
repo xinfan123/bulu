@@ -1,13 +1,11 @@
 package com.xinfan.blueblue.activity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
-
 
 import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.location.LocationEntity;
@@ -15,8 +13,8 @@ import com.xinfan.blueblue.location.LocationManager;
 import com.xinfan.blueblue.location.LocationManager.LocationListener;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
-import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.SharePreferenceUtil;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
@@ -133,7 +131,7 @@ public class RegisterStep2Activity extends BaseActivity implements OnClickListen
 				util.setMobile(mobile);
 
 				Intent intent = new Intent();
-				intent.setClass(RegisterStep2Activity.this, MainActivity.class);
+				intent.setClass(RegisterStep2Activity.this, WelcomeActivity.class);
 				startActivity(intent);
 
 				RegisterStep2Activity.this.finish();
