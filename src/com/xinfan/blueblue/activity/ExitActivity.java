@@ -13,6 +13,8 @@ import com.xinfan.blueblue.activity.context.AppContext;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
+import com.xinfan.blueblue.request.NetworkErrorCallBack;
+import com.xinfan.blueblue.request.RequestErrorCallBack;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.request.SharePreferenceUtil;
@@ -60,12 +62,23 @@ public class ExitActivity extends BaseActivity {
 
 		request.setParam(param);
 		request.setShowDialog(false);
+		
+		request.setRequestErrorCallBack(new RequestErrorCallBack() {
+
+			public void call(Request request) {
+				AppContext.destroy();
+			}
+		});
+		request.setNetworkErrorCallBack(new NetworkErrorCallBack() {
+
+			public void call(Request request) {
+				AppContext.destroy();
+			}
+		});
 
 		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
 			public void call(Request request) {
-				
 				AppContext.destroy();
-				
 			}
 		});
 
