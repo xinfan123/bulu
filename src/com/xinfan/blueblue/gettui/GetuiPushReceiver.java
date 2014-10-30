@@ -51,9 +51,9 @@ public class GetuiPushReceiver extends BroadcastReceiver {
 				String data = new String(payload);
 
 				Log.d("GetuiSdkDemo", "==============================Got Payload:" + data);
-				
-				show(context);
-				
+
+				show(context,data);
+
 				// if (GetuiSdkDemoActivity.tLogView != null)
 				// GetuiSdkDemoActivity.tLogView.append(data + "\n");
 			}
@@ -113,17 +113,23 @@ public class GetuiPushReceiver extends BroadcastReceiver {
 		}
 	}
 
-	public void show(Context context) {
+	public void show(Context context,String data) {
 
 		if (!isRunningForeground(context)) {
 			NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 			String title = "通知标题";
-			String content = "通知内容";
+			String content = data;
+
 			Notification n = new Notification(R.drawable.ic_launcher, "通知", System.currentTimeMillis());
 			Intent intent = new Intent(context, MainActivity.class);
-			PendingIntent pi = PendingIntent.getActivity(context, 0, intent, 0);
-			n.setLatestEventInfo(context, title, content, pi);
-			nm.notify(1, n);
+
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+			// PendingIntent
+			PendingIntent contentIntent = PendingIntent.getActivity(context, R.string.app_name, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+			n.setLatestEventInfo(context, title, content, contentIntent);
+			nm.notify(R.string.app_name, n);
+
 		}
 
 	}
