@@ -13,6 +13,7 @@ import android.widget.ListView;
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.SystemSetActivity;
 import com.xinfan.blueblue.activity.base.BaseActivity;
+import com.xinfan.blueblue.activity.context.SystemSetContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
@@ -32,13 +33,15 @@ public class SimilaritySet extends BaseActivity {
 	public ArrayList<SelectVo> list = new ArrayList<SelectVo>();
 
 	private SystemSetAdapter adapter;
-
+	private Long userid;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.set_massage_num);
 
 		messageSr = (ListView) findViewById(R.id.message_select_type);
+		SharePreferenceUtil util = new SharePreferenceUtil(SimilaritySet.this, Constants.USER_INFO);
+		userid=util.getUserId();
 		
 		init();
 		
@@ -80,13 +83,10 @@ public class SimilaritySet extends BaseActivity {
 		
 		Integer similarLevel=Integer.parseInt(select.getId());
 		
-		SharePreferenceUtil util = new SharePreferenceUtil(SimilaritySet.this, Constants.USER_INFO);
-		Long userId=util.getUserId();
-		
 		Request request = new Request(FunIdConstants.SET_USERSET);
 		UserSetParam param = new UserSetParam();
 		param.setSimilarLevel(similarLevel);
-		param.setUserId(userId);
+		param.setUserId(userid);
 		request.setParam(param);
 		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
 			
@@ -98,7 +98,7 @@ public class SimilaritySet extends BaseActivity {
 			
 			ToastUtil.showMessage(SimilaritySet.this,result.getMsg());
 			
-			
+			SystemSetContext.setSimilarity(SimilaritySet.this,select.getText(),userid);
 			SystemSetActivity.instance.SetSimilarity(select.getText());
 			SimilaritySet.this.finish();
 		}else{

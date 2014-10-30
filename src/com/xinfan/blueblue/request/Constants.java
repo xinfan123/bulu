@@ -17,6 +17,8 @@ public final class Constants {
 	public static final String SERVER_SETTING = "server_setting";// 保存ip、port的xml文件名
 
 	public static final String USER_INFO = "user_info";// 保存用户信息的xml文件名
+	public static final String SYSTEM_SET = "system_set_info";// 保存用户系统设置xml文件名,为区分多个用户这里只是配置XML文件名的前半部分，
+															//完整文件名由system_set_info + userid组成
 
 	public static final int NOTIFY_ID = 0x911;// 通知ID
 
@@ -75,7 +77,9 @@ public final class Constants {
     	public static final String CChannel = "dev";
     	public static boolean isInstall = false;
     	public static final String http_request_uri = "MainService";
-    	public static final String http_request_ip = "192.168.1.102:7001";
+
+    	public static final String http_request_ip = "112.124.37.233:9001";
+
     	//public static final String http_request_head = "http://192.168.1.102:7001/MainService";
     	public static String http_img = "";
 

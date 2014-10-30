@@ -13,6 +13,7 @@ import android.widget.ListView;
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.SystemSetActivity;
 import com.xinfan.blueblue.activity.base.BaseActivity;
+import com.xinfan.blueblue.activity.context.SystemSetContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
@@ -30,16 +31,18 @@ public class ReputationSet extends BaseActivity {
 	public ArrayList<SelectVo> list = new ArrayList<SelectVo>();
 
 	private SystemSetAdapter adapter;
-
+	
 	private static String[] m = { "全部", "一星", "二星", "三星", "4星", "五星" };
-
+	private Long userid;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.set_massage_num);
 
 		messageSr = (ListView) findViewById(R.id.message_select_type);
-
+		
+		SharePreferenceUtil util = new SharePreferenceUtil(ReputationSet.this, Constants.USER_INFO);
+		 userid=util.getUserId();
 		init();
 		
 		adapter = new SystemSetAdapter(this, list);
@@ -78,14 +81,12 @@ public class ReputationSet extends BaseActivity {
 		final SelectVo select = list.get(v);
 		
 		Integer requtation=Integer.parseInt(select.getId());
-		
-		SharePreferenceUtil util = new SharePreferenceUtil(ReputationSet.this, Constants.USER_INFO);
-		Long userId=util.getUserId();
+
 		
 		Request request = new Request(FunIdConstants.SET_USERSET);
 		UserSetParam param = new UserSetParam();
 		param.setMinCredit(requtation);
-		param.setUserId(userId);
+		param.setUserId(userid);
 		request.setParam(param);
 		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
 			
@@ -97,7 +98,7 @@ public class ReputationSet extends BaseActivity {
 			
 			ToastUtil.showMessage(ReputationSet.this,result.getMsg());
 			
-			
+			SystemSetContext.setReputation(ReputationSet.this,select.getText(),userid);
 			SystemSetActivity.instance.SetReputation(select.getText());
 			ReputationSet.this.finish();
 		}else{

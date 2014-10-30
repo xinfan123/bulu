@@ -15,6 +15,7 @@ import com.xinfan.blueblue.activity.LoginActivity;
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.SystemSetActivity;
 import com.xinfan.blueblue.activity.base.BaseActivity;
+import com.xinfan.blueblue.activity.context.SystemSetContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
@@ -32,13 +33,15 @@ public class MessageNumSelectActivity extends BaseActivity {
 	public ArrayList<SelectVo> list = new ArrayList<SelectVo>();
 
 	private SystemSetAdapter adapter;
-
+	private Long userid;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.set_massage_num);
 
 		messagenumSr = (ListView) findViewById(R.id.message_select_type);
+		SharePreferenceUtil util = new SharePreferenceUtil(MessageNumSelectActivity.this, Constants.USER_INFO);
+		userid=util.getUserId();
 
 		init();
 
@@ -72,15 +75,12 @@ public class MessageNumSelectActivity extends BaseActivity {
 
 		final SelectVo select = list.get(arg2);
 		
-		Integer maxCount=Integer.parseInt(select.getId());
-		
-		SharePreferenceUtil util = new SharePreferenceUtil(MessageNumSelectActivity.this, Constants.USER_INFO);
-		Long userId=util.getUserId();
+		final Integer maxCount=Integer.parseInt(select.getId());
 		
 		Request request = new Request(FunIdConstants.SET_USERSET);
 		UserSetParam param = new UserSetParam();
 		param.setMaxCount(maxCount);
-		param.setUserId(userId);
+		param.setUserId(userid);
 		request.setParam(param);
 		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
 			
@@ -91,9 +91,9 @@ public class MessageNumSelectActivity extends BaseActivity {
 		if(result.getResult()==1){
 			
 			ToastUtil.showMessage(MessageNumSelectActivity.this,result.getMsg());
-			
-			
-			SystemSetActivity.instance.SetMessageNum(select.getText());
+				
+			SystemSetContext.setReceivenum(MessageNumSelectActivity.this,select.getText(),userid);
+			SystemSetActivity.instance.SetMesageNum(select.getText());
 			MessageNumSelectActivity.this.finish();
 		}else{
 			ToastUtil.showMessage(MessageNumSelectActivity.this,result.getMsg());

@@ -9,8 +9,8 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.SystemConfigContext;
+import com.xinfan.blueblue.activity.context.SystemSetContext;
 import com.xinfan.blueblue.activity.context.VersionManager;
 import com.xinfan.blueblue.activity.systemset.AboutUs;
 import com.xinfan.blueblue.activity.systemset.MessageNumSelectActivity;
@@ -22,12 +22,13 @@ import com.xinfan.blueblue.request.Constants;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.request.SharePreferenceUtil;
+import com.xinfan.blueblue.request.ShareSystemSet;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.UserSetParam;
 import com.xinfan.msgbox.http.service.vo.result.BaseResult;
 
-public class SystemSetActivity extends BaseActivity {
+public class SystemSetActivity extends Activity {
 	public static SystemSetActivity instance;
 	private CheckBox messageNoticeBtn;// 震动
 	private CheckBox voiceBtn;// 震动
@@ -37,7 +38,7 @@ public class SystemSetActivity extends BaseActivity {
 	private TextView paidText;// 相似度
 	private TextView reputationText;// 相似度
 	private TextView system_set_version_text;
-
+	private Long userid;
 	// private String ComplainText;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,18 +52,18 @@ public class SystemSetActivity extends BaseActivity {
 		paidText = (TextView) findViewById(R.id.paid_sytem_tv);
 		reputationText = (TextView) findViewById(R.id.reputation_sytem_tv);
 		system_set_version_text = (TextView) findViewById(R.id.system_set_version_text);
-
 		system_set_version_text.setText(SystemConfigContext.getVersion(this));
-
+		SharePreferenceUtil util = new SharePreferenceUtil(SystemSetActivity.this, Constants.USER_INFO);
+		userid = util.getUserId();
+		refresh();
+		
+		instance=this;
 		// 监听是否接收消息
 		messageNoticeBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				final boolean is = messageNoticeBtn.isChecked();
-				SharePreferenceUtil util = new SharePreferenceUtil(SystemSetActivity.this, Constants.USER_INFO);
-				Long userId = util.getUserId();
-
 				Request request = new Request(FunIdConstants.SET_USERSET);
 				UserSetParam param = new UserSetParam();
 				if (is) {
@@ -70,7 +71,7 @@ public class SystemSetActivity extends BaseActivity {
 				} else {
 					param.setNewMsgNotify(0);
 				}
-				param.setUserId(userId);
+				param.setUserId(userid);
 				request.setParam(param);
 				AnsynHttpRequest.requestSimpleByPost(SystemSetActivity.this, request, new RequestSucessCallBack() {
 
@@ -81,46 +82,8 @@ public class SystemSetActivity extends BaseActivity {
 						if (result.getResult() == 1) {
 
 							ToastUtil.showMessage(SystemSetActivity.this, result.getMsg());
-
-							messageNoticeBtn.setChecked(is);
-
-						} else {
-							ToastUtil.showMessage(SystemSetActivity.this, result.getMsg());
-						}
-
-					}
-				});
-			}
-		});
-		// 监听声音开关
-		vibrateBtn.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				final boolean is = vibrateBtn.isChecked();
-				SharePreferenceUtil util = new SharePreferenceUtil(SystemSetActivity.this, Constants.USER_INFO);
-				Long userId = util.getUserId();
-
-				Request request = new Request(FunIdConstants.SET_USERSET);
-				UserSetParam param = new UserSetParam();
-				if (is) {
-					param.setVibrate(1);
-				} else {
-					param.setVibrate(0);
-				}
-				param.setUserId(userId);
-				request.setParam(param);
-				AnsynHttpRequest.requestSimpleByPost(SystemSetActivity.this, request, new RequestSucessCallBack() {
-
-					public void call(Request data) {
-
-						BaseResult result = (BaseResult) data.getResult();
-
-						if (result.getResult() == 1) {
-
-							ToastUtil.showMessage(SystemSetActivity.this, result.getMsg());
-
-							vibrateBtn.setChecked(is);
+							
+							SystemSetContext.setNewMsgNotify(SystemSetActivity.this, is, userid);
 
 						} else {
 							ToastUtil.showMessage(SystemSetActivity.this, result.getMsg());
@@ -131,22 +94,19 @@ public class SystemSetActivity extends BaseActivity {
 			}
 		});
 		// 监听震动开关
-		voiceBtn.setOnClickListener(new OnClickListener() {
+		vibrateBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				final boolean is = voiceBtn.isChecked();
-				SharePreferenceUtil util = new SharePreferenceUtil(SystemSetActivity.this, Constants.USER_INFO);
-				Long userId = util.getUserId();
-
+				final boolean is = vibrateBtn.isChecked();
 				Request request = new Request(FunIdConstants.SET_USERSET);
 				UserSetParam param = new UserSetParam();
 				if (is) {
-					param.setVoice(1);
+					param.setVibrate(1);
 				} else {
-					param.setVoice(0);
+					param.setVibrate(0);
 				}
-				param.setUserId(userId);
+				param.setUserId(userid);
 				request.setParam(param);
 				AnsynHttpRequest.requestSimpleByPost(SystemSetActivity.this, request, new RequestSucessCallBack() {
 
@@ -158,7 +118,42 @@ public class SystemSetActivity extends BaseActivity {
 
 							ToastUtil.showMessage(SystemSetActivity.this, result.getMsg());
 
-							voiceBtn.setChecked(is);
+							SystemSetContext.setVibrate(SystemSetActivity.this, is, userid);
+
+						} else {
+							ToastUtil.showMessage(SystemSetActivity.this, result.getMsg());
+						}
+
+					}
+				});
+			}
+		});
+		// 监听声音开关
+		voiceBtn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				final boolean is = voiceBtn.isChecked();
+				Request request = new Request(FunIdConstants.SET_USERSET);
+				UserSetParam param = new UserSetParam();
+				if (is) {
+					param.setVoice(1);
+				} else {
+					param.setVoice(0);
+				}
+				param.setUserId(userid);
+				request.setParam(param);
+				AnsynHttpRequest.requestSimpleByPost(SystemSetActivity.this, request, new RequestSucessCallBack() {
+
+					public void call(Request data) {
+
+						BaseResult result = (BaseResult) data.getResult();
+
+						if (result.getResult() == 1) {
+
+							ToastUtil.showMessage(SystemSetActivity.this, result.getMsg());
+
+							SystemSetContext.setVoice(SystemSetActivity.this, is, userid);
 
 						} else {
 							ToastUtil.showMessage(SystemSetActivity.this, result.getMsg());
@@ -240,27 +235,37 @@ public class SystemSetActivity extends BaseActivity {
 				startActivity(intent);
 			}
 		});
-		instance = this;
+	
 	}
-
+	private void refresh() {  
+		messageNoticeBtn.setChecked(SystemSetContext.getNewMsgNotify(SystemSetActivity.this, userid));
+		voiceBtn.setChecked(SystemSetContext.getVoice(SystemSetActivity.this, userid));
+		vibrateBtn.setChecked(SystemSetContext.getVibrate(SystemSetActivity.this, userid));
+		receivenumText.setText(SystemSetContext.getReceivenum(SystemSetActivity.this, userid));
+		similarityText.setText(SystemSetContext.getSimilarity(SystemSetActivity.this, userid));
+		paidText.setText(SystemSetContext.getPaid(SystemSetActivity.this, userid));
+		reputationText.setText(SystemSetContext.getReputation(SystemSetActivity.this, userid));
+	    }  
 	public void SystemSetBack(View v) { // 返回
 		this.finish();
 	}
 
-	public void SetMessageNum(String name) {
-		receivenumText.setText(name);
-	}
 
-	public void SetSimilarity(String name) {
-		similarityText.setText(name);
-	}
-
-	public void SetPaid(String name) {
-		paidText.setText(name);
-	}
-
-	public void SetReputation(String name) {
-		reputationText.setText(name);
-	}
+public void SetMesageNum(String name){
+	receivenumText.setText(name);
+	
+}
+public void SetSimilarity(String name){
+	similarityText.setText(name);
+	
+}
+public void SetPaid(String name){
+	paidText.setText(name);
+	
+}
+public void SetReputation(String name){
+	reputationText.setText(name);
+	
+}
 
 }
