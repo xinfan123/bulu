@@ -58,7 +58,7 @@ public class WelcomeActivity extends BaseActivity {
 		// AccountInfoActivity.instance.finish();
 	}
 
-	public void showConfigWindow() {
+	public void showConfigWindow() { 
 		LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.config, null);
 		final EditText config_address = (EditText) view.findViewById(R.id.config_address);
