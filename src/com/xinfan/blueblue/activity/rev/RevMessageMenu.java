@@ -10,7 +10,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.PopupWindow;
 
-import com.xinfan.blueblue.activity.Login;
+
 import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.context.LoginUserContext;

@@ -62,8 +62,8 @@ public class PaidSet extends BaseActivity {
 	public void init() {
 		SelectVo one = new SelectVo("0", "全部");
 		SelectVo two = new SelectVo("10", "10元以上");
-		SelectVo three = new SelectVo("100", "100以上");
-		SelectVo four = new SelectVo("1000", "1000以上");
+		SelectVo three = new SelectVo("100", "100元以上");
+		SelectVo four = new SelectVo("1000", "1000元以上");
 
 		list.add(one);
 		list.add(two);

@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.activity.context.SystemConfigContext;
 import com.xinfan.blueblue.activity.context.SystemSetContext;
 import com.xinfan.blueblue.activity.context.VersionManager;
@@ -23,10 +24,14 @@ import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.request.SharePreferenceUtil;
 import com.xinfan.blueblue.request.ShareSystemSet;
+import com.xinfan.blueblue.util.NumToChina;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.BaseParam;
 import com.xinfan.msgbox.http.service.vo.param.UserSetParam;
 import com.xinfan.msgbox.http.service.vo.result.BaseResult;
+import com.xinfan.msgbox.http.service.vo.result.UserResult;
+import com.xinfan.msgbox.http.service.vo.result.UserSetResult;
 
 public class SystemSetActivity extends Activity {
 	public static SystemSetActivity instance;
@@ -39,6 +44,7 @@ public class SystemSetActivity extends Activity {
 	private TextView reputationText;// 相似度
 	private TextView system_set_version_text;
 	private Long userid;
+
 	// private String ComplainText;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +59,12 @@ public class SystemSetActivity extends Activity {
 		reputationText = (TextView) findViewById(R.id.reputation_sytem_tv);
 		system_set_version_text = (TextView) findViewById(R.id.system_set_version_text);
 		system_set_version_text.setText(SystemConfigContext.getVersion(this));
-		SharePreferenceUtil util = new SharePreferenceUtil(SystemSetActivity.this, Constants.USER_INFO);
+		SharePreferenceUtil util = new SharePreferenceUtil(
+				SystemSetActivity.this, Constants.USER_INFO);
 		userid = util.getUserId();
 		refresh();
-		
-		instance=this;
+
+		instance = this;
 		// 监听是否接收消息
 		messageNoticeBtn.setOnClickListener(new OnClickListener() {
 
@@ -73,24 +80,31 @@ public class SystemSetActivity extends Activity {
 				}
 				param.setUserId(userid);
 				request.setParam(param);
-				AnsynHttpRequest.requestSimpleByPost(SystemSetActivity.this, request, new RequestSucessCallBack() {
+				AnsynHttpRequest.requestSimpleByPost(SystemSetActivity.this,
+						request, new RequestSucessCallBack() {
 
-					public void call(Request data) {
+							public void call(Request data) {
 
-						BaseResult result = (BaseResult) data.getResult();
+								BaseResult result = (BaseResult) data
+										.getResult();
 
-						if (result.getResult() == 1) {
+								if (result.getResult() == 1) {
 
-							ToastUtil.showMessage(SystemSetActivity.this, result.getMsg());
-							
-							SystemSetContext.setNewMsgNotify(SystemSetActivity.this, is, userid);
+									ToastUtil.showMessage(
+											SystemSetActivity.this,
+											result.getMsg());
 
-						} else {
-							ToastUtil.showMessage(SystemSetActivity.this, result.getMsg());
-						}
+									SystemSetContext.setNewMsgNotify(
+											SystemSetActivity.this, is, userid);
 
-					}
-				});
+								} else {
+									ToastUtil.showMessage(
+											SystemSetActivity.this,
+											result.getMsg());
+								}
+
+							}
+						});
 			}
 		});
 		// 监听震动开关
@@ -108,24 +122,31 @@ public class SystemSetActivity extends Activity {
 				}
 				param.setUserId(userid);
 				request.setParam(param);
-				AnsynHttpRequest.requestSimpleByPost(SystemSetActivity.this, request, new RequestSucessCallBack() {
+				AnsynHttpRequest.requestSimpleByPost(SystemSetActivity.this,
+						request, new RequestSucessCallBack() {
 
-					public void call(Request data) {
+							public void call(Request data) {
 
-						BaseResult result = (BaseResult) data.getResult();
+								BaseResult result = (BaseResult) data
+										.getResult();
 
-						if (result.getResult() == 1) {
+								if (result.getResult() == 1) {
 
-							ToastUtil.showMessage(SystemSetActivity.this, result.getMsg());
+									ToastUtil.showMessage(
+											SystemSetActivity.this,
+											result.getMsg());
 
-							SystemSetContext.setVibrate(SystemSetActivity.this, is, userid);
+									SystemSetContext.setVibrate(
+											SystemSetActivity.this, is, userid);
 
-						} else {
-							ToastUtil.showMessage(SystemSetActivity.this, result.getMsg());
-						}
+								} else {
+									ToastUtil.showMessage(
+											SystemSetActivity.this,
+											result.getMsg());
+								}
 
-					}
-				});
+							}
+						});
 			}
 		});
 		// 监听声音开关
@@ -143,24 +164,31 @@ public class SystemSetActivity extends Activity {
 				}
 				param.setUserId(userid);
 				request.setParam(param);
-				AnsynHttpRequest.requestSimpleByPost(SystemSetActivity.this, request, new RequestSucessCallBack() {
+				AnsynHttpRequest.requestSimpleByPost(SystemSetActivity.this,
+						request, new RequestSucessCallBack() {
 
-					public void call(Request data) {
+							public void call(Request data) {
 
-						BaseResult result = (BaseResult) data.getResult();
+								BaseResult result = (BaseResult) data
+										.getResult();
 
-						if (result.getResult() == 1) {
+								if (result.getResult() == 1) {
 
-							ToastUtil.showMessage(SystemSetActivity.this, result.getMsg());
+									ToastUtil.showMessage(
+											SystemSetActivity.this,
+											result.getMsg());
 
-							SystemSetContext.setVoice(SystemSetActivity.this, is, userid);
+									SystemSetContext.setVoice(
+											SystemSetActivity.this, is, userid);
 
-						} else {
-							ToastUtil.showMessage(SystemSetActivity.this, result.getMsg());
-						}
+								} else {
+									ToastUtil.showMessage(
+											SystemSetActivity.this,
+											result.getMsg());
+								}
 
-					}
-				});
+							}
+						});
 			}
 		});
 		// 监听接收数量设置
@@ -171,7 +199,8 @@ public class SystemSetActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
-				intent.setClass(SystemSetActivity.this, MessageNumSelectActivity.class);
+				intent.setClass(SystemSetActivity.this,
+						MessageNumSelectActivity.class);
 				startActivity(intent);
 			}
 		});
@@ -218,7 +247,8 @@ public class SystemSetActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 
-				VersionManager manager = new VersionManager(SystemSetActivity.this);
+				VersionManager manager = new VersionManager(
+						SystemSetActivity.this);
 				manager.checkManualUpdate();
 
 			}
@@ -235,37 +265,94 @@ public class SystemSetActivity extends Activity {
 				startActivity(intent);
 			}
 		});
-	
+
 	}
-	private void refresh() {  
-		messageNoticeBtn.setChecked(SystemSetContext.getNewMsgNotify(SystemSetActivity.this, userid));
-		voiceBtn.setChecked(SystemSetContext.getVoice(SystemSetActivity.this, userid));
-		vibrateBtn.setChecked(SystemSetContext.getVibrate(SystemSetActivity.this, userid));
-		receivenumText.setText(SystemSetContext.getReceivenum(SystemSetActivity.this, userid));
-		similarityText.setText(SystemSetContext.getSimilarity(SystemSetActivity.this, userid));
-		paidText.setText(SystemSetContext.getPaid(SystemSetActivity.this, userid));
-		reputationText.setText(SystemSetContext.getReputation(SystemSetActivity.this, userid));
-	    }  
+
+	private void refresh() {
+		Request request = new Request(FunIdConstants.GET_USERSET);
+		BaseParam param = new BaseParam();
+		param.setUserId(LoginUserContext.getUserId(this));
+		request.setParam(param);
+
+		AnsynHttpRequest.requestSimpleByPost(this, request,
+				new RequestSucessCallBack() {
+
+					public void call(Request data) {
+						UserSetResult result = (UserSetResult) data.getResult();
+						if (result.getResult() == 1) {
+							if (result.getNewMsgNotify() == 1) {
+								messageNoticeBtn.setChecked(true);
+							} else {
+								messageNoticeBtn.setChecked(false);
+							}
+							if (result.getVoice() == 1) {
+								voiceBtn.setChecked(true);
+							} else {
+								voiceBtn.setChecked(false);
+							}
+							if (result.getVibrate() == 1) {
+								vibrateBtn.setChecked(true);
+							} else {
+								vibrateBtn.setChecked(false);
+							}
+							receivenumText.setText(result.getMaxCount() + "条");
+							similarityText.setText(NumToChina.
+									NumToChina(result.getSimilarLevel()) + "级");
+							if (result.getMinAmmount() == 0) {
+								paidText.setText("全部");
+							} else {
+								paidText.setText(result.getMinAmmount() + "元以上");
+							}
+							if (result.getMinCredit() == 0) {
+								reputationText.setText("全部");
+							} else {
+								reputationText.setText(NumToChina
+										.NumToChina(result.getMinCredit())
+										+ "星");
+							}
+						}else{
+							messageNoticeBtn.setChecked(SystemSetContext.getNewMsgNotify(
+									SystemSetActivity.this, userid));
+							voiceBtn.setChecked(SystemSetContext.getVoice(SystemSetActivity.this,
+									userid));
+							vibrateBtn.setChecked(SystemSetContext.getVibrate(
+									SystemSetActivity.this, userid));
+							receivenumText.setText(SystemSetContext.getReceivenum(
+									SystemSetActivity.this, userid));
+							similarityText.setText(SystemSetContext.getSimilarity(
+									SystemSetActivity.this, userid));
+							paidText.setText(SystemSetContext.getPaid(SystemSetActivity.this,
+									userid));
+							reputationText.setText(SystemSetContext.getReputation(
+									SystemSetActivity.this, userid));
+						}
+					}
+				});
+
+	}
+
 	public void SystemSetBack(View v) { // 返回
 		this.finish();
 	}
 
+	public void SetMesageNum(String name) {
+		receivenumText.setText(name);
 
-public void SetMesageNum(String name){
-	receivenumText.setText(name);
-	
-}
-public void SetSimilarity(String name){
-	similarityText.setText(name);
-	
-}
-public void SetPaid(String name){
-	paidText.setText(name);
-	
-}
-public void SetReputation(String name){
-	reputationText.setText(name);
-	
-}
+	}
+
+	public void SetSimilarity(String name) {
+		similarityText.setText(name);
+
+	}
+
+	public void SetPaid(String name) {
+		paidText.setText(name);
+
+	}
+
+	public void SetReputation(String name) {
+		reputationText.setText(name);
+
+	}
 
 }
