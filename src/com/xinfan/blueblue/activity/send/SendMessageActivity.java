@@ -1,5 +1,7 @@
 package com.xinfan.blueblue.activity.send;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,12 +14,14 @@ import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
+import com.xinfan.blueblue.common.LoadingDialogFragment;
 import com.xinfan.blueblue.location.GpsLocation.LocationListener;
 import com.xinfan.blueblue.location.GpsLocationManager;
 import com.xinfan.blueblue.location.LocationEntity;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
+import com.xinfan.blueblue.util.AlertHelper;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.SendMessageParam;
@@ -75,6 +79,7 @@ public class SendMessageActivity extends BaseActivity implements OnClickListener
 					message_more_edit.setVisibility(View.GONE);
 					message_more_btn.setText("更多输入");
 				}
+	
 			}
 		});
 		time_select_layout.setOnClickListener(this);
@@ -88,6 +93,9 @@ public class SendMessageActivity extends BaseActivity implements OnClickListener
 	}
 
 	public void location() {
+		
+		final LoadingDialogFragment loading = LoadingDialogFragment.newInstance("正在定位位置信息..");
+		loading.open(this);
 
 		GpsLocationManager.addLocation(getApplicationContext(), new LocationListener() {
 
@@ -95,11 +103,14 @@ public class SendMessageActivity extends BaseActivity implements OnClickListener
 			public void onLocationSucess(LocationEntity uersLocation) {
 				ToastUtil.showMessage(SendMessageActivity.this, uersLocation.toString());
 				location = uersLocation;
+				
+				loading.dismiss();
 			}
 
 			@Override
 			public void onLocationError() {
 				ToastUtil.showMessage(SendMessageActivity.this, "loation error");
+				loading.dismiss();
 			}
 		});
 

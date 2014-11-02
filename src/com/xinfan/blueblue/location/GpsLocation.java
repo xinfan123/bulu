@@ -25,27 +25,22 @@ public class GpsLocation implements TencentLocationListener {
 	private TencentLocationManager mLocationManager;
 
 	private LocationListener listener;
-	private GpsLocationEndListener endListener;
-	private long id;
 
 	private Handler mHandler;
 	private HandlerThread mThread;
 
-	public synchronized static GpsLocation locate2(long id,Context context, LocationListener listener, GpsLocationEndListener endListener) {
+	GpsRequest request;
 
-		if (instance != null) {
-
-		}
+	public synchronized static GpsLocation locate2(GpsRequest request) {
 
 		if (instance == null) {
 			instance = new GpsLocation();
-			instance.onCreate(context);
+			instance.onCreate(request.getContext());
 		}
 
-		instance.endListener = endListener;
-		instance.id = id;
+		instance.request = request;
 
-		instance.startLocation(listener);
+		instance.startLocation(request.getListener());
 
 		return instance;
 	}
@@ -72,8 +67,8 @@ public class GpsLocation implements TencentLocationListener {
 		mThread.getLooper().quit();
 
 		instance = null;
-		
-		endListener.onEnd(id);
+
+		request.getEndListener().onEnd(request);
 	}
 
 	// 响应点击"开始"

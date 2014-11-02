@@ -10,6 +10,24 @@ public class GpsRequest {
 	LocationListener listener;
 	long id;
 
+	GpsLocationEndListener endListener;
+
+	public GpsLocationEndListener getEndListener() {
+		return endListener;
+	}
+
+	public void setEndListener(GpsLocationEndListener endListener) {
+		this.endListener = endListener;
+	}
+
+	public GpsRequest(Context context, LocationListener listener, long id, GpsLocationEndListener endListener) {
+		super();
+		this.context = context;
+		this.listener = listener;
+		this.id = id;
+		this.endListener = endListener;
+	}
+
 	public GpsRequest(Context context, LocationListener listener, long id) {
 		super();
 		this.context = context;
