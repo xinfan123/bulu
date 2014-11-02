@@ -1,7 +1,6 @@
 package com.xinfan.blueblue.activity.send;
 
 import android.content.Intent;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,8 +12,8 @@ import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
-import com.xinfan.blueblue.location.GpsLocation;
 import com.xinfan.blueblue.location.GpsLocation.LocationListener;
+import com.xinfan.blueblue.location.GpsLocationManager;
 import com.xinfan.blueblue.location.LocationEntity;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Request;
@@ -90,7 +89,7 @@ public class SendMessageActivity extends BaseActivity implements OnClickListener
 
 	public void location() {
 
-		GpsLocation.locate(getApplicationContext(), new LocationListener() {
+		GpsLocationManager.addLocation(getApplicationContext(), new LocationListener() {
 
 			@Override
 			public void onLocationSucess(LocationEntity uersLocation) {
@@ -103,6 +102,7 @@ public class SendMessageActivity extends BaseActivity implements OnClickListener
 				ToastUtil.showMessage(SendMessageActivity.this, "loation error");
 			}
 		});
+
 	}
 
 	public void send_msg_back(View view) {

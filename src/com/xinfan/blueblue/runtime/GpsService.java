@@ -6,6 +6,7 @@ import android.os.Binder;
 import android.os.IBinder;
 
 import com.xinfan.blueblue.location.GpsLocation;
+import com.xinfan.blueblue.location.GpsLocationManager;
 import com.xinfan.blueblue.location.GpsLocation.LocationListener;
 import com.xinfan.blueblue.location.LocationEntity;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
@@ -64,7 +65,7 @@ public class GpsService extends Service {
 			public void run() {
 				while (true) {
 
-					GpsLocation.locate(getApplicationContext(), new LocationListener() {
+					GpsLocationManager.addLocation(getApplicationContext(), new LocationListener() {
 
 						@Override
 						public void onLocationSucess(LocationEntity uersLocation) {

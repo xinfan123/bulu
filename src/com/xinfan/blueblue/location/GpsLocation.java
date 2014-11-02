@@ -25,16 +25,25 @@ public class GpsLocation implements TencentLocationListener {
 	private TencentLocationManager mLocationManager;
 
 	private LocationListener listener;
+	private GpsLocationEndListener endListener;
+	private long id;
 
 	private Handler mHandler;
 	private HandlerThread mThread;
 
-	public synchronized static GpsLocation locate(Context context, LocationListener listener) {
+	public synchronized static GpsLocation locate2(long id,Context context, LocationListener listener, GpsLocationEndListener endListener) {
+
+		if (instance != null) {
+
+		}
 
 		if (instance == null) {
 			instance = new GpsLocation();
 			instance.onCreate(context);
 		}
+
+		instance.endListener = endListener;
+		instance.id = id;
 
 		instance.startLocation(listener);
 
@@ -63,6 +72,8 @@ public class GpsLocation implements TencentLocationListener {
 		mThread.getLooper().quit();
 
 		instance = null;
+		
+		endListener.onEnd(id);
 	}
 
 	// 响应点击"开始"
@@ -98,29 +109,32 @@ public class GpsLocation implements TencentLocationListener {
 			@Override
 			public void run() {
 				LocationEntity uersLocation = new LocationEntity();
-				if (error == TencentLocation.ERROR_OK) {
 
-					uersLocation.setProvince(location.getProvince());
-					uersLocation.setLatitude(location.getLatitude());
-					uersLocation.setLongitude(location.getLongitude());
-					uersLocation.setAddress(location.getAddress());
-					uersLocation.setProvider(location.getProvider());
-					uersLocation.setCity(location.getCity());
-					uersLocation.setDistrict(location.getDistrict());
-					uersLocation.setTown(location.getTown());
-					uersLocation.setVillage(location.getVillage());
-					uersLocation.setStreetNo(location.getStreetNo());
+				try {
+					if (error == TencentLocation.ERROR_OK) {
 
-					if (listener != null) {
-						listener.onLocationSucess(uersLocation);
+						uersLocation.setProvince(location.getProvince());
+						uersLocation.setLatitude(location.getLatitude());
+						uersLocation.setLongitude(location.getLongitude());
+						uersLocation.setAddress(location.getAddress());
+						uersLocation.setProvider(location.getProvider());
+						uersLocation.setCity(location.getCity());
+						uersLocation.setDistrict(location.getDistrict());
+						uersLocation.setTown(location.getTown());
+						uersLocation.setVillage(location.getVillage());
+						uersLocation.setStreetNo(location.getStreetNo());
+
+						if (listener != null) {
+							listener.onLocationSucess(uersLocation);
+						}
+					} else {
+						if (listener != null) {
+							listener.onLocationError();
+						}
 					}
-				} else {
-					if (listener != null) {
-						listener.onLocationError();
-					}
+				} finally {
+					instance.stopLocation();
 				}
-
-				instance.stopLocation();
 			}
 		});
 

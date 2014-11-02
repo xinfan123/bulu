@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.location.GpsLocation;
+import com.xinfan.blueblue.location.GpsLocationManager;
 import com.xinfan.blueblue.location.GpsLocation.LocationListener;
 import com.xinfan.blueblue.location.LocationEntity;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
@@ -53,8 +54,8 @@ public class RegisterStep2Activity extends BaseActivity implements OnClickListen
 	}
 
 	public void location() {
-
-		GpsLocation.locate(getApplicationContext(), new LocationListener() {
+		
+		GpsLocationManager.addLocation(getApplicationContext(), new LocationListener() {
 
 			@Override
 			public void onLocationSucess(LocationEntity uersLocation) {
@@ -68,6 +69,7 @@ public class RegisterStep2Activity extends BaseActivity implements OnClickListen
 				ToastUtil.showMessage(RegisterStep2Activity.this, "loation error");
 			}
 		});
+
 	}
 
 	@Override
