@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
+import com.xinfan.blueblue.dao.RequestCacheKeyHelper;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
@@ -77,6 +78,8 @@ public class SeeMessageActivity extends BaseActivity implements OnClickListener 
 		param.setMsgId(vo.getMsgId());
 
 		request.setParam(param);
+		request.setCache(true);
+		request.setCacheKey(RequestCacheKeyHelper.generateSeeSendMessageCacheKey(param));
 
 		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
 

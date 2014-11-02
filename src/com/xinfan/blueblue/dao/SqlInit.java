@@ -9,7 +9,7 @@ public class SqlInit {
 
 		List<String> list = new ArrayList<String>();
 		list.add("DROP TABLE IF EXISTS T_CACHEDATA;");
-		list.add("CREATE TABLE T_CACHEDATA( URL VARCHAR(1020) ,  DATA  TEXT ,CREATE_TIME  VARCHAR,  PRIMARY KEY (URL));");
+		list.add("CREATE TABLE T_CACHEDATA( URL VARCHAR(1020) ,  DATA  TEXT ,CREATE_TIME  LONG,  PRIMARY KEY (URL));");
 
 		return list;
 	}
@@ -18,7 +18,7 @@ public class SqlInit {
 
 		List<String> list = new ArrayList<String>();
 		list.add("DROP TABLE IF EXISTS T_CACHEDATA;");
-		list.add("CREATE TABLE T_CACHEDATA( URL VARCHAR(1020) ,  DATA  TEXT,CREATE_TIME  VARCHAR,  PRIMARY KEY (URL));");
+		list.add("CREATE TABLE T_CACHEDATA( URL VARCHAR(1020) ,  DATA  TEXT,CREATE_TIME  LONG,  PRIMARY KEY (URL));");
 
 		return list;
 	}

@@ -24,7 +24,7 @@ public class CacheDataDao implements Dao {
 			cursor = db.rawQuery("select data,create_time from t_cachedata where url = ?", new String[] { url });
 			while (cursor.moveToNext()) {
 				String data = cursor.getString(0);
-				// String time = cursor.getString(1);
+				long time = cursor.getLong(1);
 
 				return data;
 			}
@@ -76,11 +76,12 @@ public class CacheDataDao implements Dao {
 		try {
 			boolean isExists = checkURLData(url);
 			db = DBHelper.getInstance().getDb(); // 获得数据库写对象
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			// SimpleDateFormat sdf = new
+			// SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			if (isExists) {
-				db.execSQL("update t_cachedata set data =?, create_time = ? where url =? ", new Object[] { jsonData, sdf.format(new Date()), url });
+				db.execSQL("update t_cachedata set data =?, create_time = ? where url =? ", new Object[] { jsonData, new Date().getTime(), url });
 			} else {
-				db.execSQL("insert into t_cachedata (url, data, create_time) values(?, ?, ?)", new Object[] { url, jsonData, sdf.format(new Date()) });
+				db.execSQL("insert into t_cachedata (url, data, create_time) values(?, ?, ?)", new Object[] { url, jsonData, new Date().getTime() });
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

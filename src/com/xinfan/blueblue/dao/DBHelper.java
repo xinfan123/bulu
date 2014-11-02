@@ -2,12 +2,12 @@ package com.xinfan.blueblue.dao;
 
 import java.util.List;
 
-import com.xinfan.blueblue.util.LogUtil;
-
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.xinfan.blueblue.util.LogUtil;
 
 /**
  * 
@@ -69,6 +69,10 @@ public class DBHelper extends SQLiteOpenHelper {
 		if (db != null) {
 			db.close();
 		}
+	}
+
+	public void getDatabaseSize() {
+		String DATABASE_PATH = android.os.Environment.getExternalStorageDirectory().getAbsolutePath() + "/dictionary";
 	}
 
 }
