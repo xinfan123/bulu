@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 
+import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.location.GpsLocation;
 import com.xinfan.blueblue.location.GpsLocationManager;
 import com.xinfan.blueblue.location.GpsLocation.LocationListener;
@@ -51,7 +52,7 @@ public class GpsService extends Service {
 
 	private final double EARTH_RADIUS = 6378137.0;
 	private final double MOVE_THRESHOLD = 1000;
-	private final long LOCATE_INTERVAL = 5000;// 60 * 60 * 1000;
+	private final long LOCATE_INTERVAL = 5 * 60 * 1000;// 60 * 60 * 1000;
 
 	private Thread thread;
 
@@ -105,9 +106,6 @@ public class GpsService extends Service {
 
 	public boolean checkIfUpdate(LocationEntity uersLocation) {
 
-		if (true) {
-			return true;
-		}
 		if (this.last_gpsx == 0) {
 			return true;
 		}
@@ -118,7 +116,10 @@ public class GpsService extends Service {
 			return true;
 		}
 
-		return false;
+		//没有登录就不要调用服务进行定位了
+		boolean isLogin = LoginUserContext.getIsLogin(getApplicationContext());
+
+		return isLogin;
 	}
 
 	public void updateServer(LocationEntity uersLocation) {
