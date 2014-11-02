@@ -413,6 +413,7 @@ public class SendedMessageListView extends ListView implements OnScrollListener,
 		param.setPageSize(pageSize);
 
 		request.setParam(param);
+		request.setCache(true);
 
 		AnsynHttpRequest.requestSimpleByPost(context, request, new RequestSucessCallBack() {
 
