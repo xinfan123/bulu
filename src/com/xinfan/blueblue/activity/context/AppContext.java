@@ -1,6 +1,7 @@
 package com.xinfan.blueblue.activity.context;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.igexin.sdk.PushManager;
 import com.xinfan.blueblue.activity.base.BaseActivity;
@@ -15,6 +16,8 @@ public class AppContext {
 
 		// 关闭数据库
 		DBHelper.getInstance().close();
+
+		// GpsGather.getInstance().start();
 	}
 
 	public static void init(Context context) {
@@ -23,6 +26,11 @@ public class AppContext {
 		DBHelper.init(context);
 
 		PushManager.getInstance().initialize(context.getApplicationContext());
+
+		Intent intent = new Intent("com.xinfan.blueblue.runtime.GpsService");
+
+		context.startService(intent);
+
 	}
 
 }

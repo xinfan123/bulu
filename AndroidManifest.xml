@@ -32,6 +32,7 @@
     <uses-permission android:name="android.permission.GET_TASKS" />
     　<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/> 
 　　<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> 
 
     <!-- 自定义权限 -->
     <permission
@@ -44,6 +45,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:launchMode="singleTask"
+        android:name="com.xinfan.blueblue.activity.context.BuluApplication"
         android:theme="@android:style/Theme.Black.NoTitleBar" >
         <activity
             android:name=".AppstartActivity"
@@ -228,6 +230,14 @@
             android:name="PUSH_GROUPID"
             android:value="" />
 
+		<service  
+		    android:name="com.xinfan.blueblue.runtime.GpsService"  
+		    android:enabled="true" >  
+		    <intent-filter>  
+		        <action android:name="com.xinfan.blueblue.runtime.GpsService" />  
+		    </intent-filter>  
+		</service>  
+        
         <!-- 配置SDK核心服务 -->
         <service
             android:name="com.igexin.sdk.PushService"

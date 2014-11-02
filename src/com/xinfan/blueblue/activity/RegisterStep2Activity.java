@@ -2,15 +2,16 @@ package com.xinfan.blueblue.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 
 import com.xinfan.blueblue.activity.base.BaseActivity;
+import com.xinfan.blueblue.location.GpsLocation;
+import com.xinfan.blueblue.location.GpsLocation.LocationListener;
 import com.xinfan.blueblue.location.LocationEntity;
-import com.xinfan.blueblue.location.LocationManager;
-import com.xinfan.blueblue.location.LocationManager.LocationListener;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
 import com.xinfan.blueblue.request.Request;
@@ -53,13 +54,11 @@ public class RegisterStep2Activity extends BaseActivity implements OnClickListen
 
 	public void location() {
 
-		LocationManager.getInstance(this).startLocation(new LocationListener() {
+		GpsLocation.locate(getApplicationContext(), new LocationListener() {
 
 			@Override
 			public void onLocationSucess(LocationEntity uersLocation) {
 				ToastUtil.showMessage(RegisterStep2Activity.this, uersLocation.toString());
-
-				LocationManager.getInstance(RegisterStep2Activity.this).stopLocation();
 
 				location = uersLocation;
 			}
@@ -68,15 +67,12 @@ public class RegisterStep2Activity extends BaseActivity implements OnClickListen
 			public void onLocationError() {
 				ToastUtil.showMessage(RegisterStep2Activity.this, "loation error");
 			}
-
 		});
-
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		LocationManager.getInstance(this).stopLocation();
 	}
 
 	public void register(View v) {

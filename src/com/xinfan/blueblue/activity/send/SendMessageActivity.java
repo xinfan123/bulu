@@ -1,7 +1,7 @@
 package com.xinfan.blueblue.activity.send;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,16 +13,15 @@ import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
+import com.xinfan.blueblue.location.GpsLocation;
+import com.xinfan.blueblue.location.GpsLocation.LocationListener;
 import com.xinfan.blueblue.location.LocationEntity;
-import com.xinfan.blueblue.location.LocationManager;
-import com.xinfan.blueblue.location.LocationManager.LocationListener;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.SendMessageParam;
-import com.xinfan.msgbox.service.dao.entity.UserLogin;
 
 public class SendMessageActivity extends BaseActivity implements OnClickListener {
 
@@ -91,14 +90,11 @@ public class SendMessageActivity extends BaseActivity implements OnClickListener
 
 	public void location() {
 
-		LocationManager.getInstance(this).startLocation(new LocationListener() {
+		GpsLocation.locate(getApplicationContext(), new LocationListener() {
 
 			@Override
 			public void onLocationSucess(LocationEntity uersLocation) {
 				ToastUtil.showMessage(SendMessageActivity.this, uersLocation.toString());
-
-				LocationManager.getInstance(SendMessageActivity.this).stopLocation();
-
 				location = uersLocation;
 			}
 
@@ -107,7 +103,6 @@ public class SendMessageActivity extends BaseActivity implements OnClickListener
 				ToastUtil.showMessage(SendMessageActivity.this, "loation error");
 			}
 		});
-
 	}
 
 	public void send_msg_back(View view) {
@@ -238,8 +233,6 @@ public class SendMessageActivity extends BaseActivity implements OnClickListener
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-
-		LocationManager.getInstance(this).stopLocation();
 	}
 
 }
