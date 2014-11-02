@@ -72,19 +72,15 @@ public class SendMessageLocationActivity extends BaseActivity {
 
 			@Override
 			public void onLocationSucess(LocationEntity uersLocation) {
+				SendMessageActivity.instance.location = uersLocation;
+				SendMessageLocationActivity.this.finish();
+
 				/*
-				 * SendMessageActivity.instance.location = uersLocation;
-				 * SendMessageLocationActivity.this.finish();
+				 * handler.post(new Runnable() {
+				 * 
+				 * @Override public void run() { view1.setVisibility(View.GONE);
+				 * view2.setVisibility(View.VISIBLE); } });
 				 */
-
-				handler.post(new Runnable() {
-
-					@Override
-					public void run() {
-						view1.setVisibility(View.GONE);
-						view2.setVisibility(View.VISIBLE);
-					}
-				});
 			}
 
 			@Override
