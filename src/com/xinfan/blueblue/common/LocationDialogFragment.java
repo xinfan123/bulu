@@ -2,7 +2,6 @@ package com.xinfan.blueblue.common;
 
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,20 +10,16 @@ import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.R;
 
-public class LoadingDialogFragment extends DialogFragment {
+public class LocationDialogFragment extends DialogFragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.loading_fragment, container, false);
-		String msg = this.getArguments().getString("msg");
-		TextView msgView = (TextView) v.findViewById(R.id.loading_msg);
-		msgView.setText(msg);
-		msgView.setVisibility(View.VISIBLE);
+		View v = inflater.inflate(R.layout.message_gps_location, container, false);
 		return v;
 	}
 
-	public static LoadingDialogFragment newInstance(String msg) {
-		LoadingDialogFragment fragment = new LoadingDialogFragment();
+	public static LocationDialogFragment newInstance(String msg) {
+		LocationDialogFragment fragment = new LocationDialogFragment();
 		Bundle args = new Bundle();
 		args.putString("msg", msg);
 		fragment.setArguments(args);
@@ -36,8 +31,7 @@ public class LoadingDialogFragment extends DialogFragment {
 	}
 
 	public void open(Activity activity) {
-		FragmentTransaction ft = activity.getFragmentManager().beginTransaction();
-		show(ft, "location");
+		show(activity.getFragmentManager(), "df");
 	}
 
 	public void close() {

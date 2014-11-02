@@ -135,6 +135,11 @@
         <activity
             android:name=".send.AreaSelectActivity"
             android:theme="@style/MyDialogStyle" />
+         <activity
+            android:name=".send.SendMessageLocationActivity"
+            android:theme="@style/MyDialogStyle" />
+        
+        
         <activity
             android:name=".rev.RevSeeMessageActivity"
             android:theme="@style/Anim_style2" />
