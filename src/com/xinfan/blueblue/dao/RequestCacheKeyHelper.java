@@ -1,5 +1,6 @@
 package com.xinfan.blueblue.dao;
 
+import com.xinfan.msgbox.http.service.vo.param.UserLinkmanListParam;
 import com.xinfan.msgbox.http.service.vo.param.UserMessageListParam;
 
 public class RequestCacheKeyHelper {
@@ -22,5 +23,10 @@ public class RequestCacheKeyHelper {
 		return builder.toString();
 	}
 	
-
+	public static String generateContactListCacheKey(UserLinkmanListParam param) {
+		StringBuilder builder = new StringBuilder();
+		builder.append(param.getFunId()).append(param.getUserId()).append(param.getPageNo());
+		return builder.toString();
+	}
+	
 }

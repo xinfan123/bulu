@@ -24,9 +24,10 @@ import android.widget.Scroller;
 import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.context.LoginUserContext;
+import com.xinfan.blueblue.dao.RequestCacheKeyHelper;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
-import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.util.BeanUtils;
 import com.xinfan.blueblue.vo.ContactVo;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
@@ -34,7 +35,7 @@ import com.xinfan.msgbox.http.service.vo.param.UserLinkmanListParam;
 import com.xinfan.msgbox.http.service.vo.result.UserLinkmanListResult;
 import com.xinfan.msgbox.http.service.vo.result.UserLinkmanResult;
 
-public class ContactListView extends ListView implements OnScrollListener ,OnItemClickListener {
+public class ContactListView extends ListView implements OnScrollListener, OnItemClickListener {
 
 	private float mLastY = -1; // save event y
 	private Scroller mScroller; // used for scroll back
@@ -114,7 +115,7 @@ public class ContactListView extends ListView implements OnScrollListener ,OnIte
 				getViewTreeObserver().removeGlobalOnLayoutListener(this);
 			}
 		});
-		
+
 		this.setOnItemClickListener(this);
 	}
 
@@ -411,6 +412,8 @@ public class ContactListView extends ListView implements OnScrollListener ,OnIte
 		param.setPageSize(pageSize);
 
 		request.setParam(param);
+		request.setCache(true);
+		request.setCacheKey(RequestCacheKeyHelper.generateContactListCacheKey(param));
 
 		AnsynHttpRequest.requestSimpleByPost(context, request, new RequestSucessCallBack() {
 
@@ -419,7 +422,7 @@ public class ContactListView extends ListView implements OnScrollListener ,OnIte
 				UserLinkmanListResult result = (UserLinkmanListResult) data.getResult();
 				List<UserLinkmanResult> rList = result.getList();
 				List<ContactVo> addList = (ArrayList<ContactVo>) BeanUtils.copyList(rList, ContactVo.class);
-				
+
 				ContactListView.this.list.clear();
 				ContactListView.this.list.addAll(addList);
 				ContactListView.this.ad.notifyDataSetChanged();
@@ -432,7 +435,7 @@ public class ContactListView extends ListView implements OnScrollListener ,OnIte
 		Request request = new Request(FunIdConstants.GET_USER_LINKMAN_LIST);
 		UserLinkmanListParam param = new UserLinkmanListParam();
 		param.setUserId(LoginUserContext.getUserId(context));
-		param.setPageNo(page+1);
+		param.setPageNo(page + 1);
 		param.setPageSize(pageSize);
 
 		request.setParam(param);
@@ -453,13 +456,13 @@ public class ContactListView extends ListView implements OnScrollListener ,OnIte
 			}
 		});
 	}
-	
+
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		Intent intent = new Intent();
 		intent.setClass(MainActivity.instance, ContactInfoActivity.class);
 
-		ContactVo vo = (ContactVo) list.get(arg2-1);
+		ContactVo vo = (ContactVo) list.get(arg2 - 1);
 
 		Bundle data = new Bundle();
 		data.putSerializable("vo", vo);
