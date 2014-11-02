@@ -1,5 +1,6 @@
 package com.xinfan.blueblue.dao;
 
+import com.xinfan.msgbox.http.service.vo.param.BaseParam;
 import com.xinfan.msgbox.http.service.vo.param.MessageRevParam;
 import com.xinfan.msgbox.http.service.vo.param.SendMessageParam;
 import com.xinfan.msgbox.http.service.vo.param.UserLinkmanListParam;
@@ -40,6 +41,24 @@ public class RequestCacheKeyHelper {
 	public static String generateSeeSendMessageCacheKey(SendMessageParam param) {
 		StringBuilder builder = new StringBuilder();
 		builder.append(param.getFunId()).append(param.getUserId()).append(param.getMsgId());
+		return builder.toString();
+	}
+	
+	public static String generateThemeSetListCacheKey(BaseParam param) {
+		StringBuilder builder = new StringBuilder();
+		builder.append(param.getFunId()).append(param.getUserId());
+		return builder.toString();
+	}
+	
+	public static String generateAccountInfoCacheKey(BaseParam param) {
+		StringBuilder builder = new StringBuilder();
+		builder.append(param.getFunId()).append(param.getUserId());
+		return builder.toString();
+	}
+	
+	public static String generateSystemSetCacheKey(BaseParam param) {
+		StringBuilder builder = new StringBuilder();
+		builder.append(param.getFunId()).append(param.getUserId());
 		return builder.toString();
 	}
 	

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
+import com.xinfan.blueblue.dao.RequestCacheKeyHelper;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
@@ -93,6 +94,9 @@ public class AccountInfoActivity extends BaseActivity {
 		BaseParam param = new BaseParam();
 		param.setUserId(LoginUserContext.getUserId(this));
 		request.setParam(param);
+		
+		request.setCache(true);
+		request.setCacheKey(RequestCacheKeyHelper.generateAccountInfoCacheKey(param));
 
 		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
 
