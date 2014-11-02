@@ -18,6 +18,8 @@ public class Request implements java.io.Serializable {
 
 	private boolean isCache;
 
+	private String cacheKey;
+
 	private boolean isShowDialog = true;
 
 	private String dialogMessage = "正在处理...";
@@ -31,6 +33,14 @@ public class Request implements java.io.Serializable {
 	private RequestSucessCallBack requestSucessCallBack;
 
 	private NetworkErrorCallBack networkErrorCallBack;
+
+	public String getCacheKey() {
+		return cacheKey;
+	}
+
+	public void setCacheKey(String cacheKey) {
+		this.cacheKey = cacheKey;
+	}
 
 	public Request(FunIdConstants path) {
 		this.path = path;

@@ -153,7 +153,7 @@ class MyRunnable implements Runnable {
 			}
 			
 			if (request.isCache()) {// 把数据缓存到本地
-				data = DaoFactory.getDao(CacheDataDao.class).getURLData(request.getParam().getFunId());
+				data = DaoFactory.getDao(CacheDataDao.class).getURLData(request.getCacheKey());
 			}
 			
 		} else {
@@ -221,7 +221,7 @@ class MyRunnable implements Runnable {
 					// httpClient.getCookieStore().getCookies().g
 					data = EntityUtils.toString(response.getEntity());
 					if (request.isCache()) {// 把数据缓存到本地
-						DaoFactory.getDao(CacheDataDao.class).addOrUpdateURLData(request.getParam().getFunId(),data);
+						DaoFactory.getDao(CacheDataDao.class).addOrUpdateURLData(request.getCacheKey(),data);
 					}
 				} else {
 					ToastUtil.showMessage(context, "服务请求通信异常");

@@ -28,6 +28,7 @@ import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.XListViewFooter;
 import com.xinfan.blueblue.activity.XListViewHeader;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
+import com.xinfan.blueblue.dao.RequestCacheKeyHelper;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
@@ -416,6 +417,7 @@ public class RevMessageListView extends ListView implements OnScrollListener, On
 
 		request.setParam(param);
 		request.setCache(true);
+		request.setCacheKey(RequestCacheKeyHelper.generateRevMessageListCacheKey(param));
 
 		AnsynHttpRequest.requestSimpleByPost(context, request, new RequestSucessCallBack() {
 

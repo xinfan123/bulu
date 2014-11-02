@@ -27,6 +27,7 @@ import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.activity.send.SeeMessageActivity;
 import com.xinfan.blueblue.activity.send.SendMessageListAdapter;
 import com.xinfan.blueblue.activity.send.SendMessageSummaryVO;
+import com.xinfan.blueblue.dao.RequestCacheKeyHelper;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
@@ -414,6 +415,8 @@ public class SendedMessageListView extends ListView implements OnScrollListener,
 
 		request.setParam(param);
 		request.setCache(true);
+		request.setCacheKey(RequestCacheKeyHelper.generateSendedMessageListCacheKey(param));
+		
 
 		AnsynHttpRequest.requestSimpleByPost(context, request, new RequestSucessCallBack() {
 
