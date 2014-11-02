@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xinfan.blueblue.activity"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0"  >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -30,6 +30,8 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="getui.permission.GetuiService" />
     <uses-permission android:name="android.permission.GET_TASKS" />
+    　<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/> 
+　　<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> 
 
     <!-- 自定义权限 -->
     <permission
@@ -41,10 +43,12 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
+        android:launchMode="singleTask"
         android:theme="@android:style/Theme.Black.NoTitleBar" >
         <activity
             android:name=".AppstartActivity"
             android:label="@string/title_activity_main"
+            android:launchMode="singleTask"
             android:theme="@style/Anim_style2" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,6 +58,7 @@
         </activity>
         <activity
             android:name=".ViewpagerActivity"
+            android:launchMode="singleTask"
             android:theme="@style/Anim_style2" >
         </activity>
         <!--
@@ -77,7 +82,7 @@
         <activity
             android:name=".RegisterStep1Activity"
             android:theme="@android:style/Theme.NoTitleBar" />
-           <activity
+        <activity
             android:name=".ExitActivity"
             android:theme="@style/MyDialogStyle" />
         <activity
@@ -293,23 +298,26 @@
         </receiver>
 
         <!-- 配置第三方Receiver -->
-<!--         <receiver
+        <!--
+             <receiver
             android:name="com.xinfan.blueblue.gettui.PushDemoReceiver"
             android:exported="false" >
             <intent-filter>
                 <action android:name="com.igexin.sdk.action.RyxVL19P9P69Fgs7ysDsVA" />
             </intent-filter>
-        </receiver> -->
+        </receiver>
+        -->
 
         <provider
             android:name="com.igexin.download.DownloadProvider"
             android:authorities="downloads.com.xinfan.blueblue.gettui"
             android:process=":pushservice" /> <!-- 替换为downloads.第三方包名 -->
-            
-		<!-- ************************************************************* -->
-		<!-- ************************************************************* -->
-		<!-- ************************************************************* -->
-		
+
+
+        <!-- ************************************************************* -->
+        <!-- ************************************************************* -->
+        <!-- ************************************************************* -->
+
     </application>
 
 </manifest>
