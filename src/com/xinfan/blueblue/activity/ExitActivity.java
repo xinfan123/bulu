@@ -66,19 +66,19 @@ public class ExitActivity extends BaseActivity {
 		request.setRequestErrorCallBack(new RequestErrorCallBack() {
 
 			public void call(Request request) {
-				AppContext.destroy();
+				AppContext.destroy(ExitActivity.this);
 			}
 		});
 		request.setNetworkErrorCallBack(new NetworkErrorCallBack() {
 
 			public void call(Request request) {
-				AppContext.destroy();
+				AppContext.destroy(ExitActivity.this);
 			}
 		});
 
 		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
 			public void call(Request request) {
-				AppContext.destroy();
+				AppContext.destroy(ExitActivity.this);
 			}
 		});
 

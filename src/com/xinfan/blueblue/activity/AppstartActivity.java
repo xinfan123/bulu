@@ -7,6 +7,7 @@ import android.os.Handler;
 
 import com.igexin.sdk.PushManager;
 import com.xinfan.blueblue.activity.base.BaseActivity;
+import com.xinfan.blueblue.activity.context.AppContext;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.activity.context.VersionContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
@@ -25,8 +26,8 @@ public class AppstartActivity extends BaseActivity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.appstart);
-
-		PushManager.getInstance().initialize(this.getApplicationContext());
+		
+		AppContext.init(this);
 
 		new Handler().postDelayed(new Runnable() {
 			@Override
@@ -61,7 +62,7 @@ public class AppstartActivity extends BaseActivity {
 
 							@Override
 							public void call(Request request) {
-								Intent intent = new Intent(AppstartActivity.this, WelcomeActivity.class);
+								Intent intent = new Intent(AppstartActivity.this, MainActivity.class);
 								startActivity(intent);
 								AppstartActivity.this.finish();
 							}

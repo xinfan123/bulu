@@ -415,6 +415,7 @@ public class RevMessageListView extends ListView implements OnScrollListener, On
 		param.setPageSize(pageSize);
 
 		request.setParam(param);
+		request.setCache(true);
 
 		AnsynHttpRequest.requestSimpleByPost(context, request, new RequestSucessCallBack() {
 

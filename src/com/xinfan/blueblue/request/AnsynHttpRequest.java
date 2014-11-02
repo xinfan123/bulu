@@ -26,7 +26,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.activity.context.SystemConfigContext;
 import com.xinfan.blueblue.common.LoadingDialogFragment;
+import com.xinfan.blueblue.dao.CacheDataDao;
 import com.xinfan.blueblue.dao.DBHelper;
+import com.xinfan.blueblue.dao.DaoFactory;
 import com.xinfan.blueblue.util.JSONUtils;
 import com.xinfan.blueblue.util.LogUtil;
 import com.xinfan.blueblue.util.ToastUtil;
@@ -140,85 +142,6 @@ class MyRunnable implements Runnable {
 
 		if (Network.checkNetWorkType(context) == Network.NONETWORK) {
 			ToastUtil.showMessage(context, "没有网络连接，请检查网络");
-			return;
-		}
-
-		try {
-
-			if (request.isShowDialog()) {
-				loading = LoadingDialogFragment.newInstance(request.getDialogMessage());
-				loading.open(context);
-			}
-
-			// 设置请求头超时请求参数
-			BasicHttpParams httpParams = new BasicHttpParams();
-			HttpConnectionParams.setConnectionTimeout(httpParams, AnsynHttpRequest.REQUEST_TIMEOUT);
-			HttpConnectionParams.setSoTimeout(httpParams, AnsynHttpRequest.SO_TIMEOUT);
-
-			if (AnsynHttpRequest.mHttpClient == null) {
-				// AnsynHttpRequest.mHttpClient = new
-				// DefaultHttpClient(httpParams);
-				DefaultHttpClient client = new DefaultHttpClient(httpParams);
-				ClientConnectionManager mgr = client.getConnectionManager();
-				HttpParams params = client.getParams();
-				client = new DefaultHttpClient(new ThreadSafeClientConnManager(params, mgr.getSchemeRegistry()), params);
-				// client.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET,
-				// "UTF-8");
-				client.getParams().setParameter(HttpProtocolParams.HTTP_CONTENT_CHARSET, "UTF-8");
-				AnsynHttpRequest.mHttpClient = client;
-
-			}
-			// HttpClient httpClient = HttpUtils.getNewHttpClient(context);
-			HttpResponse response = null;
-			switch (request.getSendType()) {
-			case AnsynHttpRequest.GET: // get 方式提交
-				HttpGet get = new HttpGet(request.getAddress());
-				// get.setHeader("User-Agent", sUserAgent.toString());
-				// get.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET,
-				// "UTF-8");
-				response = AnsynHttpRequest.mHttpClient.execute(get);
-				break;
-			case AnsynHttpRequest.POST: // post 方式提交
-				HttpPost post = new HttpPost(request.getAddress());
-				// post.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET,
-				// "UTF-8");
-
-				// post.setHeader("User-Agent", sUserAgent.toString());
-				List<NameValuePair> params = new ArrayList<NameValuePair>();
-				JSONObject map = JSONUtils.toJSONObject(request.getRequestParamter());
-
-				map.put("class", String.valueOf(request.getRequestParamter().getClass().getName()));
-
-				if (map != null && map.size() > 0) {
-					for (String key : map.keySet()) {
-						params.add(new BasicNameValuePair(key, String.valueOf(map.get(key))));
-					}
-				}
-				HttpEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
-				post.setEntity(entity);
-				response = AnsynHttpRequest.mHttpClient.execute(post);
-				break;
-			default:
-				break;
-			}
-			System.out.println("~~~~~~~~~~~~~~~~~~~~" + (response.getStatusLine().getStatusCode()));
-			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-				// httpClient.getCookieStore().getCookies().g
-				data = EntityUtils.toString(response.getEntity());
-				if (request.isCache()) {// 把数据缓存到本地
-					DBHelper.getInstance(context).addOrUpdateURLData(request.getParam().getFunId(), data);
-				}
-			} else {
-				if (!request.isCache()) {
-					// AnsynHttpRequest.sendBroadcastReceiverMessage(context,
-					// "11111111111");
-				}
-				data = null;
-			}
-		} catch (Exception e) {
-			LogUtil.e(AnsynHttpRequest.tag, e);
-			ToastUtil.showMessage(context, "网络通信异常");
-			data = null;
 
 			if (request.getNetworkErrorCallBack() != null) {
 
@@ -228,11 +151,100 @@ class MyRunnable implements Runnable {
 					}
 				});
 			}
+			
+			if (request.isCache()) {// 把数据缓存到本地
+				data = DaoFactory.getDao(CacheDataDao.class).getURLData(request.getParam().getFunId());
+			}
+			
+		} else {
 
-		} finally {
-			if (request.isShowDialog()) {
-				if (loading != null) {
-					loading.close();
+			try {
+
+				if (request.isShowDialog()) {
+					loading = LoadingDialogFragment.newInstance(request.getDialogMessage());
+					loading.open(context);
+				}
+
+				// 设置请求头超时请求参数
+				BasicHttpParams httpParams = new BasicHttpParams();
+				HttpConnectionParams.setConnectionTimeout(httpParams, AnsynHttpRequest.REQUEST_TIMEOUT);
+				HttpConnectionParams.setSoTimeout(httpParams, AnsynHttpRequest.SO_TIMEOUT);
+
+				if (AnsynHttpRequest.mHttpClient == null) {
+					// AnsynHttpRequest.mHttpClient = new
+					// DefaultHttpClient(httpParams);
+					DefaultHttpClient client = new DefaultHttpClient(httpParams);
+					ClientConnectionManager mgr = client.getConnectionManager();
+					HttpParams params = client.getParams();
+					client = new DefaultHttpClient(new ThreadSafeClientConnManager(params, mgr.getSchemeRegistry()), params);
+					// client.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET,
+					// "UTF-8");
+					client.getParams().setParameter(HttpProtocolParams.HTTP_CONTENT_CHARSET, "UTF-8");
+					AnsynHttpRequest.mHttpClient = client;
+
+				}
+				// HttpClient httpClient = HttpUtils.getNewHttpClient(context);
+				HttpResponse response = null;
+				switch (request.getSendType()) {
+				case AnsynHttpRequest.GET: // get 方式提交
+					HttpGet get = new HttpGet(request.getAddress());
+					// get.setHeader("User-Agent", sUserAgent.toString());
+					// get.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET,
+					// "UTF-8");
+					response = AnsynHttpRequest.mHttpClient.execute(get);
+					break;
+				case AnsynHttpRequest.POST: // post 方式提交
+					HttpPost post = new HttpPost(request.getAddress());
+					// post.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET,
+					// "UTF-8");
+
+					// post.setHeader("User-Agent", sUserAgent.toString());
+					List<NameValuePair> params = new ArrayList<NameValuePair>();
+					JSONObject map = JSONUtils.toJSONObject(request.getRequestParamter());
+
+					map.put("class", String.valueOf(request.getRequestParamter().getClass().getName()));
+
+					if (map != null && map.size() > 0) {
+						for (String key : map.keySet()) {
+							params.add(new BasicNameValuePair(key, String.valueOf(map.get(key))));
+						}
+					}
+					HttpEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
+					post.setEntity(entity);
+					response = AnsynHttpRequest.mHttpClient.execute(post);
+					break;
+				default:
+					break;
+				}
+				System.out.println("~~~~~~~~~~~~~~~~~~~~" + (response.getStatusLine().getStatusCode()));
+				if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+					// httpClient.getCookieStore().getCookies().g
+					data = EntityUtils.toString(response.getEntity());
+					if (request.isCache()) {// 把数据缓存到本地
+						DaoFactory.getDao(CacheDataDao.class).addOrUpdateURLData(request.getParam().getFunId(),data);
+					}
+				} else {
+					ToastUtil.showMessage(context, "服务请求通信异常");
+					data = null;
+				}
+			} catch (Exception e) {
+				LogUtil.e(AnsynHttpRequest.tag, e);
+				ToastUtil.showMessage(context, "网络通信异常");
+				data = null;
+
+				if (request.getNetworkErrorCallBack() != null) {
+
+					((Activity) context).runOnUiThread(new Thread() {
+						public void run() {
+							request.getNetworkErrorCallBack().call(request);
+						}
+					});
+				}
+			} finally {
+				if (request.isShowDialog()) {
+					if (loading != null) {
+						loading.close();
+					}
 				}
 			}
 		}
