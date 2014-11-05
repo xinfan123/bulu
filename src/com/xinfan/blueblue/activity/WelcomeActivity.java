@@ -20,7 +20,6 @@ public class WelcomeActivity extends BaseActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome);
-
 		SystemConfigContext.init(this);
 
 		init();
