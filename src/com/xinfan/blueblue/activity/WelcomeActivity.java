@@ -11,17 +11,30 @@ import android.view.View.OnLongClickListener;
 import android.widget.EditText;
 
 import com.xinfan.blueblue.activity.base.BaseActivity;
+import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.activity.context.SystemConfigContext;
+import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
+import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
+import com.xinfan.blueblue.request.SharePreferenceUtil;
+import com.xinfan.blueblue.util.Md5PwdFactory;
+import com.xinfan.blueblue.util.ToastUtil;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.LoginParam;
+import com.xinfan.msgbox.http.service.vo.result.LoginResult;
 
 public class WelcomeActivity extends BaseActivity {
+	private EditText mUser;
+	private EditText mPassword;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome);
 		SystemConfigContext.init(this);
-
+		mUser = (EditText) findViewById(R.id.login_user_edit);
+		mPassword = (EditText) findViewById(R.id.login_passwd_edit);
 		init();
 		
 		autoLogin();
@@ -30,7 +43,69 @@ public class WelcomeActivity extends BaseActivity {
 	public void autoLogin(){
 			
 	}
+	public void welcome_login(View v) {
 
+		String username = mUser.getText().toString();
+		String passwd = mPassword.getText().toString();
+		
+		if (username.length() == 0 || passwd.length() == 0) {
+			ToastUtil.showMessage(this, "用户名密码不能为空");
+			return;
+		}
+		
+		final String enPasswd = Md5PwdFactory.getUserMd5PwdEncoder().encodePassword(passwd);
+		
+		Request request = new Request(FunIdConstants.LOGIN);
+		LoginParam param = new LoginParam();
+		param.setMobile(username);
+		param.setPasswd(enPasswd);
+		request.setParam(param);
+
+		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
+
+			public void call(Request data) {
+
+				
+				LoginResult result = (LoginResult) data.getResult();
+				if(result.getResult()==1){
+					
+					ToastUtil.showMessage(WelcomeActivity.this,result.getMsg());
+					
+					SharePreferenceUtil util = new SharePreferenceUtil(WelcomeActivity.this, Constants.USER_INFO);
+					util.setUserId(result.getUserId());
+					util.setMobile(result.getMobile());
+					util.setUsername(result.getUserName());
+					util.setPasswd(enPasswd);
+					util.setCID(result.getCid());
+					
+					Intent intent = new Intent();
+					intent.setClass(WelcomeActivity.this, MainActivity.class);
+					startActivity(intent);
+					WelcomeActivity.this.finish();
+					
+					LoginUserContext.setIsLogin(WelcomeActivity.this, true);
+					
+				}else{
+					ToastUtil.showMessage(WelcomeActivity.this,result.getMsg());
+				}
+			
+			}
+		});
+
+	}
+
+	public void login_back(View v) {
+		this.finish();
+	}
+
+	public void login_pw(View v) {
+		Intent intent = new Intent();
+		intent.setClass(WelcomeActivity.this, ForgetPasswordStep1.class);
+		startActivity(intent);
+		// Intent intent = new Intent();
+		// intent.setClass(Login.this,Whatsnew.class);
+		// startActivity(intent);
+	}
 	public void init() {
 		View view = this.findViewById(R.id.linearLayout1);
 		view.setOnLongClickListener(new OnLongClickListener() {
@@ -43,12 +118,12 @@ public class WelcomeActivity extends BaseActivity {
 		});
 	}
 
-	public void welcome_login(View v) {
-		Intent intent = new Intent();
-		intent.setClass(WelcomeActivity.this, LoginActivity.class);
-		startActivity(intent);
-		this.finish();
-	}
+//	public void welcome_login(View v) {
+//		Intent intent = new Intent();
+//		intent.setClass(WelcomeActivity.this, LoginActivity.class);
+//		startActivity(intent);
+//		this.finish();
+//	}
 
 	public void welcome_register(View v) {
 		Intent intent = new Intent();
