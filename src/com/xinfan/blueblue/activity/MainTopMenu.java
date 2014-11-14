@@ -200,30 +200,32 @@ public class MainTopMenu extends PopupWindow {
 	}
 
 	public void getAvatar(String name) {
+		
+		if (!imageLoaded) {
 
-		Request request = new Request(FunIdConstants.USER_AVATAR_GET);
-		UserAvatarParam param = new UserAvatarParam();
-		param.setAvatar(name);
-		request.setParam(param);
-		request.setShowDialog(false);
-		request.setCache(true);
-		request.setCacheKey(RequestCacheKeyHelper.generateAvatarCacheKey(param));
+			Request request = new Request(FunIdConstants.USER_AVATAR_GET);
+			UserAvatarParam param = new UserAvatarParam();
+			param.setAvatar(name);
+			request.setParam(param);
+			request.setShowDialog(false);
+			request.setCache(true);
+			request.setCacheKey(RequestCacheKeyHelper.generateAvatarCacheKey(param));
 
-		AnsynHttpRequest.requestSimpleByPost(context, request, new RequestSucessCallBack() {
-			public void call(Request data) {
-				UserAvatarResult result = (UserAvatarResult) data.getResult();
-				String avatar = result.getAvatar();
-				if (avatar != null && avatar.length() > 100) {
-					byte[] bytes = android.util.Base64.decode(avatar, android.util.Base64.DEFAULT);
-					Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-					photo_image.setImageBitmap(bm);
-				} else {
-					photo_image.setImageDrawable(context.getResources().getDrawable(R.drawable.nophoto));
+			AnsynHttpRequest.requestSimpleByPost(context, request, new RequestSucessCallBack() {
+				public void call(Request data) {
+					UserAvatarResult result = (UserAvatarResult) data.getResult();
+					String avatar = result.getAvatar();
+					if (avatar != null && avatar.length() > 100) {
+						byte[] bytes = android.util.Base64.decode(avatar, android.util.Base64.DEFAULT);
+						Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+						photo_image.setImageBitmap(bm);
+					} else {
+						photo_image.setImageDrawable(context.getResources().getDrawable(R.drawable.nophoto));
+					}
 				}
-			}
-		});
-
-		imageLoaded = true;
+			});
+			imageLoaded = true;
+		}
 	}
 	
 	public void updateAvatar(Bitmap avatar){
