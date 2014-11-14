@@ -74,6 +74,7 @@ public class LoginActivity extends BaseActivity {
 					util.setUsername(result.getUserName());
 					util.setPasswd(enPasswd);
 					util.setCID(result.getCid());
+					util.setAvatar(result.getAvatar());
 					
 					Intent intent = new Intent();
 					intent.setClass(LoginActivity.this, MainActivity.class);

@@ -9,16 +9,23 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.base.BaseActivity;
+import com.xinfan.blueblue.activity.context.LoginUserContext;
+import com.xinfan.blueblue.request.AnsynHttpRequest;
+import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.UserAvatarParam;
+import com.xinfan.msgbox.http.service.vo.result.UserAvatarResult;
 
 public class PhotoSelectActivity extends BaseActivity {
 	// private MyDialog dialog;
@@ -47,9 +54,11 @@ public class PhotoSelectActivity extends BaseActivity {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
-				intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, IMAGE_UNSPECIFIED);
-				startActivityForResult(intent, PHOTOZOOM);
+
+				Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(Environment.getExternalStorageDirectory(), "temp.jpg")));
+				System.out.println("=============" + Environment.getExternalStorageDirectory());
+				startActivityForResult(intent, PHOTOHRAPH);
 			}
 		});
 
@@ -57,10 +66,9 @@ public class PhotoSelectActivity extends BaseActivity {
 
 			@Override
 			public void onClick(View arg0) {
-				Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-				intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(Environment.getExternalStorageDirectory(), "temp.jpg")));
-				System.out.println("=============" + Environment.getExternalStorageDirectory());
-				startActivityForResult(intent, PHOTOHRAPH);
+				Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
+				intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, IMAGE_UNSPECIFIED);
+				startActivityForResult(intent, PHOTOZOOM);
 			}
 		});
 
@@ -88,16 +96,41 @@ public class PhotoSelectActivity extends BaseActivity {
 			Bundle extras = data.getExtras();
 			if (extras != null) {
 				Bitmap photo = extras.getParcelable("data");
-				ByteArrayOutputStream stream = new ByteArrayOutputStream();
-				photo.compress(Bitmap.CompressFormat.JPEG, 75, stream);
-
-				MainActivity.instance.menuWindow.photo_image.setImageBitmap(photo);
+				MainActivity.instance.menuWindow.updateAvatar(photo);
+				saveAvatar(photo);
 				this.finish();
 			}
 
 		}
 
 		super.onActivityResult(requestCode, resultCode, data);
+	}
+
+	public void saveAvatar(final Bitmap images) {
+		new Thread() {
+
+			public void run() {
+
+				Request request = new Request(FunIdConstants.USER_AVATAR_SET);
+				UserAvatarParam param = new UserAvatarParam();
+
+				ByteArrayOutputStream stream = new ByteArrayOutputStream();
+				images.compress(Bitmap.CompressFormat.JPEG, 75, stream);
+
+				param.setAvatar(Base64.encodeToString(stream.toByteArray(), Base64.DEFAULT));
+				request.setParam(param);
+				request.setShowDialog(false);
+
+				AnsynHttpRequest.requestSimpleByPost(PhotoSelectActivity.this, request, new RequestSucessCallBack() {
+					public void call(Request data) {
+						UserAvatarResult result = (UserAvatarResult) data.getResult();
+						String avatar = result.getAvatar();
+						LoginUserContext.setAvatar(MainActivity.instance, avatar);
+					}
+				});
+			}
+		}.start();
+
 	}
 
 	public void startPhotoZoom(Uri uri) {

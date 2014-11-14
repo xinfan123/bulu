@@ -63,6 +63,15 @@ public class SharePreferenceUtil {
 		return sp.getString("mobile", "");
 	}
 
+	public void setAvatar(String avatar) {
+		editor.putString("avatar", avatar);
+		editor.commit();
+	}
+
+	public String getAvatar() {
+		return sp.getString("avatar", "");
+	}
+
 	// 是否在后台运行标记
 	public void setIsStart(boolean isStart) {
 		editor.putBoolean("isStart", isStart);

@@ -3,6 +3,8 @@ package com.xinfan.blueblue.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -16,8 +18,15 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.main.PhotoSelectActivity;
+import com.xinfan.blueblue.dao.RequestCacheKeyHelper;
+import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
+import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.SharePreferenceUtil;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.UserAvatarParam;
+import com.xinfan.msgbox.http.service.vo.result.UserAvatarResult;
 
 public class MainTopMenu extends PopupWindow {
 	private TextView menu_userid_text;
@@ -30,9 +39,14 @@ public class MainTopMenu extends PopupWindow {
 	public static MainTopMenu instance;
 
 	public ImageView photo_image;
+	public boolean imageLoaded = false;
+	public Context context;
 
 	public MainTopMenu(final Activity context, OnClickListener itemsOnClick) {
 		super(context);
+
+		this.context = context;
+
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		mMenuView = inflater.inflate(R.layout.bottomdialog, null);
 
@@ -181,7 +195,42 @@ public class MainTopMenu extends PopupWindow {
 
 		menu_userid_text.setText(userid);
 		menu_username_text.setText(username);
+
+		getAvatar(util.getAvatar());
 	}
+
+	public void getAvatar(String name) {
+
+		Request request = new Request(FunIdConstants.USER_AVATAR_GET);
+		UserAvatarParam param = new UserAvatarParam();
+		param.setAvatar(name);
+		request.setParam(param);
+		request.setShowDialog(false);
+		request.setCache(true);
+		request.setCacheKey(RequestCacheKeyHelper.generateAvatarCacheKey(param));
+
+		AnsynHttpRequest.requestSimpleByPost(context, request, new RequestSucessCallBack() {
+			public void call(Request data) {
+				UserAvatarResult result = (UserAvatarResult) data.getResult();
+				String avatar = result.getAvatar();
+				if (avatar != null && avatar.length() > 100) {
+					byte[] bytes = android.util.Base64.decode(avatar, android.util.Base64.DEFAULT);
+					Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+					photo_image.setImageBitmap(bm);
+				} else {
+					photo_image.setImageDrawable(context.getResources().getDrawable(R.drawable.nophoto));
+				}
+			}
+		});
+
+		imageLoaded = true;
+	}
+	
+	public void updateAvatar(Bitmap avatar){
+		this.imageLoaded =true;
+		this.photo_image.setImageBitmap(avatar);
+	}
+	
 	/*
 	 * public void click_myaccount(View v){ Intent intent = new Intent();
 	 * intent.setClass(v.getContext(),UserInfoActivity.class);

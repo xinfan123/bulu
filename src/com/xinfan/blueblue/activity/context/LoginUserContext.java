@@ -41,4 +41,9 @@ public class LoginUserContext {
 		SharePreferenceUtil util = new SharePreferenceUtil(context, Constants.USER_INFO);
 		util.setCID(cid);
 	}
+	
+	public static void setAvatar(Context context, String avatar) {
+		SharePreferenceUtil util = new SharePreferenceUtil(context, Constants.USER_INFO);
+		util.setAvatar(avatar);
+	}
 }
