@@ -17,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.xinfan.blueblue.activity.common.DisplayImageOptionsConfig;
+import com.xinfan.blueblue.activity.context.SystemConfigContext;
 import com.xinfan.blueblue.activity.main.PhotoSelectActivity;
 import com.xinfan.blueblue.dao.RequestCacheKeyHelper;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
@@ -39,7 +42,7 @@ public class MainTopMenu extends PopupWindow {
 	public static MainTopMenu instance;
 
 	public ImageView photo_image;
-	public  boolean imageLoaded = false;
+	public boolean imageLoaded = false;
 	public Context context;
 
 	public MainTopMenu(final Activity context, OnClickListener itemsOnClick) {
@@ -200,7 +203,13 @@ public class MainTopMenu extends PopupWindow {
 	}
 
 	public void getAvatar(String name) {
+
+		String ip = SystemConfigContext.getAddress(context);
+		String http = "http://" + ip + "/file/avatar/" + name;
+
+		ImageLoader.getInstance().displayImage(http, photo_image, DisplayImageOptionsConfig.avatar_options);
 		
+/*
 		if (!imageLoaded) {
 
 			Request request = new Request(FunIdConstants.USER_AVATAR_GET);
@@ -225,14 +234,14 @@ public class MainTopMenu extends PopupWindow {
 				}
 			});
 			imageLoaded = true;
-		}
+		}*/
 	}
-	
-	public void updateAvatar(Bitmap avatar){
-		this.imageLoaded =true;
+
+	public void updateAvatar(Bitmap avatar) {
+		this.imageLoaded = true;
 		this.photo_image.setImageBitmap(avatar);
 	}
-	
+
 	/*
 	 * public void click_myaccount(View v){ Intent intent = new Intent();
 	 * intent.setClass(v.getContext(),UserInfoActivity.class);
