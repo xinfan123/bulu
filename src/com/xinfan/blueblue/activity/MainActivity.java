@@ -41,7 +41,7 @@ public class MainActivity extends BaseActivity implements OnViewChangeListener, 
 	public SendedMessageListView listview2;
 	public ContactListView listview3;
 
-	MainTopMenu menuWindow;
+	public MainTopMenu menuWindow;
 
 	GetuiPushReceiver gettuiReceiver;
 

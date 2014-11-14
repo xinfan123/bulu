@@ -24,72 +24,97 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="left|center_horizontal"
                 android:orientation="horizontal"
-                android:padding="5dp" >
+                android:padding="2dp" >
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="消息号："
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
+                    android:gravity="left|center_horizontal"
+                    android:orientation="horizontal"
+                    android:padding="3dp" android:layout_weight="0.3" >
 
-                <TextView
-                    android:id="@+id/menu_userid_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="aaa"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
-                    android:layout_marginLeft="20dp" />
-            </LinearLayout>
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/nophoto" android:id="@+id/photo_image"/>
+                </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="left|center_horizontal"
-                android:orientation="horizontal"
-                android:padding="5dp" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="昵称："
-                    android:textColor="@color/green"
-                    android:textSize="15dp" />
-
-                <TextView
-                    android:id="@+id/menu_username_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="xiaoxiu439594"
-                    android:textColor="@color/green"
-                    android:textSize="15dp"
-                    android:layout_marginLeft="20dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="left|center_horizontal"
-                android:orientation="horizontal"
-                android:padding="5dp" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="信用值："
-                    android:textColor="@color/green"
-                    android:textSize="15dp" />
-
-                <TextView
+                <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="8800"
-                    android:textColor="@color/green"
-                    android:textSize="15dp"
-                    android:layout_marginLeft="20dp" />
+                    android:gravity="left|center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="3dp" android:layout_weight="0.7" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left|center_horizontal"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="消息号："
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/menu_userid_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                              android:layout_marginLeft="2dp"
+                            android:text="aaa"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left|center_horizontal"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="昵称："
+                            android:textColor="@color/green"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/menu_username_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="xiaoxiu439594"
+                            android:textColor="@color/green"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left|center_horizontal"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="信用值："
+                            android:textColor="@color/green"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                             android:layout_marginLeft="2dp"
+                            android:text="8800"
+                            android:textColor="@color/green"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
@@ -110,7 +135,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/ofm_setting_icon" />
 
-              <Button
+            <Button
                 android:id="@+id/btn_system"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
@@ -138,6 +163,7 @@
                 android:layout_height="35dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ofm_collect_icon" />
+
             <Button
                 android:id="@+id/btn_account"
                 android:layout_width="wrap_content"
@@ -167,7 +193,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/ofm_card_icon" />
 
-               <Button
+            <Button
                 android:id="@+id/btn_complain"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"

@@ -149,6 +149,10 @@
         <activity
             android:name=".rev.RevAddContactActivity"
             android:theme="@style/MyDialogStyle" />
+        
+                <activity
+            android:name=".main.PhotoSelectActivity"
+            android:theme="@style/MyDialogStyle" />
         <activity
             android:name="ThemeSetActivity"
             android:theme="@style/Anim_style2" />
@@ -197,7 +201,7 @@
             android:theme="@style/MyDialogStyle" />
         <!-- 注消账号 -->
         <activity
-            android:name=".AccountEscActivity"
+            android:name=".PhotoSelectActivity"
             android:theme="@style/MyDialogStyle" />
         <activity
             android:name=".ThemeInputActivity"
