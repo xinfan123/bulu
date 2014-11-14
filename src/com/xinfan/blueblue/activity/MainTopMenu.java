@@ -39,7 +39,7 @@ public class MainTopMenu extends PopupWindow {
 	public static MainTopMenu instance;
 
 	public ImageView photo_image;
-	public boolean imageLoaded = false;
+	public  boolean imageLoaded = false;
 	public Context context;
 
 	public MainTopMenu(final Activity context, OnClickListener itemsOnClick) {
