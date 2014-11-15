@@ -3,139 +3,182 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
-        
-		          <TableLayout  android:id="@+id/l1"         
-			          android:layout_width="fill_parent"
-		              android:layout_height="wrap_content"
-		              >		
-		              
-		             <TableRow >
-			        <ImageView
-			            android:id="@+id/user_photo"
-			            android:layout_width="40dp"
-			            android:layout_height="40dp"
-			            android:paddingLeft="10dp"
-			        	android:paddingTop="2dip"
-			           	android:src="@drawable/renma"
-			           />
 
-					 <TextView
-		              android:id="@+id/user_name"
-		              android:layout_width="178dp"
-		              android:layout_height="fill_parent"
-		              android:layout_marginLeft="6dp"
-		              android:gravity="left"
-		              android:paddingTop="10dip"
-		              android:singleLine="true"
-		              android:text="小风"
-		              android:textColor="@color/gray"
-		              android:textSize="14dip" />
-					  <TextView
-			              android:id="@+id/rev_message_time"
-			              android:layout_width="wrap_content"
-		              	  android:layout_height="fill_parent"
-		              	  android:paddingTop="10dip"
-		              	  android:layout_weight="1"
-		              	  android:paddingRight="5dp"
-		              	  android:gravity="right"
-		              	  android:text="下午 16:45"
-		                       
-		              	  android:singleLine="true"
-		              	  android:textColor="@color/gray"
-			              />
-			          </TableRow>
-					
-				
-					  <LinearLayout android:layout_width="match_parent"
-		              android:layout_height="1dp" 
-		              android:background="#F7F7F7"
-		             />
-		
-				<RelativeLayout
-				    android:layout_width="fill_parent"
-				    android:layout_height="67dp"
-				    android:padding="5dip" >
+    <TableLayout
+        android:id="@+id/l1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
 
-		               <TextView
-		                   android:id="@+id/rev_message_title"
-		                   android:layout_width="wrap_content"
-		                   android:layout_height="wrap_content"
-		                   android:layout_weight="1"
-		                   android:gravity="center"
-		                   android:padding="2dip"
-		                   android:singleLine="true"
-		                   android:text="人马"
-		                   android:textColor="@color/gray"
-		                   android:textSize="14dip" />
+        <TableRow>
 
-		               <TextView
-		                   android:id="@+id/rev_message_content"
-		                   android:layout_width="wrap_content"
-		                   android:layout_height="wrap_content"
-		                   android:layout_alignParentLeft="true"
-		                   android:layout_below="@+id/rev_message_title"
-		                   android:layout_weight="1"
-		                   android:gravity="center"
-		                   android:padding="2dip"
-		                   android:singleLine="true"
-		                   android:text="这是唯一一个正常的朋友"
-		                   android:textColor="@color/gray"
-		                   android:textSize="14dip" />
-				
-					 </RelativeLayout>
-		
+            <ImageView
+                android:id="@+id/user_photo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="2dip"
+                android:src="@drawable/renma" />
 
-		        
-		 </TableLayout>
-		      
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="178dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="6dp"
+                android:gravity="left"
+                android:paddingTop="10dip"
+                android:singleLine="true"
+                android:text="小风"
+                android:textColor="@color/gray"
+                android:textSize="14dip" />
 
-		          <RelativeLayout
-		              android:layout_width="fill_parent"
-		              android:layout_height="wrap_content"
-		              android:orientation="horizontal"
-		              android:paddingLeft="8dip" >
+            <TextView
+                android:id="@+id/rev_message_time"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:paddingRight="5dp"
+                android:paddingTop="10dip"
+                android:singleLine="true"
+                android:text="下午 16:45"
+                android:textColor="@color/gray" />
+        </TableRow>
 
-			          <TextView
-			              android:id="@+id/rev_message_amount"
-			              android:layout_width="wrap_content"
-			              android:layout_height="wrap_content"
-			              android:gravity="center"
-			              android:padding="2dip"
-			              android:singleLine="true"
-			              android:text="有偿消息"
-			              android:textColor="@color/gray"
-			              android:textSize="9dip" android:background="@drawable/keyword_btn" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F7F7F7" />
+    </TableLayout>
 
-			          <TextView
-			              android:id="@+id/rev_message_send_type"
-			              android:layout_width="wrap_content"
-			              android:layout_height="wrap_content"
-			              android:layout_alignParentTop="true"
-			              android:layout_marginLeft="26dp"
-			              android:layout_toRightOf="@+id/rev_message_amount"
-			              android:gravity="center"
-			              android:padding="2dip"
-			              android:singleLine="true"
-			              android:text="这是唯"
-			              android:textColor="@color/gray"
-			              android:textSize="9dip" android:background="@drawable/keyword_btn" />
+    <TableLayout
+        android:id="@+id/l1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
 
-			          <TextView
-			              android:id="@+id/rev_message_send_type"
-			              android:layout_width="wrap_content"
-			              android:layout_height="wrap_content"
-			              android:layout_alignParentTop="true"
-			              android:layout_marginLeft="78dp"
-			              android:layout_toRightOf="@+id/rev_message_amount"
-			              android:background="@drawable/keyword_btn"
-			              android:gravity="center"
-			              android:padding="2dip"
-			              android:singleLine="true"
-			              android:text="信用值"
-			              android:textColor="@color/gray"
-			              android:textSize="9dip" />
+        <TableRow>
 
-		          </RelativeLayout>           
-           
-		      
+            <RelativeLayout
+                android:id="@+id/r1"
+                android:layout_width="260dp"
+                android:layout_height="70dp"
+            	android:layout_toLeftOf="@+id/r2"
+                android:paddingTop="5dp" 
+                android:paddingLeft="5dp"
+                android:paddingEnd="5dp">
+
+                <TextView
+                    android:id="@+id/rev_message_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dip"
+                    android:singleLine="true"
+                    android:text="人马"
+                    android:textColor="#000000"
+                    android:textSize="14dip" />
+
+                <TextView
+                    android:id="@+id/rev_message_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"          
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/rev_message_title"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dip"
+                    android:singleLine="true"
+                    android:text="这是唯一一个正常的朋友x"
+                    android:textColor="@color/gray"
+                    android:textSize="14dip" />
+
+                <TextView
+                    android:id="@+id/rev_message_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#F5F5F5"         
+                     android:layout_below="@+id/rev_message_content"     
+                    android:gravity="center"
+                    android:layout_marginTop="2dp"
+                    android:padding="2dip"
+                    android:singleLine="true"
+                    android:text="有偿消息"
+                    android:textColor="#3b5997"
+                    android:textSize="9dip" />
+
+                <TextView
+                    android:id="@+id/rev_message_send_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/rev_message_amount"
+                    android:layout_alignBottom="@+id/rev_message_amount"
+            		android:layout_toRightOf="@+id/rev_message_credit"
+            		android:layout_marginLeft="28dp"
+                    android:background="#F5F5F5"
+                    android:gravity="center"
+                    android:padding="2dip"
+                    android:singleLine="true"             
+                    android:text="位置xxx"
+                    android:textColor="#3b5997"
+                    android:textSize="9dip" />
+
+                <TextView
+                    android:id="@+id/rev_message_credit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/rev_message_amount"
+                    android:layout_alignBottom="@+id/rev_message_amount"
+                    android:layout_marginLeft="28dp"
+                    android:layout_toRightOf="@+id/rev_message_amount"
+                    android:background="#F5F5F5"
+                    android:gravity="center"
+                    android:padding="2dip"
+                    android:singleLine="true"
+                    android:text="信用值"
+                    android:textColor="#3b5997"
+                    android:textSize="9dip" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/r2"
+                android:layout_width="2dp"         
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:background="#F7F7F7"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="10dp"
+                android:paddingRight="10dp"
+               />
+	  <RelativeLayout
+                android:id="@+id/r3"
+                android:layout_width="wrap_content"       
+                android:layout_height="60dp" 
+                android:layout_marginTop="10dp"      
+               android:layout_gravity="right"
+               >
+            <ImageView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" 
+                 android:layout_marginTop="10dp"
+                 android:layout_marginRight="10dp"
+                 android:layout_gravity="right"
+                android:src="@drawable/time_01" />
+              <TextView
+                    android:id="@+id/rev_message_send_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"                                             
+                    android:layout_below="@+id/time"               
+                    android:text="倒计时xxxxxxxxxxxxxxxx"
+                    android:textColor="@color/red"
+                    android:textSize="9dip" />
+	</RelativeLayout>
+        </TableRow>
+        <LinearLayout   android:layout_width="fill_parent"         
+                android:layout_height="5dp"/>
+    </TableLayout>
+
+    
+
 </LinearLayout>
