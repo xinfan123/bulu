@@ -40,16 +40,17 @@ public class AppContext {
 		Intent intent = new Intent("com.xinfan.blueblue.runtime.GpsService");
 
 		context.startService(intent);
-		
+
 		initImageLoader(context);
 
 	}
 
 	public static void initImageLoader(Context context) {
-		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context).threadPriority(Thread.NORM_PRIORITY - 2)
-				.denyCacheImageMultipleSizesInMemory().diskCacheSize(50 * 1024 * 1024) // 50
-				.tasksProcessingOrder(QueueProcessingType.LIFO).writeDebugLogs().build();
-		// Initialize ImageLoader with configuration.
+		DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder().cacheInMemory(false).cacheOnDisc(true).build();
+
+		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context).defaultDisplayImageOptions(defaultOptions)
+				.threadPriority(Thread.NORM_PRIORITY - 2).tasksProcessingOrder(QueueProcessingType.LIFO).build();
+
 		ImageLoader.getInstance().init(config);
 	}
 
