@@ -9,6 +9,7 @@ import com.xinfan.blueblue.activity.R;
 public class DisplayImageOptionsConfig {
 
 	public static DisplayImageOptions avatar_options = new DisplayImageOptions.Builder().showImageForEmptyUri(R.drawable.nophoto).cacheInMemory(true)
-			.cacheOnDisk(true).considerExifParams(true).bitmapConfig(Bitmap.Config.RGB_565).displayer(new RoundedBitmapDisplayer(20)).build();
+			.cacheOnDisk(true).considerExifParams(true).bitmapConfig(Bitmap.Config.RGB_565).showStubImage(R.drawable.nophoto)
+			.showImageOnFail(R.drawable.nophoto).showImageForEmptyUri(R.drawable.nophoto).displayer(new RoundedBitmapDisplayer(20)).build();
 
 }
