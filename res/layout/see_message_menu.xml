@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/abc_ab_bottom_solid_dark_holo"
         android:gravity="center_horizontal"
         android:orientation="vertical" >
 
@@ -22,13 +21,13 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:orientation="horizontal"
-            android:padding="8dp" >
+            android:padding="15dp" >
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ofm_setting_icon" />
+                android:src="@drawable/delet" />
 
             <Button
                 android:layout_width="fill_parent"
@@ -36,15 +35,11 @@
                 android:layout_marginLeft="10dp"
                 android:background="@null"
                 android:gravity="left|center_vertical"
-                android:text="删除"
-                android:textColor="@color/white"
-                android:textSize="15dip" />
+                android:text="删除"       
+                android:textSize="16dip" />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="0.2dp"
-            android:background="@color/black" />
+
 
         <LinearLayout
             android:id="@+id/btn_see_message_menu_resend"
@@ -53,13 +48,13 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:orientation="horizontal"
-            android:padding="8dp" >
+            android:padding="15dp" >
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ofm_collect_icon" />
+                android:src="@drawable/smrilatity" />
 
             <Button
                 android:layout_width="fill_parent"
@@ -68,16 +63,10 @@
                 android:background="@null"
                 android:gravity="left|center_vertical"
                 android:text="重发"
-                android:textColor="@color/white"
-                android:textSize="15dip" />
+                android:textSize="16dip" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp" >
-        </LinearLayout>
+    
     </LinearLayout>
 
 </RelativeLayout>
