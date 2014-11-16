@@ -26,12 +26,6 @@ public class ViewpagerActivity extends BaseActivity {
 	private ImageView mPage0;
 	private ImageView mPage1;
 	private ImageView mPage2;
-	private ImageView mPage3;
-	private ImageView mPage4;
-	private ImageView mPage5;
-	private ImageView mPage6;
-	private ImageView mPage7;
-	private ImageView mPage8;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -46,45 +40,21 @@ public class ViewpagerActivity extends BaseActivity {
 		mPage0 = (ImageView) findViewById(R.id.page0);
 		mPage1 = (ImageView) findViewById(R.id.page1);
 		mPage2 = (ImageView) findViewById(R.id.page2);
-		mPage3 = (ImageView) findViewById(R.id.page3);
-		mPage4 = (ImageView) findViewById(R.id.page4);
-		mPage5 = (ImageView) findViewById(R.id.page5);
-		mPage6 = (ImageView) findViewById(R.id.page6);
-		mPage7 = (ImageView) findViewById(R.id.page7);
-		mPage8 = (ImageView) findViewById(R.id.page8);
 
 		LayoutInflater mLi = LayoutInflater.from(this);
 		View view1 = mLi.inflate(R.layout.view1, null);
 		View view2 = mLi.inflate(R.layout.view2, null);
 		View view3 = mLi.inflate(R.layout.view3, null);
-		View view4 = mLi.inflate(R.layout.view4, null);
-		View view5 = mLi.inflate(R.layout.view5, null);
-		View view6 = mLi.inflate(R.layout.view6, null);
-		View view7 = mLi.inflate(R.layout.view7, null);
-		View view8 = mLi.inflate(R.layout.view8, null);
-		View view9 = mLi.inflate(R.layout.view9, null);
 
 		final ArrayList<View> views = new ArrayList<View>();
 		views.add(view1);
 		views.add(view2);
 		views.add(view3);
-		views.add(view4);
-		views.add(view5);
-		views.add(view6);
-		views.add(view7);
-		views.add(view8);
-		views.add(view9);
 
 		final ArrayList<String> titles = new ArrayList<String>();
 		titles.add("��");
 		titles.add("��");
 		titles.add("��");
-		titles.add("��");
-		titles.add("��");
-		titles.add("��");
-		titles.add("��");
-		titles.add("��");
-		titles.add(" ");
 
 		PagerAdapter mPagerAdapter = new PagerAdapter() {
 
@@ -148,67 +118,6 @@ public class ViewpagerActivity extends BaseActivity {
 			case 2:
 				mPage2.setImageDrawable(getResources().getDrawable(R.drawable.page_now));
 				mPage1.setImageDrawable(getResources().getDrawable(R.drawable.page));
-				mPage3.setImageDrawable(getResources().getDrawable(R.drawable.page));
-				if (currIndex == arg0 - 1) {
-					animation = new TranslateAnimation(20 * (arg0 - 1), 20 * arg0, 0, 0);
-				} else if (currIndex == arg0 + 1) {
-					animation = new TranslateAnimation(20 * (arg0 + 1), 20 * arg0, 0, 0);
-				}
-				break;
-			case 3:
-				mPage3.setImageDrawable(getResources().getDrawable(R.drawable.page_now));
-				mPage4.setImageDrawable(getResources().getDrawable(R.drawable.page));
-				mPage2.setImageDrawable(getResources().getDrawable(R.drawable.page));
-				if (currIndex == arg0 - 1) {
-					animation = new TranslateAnimation(20 * (arg0 - 1), 20 * arg0, 0, 0);
-
-				} else if (currIndex == arg0 + 1) {
-					animation = new TranslateAnimation(20 * (arg0 + 1), 20 * arg0, 0, 0);
-				}
-				break;
-			case 4:
-				mPage4.setImageDrawable(getResources().getDrawable(R.drawable.page_now));
-				mPage3.setImageDrawable(getResources().getDrawable(R.drawable.page));
-				mPage5.setImageDrawable(getResources().getDrawable(R.drawable.page));
-				if (currIndex == arg0 - 1) {
-					animation = new TranslateAnimation(20 * (arg0 - 1), 20 * arg0, 0, 0);
-				} else if (currIndex == arg0 + 1) {
-					animation = new TranslateAnimation(20 * (arg0 + 1), 20 * arg0, 0, 0);
-				}
-				break;
-			case 5:
-				mPage5.setImageDrawable(getResources().getDrawable(R.drawable.page_now));
-				mPage4.setImageDrawable(getResources().getDrawable(R.drawable.page));
-				mPage6.setImageDrawable(getResources().getDrawable(R.drawable.page));
-				if (currIndex == arg0 - 1) {
-					animation = new TranslateAnimation(20 * (arg0 - 1), 20 * arg0, 0, 0);
-				} else if (currIndex == arg0 + 1) {
-					animation = new TranslateAnimation(20 * (arg0 + 1), 20 * arg0, 0, 0);
-				}
-				break;
-			case 6:
-				mPage6.setImageDrawable(getResources().getDrawable(R.drawable.page_now));
-				mPage5.setImageDrawable(getResources().getDrawable(R.drawable.page));
-				mPage7.setImageDrawable(getResources().getDrawable(R.drawable.page));
-				if (currIndex == arg0 - 1) {
-					animation = new TranslateAnimation(20 * (arg0 - 1), 20 * arg0, 0, 0);
-				} else if (currIndex == arg0 + 1) {
-					animation = new TranslateAnimation(20 * (arg0 + 1), 20 * arg0, 0, 0);
-				}
-				break;
-			case 7:
-				mPage7.setImageDrawable(getResources().getDrawable(R.drawable.page_now));
-				mPage8.setImageDrawable(getResources().getDrawable(R.drawable.page));
-				mPage6.setImageDrawable(getResources().getDrawable(R.drawable.page));
-				if (currIndex == arg0 - 1) {
-					animation = new TranslateAnimation(20 * (arg0 - 1), 20 * arg0, 0, 0);
-				} else if (currIndex == arg0 + 1) {
-					animation = new TranslateAnimation(20 * (arg0 + 1), 20 * arg0, 0, 0);
-				}
-				break;
-			case 8:
-				mPage8.setImageDrawable(getResources().getDrawable(R.drawable.page_now));
-				mPage7.setImageDrawable(getResources().getDrawable(R.drawable.page));
 				if (currIndex == arg0 - 1) {
 					animation = new TranslateAnimation(20 * (arg0 - 1), 20 * arg0, 0, 0);
 				} /*
@@ -218,7 +127,7 @@ public class ViewpagerActivity extends BaseActivity {
 				break;
 			}
 			currIndex = arg0;
-			animation.setFillAfter(true);// True:ͼƬͣ�ڶ�������λ��
+			animation.setFillAfter(true);
 			animation.setDuration(300);
 			mPageImg.startAnimation(animation);
 		}

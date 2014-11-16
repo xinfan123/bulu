@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@drawable/w03">
-        
-        <TextView
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/splash3" >
+        <Button
+              android:id="@+id/startBtn"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_alignParentTop="true"
+              android:layout_alignParentBottom="true"
               android:layout_centerHorizontal="true"
-              android:layout_marginTop="96dp"
-              android:text="第二次，你可以和一个MM玩猜拳游戏，谁告诉我这个功能可以作弊"
-              android:textColor="#fff" 
-              android:gravity="center_horizontal"             
-              android:textSize="18sp" />
-    </RelativeLayout>
+              android:layout_marginBottom="98dp"
+              android:text="立即开启"
+              android:textSize="18sp"
+              android:textColor="#fff"
+              android:background="@drawable/button_bg"              
+			  android:layout_gravity="center_vertical"
+			  android:onClick="startbutton"
+              />
+</RelativeLayout>

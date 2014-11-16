@@ -21,10 +21,10 @@ public class LoadingActivity extends BaseActivity{
 	new Handler().postDelayed(new Runnable(){
 		@Override
 		public void run(){
-			Intent intent = new Intent (LoadingActivity.this,Whatsnew.class);			
+/*			Intent intent = new Intent (LoadingActivity.this,Whatsnew.class);			
 			startActivity(intent);			
 			LoadingActivity.this.finish();
-			Toast.makeText(getApplicationContext(), "登录成功", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), "登录成功", Toast.LENGTH_SHORT).show();*/
 		}
 	}, 2000);
    }
