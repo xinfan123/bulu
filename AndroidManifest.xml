@@ -147,8 +147,10 @@
         <activity
             android:name=".rev.RevAddContactActivity"
             android:theme="@style/MyDialogStyle" />
-        
-                <activity
+        <activity
+            android:name=".AccountEscActivity"
+            android:theme="@style/MyDialogStyle" />      
+       <activity
             android:name=".main.PhotoSelectActivity"
             android:theme="@style/MyDialogStyle" />
         <activity
