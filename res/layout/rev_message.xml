@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/gray_bg"
+    android:background="@color/white"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#3b5997"
-        android:padding="12dip"
-        android:gravity="center_vertical" >
+        android:gravity="center_vertical"
+        android:padding="12dip" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,17 +27,15 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:background="@drawable/title_right"
-            android:onClick="onClickMenu"
-          />
+            android:onClick="onClickMenu" />
 
         <Button
             android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/title_back01"
-            android:onClick="send_msg_back"         
+            android:onClick="send_msg_back"
             android:textColor="#fff" />
-
     </RelativeLayout>
 
     <RelativeLayout
@@ -47,13 +45,14 @@
         android:focusableInTouchMode="true"
         android:orientation="horizontal"
         android:padding="5dp" >
-	   <ImageView
-                android:id="@+id/see_user_photo"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:paddingLeft="5dp"
-                android:paddingTop="2dip"
-                android:src="@drawable/renma" />
+
+        <ImageView
+            android:id="@+id/see_user_photo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="2dip"
+            android:src="@drawable/renma" />
 
         <TextView
             android:id="@+id/rev_message_send_time"
@@ -61,8 +60,8 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/rev_message_send_username"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:layout_alignTop="@+id/rev_message_send_username"
+            android:layout_centerVertical="true"
             android:text="时间：2018-10-07"
             android:textColor="@color/blue_renren_pressed" />
 
@@ -70,30 +69,58 @@
             android:id="@+id/rev_message_send_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:padding="4dp"
+            android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/see_user_photo"
+            android:padding="4dp"
             android:text="老牛"
             android:textColor="@color/blue_renren_pressed" />
 
+        <TextView
+            android:id="@+id/see_time_select_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/rev_message_send_time"
+            android:layout_below="@+id/rev_message_send_time"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="有效时间：1天"
+            android:textColor="@color/color_3"
+            android:textSize="10.0sp" />
+
+        <TextView
+            android:id="@+id/see_message_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/see_time_select_label"
+            android:layout_alignBottom="@+id/see_time_select_label"
+            android:layout_alignLeft="@+id/rev_message_send_username"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:text="地域范围：附近"
+            android:textColor="@color/color_3"
+            android:textSize="10.0sp" />
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#f5f5f5" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
         android:orientation="vertical" >
 
         <TextView
             android:id="@+id/see_message_content_edit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10.0dip"
-            android:background="@drawable/selector_text_field"
-            android:gravity="top|left|center"
+            android:gravity="left"
             android:includeFontPadding="false"
-            android:minLines="3"
+            android:inputType="textMultiLine"
+            android:padding="5dp"
             android:text="内容"
             android:textColor="@color/color_3"
             android:textColorHint="@color/color_9"
@@ -103,84 +130,200 @@
             android:id="@+id/see_message_more_edit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10.0dip"
-            android:background="@drawable/selector_text_field"
-            android:gravity="top|left|center"
+            android:background="@null"
+            android:gravity="left"
             android:includeFontPadding="false"
             android:inputType="textMultiLine"
-            android:minLines="4"
-            android:textColor="@color/color_9"
+            android:padding="5dp"
+            android:text="内容详情"
             android:textColorHint="@color/color_9"
-            android:textSize="16.0sp"
-            android:visibility="gone" />
+            android:textSize="16.0sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#f5f5f5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:orientation="horizontal" >
+        android:gravity="center_vertical"
+        android:padding="12dip" >
 
-        <TextView
-            android:id="@+id/see_message_credit"
+        <ImageView
+            android:id="@+id/img01"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/cell_height"
-            android:layout_weight="1"
-            android:background="@drawable/selector_text_field"
-            android:gravity="center_vertical"
-            android:paddingLeft="@dimen/content_padding"
-            android:paddingRight="@dimen/content_padding"
-            android:text="信用值：20"
-            android:textColor="@color/color_3"
-            android:textSize="12.0sp" />
-
-        <TextView
-            android:id="@+id/see_time_select_label"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/cell_height"
-            android:layout_weight="1"
-            android:background="@drawable/selector_text_field"
-            android:gravity="center_vertical"
-            android:paddingLeft="@dimen/content_padding"
-            android:paddingRight="@dimen/content_padding"
-            android:text="有效时间：1天"
-            android:textColor="@color/color_3"
-            android:textSize="12.0sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:id="@+id/see_message_area"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/cell_height"
-            android:layout_weight="1"
-            android:background="@drawable/selector_text_field"
-            android:gravity="center_vertical"
-            android:paddingLeft="@dimen/content_padding"
-            android:paddingRight="@dimen/content_padding"
-            android:text="地域范围：附近"
-            android:textColor="@color/color_3"
-            android:textSize="12.0sp" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/credit01" />
 
         <TextView
             android:id="@+id/see_money_select_label"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/cell_height"
-            android:layout_weight="1"
-            android:background="@drawable/selector_text_field"
-            android:gravity="center_vertical"
-            android:paddingLeft="@dimen/content_padding"
-            android:paddingRight="@dimen/content_padding"
-            android:text="有偿金额：100"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/see_message_credit"
+            android:layout_alignBottom="@+id/see_message_credit"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="60dp"
+            android:gravity="right"
+            android:text="100"
             android:textColor="@color/color_3"
             android:textSize="12.0sp" />
+
+        <TextView
+            android:id="@+id/see_message_credit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/img01"
+            android:layout_marginLeft="24dp"
+            android:layout_toRightOf="@+id/img01"
+            android:text="20"
+            android:textColor="@color/color_3"
+            android:textSize="12.0sp" />
+
+        <ImageView
+            android:id="@+id/img02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/see_money_select_label"
+            android:layout_marginRight="24dp"
+            android:layout_toLeftOf="@+id/see_money_select_label"
+            android:background="@drawable/paid01" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#f5f5f5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="12dp" >
+
+        <ImageView
+            android:id="@+id/img03"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/headshow2"
+            android:padding="5dp" />
+
+        <TextView
+            android:id="@+id/my_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/img03"
+            android:layout_toLeftOf="@+id/img03"
+            android:background="@drawable/chatto_bg_focused"
+            android:text="你好！我能满足你的需求"
+            android:textColor="@color/color_3"
+            android:textSize="12.0sp" />
+
+        <ImageView
+            android:id="@+id/img04"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/my_message"
+            android:background="@drawable/headshow5"
+            android:padding="5dp" />
+
+        <TextView
+            android:id="@+id/you_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/img04"
+            android:layout_toRightOf="@+id/img04"
+            android:background="@drawable/chatfrom_bg_focused"
+            android:text="是么，你电话多少，我们详聊"
+            android:textColor="@color/color_3"
+            android:textSize="12.0sp" />
+
+        <ImageView
+            android:id="@+id/img05"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/you_message"
+            android:background="@drawable/headshow2"
+            android:padding="5dp" />
+
+        <TextView
+            android:id="@+id/my_message02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/img05"
+            android:layout_toLeftOf="@+id/img05"
+            android:background="@drawable/chatto_bg_focused"
+            android:text="1867488688"
+            android:textColor="@color/color_3"
+            android:textSize="12.0sp" />
+
+        <ImageView
+            android:id="@+id/img06"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/my_message02"
+            android:background="@drawable/headshow5"
+            android:padding="5dp" />
+
+        <TextView
+            android:id="@+id/you_message02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/img06"
+            android:layout_toRightOf="@+id/img06"
+            android:background="@drawable/chatfrom_bg_focused"
+            android:text="ok!我call你"
+            android:textColor="@color/color_3"
+            android:textSize="12.0sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_weight="0.001"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.24"
+        android:gravity="bottom"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/send_message_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="5dp"
+            android:background="@null"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:background="#f5f5f5"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:padding="2dp"
+            android:text="发送" />
+
     </LinearLayout>
 
 </LinearLayout>
