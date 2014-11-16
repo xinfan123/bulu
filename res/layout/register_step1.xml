@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:background="#eee"
     android:gravity="center_horizontal"
-    android:orientation="vertical"  >
+    android:orientation="vertical" >
 
     <RelativeLayout
         android:id="@+id/forget_top_layout"
@@ -168,10 +168,11 @@
             android:padding="5dp" >
 
             <TextView
+                android:id="@+id/regist_mark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="《软件许可及服务协议》"
                 android:textColor="#000"
+                android:linksClickable="true"
                 android:textSize="10dp" />
         </LinearLayout>
     </LinearLayout>

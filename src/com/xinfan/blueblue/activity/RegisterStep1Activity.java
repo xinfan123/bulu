@@ -1,20 +1,20 @@
 package com.xinfan.blueblue.activity;
 
-import java.util.regex.Pattern;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.common.TimeButtonTicker2;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
-import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.blueblue.util.ValidationUtils;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
@@ -27,6 +27,7 @@ public class RegisterStep1Activity extends BaseActivity {
 	private EditText mRanCode; // 验证码编辑框
 
 	private static String mobile, randcode;
+	private TextView regist_mark;
 
 	private TimeButtonTicker2 ticker;
 
@@ -36,6 +37,12 @@ public class RegisterStep1Activity extends BaseActivity {
 		mMobile = (EditText) findViewById(R.id.regirst_verofy_mobile_edit);
 		mRanCode = (EditText) findViewById(R.id.regirst_verofy_rancode_edit);
 		sendBtn = (Button) findViewById(R.id.regirst_verofy_get_btn);
+		regist_mark = (TextView)findViewById(R.id.regist_mark);
+		
+		regist_mark.setText(Html.fromHtml("<a href=\"http://www.baidu.com\">《软件许可及服务协议》</a>"));
+		regist_mark.setMovementMethod(LinkMovementMethod.getInstance());
+		
+		
 
 		sendBtn.setOnClickListener(new OnClickListener() {
 			@Override
