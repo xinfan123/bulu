@@ -11,7 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         android:layout_alignParentTop="true"
-        android:background="#3b5997" >
+        android:background="@color/nav_bg_color" >
 
         <Button
             android:id="@+id/regirst_verofy_btn"
@@ -154,7 +154,7 @@
                 android:layout_gravity="center"
                 android:background="#eb6100"
                 android:gravity="center"
-                android:onClick="welcome_login"
+                android:onClick="regirstVerofy"
                 android:text="同意协议并发送"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />

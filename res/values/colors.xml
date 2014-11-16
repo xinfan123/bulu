@@ -6,7 +6,7 @@
     <color name="transparent">#00000000</color>
     <color name="white">#FFFFFF</color>
     <!-- 白色 -->
-
+	<color name="nav_bg_color">#3b5997</color>
     <color name="ivory">#FFFFF0</color>
     <!-- 象牙色 -->
 
