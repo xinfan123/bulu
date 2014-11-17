@@ -55,7 +55,7 @@ public class ThemeSetActivity extends BaseActivity {
 		themeList = (ListView) findViewById(R.id.theme_list);
 		currentView = (TextView) findViewById(R.id.theme_count_current);
 		maxView = (TextView) findViewById(R.id.theme_count_max);
-
+ 
 		adapter = new ThemeSetAdapter(this, list);
 
 		themeList.setAdapter(adapter);

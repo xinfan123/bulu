@@ -29,13 +29,13 @@ import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.util.BeanUtils;
-import com.xinfan.blueblue.vo.ContactVo;
+import com.xinfan.blueblue.vo.LinkmanVo;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.UserLinkmanListParam;
 import com.xinfan.msgbox.http.service.vo.result.UserLinkmanListResult;
 import com.xinfan.msgbox.http.service.vo.result.UserLinkmanResult;
 
-public class ContactListView extends ListView implements OnScrollListener, OnItemClickListener {
+public class LinkmanListView extends ListView implements OnScrollListener, OnItemClickListener {
 
 	private float mLastY = -1; // save event y
 	private Scroller mScroller; // used for scroll back
@@ -77,17 +77,17 @@ public class ContactListView extends ListView implements OnScrollListener, OnIte
 	/**
 	 * @param context
 	 */
-	public ContactListView(Context context) {
+	public LinkmanListView(Context context) {
 		super(context);
 		initWithContext(context);
 	}
 
-	public ContactListView(Context context, AttributeSet attrs) {
+	public LinkmanListView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initWithContext(context);
 	}
 
-	public ContactListView(Context context, AttributeSet attrs, int defStyle) {
+	public LinkmanListView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		initWithContext(context);
 	}
@@ -365,7 +365,7 @@ public class ContactListView extends ListView implements OnScrollListener, OnIte
 		mhandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				ContactListView.this.refresh();
+				LinkmanListView.this.refresh();
 				onLoad();
 			}
 		}, 1000);
@@ -375,22 +375,22 @@ public class ContactListView extends ListView implements OnScrollListener, OnIte
 		mhandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				ContactListView.this.loadMore();
+				LinkmanListView.this.loadMore();
 				onLoad();
 			}
 		}, 1000);
 	}
 
-	public ArrayList<ContactVo> list = new ArrayList<ContactVo>();
+	public ArrayList<LinkmanVo> list = new ArrayList<LinkmanVo>();
 
-	public Contact2Adapter ad;
+	public LinkmanListAdapter ad;
 
 	public Activity context;
 
 	public void init(Activity context) {
 		this.context = context;
 
-		ad = new Contact2Adapter(context, list);
+		ad = new LinkmanListAdapter(context, list);
 		this.setPullLoadEnable(true);
 		this.setAdapter(ad);
 		this.ad.notifyDataSetChanged();
@@ -421,11 +421,11 @@ public class ContactListView extends ListView implements OnScrollListener, OnIte
 
 				UserLinkmanListResult result = (UserLinkmanListResult) data.getResult();
 				List<UserLinkmanResult> rList = result.getList();
-				List<ContactVo> addList = (ArrayList<ContactVo>) BeanUtils.copyList(rList, ContactVo.class);
+				List<LinkmanVo> addList = (ArrayList<LinkmanVo>) BeanUtils.copyList(rList, LinkmanVo.class);
 
-				ContactListView.this.list.clear();
-				ContactListView.this.list.addAll(addList);
-				ContactListView.this.ad.notifyDataSetChanged();
+				LinkmanListView.this.list.clear();
+				LinkmanListView.this.list.addAll(addList);
+				LinkmanListView.this.ad.notifyDataSetChanged();
 			}
 		});
 	}
@@ -446,13 +446,13 @@ public class ContactListView extends ListView implements OnScrollListener, OnIte
 
 				UserLinkmanListResult result = (UserLinkmanListResult) data.getResult();
 				List<UserLinkmanResult> rList = result.getList();
-				List<ContactVo> addList = (ArrayList<ContactVo>) BeanUtils.copyList(rList, ContactVo.class);
+				List<LinkmanVo> addList = (ArrayList<LinkmanVo>) BeanUtils.copyList(rList, LinkmanVo.class);
 
 				if (addList.size() > 0) {
 					page++;
 				}
-				ContactListView.this.list.addAll(addList);
-				ContactListView.this.ad.notifyDataSetChanged();
+				LinkmanListView.this.list.addAll(addList);
+				LinkmanListView.this.ad.notifyDataSetChanged();
 			}
 		});
 	}
@@ -462,7 +462,7 @@ public class ContactListView extends ListView implements OnScrollListener, OnIte
 		Intent intent = new Intent();
 		intent.setClass(MainActivity.instance, ContactInfoActivity.class);
 
-		ContactVo vo = (ContactVo) list.get(arg2 - 1);
+		LinkmanVo vo = (LinkmanVo) list.get(arg2 - 1);
 
 		Bundle data = new Bundle();
 		data.putSerializable("vo", vo);

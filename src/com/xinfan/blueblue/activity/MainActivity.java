@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity implements OnViewChangeListener, 
 
 	public RevMessageListView listview1;
 	public SendedMessageListView listview2;
-	public ContactListView listview3;
+	public LinkmanListView listview3;
 
 	public MainTopMenu menuWindow;
 
@@ -77,7 +77,7 @@ public class MainActivity extends BaseActivity implements OnViewChangeListener, 
 
 		listview1 = (RevMessageListView) findViewById(R.id.listView1);
 		listview2 = (SendedMessageListView) findViewById(R.id.listView2);
-		listview3 = (ContactListView) findViewById(R.id.listView3);
+		listview3 = (LinkmanListView) findViewById(R.id.listView3);
 
 		listview1.init(this);
 		listview2.init(this);

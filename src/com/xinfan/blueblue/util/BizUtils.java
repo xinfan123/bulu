@@ -3,6 +3,13 @@ package com.xinfan.blueblue.util;
 import java.util.Calendar;
 import java.util.Date;
 
+import android.content.Context;
+import android.widget.ImageView;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.xinfan.blueblue.activity.common.DisplayImageOptionsConfig;
+import com.xinfan.blueblue.activity.context.SystemConfigContext;
+
 public class BizUtils {
 
 	public static String calUsefulTime(Date publishDate, Integer dualTime) {
@@ -26,6 +33,17 @@ public class BizUtils {
 		}
 
 		return time;
+	}
+
+	public static String getHttpAvatarUrl(Context context, String name) {
+		String ip = SystemConfigContext.getAddress(context);
+		String http = "http://" + ip + "/file/avatar/" + name;
+		return http;
+	}
+
+	public static void showAvatar(Context context, ImageView view, String name) {
+		String http = BizUtils.getHttpAvatarUrl(context, name);
+		ImageLoader.getInstance().displayImage(http, view, DisplayImageOptionsConfig.avatar_options);
 	}
 
 }

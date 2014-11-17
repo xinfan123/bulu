@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.contact.ContactInfoMenu;
 import com.xinfan.blueblue.activity.send.SendMessageActivity;
-import com.xinfan.blueblue.vo.ContactVo;
+import com.xinfan.blueblue.vo.LinkmanVo;
 
 public class ContactInfoActivity extends BaseActivity {
 
@@ -18,7 +18,7 @@ public class ContactInfoActivity extends BaseActivity {
 
 	public ContactInfoMenu menu;
 
-	public ContactVo vo;
+	public LinkmanVo vo;
 
 	public TextView accountView, creditView, usernameView, markView;
 
@@ -29,7 +29,7 @@ public class ContactInfoActivity extends BaseActivity {
 		setContentView(R.layout.contact_info);
 
 		Bundle data = this.getIntent().getExtras();
-		vo = (ContactVo) data.getSerializable("vo");
+		vo = (LinkmanVo) data.getSerializable("vo");
 
 		instance = this;
 

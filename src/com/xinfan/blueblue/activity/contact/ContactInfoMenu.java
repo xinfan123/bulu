@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 
 import com.xinfan.blueblue.activity.ContactInfoActivity;
-import com.xinfan.blueblue.activity.ContactListView;
+import com.xinfan.blueblue.activity.LinkmanListView;
 import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
@@ -23,7 +23,7 @@ import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.util.BeanUtils;
 import com.xinfan.blueblue.util.ToastUtil;
-import com.xinfan.blueblue.vo.ContactVo;
+import com.xinfan.blueblue.vo.LinkmanVo;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.UserLinkmanParam;
 import com.xinfan.msgbox.http.service.vo.result.UserLinkmanListResult;
@@ -75,7 +75,7 @@ public class ContactInfoMenu extends PopupWindow {
 
 	public void onClickDelete(View v) {
 
-		ContactVo vo = ContactInfoActivity.instance.vo;
+		LinkmanVo vo = ContactInfoActivity.instance.vo;
 		
 		Request request = new Request(FunIdConstants.DELETE_USER_LINKMAN);
 		
@@ -110,7 +110,7 @@ public class ContactInfoMenu extends PopupWindow {
 					return;
 				}
 				
-				ContactVo vo = ContactInfoActivity.instance.vo;
+				LinkmanVo vo = ContactInfoActivity.instance.vo;
 				ContactInfoActivity.instance.updateMark(str);
 				ToastUtil.showMessage(v.getContext(), "修改成功");
 				window.dismiss();

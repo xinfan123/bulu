@@ -10,13 +10,16 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.xinfan.blueblue.vo.ContactVo;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.xinfan.blueblue.activity.common.DisplayImageOptionsConfig;
+import com.xinfan.blueblue.util.BizUtils;
+import com.xinfan.blueblue.vo.LinkmanVo;
 
-public class Contact2Adapter extends BaseAdapter {
+public class LinkmanListAdapter extends BaseAdapter {
 	private Context context;
-	private ArrayList<ContactVo> list = new ArrayList<ContactVo>();
+	private ArrayList<LinkmanVo> list = new ArrayList<LinkmanVo>();
 
-	public Contact2Adapter(Context context, ArrayList<ContactVo> list) {
+	public LinkmanListAdapter(Context context, ArrayList<LinkmanVo> list) {
 		this.context = context;
 		this.list = list;
 	}
@@ -40,15 +43,17 @@ public class Contact2Adapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View view, ViewGroup parent) {
-		ContactVo hh = list.get(position);
+		LinkmanVo hh = list.get(position);
 		if (view == null) {
 			view = LayoutInflater.from(context).inflate(R.layout.contact_list_item, parent, false);
 		}
 
-		ImageView pic = (ImageView) view.findViewById(R.id.tx1);
-		TextView name = (TextView) view.findViewById(R.id.tx2);
+		ImageView avatar = (ImageView) view.findViewById(R.id.linkman_avatar);
+		TextView mark = (TextView) view.findViewById(R.id.linkman_mark);
 
-		name.setText(hh.getLinkRemark());
+		BizUtils.showAvatar(context, avatar, hh.getLinkAvatar());
+
+		mark.setText(hh.getLinkRemark());
 		view.setTag(hh);
 
 		return view;

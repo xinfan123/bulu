@@ -2,8 +2,12 @@ package com.xinfan.blueblue.vo;
 
 import java.util.Date;
 
-public class ContactVo implements java.io.Serializable {
+public class LinkmanVo implements java.io.Serializable {
 	private Long userId;
+
+	private String linkUserName;
+
+	private String linkAvatar;
 
 	private Long linkUserId;
 
@@ -12,6 +16,22 @@ public class ContactVo implements java.io.Serializable {
 	private Date createTime;
 
 	private String userName;
+
+	public String getLinkUserName() {
+		return linkUserName;
+	}
+
+	public void setLinkUserName(String linkUserName) {
+		this.linkUserName = linkUserName;
+	}
+
+	public String getLinkAvatar() {
+		return linkAvatar;
+	}
+
+	public void setLinkAvatar(String linkAvatar) {
+		this.linkAvatar = linkAvatar;
+	}
 
 	public Long getUserId() {
 		return userId;

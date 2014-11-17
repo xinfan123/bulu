@@ -27,6 +27,7 @@ import com.xinfan.blueblue.request.Constants;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.SharePreferenceUtil;
+import com.xinfan.blueblue.util.BizUtils;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.UserAvatarParam;
 import com.xinfan.msgbox.http.service.vo.result.UserAvatarResult;
@@ -204,11 +205,7 @@ public class MainTopMenu extends PopupWindow {
 
 	public void getAvatar(String name) {
 
-		String ip = SystemConfigContext.getAddress(context);
-		String http = "http://" + ip + "/file/avatar/" + name;
-
-		ImageLoader.getInstance().displayImage(http, photo_image, DisplayImageOptionsConfig.avatar_options);
-		
+		BizUtils.showAvatar(context, photo_image, name);
 /*
 		if (!imageLoaded) {
 

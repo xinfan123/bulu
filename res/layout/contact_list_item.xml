@@ -15,7 +15,7 @@
 	              	  android:layout_height="40dp"
 	              	  android:src="@drawable/icon"
 	              	  android:scaleType="fitCenter"
-	              	  android:id="@+id/tx1"
+	              	  android:id="@+id/linkman_avatar"
 		              />
 		          <TextView
 		              android:layout_width="wrap_content"
@@ -23,7 +23,7 @@
 	              	  android:layout_marginLeft="10dp"
 	              	  android:text="微信团队"
 	              	  android:textSize="15dip"
-	              	  android:id="@+id/tx2"
+	              	  android:id="@+id/linkman_mark"
 	              	  android:gravity="center"
 	              	  android:textColor="@color/black"
 		              />
