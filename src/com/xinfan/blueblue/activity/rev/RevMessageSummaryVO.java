@@ -42,6 +42,8 @@ public class RevMessageSummaryVO implements java.io.Serializable {
 
 	private Long sendUserid;
 
+	private String sendUserAvatar;
+
 	private Integer sendNewReply;
 
 	private Integer receivedNewReply;
@@ -53,6 +55,14 @@ public class RevMessageSummaryVO implements java.io.Serializable {
 	private Date deleteTime;
 
 	private Date pubishTime;
+
+	public String getSendUserAvatar() {
+		return sendUserAvatar;
+	}
+
+	public void setSendUserAvatar(String sendUserAvatar) {
+		this.sendUserAvatar = sendUserAvatar;
+	}
 
 	public Long getMsgId() {
 		return msgId;

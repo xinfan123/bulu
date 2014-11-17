@@ -27,6 +27,8 @@ public class SendMessageSummaryVO implements java.io.Serializable {
 
 	private Long createUserId;
 
+	private String createUserAvatar;
+
 	private String gpsy;
 
 	private String gpsx;
@@ -36,6 +38,8 @@ public class SendMessageSummaryVO implements java.io.Serializable {
 	private Date createTime;
 
 	private Long sendUserId;
+
+	private String sendUserAvatar;
 
 	private Integer publishStatus;
 
@@ -58,6 +62,22 @@ public class SendMessageSummaryVO implements java.io.Serializable {
 	private Date refreshTime;
 
 	private Integer refreshCount;
+
+	public String getCreateUserAvatar() {
+		return createUserAvatar;
+	}
+
+	public void setCreateUserAvatar(String createUserAvatar) {
+		this.createUserAvatar = createUserAvatar;
+	}
+
+	public String getSendUserAvatar() {
+		return sendUserAvatar;
+	}
+
+	public void setSendUserAvatar(String sendUserAvatar) {
+		this.sendUserAvatar = sendUserAvatar;
+	}
 
 	public Date getRefreshTime() {
 		return refreshTime;
