@@ -183,18 +183,7 @@ public class MainActivity extends BaseActivity implements OnViewChangeListener, 
 		mScrollLayout.snapToScreen(pos);
 	}
 
-//	@Override
-//	public boolean onKeyDown(int keyCode, KeyEvent event) {
-//		if ((keyCode == KeyEvent.KEYCODE_MENU)) {
-//			return true;
-//		}
-//
-//		if (keyCode == KeyEvent.KEYCODE_BACK) {
-//			return false;
-//		}
-//
-//		return super.onKeyDown(keyCode, event);
-//	}
+
 
 	public void checkversion() {
 

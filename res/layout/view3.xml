@@ -10,10 +10,9 @@
               android:layout_alignParentBottom="true"
               android:layout_centerHorizontal="true"
               android:layout_marginBottom="98dp"
-              android:text="立即开启"
               android:textSize="18sp"
               android:textColor="#fff"
-              android:background="@drawable/button_bg"              
+              android:background="@drawable/buttion_bg_open"              
 			  android:layout_gravity="center_vertical"
 			  android:onClick="startbutton"
               />

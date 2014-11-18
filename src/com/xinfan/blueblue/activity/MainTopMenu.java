@@ -195,11 +195,9 @@ public class MainTopMenu extends PopupWindow {
 	public void showLoginUserInfo() {
 		SharePreferenceUtil util = new SharePreferenceUtil(mMenuView.getContext(), Constants.USER_INFO);
 		String userid = String.valueOf(util.getUserId());
-		String username = util.getUsername();
-
+		String username = util.getUsername();		
 		menu_userid_text.setText(userid);
 		menu_username_text.setText(username);
-
 		getAvatar(util.getAvatar());
 	}
 
