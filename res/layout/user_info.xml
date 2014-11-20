@@ -2,26 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#eee"
+    android:background="#ffffff"
     android:orientation="vertical" >
 
     <RelativeLayout
         android:id="@+id/title"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
-        android:background="@drawable/title_bar"
-        android:gravity="center_vertical" >
+        android:background="#3b5997"
+        android:gravity="center_vertical"
+        android:padding="12dip" >
 
         <Button
             android:id="@+id/login_reback_btn"
-            android:layout_width="70dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@drawable/title_btn_back"
+            android:background="@drawable/title_back01"
             android:onClick="btn_back"
-            android:text="返回"
-            android:textColor="#fff"
-            android:textSize="14sp" />
+            android:textColor="#fff" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,157 +31,181 @@
             android:textSize="20sp" />
     </RelativeLayout>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:scrollbarStyle="outsideOverlay" >
+        android:layout_height="wrap_content"
+        android:background="@drawable/input01"
+        android:orientation="vertical"
+        android:padding="8dp" >
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical" >
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="0dp" >
-
-                <TextView
-                    android:id="@+id/user_info_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="10dp"
-                    android:padding="15dp"
-                    android:text="消息号：1877422"
-                    android:textColor="#333"
-                    android:textSize="15sp" />
-            </RelativeLayout>
+            android:orientation="horizontal"
+            android:padding="2dp" >
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:orientation="vertical" >
+                android:layout_weight="0.3"
+                android:gravity="left|center_horizontal"
+                android:orientation="horizontal"
+                android:padding="3dp" >
 
-                <RelativeLayout
-                    android:id="@+id/nickname_info_layout"
-                    android:layout_width="fill_parent"
+                <ImageView
+                    android:id="@+id/photo_image"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/nophoto" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/nickname_info_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_horizontal"
+                android:orientation="horizontal"
+                android:padding="12dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/preference_first_item"
-                    android:clickable="true"
-                    android:gravity="center_vertical" >
+                    android:text="昵称："
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
 
-                    <TextView
-                        android:id="@+id/nickname_info_edit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:padding="8dp"
-                        android:text="黑暗游侠"
-                        android:textColor="@color/aquamarine"
-                        android:textSize="17sp" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="fill_parent"
+                <TextView
+                    android:id="@+id/nickname_info_tv"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/preference_item"
-                    android:clickable="true"
-                    android:gravity="center_vertical" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:padding="8dp"
-                        android:text="信用值"
-                        android:textColor="#333"
-                        android:textSize="17sp" />
-
-                    <TextView
-                        android:id="@+id/user_info_credit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="80dp"
-                        android:padding="8dp"
-                        android:text="100"
-                        android:textColor="#000"
-                        android:textSize="15sp" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/preference_item"
-                    android:clickable="true"
-                    android:gravity="center_vertical" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:padding="8dp"
-                        android:text="绑定手机"
-                        android:textColor="#333"
-                        android:textSize="17sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="80dp"
-                        android:padding="8dp"
-                        android:text="18782339283"
-                        android:textColor="#000"
-                        android:textSize="15sp" android:id="@+id/user_info_phone"/>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/password_update_layout"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/preference_item"
-                    android:clickable="true"
-                    android:gravity="center_vertical" >
-
-                    <TextView
-                        android:id="@+id/password_update_edit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:padding="8dp"
-                        android:text="修改密码"
-                        android:textColor="@color/aquamarine"
-                        android:textSize="15sp" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/user_info_exit"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/preference_last_item"
-                    android:clickable="true"
-                    android:focusable="true" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:padding="8dp"
-                        android:text="注消"
-                        android:textColor="#000"
-                        android:textSize="15sp" />
-                </RelativeLayout>
+                    android:layout_marginLeft="2dp"
+                    android:text="xiaoxiu439594"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="0dp" >
+
+        <TextView
+            android:id="@+id/user_info_id_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:padding="15dp"
+            android:text="消息号："
+            android:textColor="#333"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/user_info_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/user_info_id_tv"
+            android:padding="15dp"
+            android:text="1877422"
+            android:textColor="#000"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="0dp" >
+
+        <TextView
+            android:id="@+id/user_info_credit_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:padding="15dp"
+            android:text="信用值:"
+            android:textColor="#333"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/user_info_credit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/user_info_credit_tv"
+            android:padding="15dp"
+            android:text="100"
+            android:textColor="#000"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="0dp" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="15dp"
+            android:text="绑定手机"
+            android:textColor="#333"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/user_info_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView1"
+            android:layout_alignBottom="@+id/textView1"
+            android:layout_centerHorizontal="true"
+            android:padding="15dp"
+            android:text="18782339283"
+            android:textColor="#000"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+         android:id="@+id/password_update_edit"
+        android:layout_width="288dp"
+        android:layout_height="1dp"
+        android:background="#eee"
+        android:padding="12dp"
+        android:orientation="vertical" />
+
+    <Button   
+        android:layout_width="280dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:background="#3b5997"
+        android:onClick="updateNickName"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="修改密码"
+        android:textColor="#000000"
+       />
+
+ <Button
+        android:id="@+id/user_info_exit"
+        android:layout_width="280dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:background="#BEBEBE"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="注销"
+        android:textColor="#000000"
+       />
+
+
 
 </LinearLayout>
