@@ -1,69 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#eee"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="240dip"
+    android:layout_height="280dip"
+    android:layout_gravity="center_vertical|center_horizontal"
     android:orientation="vertical" >
 
-    <RelativeLayout
-        android:id="@+id/nickname_top_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="45dp"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/title_bar" >
-
-        <Button
-            android:id="@+id/nickname_reback_btn"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:background="@drawable/title_btn_back"
-            android:onClick="nickname_back"
-            android:text="返回"
-            android:textColor="#fff"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="修改昵称"
-            android:textColor="#ffffff"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
-
-    <LinearLayout
+    <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:padding="20dp" >
+        android:layout_marginLeft="10dp"
+        android:padding="15dp"
+        android:text="请填写您的新昵称"
+        android:textColor="#eee"
+        android:textSize="16dip" />
 
-        <EditText
-            android:id="@+id/new_nickname_edit"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/login_editbox"
-            android:ems="10"
-            android:hint="昵称"
-            android:singleLine="true"
-            android:textColor="#000"
-            android:textSize="15sp" android:layout_margin="10dp" >
+    <EditText
+        android:id="@+id/new_nickname_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:ems="10"
+        android:text="小陈"
+        android:textColor="@color/darkcyan" >
 
-            <requestFocus />
-        </EditText>
+        <requestFocus />
+    </EditText>
+  <Button
+        android:id="@+id/update_nickname_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/cell_height"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/selector_green_corners_button"
+        android:onClick="set_nickname"
+        android:text="确定"
+        android:textColor="#ffffff"
+        android:textSize="20.0sp"
+        android:width="200dp" />
 
-        <Button
-            android:id="@+id/update_nickname_btn"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:background="@drawable/btn_style_green"
-            android:onClick="set_nickname"
-            android:text="提交"
-            android:textColor="#ffffff"
-            android:textSize="18sp" />
-    </LinearLayout>
 
 </LinearLayout>
+
