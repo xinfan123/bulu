@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -22,14 +23,12 @@ public class AccountInfoActivity extends BaseActivity {
 
 	public static AccountInfoActivity instance;
 
-	private RelativeLayout mnickName;
+	private LinearLayout mnickName;
 	private TextView nickName;
 	private TextView user_info_id;
 	private TextView user_info_phone;
 	private TextView user_info_credit;
-	private RelativeLayout mpassword;
 
-	private View user_info_exit;
 
 	private UserResult user;
 
@@ -45,25 +44,19 @@ public class AccountInfoActivity extends BaseActivity {
 	}
 
 	public void init() {
-		mnickName = (RelativeLayout) findViewById(R.id.nickname_info_layout);
+
+		mnickName = (LinearLayout) findViewById(R.id.nickname_info_layout);
+		nickName = (TextView) findViewById(R.id.nickname_info_tv);
+
+		mnickName = (LinearLayout) findViewById(R.id.nickname_info_layout);
 		//nickName = (TextView) findViewById(R.id.nickname_info_edit);
+
 		user_info_id = (TextView) findViewById(R.id.user_info_id);
 		user_info_phone = (TextView) findViewById(R.id.user_info_phone);
 		user_info_credit = (TextView) findViewById(R.id.user_info_credit);
 
+
 		//mpassword = (RelativeLayout) findViewById(R.id.password_update_layout);
-		user_info_exit = findViewById(R.id.user_info_exit);
-
-
-		user_info_exit.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				Intent intent = new Intent();
-				intent.setClass(AccountInfoActivity.this, AccountEscActivity.class);
-				startActivity(intent);
-			}
-		});
 
 	}
 
@@ -107,7 +100,16 @@ public class AccountInfoActivity extends BaseActivity {
 	public void updateNickName(String name) {
 		nickName.setText(name);
 	}
-
+	public void userinfoExit(View v) {
+		Intent intent = new Intent();
+		intent.setClass(AccountInfoActivity.this, AccountEscActivity.class);
+		startActivity(intent);
+	}
+	public void toUpdateNickName(View v){
+		Intent intent = new Intent();
+		intent.setClass(AccountInfoActivity.this, UpdatePasswordActivity.class);
+		startActivity(intent);
+	}
 	/*
 	 * public void head_xiaohei(View v) { Intent intent = new Intent();
 	 * intent.setClass(InfoXiaohei.this,InfoXiaoheiHead.class);
