@@ -1,6 +1,7 @@
 package com.xinfan.blueblue.activity.rev;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import android.app.Activity;
@@ -34,10 +35,10 @@ import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.util.BeanUtils;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.RevMessageReadParam;
 import com.xinfan.msgbox.http.service.vo.param.UserMessageListParam;
 import com.xinfan.msgbox.http.service.vo.result.MessageRevListResult;
 import com.xinfan.msgbox.http.service.vo.result.MessageRevSummaryVO;
-import com.xinfan.msgbox.http.service.vo.result.MessageVO;
 
 public class RevMessageListView extends ListView implements OnScrollListener, OnItemClickListener {
 
@@ -474,6 +475,28 @@ public class RevMessageListView extends ListView implements OnScrollListener, On
 		intent.putExtras(data);
 
 		this.getContext().startActivity(intent);
+
+		if (vo.getReceivedStaus() == 0) {
+
+			Request request = new Request(FunIdConstants.READED_MESSAGE);
+			RevMessageReadParam param = new RevMessageReadParam();
+			param.setPublishId(vo.getPublishId());
+			param.setMsgId(vo.getMsgId());
+
+			request.setParam(param);
+			request.setShowDialog(false);
+
+			AnsynHttpRequest.requestSimpleByPost(RevMessageListView.this.context, request, new RequestSucessCallBack() {
+
+				public void call(Request data) {
+
+				}
+			});
+
+			vo.setReceivedStaus(1);
+			vo.setReadTime(new Date());
+		}
+
 	}
 
 }

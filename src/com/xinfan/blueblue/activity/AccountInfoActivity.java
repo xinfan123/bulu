@@ -46,35 +46,14 @@ public class AccountInfoActivity extends BaseActivity {
 
 	public void init() {
 		mnickName = (RelativeLayout) findViewById(R.id.nickname_info_layout);
-		nickName = (TextView) findViewById(R.id.nickname_info_edit);
+		//nickName = (TextView) findViewById(R.id.nickname_info_edit);
 		user_info_id = (TextView) findViewById(R.id.user_info_id);
 		user_info_phone = (TextView) findViewById(R.id.user_info_phone);
 		user_info_credit = (TextView) findViewById(R.id.user_info_credit);
 
-		mpassword = (RelativeLayout) findViewById(R.id.password_update_layout);
+		//mpassword = (RelativeLayout) findViewById(R.id.password_update_layout);
 		user_info_exit = findViewById(R.id.user_info_exit);
 
-		mnickName.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				Intent intent = new Intent();
-				intent.setClass(AccountInfoActivity.this, UpdateNicknameActivity.class);
-				startActivity(intent);
-
-			}
-		});
-		mpassword.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				Intent intent = new Intent();
-				intent.setClass(AccountInfoActivity.this, UpdatePasswordActivity.class);
-				startActivity(intent);
-			}
-		});
 
 		user_info_exit.setOnClickListener(new OnClickListener() {
 
