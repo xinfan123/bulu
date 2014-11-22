@@ -161,8 +161,7 @@
                     android:id="@+id/rev_message_last_time_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:src="@drawable/time_01" />
+                    android:layout_gravity="right"/>
 
                 <TextView
                     android:id="@+id/rev_message_last_time"

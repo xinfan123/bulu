@@ -85,10 +85,10 @@ public class RevMessageListAdapter extends BaseAdapter {
 		String[] lastTimes = BizUtils.calUsefulTime(hh.getPubishTime(), hh.getDurationTime());
 		if ("1".equals(lastTimes[0])) {
 			rev_message_last_time.setText(lastTimes[1]);
-			rev_message_last_time_image.setImageResource(R.drawable.time_01);
+			rev_message_last_time_image.setImageResource(R.drawable.time_02);
 		} else {
 			rev_message_last_time.setText(lastTimes[1]);
-			rev_message_last_time_image.setImageResource(R.drawable.time_02);
+			rev_message_last_time_image.setImageResource(R.drawable.time_01);
 		}
 
 		return view;

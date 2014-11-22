@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.R;
+import com.xinfan.blueblue.util.BizUtils;
 
 public class SendMessageListAdapter extends BaseAdapter {
 	private Context context;
@@ -48,31 +50,12 @@ public class SendMessageListAdapter extends BaseAdapter {
 		}
 
 		TextView titleView = (TextView) view.findViewById(R.id.message_title);
-		TextView timeView = (TextView) view.findViewById(R.id.message_time);
+		TextView sended_msg_time = (TextView) view.findViewById(R.id.sended_msg_time);
 		TextView moreView = (TextView) view.findViewById(R.id.message_more);
 		TextView refreshView = (TextView) view.findViewById(R.id.mesage_refresh_count);
 		TextView pushView = (TextView) view.findViewById(R.id.message_push_count);
 		TextView readView = (TextView) view.findViewById(R.id.mesage_read_count);
-
-		// h.pic.setImageResource(Integer.parseInt(hh.getTxPath()));
-
-		int dtime = hh.getDurationTime() == null ? 0 : hh.getDurationTime();
-		String time = "";
-
-		Calendar createtime = Calendar.getInstance();
-		createtime.setTime(hh.getRefreshTime());
-		createtime.add(Calendar.MINUTE, dtime);
-
-		Calendar currenttime = Calendar.getInstance();
-
-		if (createtime.before(currenttime)) {
-			time = "已过期";
-		} else {
-
-			long lasttime = createtime.getTimeInMillis() - currenttime.getTimeInMillis();
-			int lastmin = (int) lasttime / (1000 * 60);
-			time = lastmin + "分后过期";
-		}
+		ImageView sended_msg_time_image = (ImageView) view.findViewById(R.id.sended_msg_time_image);
 
 		String title = hh.getTitle();
 		if (hh.getTitle().length() > 20) {
@@ -83,13 +66,22 @@ public class SendMessageListAdapter extends BaseAdapter {
 		if (hh.getContext().length() > 30) {
 			content = hh.getContext().substring(0, 30) + "...";
 		}
-
+		
+		
+		String[] lastTimes = BizUtils.calUsefulTime(hh.getPublishTime(), hh.getDurationTime());
+		if ("1".equals(lastTimes[0])) {
+			sended_msg_time.setText(lastTimes[1]);
+			sended_msg_time_image.setImageResource(R.drawable.time_02);
+		} else {
+			sended_msg_time.setText(lastTimes[1]);
+			sended_msg_time_image.setImageResource(R.drawable.time_01);
+		}
+		
 		titleView.setText(title);
 		moreView.setText(content);
-		timeView.setText(time);
 		refreshView.setText("刷新次数："+String.valueOf(hh.getRefreshCount()));
 		pushView.setText("推送人数："+String.valueOf(hh.getPublishCount()));
-		readView.setText("阅读人数"+String.valueOf(hh.getReadCount()));
+		readView.setText("阅读人数："+String.valueOf(hh.getReadCount()));
 
 		return view;
 	}

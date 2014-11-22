@@ -12,6 +12,10 @@ import com.xinfan.blueblue.activity.context.SystemConfigContext;
 import com.xinfan.blueblue.runtime.GpsService;
 
 public class BizUtils {
+	
+	public static void main(String[] args){
+		System.out.println(calUsefulTime(new Date(),10));
+	}
 
 	public static String[] calUsefulTime(Date publishDate, Integer dualTime) {
 
@@ -31,7 +35,11 @@ public class BizUtils {
 
 			long lasttime = createtime.getTimeInMillis() - currenttime.getTimeInMillis();
 			int lastmin = (int) lasttime / (1000 * 60);
-			times[1] = lastmin + "分后过期";
+			
+			int lasthour = new Double(Math.floor(lastmin/60)).intValue();
+			lastmin = new Double(Math.floor(lastmin%60)).intValue();
+			
+			times[1] = lasthour +"时"+lastmin + "分";
 			times[0] = "0";
 		}
 

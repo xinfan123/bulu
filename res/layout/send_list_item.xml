@@ -113,18 +113,17 @@
                android:layout_gravity="right"
                >
             <ImageView
-                android:id="@+id/time"
+                android:id="@+id/sended_msg_time_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" 
                  android:layout_marginTop="10dp"
                  android:layout_marginRight="10dp"
-                 android:layout_gravity="right"
-                android:src="@drawable/time_01" />
+                 android:layout_gravity="right"/>
               <TextView
-                    android:id="@+id/message_time"
+                    android:id="@+id/sended_msg_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"                                             
-                    android:layout_below="@+id/time"               
+                    android:layout_below="@+id/sended_msg_time_image"               
                     android:text="下午 16:45"
                     android:textColor="@color/gray"
                     android:textSize="9dip" />
