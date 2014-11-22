@@ -2,14 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/gray_bg"
+    android:background="#ffffff"
     android:orientation="vertical" >
 
     <RelativeLayout
         android:id="@+id/rl_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-      	android:background="#3b5997"
+        android:background="#3b5997"
         android:gravity="center_vertical"
         android:padding="12dip" >
 
@@ -20,8 +20,7 @@
             android:layout_centerVertical="true"
             android:background="@drawable/title_back01"
             android:onClick="send_msg_back"
-            android:textColor="#fff"
-          />
+            android:textColor="#fff" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,8 +37,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:background="@drawable/title_right"
-            android:onClick="onClickMenu"
-           />
+            android:onClick="onClickMenu" />
     </RelativeLayout>
 
     <LinearLayout
@@ -53,30 +51,33 @@
             android:id="@+id/see_message_content_edit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20.0dip"
-            android:background="@drawable/selector_text_field"
-            android:gravity="top|left|center"
-            android:includeFontPadding="false"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dip"
+            android:background="@null"
             android:minLines="3"
-            android:textColor="@color/color_9"
-            android:textColorHint="@color/color_9"
+            android:padding="5dp"
+            android:text="消息主题"
             android:textSize="16.0sp" />
 
         <TextView
             android:id="@+id/see_message_more_edit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20.0dip"
-            android:background="@drawable/selector_text_field"
-            android:gravity="top|left|center"
-            android:includeFontPadding="false"
+            android:background="@null"
             android:inputType="textMultiLine"
             android:minLines="4"
-            android:textColor="@color/color_9"
-            android:textColorHint="@color/color_9"
+            android:padding="5dp"
+            android:text="消息详情"
             android:textSize="16.0sp"
             android:visibility="gone" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#eee" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -88,12 +89,11 @@
         <TextView
             android:id="@+id/see_message_credit"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/cell_height"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:gravity="left"
             android:layout_weight="1"
-            android:background="@drawable/selector_text_field"
-            android:gravity="center_vertical"
-            android:paddingLeft="@dimen/content_padding"
-            android:paddingRight="@dimen/content_padding"
+            android:background="@null"
             android:text="信用值：20"
             android:textColor="@color/color_3"
             android:textSize="12.0sp" />
@@ -101,16 +101,22 @@
         <TextView
             android:id="@+id/see_time_select_label"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/cell_height"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
             android:layout_weight="1"
-            android:background="@drawable/selector_text_field"
-            android:gravity="center_vertical"
-            android:paddingLeft="@dimen/content_padding"
-            android:paddingRight="@dimen/content_padding"
+             android:gravity="right"
+            android:background="@null"
             android:text="有效时间：1天"
             android:textColor="@color/color_3"
             android:textSize="12.0sp" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#eee" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -122,12 +128,10 @@
         <TextView
             android:id="@+id/see_message_area"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/cell_height"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
             android:layout_weight="1"
-            android:background="@drawable/selector_text_field"
-            android:gravity="center_vertical"
-            android:paddingLeft="@dimen/content_padding"
-            android:paddingRight="@dimen/content_padding"
+            android:background="@null"
             android:text="地域范围：附近"
             android:textColor="@color/color_3"
             android:textSize="12.0sp" />
@@ -135,16 +139,22 @@
         <TextView
             android:id="@+id/see_money_select_label"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/cell_height"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
             android:layout_weight="1"
-            android:background="@drawable/selector_text_field"
-            android:gravity="center_vertical"
-            android:paddingLeft="@dimen/content_padding"
-            android:paddingRight="@dimen/content_padding"
+            android:background="@null"
+             android:gravity="right"
             android:text="有偿金额：100"
             android:textColor="@color/color_3"
             android:textSize="12.0sp" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#eee" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -156,29 +166,31 @@
         <TextView
             android:id="@+id/see_message_rev_count"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/cell_height"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
             android:layout_weight="1"
-            android:background="@drawable/selector_text_field"
-            android:gravity="center_vertical"
-            android:paddingLeft="@dimen/content_padding"
-            android:paddingRight="@dimen/content_padding"
-            android:text=""
+            android:background="@null"
             android:textColor="@color/color_3"
             android:textSize="12.0sp" />
 
         <TextView
             android:id="@+id/see_message_read_count"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/cell_height"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
             android:layout_weight="1"
-            android:background="@drawable/selector_text_field"
-            android:gravity="center_vertical"
-            android:paddingLeft="@dimen/content_padding"
-            android:paddingRight="@dimen/content_padding"
-            android:text=""
+            android:background="@null"
+             android:gravity="right"
             android:textColor="@color/color_3"
             android:textSize="12.0sp" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#eee" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -191,7 +203,6 @@
             android:id="@+id/see_message_lasttime"
             android:layout_width="match_parent"
             android:layout_height="@dimen/cell_height"
-            android:background="@drawable/selector_text_field"
             android:gravity="center_vertical|center_horizontal"
             android:paddingLeft="@dimen/content_padding"
             android:paddingRight="@dimen/content_padding"
@@ -199,5 +210,12 @@
             android:textColor="@color/red"
             android:textSize="12.0sp" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#eee" />
 
 </LinearLayout>

@@ -45,7 +45,6 @@
         android:hint="请输入您好的消息设置"
         android:lines="4"
         android:layout_margin="15dp"
-
         android:textColor="#ff555555"
         android:textColorHint="#ffaaaaaa"
         android:textSize="16.0sp" />

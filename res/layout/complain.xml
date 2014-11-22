@@ -2,26 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#eee"
+    android:background="#ffffff"
     android:orientation="vertical" >
 
     <RelativeLayout
         android:id="@+id/title"
-        android:layout_width="fill_parent"
-        android:layout_height="45dp"
-        android:background="@drawable/title_bar"
-        android:gravity="center_vertical" >
+      android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#3b5997"
+        android:gravity="center_vertical"
+        android:padding="12dip" >
 
         <Button
             android:id="@+id/complain_reback_btn"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:background="@drawable/title_btn_back"
+            android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+            android:background="@drawable/title_back01"
             android:onClick="ComplianBack"
-            android:text="返回"
-            android:textColor="#fff"
-            android:textSize="14sp" />
+            android:textColor="#fff" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,22 +36,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:background="@null"
+        android:hint="多谢您提供宝贵意见，对于合理建议一经采用我们将给予不定额奖励"
+
         android:gravity="top|left"
         android:inputType="textMultiLine"
-        android:lines="5"
+        android:lines="10"
         android:maxWidth="5.0dip"
         android:minWidth="10.0dip"
+        android:layout_margin="15dp"
         android:scrollHorizontally="false" >
 
         <requestFocus />
     </EditText>
-
+    <LinearLayout
+       android:layout_width="fill_parent"
+       android:layout_height="1dip"
+       android:layout_margin="15dp"
+       android:background="#eee" />
     <Button
         android:id="@+id/button1"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/green"
+       android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+     	android:layout_margin="15dp"
+      	android:padding="10dp"
+        android:background="#eb6100"
+        android:gravity="center"
         android:onClick="complain_send"
-        android:text="提交" />
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="@dimen/submit_text_size" />
 
 </LinearLayout>
