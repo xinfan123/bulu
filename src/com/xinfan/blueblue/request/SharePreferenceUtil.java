@@ -45,6 +45,15 @@ public class SharePreferenceUtil {
 		return sp.getLong("userid", 0);
 	}
 
+	public Integer getCredit() {
+		return sp.getInt("credit", 0);
+	}
+
+	public void setCredit(Integer credit) {
+		editor.putLong("credit", credit);
+		editor.commit();
+	}
+
 	public String getUsername() {
 		return sp.getString("username", "");
 	}

@@ -35,6 +35,7 @@ import com.xinfan.msgbox.http.service.vo.result.UserAvatarResult;
 public class MainTopMenu extends PopupWindow {
 	private TextView menu_userid_text;
 	private TextView menu_username_text;
+	public TextView menu_user_credit;
 	private Button btn_complain;// 意见反馈按钮
 	private Button btn_cancel;// 退出按钮
 	private Button btn_account;// 我的账户
@@ -63,6 +64,7 @@ public class MainTopMenu extends PopupWindow {
 		menu_userid_text = (TextView) mMenuView.findViewById(R.id.menu_userid_text);
 		menu_username_text = (TextView) mMenuView.findViewById(R.id.menu_username_text);
 		menu_photo_image = (ImageView) mMenuView.findViewById(R.id.menu_photo_image);
+		menu_user_credit = (TextView)mMenuView.findViewById(R.id.menu_user_credit);
 		// 监听系统设置
 
 		btn_system.setOnClickListener(new OnClickListener() {
@@ -198,6 +200,8 @@ public class MainTopMenu extends PopupWindow {
 		String username = util.getUsername();		
 		menu_userid_text.setText(userid);
 		menu_username_text.setText(username);
+		menu_user_credit.setText(String.valueOf(util.getCredit()));
+		
 		getAvatar(util.getAvatar());
 	}
 
