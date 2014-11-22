@@ -100,7 +100,7 @@
         <!-- 重设昵称 -->
         <activity
             android:name=".UpdateNicknameActivity"
-            android:theme="@style/Anim_style2" />
+            android:theme="@style/MyDialogStyle" />
         <activity
             android:name=".ShakeActivity"
             android:theme="@android:style/Theme.NoTitleBar" />
