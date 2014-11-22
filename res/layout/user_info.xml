@@ -193,7 +193,7 @@
         android:layout_marginRight="30dp"
         android:layout_marginTop="40dp"
         android:background="#3b5997"
-        android:onClick="toUpdateNickName"
+        android:onClick="toUpdatePassword"
         android:text="修改密码"
         android:textColor="#ffffff" />
 
