@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/gray_bg"
+    android:background="@color/white"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -38,7 +38,8 @@
         android:background="@color/white"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:padding="10dp" >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -61,11 +62,16 @@
                 android:textSize="13sp" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#eee"
+            android:padding="15dp" />
+
         <EditText
             android:id="@+id/message_content_edit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:layout_marginTop="20.0dip"
             android:background="@drawable/input_message_layout"
             android:gravity="top|left|center"
@@ -73,6 +79,7 @@
             android:includeFontPadding="false"
             android:inputType="textMultiLine"
             android:minLines="3"
+            android:padding="10dp"
             android:textColor="@color/black"
             android:textColorHint="@color/color_9"
             android:textSize="16.0sp" />
@@ -81,7 +88,6 @@
             android:id="@+id/message_more_edit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:layout_marginTop="20.0dip"
             android:background="@drawable/input_message_layout"
             android:gravity="top|left|center"
@@ -89,6 +95,7 @@
             android:includeFontPadding="false"
             android:inputType="textMultiLine"
             android:minLines="4"
+            android:padding="10dp"
             android:textColor="@color/black"
             android:textColorHint="@color/color_9"
             android:textSize="16.0sp"
@@ -109,7 +116,9 @@
         android:id="@+id/time_select_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/search_bar_edit_bg"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/corner_list_bg"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:orientation="horizontal" >
@@ -142,7 +151,9 @@
         android:id="@+id/area_select_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/search_bar_edit_bg"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/corner_list_bg"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:orientation="horizontal" >
@@ -175,7 +186,9 @@
         android:id="@+id/money_select_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/search_bar_edit_bg"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/corner_list_bg"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:orientation="horizontal" >
@@ -207,8 +220,8 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:orientation="vertical" >
