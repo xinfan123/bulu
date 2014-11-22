@@ -5,17 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
-import com.xinfan.blueblue.activity.systemset.SimilaritySet;
 import com.xinfan.blueblue.dao.RequestCacheKeyHelper;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
-import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
+import com.xinfan.blueblue.util.BizUtils;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.BaseParam;
 import com.xinfan.msgbox.http.service.vo.result.UserResult;
@@ -29,6 +29,7 @@ public class AccountInfoActivity extends BaseActivity {
 	private TextView user_info_id;
 	private TextView user_info_phone;
 	private TextView user_info_credit;
+	public ImageView account_avatar;
 
 
 	private UserResult user;
@@ -55,12 +56,17 @@ public class AccountInfoActivity extends BaseActivity {
 		user_info_id = (TextView) findViewById(R.id.user_info_id);
 		user_info_phone = (TextView) findViewById(R.id.user_info_phone);
 		user_info_credit = (TextView) findViewById(R.id.user_info_credit);
+		account_avatar = (ImageView)findViewById(R.id.account_avatar);
+		
 		mnickName.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
+				Bundle data = new Bundle();
+				data.putString("nickname", user.getUserName());
+				intent.putExtras(data);
 				intent.setClass(AccountInfoActivity.this,UpdateNicknameActivity.class);
 				startActivity(intent);
 			}
@@ -96,6 +102,7 @@ public class AccountInfoActivity extends BaseActivity {
 			user_info_id.setText(String.valueOf(user.getUserId()));
 			user_info_phone.setText(user.getMobile());
 			user_info_credit.setText(String.valueOf(user.getUserCredit()));
+			BizUtils.showAvatar(this, account_avatar, user.getAvatar());
 		}
 	}
 

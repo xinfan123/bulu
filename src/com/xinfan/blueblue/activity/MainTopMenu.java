@@ -42,7 +42,7 @@ public class MainTopMenu extends PopupWindow {
 	private View mMenuView;
 	public static MainTopMenu instance;
 
-	public ImageView photo_image;
+	public ImageView menu_photo_image;
 	public boolean imageLoaded = false;
 	public Context context;
 
@@ -62,7 +62,7 @@ public class MainTopMenu extends PopupWindow {
 		btn_account = (Button) mMenuView.findViewById(R.id.btn_account);
 		menu_userid_text = (TextView) mMenuView.findViewById(R.id.menu_userid_text);
 		menu_username_text = (TextView) mMenuView.findViewById(R.id.menu_username_text);
-		photo_image = (ImageView) mMenuView.findViewById(R.id.photo_image);
+		menu_photo_image = (ImageView) mMenuView.findViewById(R.id.menu_photo_image);
 		// 监听系统设置
 
 		btn_system.setOnClickListener(new OnClickListener() {
@@ -179,7 +179,7 @@ public class MainTopMenu extends PopupWindow {
 			}
 		});
 
-		photo_image.setOnClickListener(new OnClickListener() {
+		menu_photo_image.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
@@ -203,7 +203,7 @@ public class MainTopMenu extends PopupWindow {
 
 	public void getAvatar(String name) {
 
-		BizUtils.showAvatar(context, photo_image, name);
+		BizUtils.showAvatar(context, menu_photo_image, name);
 /*
 		if (!imageLoaded) {
 
@@ -234,7 +234,7 @@ public class MainTopMenu extends PopupWindow {
 
 	public void updateAvatar(Bitmap avatar) {
 		this.imageLoaded = true;
-		this.photo_image.setImageBitmap(avatar);
+		this.menu_photo_image.setImageBitmap(avatar);
 	}
 
 	/*

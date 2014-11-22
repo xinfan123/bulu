@@ -1,15 +1,16 @@
 package com.xinfan.blueblue.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.contact.ContactInfoMenu;
 import com.xinfan.blueblue.activity.send.SendMessageActivity;
+import com.xinfan.blueblue.util.BizUtils;
 import com.xinfan.blueblue.vo.LinkmanVo;
 
 public class ContactInfoActivity extends BaseActivity {
@@ -21,6 +22,8 @@ public class ContactInfoActivity extends BaseActivity {
 	public LinkmanVo vo;
 
 	public TextView accountView, creditView, usernameView, markView;
+	
+	public ImageView photo_image;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,15 @@ public class ContactInfoActivity extends BaseActivity {
 		creditView = (TextView) this.findViewById(R.id.contact_credit);
 		usernameView = (TextView) this.findViewById(R.id.contact_username);
 		markView = (TextView) this.findViewById(R.id.contact_mark);
-
+		photo_image = (ImageView)this.findViewById(R.id.photo_image);
+		
+		
+		BizUtils.showAvatar(this, photo_image, vo.getLinkAvatar());
+		usernameView.setText(vo.getLinkUserName());
+		accountView.setText(String.valueOf(vo.getLinkUserId()));
+		markView.setText(vo.getLinkRemark());
+		creditView.setText(String.valueOf(vo.getLinkUserCredit()));
+		
 		//accountView.setText(vo.getLinkUserId());
 		//creditView.setText("0");
 		//usernameView.setText(vo.get);

@@ -17,6 +17,16 @@ public class LinkmanVo implements java.io.Serializable {
 
 	private String userName;
 
+	private Integer linkUserCredit;
+
+	public Integer getLinkUserCredit() {
+		return linkUserCredit;
+	}
+
+	public void setLinkUserCredit(Integer linkUserCredit) {
+		this.linkUserCredit = linkUserCredit;
+	}
+
 	public String getLinkUserName() {
 		return linkUserName;
 	}

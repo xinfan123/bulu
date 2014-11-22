@@ -1,8 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="240dp"
-    android:layout_height="280dp"
+    android:layout_height="180dp"
     android:layout_gravity="center_vertical|center_horizontal"
+        android:background="@color/white"
     android:orientation="vertical" >
 
     <TextView
@@ -11,7 +12,7 @@
         android:layout_marginLeft="10dp"
         android:padding="15dp"
         android:text="请填写您的新昵称"
-        android:textColor="#eee"
+        android:textColor="@color/gray"
         android:textSize="16dip" />
 
     <EditText
@@ -21,7 +22,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:ems="10"
-        android:text="小陈"
+        android:text=""
         android:textColor="@color/darkcyan" >
 
         <requestFocus />

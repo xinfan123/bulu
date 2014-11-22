@@ -1,7 +1,7 @@
 package com.xinfan.blueblue.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 
@@ -9,8 +9,8 @@ import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Constants;
-import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.request.SharePreferenceUtil;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
@@ -28,6 +28,9 @@ public class UpdateNicknameActivity extends BaseActivity {
 
 		mNewNickname = (EditText) findViewById(R.id.new_nickname_edit);
 
+		String nickname = this.getIntent().getExtras().getString("nickname");
+		mNewNickname.setText(nickname);
+
 	}
 
 	public void set_nickname(View v) {
@@ -35,8 +38,7 @@ public class UpdateNicknameActivity extends BaseActivity {
 		if (newNickname == null || newNickname.equals("")) {
 			ToastUtil.showMessage(UpdateNicknameActivity.this, "昵称不能为空！");
 			return;
-		}
-		else if (newNickname.length()>11) {
+		} else if (newNickname.length() > 11) {
 			ToastUtil.showMessage(UpdateNicknameActivity.this, "昵称大于11位！");
 			return;
 		} else {
@@ -53,18 +55,24 @@ public class UpdateNicknameActivity extends BaseActivity {
 				public void call(Request data) {
 
 					BaseResult result = (BaseResult) data.getResult();
-					if(result.getResult()==1){
-					ToastUtil.showMessage(UpdateNicknameActivity.this, result.getMsg());
-					SharePreferenceUtil util = new SharePreferenceUtil(UpdateNicknameActivity.this, Constants.USER_INFO);
-					util.setUsername(newNickname);
-					AccountInfoActivity.instance.load();
-					}else{
-						ToastUtil.showMessage(UpdateNicknameActivity.this, result.getMsg());	
+					if (result.getResult() == 1) {
+						ToastUtil.showMessage(UpdateNicknameActivity.this, result.getMsg());
+						SharePreferenceUtil util = new SharePreferenceUtil(UpdateNicknameActivity.this, Constants.USER_INFO);
+						util.setUsername(newNickname);
+						AccountInfoActivity.instance.load();
+					} else {
+						ToastUtil.showMessage(UpdateNicknameActivity.this, result.getMsg());
 					}
 					UpdateNicknameActivity.this.finish();
 				}
 			});
 		}
+	}
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		finish();
+		return true;
 	}
 
 	public void nickname_back(View v) {
