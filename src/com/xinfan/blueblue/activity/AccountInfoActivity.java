@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
+import com.xinfan.blueblue.activity.systemset.SimilaritySet;
 import com.xinfan.blueblue.dao.RequestCacheKeyHelper;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
@@ -54,7 +55,16 @@ public class AccountInfoActivity extends BaseActivity {
 		user_info_id = (TextView) findViewById(R.id.user_info_id);
 		user_info_phone = (TextView) findViewById(R.id.user_info_phone);
 		user_info_credit = (TextView) findViewById(R.id.user_info_credit);
+		mnickName.setOnClickListener(new OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent();
+				intent.setClass(AccountInfoActivity.this,UpdateNicknameActivity.class);
+				startActivity(intent);
+			}
+		});
 
 		//mpassword = (RelativeLayout) findViewById(R.id.password_update_layout);
 
@@ -105,7 +115,7 @@ public class AccountInfoActivity extends BaseActivity {
 		intent.setClass(AccountInfoActivity.this, AccountEscActivity.class);
 		startActivity(intent);
 	}
-	public void toUpdateNickName(View v){
+	public void toUpdatePassword(View v){
 		Intent intent = new Intent();
 		intent.setClass(AccountInfoActivity.this, UpdatePasswordActivity.class);
 		startActivity(intent);
