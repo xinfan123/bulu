@@ -56,6 +56,26 @@ public class RevMessageSummaryVO implements java.io.Serializable {
 
 	private Date pubishTime;
 
+	private String sendUserName;
+
+	private Integer sendUserCredit;
+
+	public String getSendUserName() {
+		return sendUserName;
+	}
+
+	public void setSendUserName(String sendUserName) {
+		this.sendUserName = sendUserName;
+	}
+
+	public Integer getSendUserCredit() {
+		return sendUserCredit;
+	}
+
+	public void setSendUserCredit(Integer sendUserCredit) {
+		this.sendUserCredit = sendUserCredit;
+	}
+
 	public String getSendUserAvatar() {
 		return sendUserAvatar;
 	}

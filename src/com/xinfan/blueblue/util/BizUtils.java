@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xinfan.blueblue.activity.common.DisplayImageOptionsConfig;
 import com.xinfan.blueblue.activity.context.SystemConfigContext;
+import com.xinfan.blueblue.runtime.GpsService;
 
 public class BizUtils {
 
@@ -46,6 +47,31 @@ public class BizUtils {
 			String http = BizUtils.getHttpAvatarUrl(context, name);
 			ImageLoader.getInstance().displayImage(http, view, DisplayImageOptionsConfig.avatar_options);
 		}
+	}
+
+	public static String calGps2mToString(String lat_a_str, String lng_a_str) {
+		double s = 0;
+		try {
+			double lat_b = GpsService.last_gpsx;
+			double lng_b = GpsService.last_gpsy;
+			double lat_a = Double.parseDouble(lat_a_str);
+			double lng_a = Double.parseDouble(lng_a_str);
+
+			double radLat1 = (lat_a * Math.PI / 180.0);
+			double radLat2 = (lat_b * Math.PI / 180.0);
+			double a = radLat1 - radLat2;
+			double b = (lng_a - lng_b) * Math.PI / 180.0;
+			s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+			s = s * GpsService.EARTH_RADIUS;
+			s = Math.round(s * 10000) / 10000;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		String mString = String.valueOf(Math.round((s / 1000)))+"km";
+
+		return mString;
 	}
 
 }

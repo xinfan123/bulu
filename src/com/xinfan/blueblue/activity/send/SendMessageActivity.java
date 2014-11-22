@@ -196,8 +196,8 @@ public class SendMessageActivity extends BaseActivity implements OnClickListener
 
 		if (location != null) {
 			param.setReginCode(location.getCity());
-			param.setGpsx(String.valueOf(location.getLatitude()));
-			param.setGpsy(String.valueOf(location.getLongitude()));
+			param.setGpsx(String.valueOf(location.getLongitude()));
+			param.setGpsy(String.valueOf(location.getLatitude()));
 		} else {
 			param.setReginCode("长沙市");
 			param.setGpsx("0");

@@ -51,15 +51,15 @@ public class GpsService extends Service {
 		}
 	}
 
-	private final double EARTH_RADIUS = 6378137.0;
-	private final double MOVE_THRESHOLD = 1000;
-	private final long LOCATE_INTERVAL = 5 * 60 * 1000;// 60 * 60 * 1000;
+	public static final double EARTH_RADIUS = 6378137.0;
+	public static final double MOVE_THRESHOLD = 1000;
+	public static final long LOCATE_INTERVAL = 5 * 60 * 1000;// 60 * 60 * 1000;
 
 	private Thread thread;
 
-	private double last_gpsx;
+	public static double last_gpsx;
 
-	private double last_gpsy;
+	public static double last_gpsy;
 
 	public void start() {
 
@@ -150,6 +150,7 @@ public class GpsService extends Service {
 
 		this.last_gpsx = uersLocation.getLongitude();
 		this.last_gpsy = uersLocation.getLatitude();
+		
 	}
 
 	public double gps2m(double lat_a, double lng_a, double lat_b, double lng_b) {

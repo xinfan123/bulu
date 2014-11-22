@@ -54,7 +54,10 @@ public class RevMessageListAdapter extends BaseAdapter {
 		TextView rev_message_title = (TextView) view.findViewById(R.id.rev_message_title);
 		TextView rev_message_amount = (TextView) view.findViewById(R.id.rev_message_amount);
 		TextView rev_message_send_type = (TextView) view.findViewById(R.id.rev_message_send_type);
+		TextView rev_message_user_name = (TextView) view.findViewById(R.id.rev_message_user_name);
+		
 		ImageView rev_message_user_photo = (ImageView)view.findViewById(R.id.rev_message_user_photo);
+		
 
 		String title = hh.getTitle();
 		if (hh.getTitle().length() > 20) {
@@ -72,7 +75,8 @@ public class RevMessageListAdapter extends BaseAdapter {
 		rev_message_content.setText(content);
 		rev_message_title.setText(title);
 		rev_message_amount.setText(hh.getAmountStatus() == 1 ? "有偿消息" : "无偿消息");
-		rev_message_send_type.setText(hh.getSendType() == 1 ? "附近" : "本市");
+		rev_message_send_type.setText("距离:"+BizUtils.calGps2mToString(hh.getGpsx(), hh.getGpsy()));
+		rev_message_user_name.setText(hh.getSendUserName());
 
 		return view;
 	}
