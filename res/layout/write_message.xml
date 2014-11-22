@@ -65,41 +65,73 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="1dip"
+            android:layout_marginBottom="5dp"
             android:background="#eee"
             android:padding="15dp" />
 
-        <EditText
-            android:id="@+id/message_content_edit"
+        <RelativeLayout
+            android:id="@+id/message_content_edit_layout"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20.0dip"
+            android:layout_height="120dp"
             android:background="@drawable/input_message_layout"
-            android:gravity="top|left|center"
-            android:hint="请输入消息内容"
-            android:includeFontPadding="false"
-            android:inputType="textMultiLine"
-            android:minLines="3"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/color_9"
-            android:textSize="16.0sp" />
+            android:padding="5dp" >
 
-        <EditText
-            android:id="@+id/message_more_edit"
+            <EditText
+                android:id="@+id/message_content_edit"
+                android:layout_width="fill_parent"
+                android:layout_height="95dp"
+                android:background="@null"
+                android:gravity="top|left|center"
+                android:hint="请输入消息内容"
+                android:includeFontPadding="false"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:textColor="@color/black"
+                android:textColorHint="@color/color_9"
+                android:textSize="16.0sp" />
+
+            <TextView
+                android:id="@+id/message_content_edit_count"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:text="0/140"
+                android:textColor="@color/gray_txt" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/message_more_edit_layout"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20.0dip"
+            android:layout_height="120dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/input_message_layout"
-            android:gravity="top|left|center"
-            android:hint="请输入消息内容"
-            android:includeFontPadding="false"
-            android:inputType="textMultiLine"
-            android:minLines="4"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/color_9"
-            android:textSize="16.0sp"
-            android:visibility="gone" />
+            android:padding="5dp"
+            android:visibility="gone" >
+
+            <EditText
+                android:id="@+id/message_more_edit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20.0dip"
+                android:gravity="top|left|center"
+                android:hint="请输入消息内容"
+                android:includeFontPadding="false"
+                android:inputType="textMultiLine"
+                android:minLines="4"
+                android:textColor="@color/black"
+                android:textColorHint="@color/color_9"
+                android:textSize="16.0sp" />
+
+            <TextView
+                android:id="@+id/message_more_edit_count"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:text="0/500"
+                android:textColor="@color/gray_txt" />
+        </RelativeLayout>
 
         <Button
             android:id="@+id/message_more_btn"

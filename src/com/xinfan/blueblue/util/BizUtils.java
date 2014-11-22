@@ -12,9 +12,22 @@ import com.xinfan.blueblue.activity.context.SystemConfigContext;
 import com.xinfan.blueblue.runtime.GpsService;
 
 public class BizUtils {
-	
-	public static void main(String[] args){
-		System.out.println(calUsefulTime(new Date(),10));
+
+	public static void main(String[] args) {
+		System.out.println(calUsefulTime(new Date(), 10));
+	}
+
+	public static int getWordCount(String s) {
+		int length = 0;
+		for (int i = 0; i < s.length(); i++) {
+			int ascii = Character.codePointAt(s, i);
+			if (ascii >= 0 && ascii <= 255)
+				length++;
+			else
+				length += 2;
+
+		}
+		return length;
 	}
 
 	public static String[] calUsefulTime(Date publishDate, Integer dualTime) {
@@ -35,11 +48,11 @@ public class BizUtils {
 
 			long lasttime = createtime.getTimeInMillis() - currenttime.getTimeInMillis();
 			int lastmin = (int) lasttime / (1000 * 60);
-			
-			int lasthour = new Double(Math.floor(lastmin/60)).intValue();
-			lastmin = new Double(Math.floor(lastmin%60)).intValue();
-			
-			times[1] = lasthour +"时"+lastmin + "分";
+
+			int lasthour = new Double(Math.floor(lastmin / 60)).intValue();
+			lastmin = new Double(Math.floor(lastmin % 60)).intValue();
+
+			times[1] = lasthour + "时" + lastmin + "分";
 			times[0] = "0";
 		}
 
@@ -79,7 +92,7 @@ public class BizUtils {
 			e.printStackTrace();
 		}
 
-		String mString = String.valueOf(Math.round((s / 1000)))+"km";
+		String mString = String.valueOf(Math.round((s / 1000))) + "km";
 
 		return mString;
 	}

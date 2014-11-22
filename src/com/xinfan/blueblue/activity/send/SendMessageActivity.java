@@ -2,23 +2,24 @@ package com.xinfan.blueblue.activity.send;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
-import com.xinfan.blueblue.common.LocationDialogFragment;
-import com.xinfan.blueblue.location.GpsLocation.LocationListener;
-import com.xinfan.blueblue.location.GpsLocationManager;
 import com.xinfan.blueblue.location.LocationEntity;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Request;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
+import com.xinfan.blueblue.util.BizUtils;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.SendMessageParam;
@@ -45,9 +46,17 @@ public class SendMessageActivity extends BaseActivity implements OnClickListener
 
 	public EditText message_more_edit;
 
+	public TextView message_content_edit_count, message_more_edit_count;
+
 	public static SendMessageActivity instance;
 
+	public RelativeLayout message_content_edit_layout, message_more_edit_layout;
+
 	LocationEntity location;
+
+	int num = 140;// 限制的最大字数　
+	
+	int morenum = 500;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,21 +73,12 @@ public class SendMessageActivity extends BaseActivity implements OnClickListener
 		send_message_btn = (TextView) findViewById(R.id.send_message_btn);
 
 		money_select_label = (TextView) findViewById(R.id.money_select_label);
+		message_content_edit_count = (TextView) findViewById(R.id.message_content_edit_count);
+		message_more_edit_count = (TextView) findViewById(R.id.message_more_edit_count);
 
-		message_more_btn.setOnClickListener(new OnClickListener() {
+		message_content_edit_layout = (RelativeLayout) findViewById(R.id.message_content_edit_layout);
+		message_more_edit_layout = (RelativeLayout) findViewById(R.id.message_more_edit_layout);
 
-			public void onClick(View arg0) {
-				int vis = message_more_edit.getVisibility();
-				if (vis == View.GONE) {
-					message_more_edit.setVisibility(View.VISIBLE);
-					message_more_btn.setText("关闭更多");
-				} else {
-					message_more_edit.setVisibility(View.GONE);
-					message_more_btn.setText("更多输入");
-				}
-
-			}
-		});
 		time_select_layout.setOnClickListener(this);
 		area_select_layout.setOnClickListener(this);
 		money_select_layout.setOnClickListener(this);
@@ -86,7 +86,85 @@ public class SendMessageActivity extends BaseActivity implements OnClickListener
 
 		instance = this;
 
+		initMoreBtn();
+
+		initWordLimit();
+
 		location();
+	}
+
+	public void initMoreBtn() {
+		message_more_btn.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View arg0) {
+				int vis = message_more_edit.getVisibility();
+				if (vis == View.GONE) {
+					message_more_edit_layout.setVisibility(View.VISIBLE);
+					message_more_btn.setText("关闭更多");
+				} else {
+					message_more_edit_layout.setVisibility(View.GONE);
+					message_more_btn.setText("更多输入");
+				}
+
+			}
+		});
+	}
+
+	public void initWordLimit() {
+
+		this.message_content_edit.addTextChangedListener(new TextWatcher() {
+			private CharSequence temp;
+			private int selectionStart;
+			private int selectionEnd;
+
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+			}
+
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				temp = s;
+			}
+
+			public void afterTextChanged(Editable s) {
+				int number = BizUtils.getWordCount(temp.toString());
+				message_content_edit_count.setText("" + number + "/" + morenum);
+				selectionStart = message_content_edit.getSelectionStart();
+				selectionEnd = message_content_edit.getSelectionEnd();
+				if (BizUtils.getWordCount(temp.toString()) > morenum) {
+					s.delete(selectionStart - 1, selectionEnd);
+					int tempSelection = selectionEnd;
+					message_content_edit.setText(s);
+					message_content_edit.setSelection(tempSelection);// 设置光标在最后
+				}
+			}
+		});
+
+		message_more_edit_count.addTextChangedListener(new TextWatcher() {
+			private CharSequence temp;
+			private int selectionStart;
+			private int selectionEnd;
+
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+			}
+
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				temp = s;
+			}
+
+			public void afterTextChanged(Editable s) {
+				int number = BizUtils.getWordCount(temp.toString());
+				message_more_edit_count.setText("" + number + "/" + num);
+				selectionStart = message_more_edit.getSelectionStart();
+				selectionEnd = message_more_edit.getSelectionEnd();
+				if (BizUtils.getWordCount(temp.toString()) > num) {
+					s.delete(selectionStart - 1, selectionEnd);
+					int tempSelection = selectionEnd;
+					message_more_edit.setText(s);
+					message_more_edit.setSelection(tempSelection);// 设置光标在最后
+				}
+			}
+		});
 	}
 
 	public void location() {
