@@ -12,6 +12,7 @@ import com.xinfan.blueblue.location.GpsLocation.LocationListener;
 import com.xinfan.blueblue.location.LocationEntity;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.RequestErrorCallBack;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.util.LogUtil;
 import com.xinfan.blueblue.util.ToastUtil;
@@ -131,9 +132,15 @@ public class GpsService extends Service {
 			param.setLongitude(String.valueOf(uersLocation.getLongitude()));
 			param.setLatitude(String.valueOf(uersLocation.getLatitude()));
 			param.setArea(uersLocation.getCity());
-
+			
 			request.setParam(param);
-
+			request.setShowDialog(false);
+			request.setRequestErrorCallBack(new RequestErrorCallBack() {
+				public void call(Request request) {
+					
+				}
+			});
+			
 			AnsynHttpRequest.requestSimpleByPost(getApplicationContext(), request, new RequestSucessCallBack() {
 				public void call(Request data) {
 					ToastUtil.showMessage(GpsService.this.getApplicationContext(), "定位更新成功");

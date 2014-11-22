@@ -42,8 +42,10 @@ public class BizUtils {
 	}
 
 	public static void showAvatar(Context context, ImageView view, String name) {
-		String http = BizUtils.getHttpAvatarUrl(context, name);
-		ImageLoader.getInstance().displayImage(http, view, DisplayImageOptionsConfig.avatar_options);
+		if (name != null && name.length() > 0) {
+			String http = BizUtils.getHttpAvatarUrl(context, name);
+			ImageLoader.getInstance().displayImage(http, view, DisplayImageOptionsConfig.avatar_options);
+		}
 	}
 
 }

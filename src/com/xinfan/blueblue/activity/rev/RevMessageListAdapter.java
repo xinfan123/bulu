@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.R;
+import com.xinfan.blueblue.util.BizUtils;
 import com.xinfan.blueblue.util.DateUtil;
 
 public class RevMessageListAdapter extends BaseAdapter {
@@ -52,6 +54,7 @@ public class RevMessageListAdapter extends BaseAdapter {
 		TextView rev_message_title = (TextView) view.findViewById(R.id.rev_message_title);
 		TextView rev_message_amount = (TextView) view.findViewById(R.id.rev_message_amount);
 		TextView rev_message_send_type = (TextView) view.findViewById(R.id.rev_message_send_type);
+		ImageView rev_message_user_photo = (ImageView)view.findViewById(R.id.rev_message_user_photo);
 
 		String title = hh.getTitle();
 		if (hh.getTitle().length() > 20) {
@@ -62,7 +65,8 @@ public class RevMessageListAdapter extends BaseAdapter {
 		if (hh.getContext().length() > 30) {
 			content = hh.getContext().substring(0, 30) + "...";
 		}
-
+		
+		BizUtils.showAvatar(context, rev_message_user_photo, hh.getSendUserAvatar());
 		// h.pic.setImageResource(Integer.parseInt(hh.getTxPath()));
 		rev_message_time.setText(DateUtil.formateSimple(hh.getPubishTime()));
 		rev_message_content.setText(content);
