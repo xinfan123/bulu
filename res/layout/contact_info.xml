@@ -187,7 +187,7 @@
         android:background="#eee"
         android:orientation="vertical" />
       <Button
-        android:id="@+id/private_send"
+        android:id="@+id/send_private_message"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
     	android:padding="12dp"	

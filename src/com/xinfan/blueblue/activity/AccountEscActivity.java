@@ -46,7 +46,7 @@ public class AccountEscActivity extends BaseActivity {
 		LoginUserContext.setIsLogin(AccountEscActivity.this, false);
 		
 		Intent intent=new Intent();
-    	intent.setClass(AccountEscActivity.this, LoginActivity.class);
+    	intent.setClass(AccountEscActivity.this, WelcomeActivity.class);
     	startActivity(intent);
     	this.finish();
     	
