@@ -97,7 +97,7 @@ public class SendMessageActivity extends BaseActivity implements OnClickListener
 		message_more_btn.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
-				int vis = message_more_edit.getVisibility();
+				int vis = message_more_edit_layout.getVisibility();
 				if (vis == View.GONE) {
 					message_more_edit_layout.setVisibility(View.VISIBLE);
 					message_more_btn.setText("关闭更多");
@@ -139,7 +139,7 @@ public class SendMessageActivity extends BaseActivity implements OnClickListener
 			}
 		});
 
-		message_more_edit_count.addTextChangedListener(new TextWatcher() {
+		message_more_edit.addTextChangedListener(new TextWatcher() {
 			private CharSequence temp;
 			private int selectionStart;
 			private int selectionEnd;
