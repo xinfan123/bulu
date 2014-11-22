@@ -2,6 +2,7 @@ package com.xinfan.blueblue.dao;
 
 import com.xinfan.msgbox.http.service.vo.param.BaseParam;
 import com.xinfan.msgbox.http.service.vo.param.MessageRevParam;
+import com.xinfan.msgbox.http.service.vo.param.MessageUnReadCountParam;
 import com.xinfan.msgbox.http.service.vo.param.SendMessageParam;
 import com.xinfan.msgbox.http.service.vo.param.UserAvatarParam;
 import com.xinfan.msgbox.http.service.vo.param.UserLinkmanListParam;
@@ -66,6 +67,12 @@ public class RequestCacheKeyHelper {
 	public static String generateAvatarCacheKey(UserAvatarParam param) {
 		StringBuilder builder = new StringBuilder();
 		builder.append(param.getFunId()).append(param.getUserId()).append(param.getAvatar());
+		return builder.toString();
+	}
+	
+	public static String generateUnReadMessageCountCacheKey(MessageUnReadCountParam param) {
+		StringBuilder builder = new StringBuilder();
+		builder.append(param.getFunId()).append(param.getUserId());
 		return builder.toString();
 	}
 	

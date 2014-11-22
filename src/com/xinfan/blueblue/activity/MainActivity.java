@@ -1,10 +1,13 @@
 package com.xinfan.blueblue.activity;
 
+import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -14,10 +17,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.base.BaseActivity;
+import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.activity.context.VersionManager;
 import com.xinfan.blueblue.activity.rev.RevMessageListView;
 import com.xinfan.blueblue.activity.send.SendMessageActivity;
+import com.xinfan.blueblue.dao.RequestCacheKeyHelper;
 import com.xinfan.blueblue.gettui.GetuiPushReceiver;
+import com.xinfan.blueblue.request.AnsynHttpRequest;
+import com.xinfan.blueblue.request.NetworkErrorCallBack;
+import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.RequestSucessCallBack;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.MessageUnReadCountParam;
+import com.xinfan.msgbox.http.service.vo.result.MessageUnReadCountResult;
 
 public class MainActivity extends BaseActivity implements OnViewChangeListener, OnClickListener {
 
@@ -31,9 +43,11 @@ public class MainActivity extends BaseActivity implements OnViewChangeListener, 
 	private ImageView add;
 	private ImageView send;
 
-	private TextView liaotian;
+	private TextView main_rev_message;
 	private TextView faxian;
 	private TextView tongxunlu;
+
+	private LinearLayout main_rev_msg_layout;
 
 	private boolean isOpen = false;
 
@@ -55,6 +69,55 @@ public class MainActivity extends BaseActivity implements OnViewChangeListener, 
 		checkversion();
 
 		bindReceiver();
+
+		refreshUnreadMessageCount();
+	}
+
+	public void refreshUnreadMessageCount() {
+
+		Request request = new Request(FunIdConstants.UNREAD_MESSAGE_COUNT);
+		MessageUnReadCountParam param = new MessageUnReadCountParam();
+		param.setUserId(LoginUserContext.getUserId(this));
+		request.setParam(param);
+		request.setCache(true);
+		request.setCacheKey(RequestCacheKeyHelper.generateUnReadMessageCountCacheKey(param));
+		request.setShowDialog(false);
+		request.setNetworkErrorCallBack(new NetworkErrorCallBack() {
+			public void call(Request request) {
+			}
+		});
+
+		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
+
+			public void call(Request data) {
+
+				MessageUnReadCountResult result = (MessageUnReadCountResult) data.getResult();
+				if (result.getUnReadCount() > 0) {
+					String count = String.valueOf(result.getUnReadCount());
+
+					if (result.getUnReadCount() > 99) {
+						count = "99+";
+					}
+					Spanned html = Html.fromHtml("收消息(" + "<b style=\"color:red\">" + count + "</b>)");
+
+					main_rev_message.setText(html);
+
+					ImageView newImage = (ImageView) main_rev_msg_layout.findViewWithTag("newtip");
+					if (newImage == null) {
+						newImage = new ImageView(main_rev_msg_layout.getContext());
+						newImage.setImageResource(R.drawable.new_1);
+						newImage.setTag("newtip");
+						newImage.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+						main_rev_msg_layout.addView(newImage);
+					}
+				} else {
+					ImageView newImage = (ImageView) main_rev_msg_layout.findViewWithTag("newtip");
+					if (newImage != null) {
+						main_rev_msg_layout.removeView(newImage);
+					}
+				}
+			}
+		});
 	}
 
 	public void bindReceiver() {
@@ -71,9 +134,11 @@ public class MainActivity extends BaseActivity implements OnViewChangeListener, 
 	}
 
 	private void init() {
-		liaotian = (TextView) findViewById(R.id.liaotian);
+		main_rev_message = (TextView) findViewById(R.id.main_rev_message);
 		faxian = (TextView) findViewById(R.id.faxian);
 		tongxunlu = (TextView) findViewById(R.id.tongxunlu);
+
+		main_rev_msg_layout = (LinearLayout) findViewById(R.id.main_rev_msg_layout);
 
 		listview1 = (RevMessageListView) findViewById(R.id.listView1);
 		listview2 = (SendedMessageListView) findViewById(R.id.listView2);
@@ -155,15 +220,15 @@ public class MainActivity extends BaseActivity implements OnViewChangeListener, 
 		mCurSel = index;
 
 		if (index == 0) {
-			liaotian.setTextColor(0xff228B22);
+			main_rev_message.setTextColor(0xff228B22);
 			faxian.setTextColor(Color.BLACK);
 			tongxunlu.setTextColor(Color.BLACK);
 		} else if (index == 1) {
-			liaotian.setTextColor(Color.BLACK);
+			main_rev_message.setTextColor(Color.BLACK);
 			faxian.setTextColor(0xff228B22);
 			tongxunlu.setTextColor(Color.BLACK);
 		} else {
-			liaotian.setTextColor(Color.BLACK);
+			main_rev_message.setTextColor(Color.BLACK);
 			faxian.setTextColor(Color.BLACK);
 			tongxunlu.setTextColor(0xff228B22);
 		}
@@ -183,19 +248,18 @@ public class MainActivity extends BaseActivity implements OnViewChangeListener, 
 		mScrollLayout.snapToScreen(pos);
 	}
 
-
-
 	public void checkversion() {
 
 		VersionManager manager = new VersionManager(this);
 		manager.checkUpdate();
 	}
-	@Override  
-    public boolean onKeyDown(int keyCode, KeyEvent event) {  
-        if (keyCode == KeyEvent.KEYCODE_BACK) {  
-            moveTaskToBack(false);  
-            return true;  
-        }  
-        return super.onKeyDown(keyCode, event);  
-    }  
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			moveTaskToBack(false);
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
 }

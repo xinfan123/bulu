@@ -433,6 +433,10 @@ public class RevMessageListView extends ListView implements OnScrollListener, On
 				RevMessageListView.this.ad.notifyDataSetChanged();
 			}
 		});
+		
+		if(MainActivity.instance !=null){
+			MainActivity.instance.refreshUnreadMessageCount();
+		}
 	}
 
 	public void loadMore() {
@@ -461,6 +465,8 @@ public class RevMessageListView extends ListView implements OnScrollListener, On
 				RevMessageListView.this.ad.notifyDataSetChanged();
 			}
 		});
+		
+		MainActivity.instance.refreshUnreadMessageCount();
 	}
 
 	@Override
@@ -487,14 +493,14 @@ public class RevMessageListView extends ListView implements OnScrollListener, On
 			request.setShowDialog(false);
 
 			AnsynHttpRequest.requestSimpleByPost(RevMessageListView.this.context, request, new RequestSucessCallBack() {
-
 				public void call(Request data) {
-
+					MainActivity.instance.refreshUnreadMessageCount();
 				}
 			});
 
 			vo.setReceivedStaus(1);
 			vo.setReadTime(new Date());
+			
 		}
 
 	}
