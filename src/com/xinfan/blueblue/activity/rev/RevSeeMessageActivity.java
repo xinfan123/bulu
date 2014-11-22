@@ -77,7 +77,7 @@ public class RevSeeMessageActivity extends BaseActivity implements OnClickListen
 
 		see_message_content_edit.setText(messageVo.getTitle());
 
-		String time = BizUtils.calUsefulTime(messageVo.getRefreshTime(), messageVo.getDurationTime());
+		String time = BizUtils.calUsefulTime(messageVo.getRefreshTime(), messageVo.getDurationTime())[1];
 
 		see_time_select_label.setText(time);
 		see_area_select_label.setText(messageVo.getSendType() == 1 ? "附近" : "本市");

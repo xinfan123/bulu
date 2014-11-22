@@ -13,10 +13,10 @@ import com.xinfan.blueblue.runtime.GpsService;
 
 public class BizUtils {
 
-	public static String calUsefulTime(Date publishDate, Integer dualTime) {
+	public static String[] calUsefulTime(Date publishDate, Integer dualTime) {
 
 		int dtime = dualTime == null ? 0 : dualTime;
-		String time = "";
+		String times[] = new String[2];
 
 		Calendar createtime = Calendar.getInstance();
 		createtime.setTime(publishDate);
@@ -25,15 +25,17 @@ public class BizUtils {
 		Calendar currenttime = Calendar.getInstance();
 
 		if (createtime.before(currenttime)) {
-			time = "已过期";
+			times[1] = "已过期";
+			times[0] = "1";
 		} else {
 
 			long lasttime = createtime.getTimeInMillis() - currenttime.getTimeInMillis();
 			int lastmin = (int) lasttime / (1000 * 60);
-			time = lastmin + "分后过期";
+			times[1] = lastmin + "分后过期";
+			times[0] = "0";
 		}
 
-		return time;
+		return times;
 	}
 
 	public static String getHttpAvatarUrl(Context context, String name) {

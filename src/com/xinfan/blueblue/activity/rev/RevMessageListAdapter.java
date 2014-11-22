@@ -55,9 +55,12 @@ public class RevMessageListAdapter extends BaseAdapter {
 		TextView rev_message_amount = (TextView) view.findViewById(R.id.rev_message_amount);
 		TextView rev_message_send_type = (TextView) view.findViewById(R.id.rev_message_send_type);
 		TextView rev_message_user_name = (TextView) view.findViewById(R.id.rev_message_user_name);
-		
-		ImageView rev_message_user_photo = (ImageView)view.findViewById(R.id.rev_message_user_photo);
-		
+		TextView rev_message_credit = (TextView) view.findViewById(R.id.rev_message_credit);
+
+		ImageView rev_message_last_time_image = (ImageView) view.findViewById(R.id.rev_message_last_time_image);
+		TextView rev_message_last_time = (TextView) view.findViewById(R.id.rev_message_last_time);
+
+		ImageView rev_message_user_photo = (ImageView) view.findViewById(R.id.rev_message_user_photo);
 
 		String title = hh.getTitle();
 		if (hh.getTitle().length() > 20) {
@@ -68,15 +71,25 @@ public class RevMessageListAdapter extends BaseAdapter {
 		if (hh.getContext().length() > 30) {
 			content = hh.getContext().substring(0, 30) + "...";
 		}
-		
+
 		BizUtils.showAvatar(context, rev_message_user_photo, hh.getSendUserAvatar());
 		// h.pic.setImageResource(Integer.parseInt(hh.getTxPath()));
 		rev_message_time.setText(DateUtil.formateSimple(hh.getPubishTime()));
 		rev_message_content.setText(content);
 		rev_message_title.setText(title);
-		rev_message_amount.setText(hh.getAmountStatus() == 1 ? "有偿消息" : "无偿消息");
-		rev_message_send_type.setText("距离:"+BizUtils.calGps2mToString(hh.getGpsx(), hh.getGpsy()));
+		rev_message_amount.setText(hh.getAmountStatus() == 1 ? "有偿:" + hh.getAmount() + "元" : "无偿消息");
+		rev_message_send_type.setText("距离:" + BizUtils.calGps2mToString(hh.getGpsx(), hh.getGpsy()));
 		rev_message_user_name.setText(hh.getSendUserName());
+		rev_message_credit.setText("信用:" + hh.getSendUserCredit());
+
+		String[] lastTimes = BizUtils.calUsefulTime(hh.getPubishTime(), hh.getDurationTime());
+		if ("1".equals(lastTimes[0])) {
+			rev_message_last_time.setText(lastTimes[1]);
+			rev_message_last_time_image.setImageResource(R.drawable.time_01);
+		} else {
+			rev_message_last_time.setText(lastTimes[1]);
+			rev_message_last_time_image.setImageResource(R.drawable.time_02);
+		}
 
 		return view;
 	}

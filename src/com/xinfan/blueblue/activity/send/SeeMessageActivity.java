@@ -113,7 +113,7 @@ public class SeeMessageActivity extends BaseActivity implements OnClickListener 
 		see_message_read_count.setText("阅读数：" + (messageVo.getReadCount() == null ? 0 : messageVo.getReadCount()));
 		see_message_rev_count.setText("推送数:" + (messageVo.getPublishCount() == null ? 0 : messageVo.getPublishCount()));
 
-		see_message_lasttime.setText(BizUtils.calUsefulTime(messageVo.getRefreshTime(), messageVo.getDurationTime()));
+		see_message_lasttime.setText(BizUtils.calUsefulTime(messageVo.getRefreshTime(), messageVo.getDurationTime())[1]);
 	}
 
 	public void send_msg_back(View view) {
