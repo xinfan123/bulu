@@ -42,7 +42,7 @@ public class ThemeSetActivity extends BaseActivity {
 
 	public ThemeSetAdapter adapter;
 
-	public int maxsize = 4;
+	public int maxsize = 5;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
