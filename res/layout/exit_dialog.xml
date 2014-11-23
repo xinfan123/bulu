@@ -14,7 +14,7 @@
             android:padding="5dp"
             android:textColor="#333"
             android:textSize="20sp"
-            android:text="退出咘噜" />
+            android:text="退出布鲁" />
         
         <TextView
             android:layout_width="wrap_content"
