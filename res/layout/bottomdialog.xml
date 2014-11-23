@@ -139,11 +139,11 @@
 
             <Button
                 android:id="@+id/btn_system"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="10dp"
                 android:background="@null"
-                android:gravity="center"
+                android:gravity="left|center_vertical"
                 android:text="系统设置"
                 android:textSize="15dip" />
         </LinearLayout>
@@ -164,11 +164,11 @@
 
             <Button
                 android:id="@+id/btn_account"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="10dp"
                 android:background="@null"
-                android:gravity="center"
+                android:gravity="left|center_vertical"
                 android:text="我的帐号"
                 android:textSize="15dip" />
         </LinearLayout>
@@ -189,11 +189,11 @@
 
             <Button
                 android:id="@+id/btn_complain"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="10dp"
                 android:background="@null"
-                android:gravity="center"
+                android:gravity="left|center_vertical"
                 android:text="意见反馈"
                 android:textSize="15dip" />
         </LinearLayout>
@@ -215,11 +215,11 @@
 
             <Button
                 android:id="@+id/btn_cancel"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="10dp"
                 android:background="@null"
-                android:gravity="center"
+               	android:gravity="left|center_vertical"
                 android:text="退出登录"
                 android:textSize="15dip" />
         </LinearLayout>
