@@ -30,7 +30,7 @@
             android:layout_height="fill_parent"
             android:cacheColorHint="@android:color/transparent"
             android:divider="@drawable/reader_item_divider"
-            android:listSelector="@android:color/transparent" >
+            android:listSelector="@drawable/main_list_selecter" >
         </com.xinfan.blueblue.activity.rev.RevMessageListView>
 
         <com.xinfan.blueblue.activity.SendedMessageListView
@@ -38,15 +38,18 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="@color/white"
-            android:cacheColorHint="@android:color/transparent" >
+            android:cacheColorHint="@color/transparent"
+            android:divider="@drawable/reader_item_divider"
+            android:listSelector="@drawable/main_list_selecter" >
         </com.xinfan.blueblue.activity.SendedMessageListView>
 
         <com.xinfan.blueblue.activity.LinkmanListView
             android:id="@+id/listView3"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:cacheColorHint="@android:color/transparent"
-            android:divider="@drawable/reader_item_divider" >
+            android:cacheColorHint="@color/transparent"
+            android:divider="@drawable/reader_item_divider"
+            android:listSelector="@drawable/main_list_selecter" >
         </com.xinfan.blueblue.activity.LinkmanListView>
     </com.xinfan.blueblue.activity.MyScrollLayout>
 
