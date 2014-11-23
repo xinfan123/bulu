@@ -2,140 +2,121 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
-	    <TableLayout
-        android:id="@+id/l1"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:layout_width="260dp"
+        android:layout_height="70dp"
+        android:layout_weight="1"
+        android:paddingEnd="5dp"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp" >
+
+        <TextView
+            android:id="@+id/message_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="2dip"
+            android:singleLine="true"
+            android:text="人马"
+            android:textColor="#000000"
+            android:textSize="14dip" />
+
+        <TextView
+            android:id="@+id/message_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/message_title"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="2dip"
+            android:singleLine="true"
+            android:text="这是唯一一个正常的朋友x"
+            android:textColor="@color/gray"
+            android:textSize="14dip" />
+
+        <TextView
+            android:id="@+id/message_push_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/message_more"
+            android:layout_marginTop="2dp"
+            android:background="#F5F5F5"
+            android:gravity="center"
+            android:padding="2dip"
+            android:singleLine="true"
+            android:text="已推送0"
+            android:textColor="#3b5997"
+            android:textSize="9dip" />
+
+        <TextView
+            android:id="@+id/mesage_refresh_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/message_push_count"
+            android:layout_alignBottom="@+id/message_push_count"
+            android:layout_marginLeft="28dp"
+            android:layout_toRightOf="@+id/mesage_read_count"
+            android:background="#F5F5F5"
+            android:gravity="center"
+            android:padding="2dip"
+            android:singleLine="true"
+            android:text="已刷新0"
+            android:textColor="#3b5997"
+            android:textSize="9dip" />
+
+        <TextView
+            android:id="@+id/mesage_read_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/message_push_count"
+            android:layout_alignBottom="@+id/message_push_count"
+            android:layout_marginLeft="28dp"
+            android:layout_toRightOf="@+id/message_push_count"
+            android:background="#F5F5F5"
+            android:gravity="center"
+            android:padding="2dip"
+            android:singleLine="true"
+            android:text="已阅读0"
+            android:textColor="#3b5997"
+            android:textSize="9dip" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="2dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:background="#F7F7F7"
+        android:gravity="center_vertical|center_horizontal" />
+
+    <RelativeLayout
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:gravity="center_vertical|center_horizontal" >
+
+        <ImageView
+            android:id="@+id/sended_msg_time_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/sended_msg_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sended_msg_time_image"
+            android:text="下午 16:45"
+            android:textColor="@color/gray"
+            android:textSize="9dip" />
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"  >
-
-        
-
-        <TableRow>
-
-            <RelativeLayout
-                android:id="@+id/r1"
-                android:layout_width="260dp"
-                android:layout_height="70dp"
-            	android:layout_toLeftOf="@+id/r2"
-                android:paddingTop="5dp" 
-                android:paddingLeft="5dp"
-                android:paddingEnd="5dp">
-
-                <TextView
-                    android:id="@+id/message_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="2dip"
-                    android:singleLine="true"
-                    android:text="人马"
-                    android:textColor="#000000"
-                    android:textSize="14dip" />
-
-                <TextView
-                    android:id="@+id/message_more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"          
-                    android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/message_title"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="2dip"
-                    android:singleLine="true"
-                    android:text="这是唯一一个正常的朋友x"
-                    android:textColor="@color/gray"
-                    android:textSize="14dip" />
-
-                <TextView
-                    android:id="@+id/message_push_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#F5F5F5"         
-                    android:layout_below="@+id/message_more"     
-                    android:layout_marginTop="2dp"
-                    android:gravity="center"
-                    android:padding="2dip"
-                    android:singleLine="true"
-                    android:text="已推送0"
-                    android:textColor="#3b5997"
-                    android:textSize="9dip" />
-
-                <TextView
-                    android:id="@+id/mesage_refresh_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/message_push_count"
-                    android:layout_alignBottom="@+id/message_push_count"
-            		android:layout_toRightOf="@+id/mesage_read_count"
-            		android:layout_marginLeft="28dp"
-                    android:background="#F5F5F5"
-                    android:gravity="center"
-                    android:padding="2dip"
-                    android:singleLine="true"             
-                    android:text="已刷新0"
-                    android:textColor="#3b5997"
-                    android:textSize="9dip" />
-
-                <TextView
-                    android:id="@+id/mesage_read_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/message_push_count"
-                    android:layout_alignBottom="@+id/message_push_count"
-                    android:layout_marginLeft="28dp"
-                    android:layout_toRightOf="@+id/message_push_count"
-                    android:background="#F5F5F5"
-                    android:gravity="center"
-                    android:padding="2dip"
-                    android:singleLine="true"
-                    android:text="已阅读0"
-                    android:textColor="#3b5997"
-                    android:textSize="9dip" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/r2"
-                android:layout_width="2dp"         
-                android:layout_height="45dp"
-                android:layout_marginTop="10dp"
-                android:background="#F7F7F7"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="10dp"
-                android:paddingRight="10dp"
-               />
-	  <RelativeLayout
-                android:id="@+id/r3"
-                android:layout_width="wrap_content"       
-                android:layout_height="60dp" 
-                android:layout_marginTop="10dp"      
-               android:layout_gravity="right"
-               >
-            <ImageView
-                android:id="@+id/sended_msg_time_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" 
-                 android:layout_marginTop="10dp"
-                 android:layout_marginRight="10dp"
-                 android:layout_gravity="right"/>
-              <TextView
-                    android:id="@+id/sended_msg_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"                                             
-                    android:layout_below="@+id/sended_msg_time_image"               
-                    android:text="下午 16:45"
-                    android:textColor="@color/gray"
-                    android:textSize="9dip" />
-	</RelativeLayout>
-        </TableRow>
-        <LinearLayout   android:layout_width="fill_parent"         
-                android:layout_height="5dp"/>
-    </TableLayout>
-    
-    
-    
-    
-
+        android:layout_height="5dp" />
 
 </LinearLayout>
