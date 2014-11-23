@@ -44,12 +44,12 @@
         android:label="@string/app_name"
         android:launchMode="singleTask"
         android:name="com.xinfan.blueblue.activity.context.BuluApplication"
-        android:theme="@android:style/Theme.Black.NoTitleBar" >
+        android:theme="@android:style/Theme.Black.NoTitleBar"  >
         <activity
             android:name=".AppstartActivity"
             android:label="@string/title_activity_main"
             android:launchMode="singleTask"
-            android:theme="@style/Anim_style2" >
+            android:theme="@style/Anim_style2" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -59,7 +59,7 @@
         <activity
             android:name=".ViewpagerActivity"
             android:launchMode="singleTask"
-            android:theme="@style/Anim_style2" >
+            android:theme="@style/Anim_style2" android:screenOrientation="portrait" >
         </activity>
         <!--
         <activity
@@ -75,141 +75,141 @@
         -->
         <activity
             android:name=".LoginActivity"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait"/>
         <activity
             android:name=".RegisterStep2Activity"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait"/>
         <activity
             android:name=".RegisterStep1Activity"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait"/>
         <activity
             android:name=".ExitActivity"
-            android:theme="@style/MyDialogStyle" />
+            android:theme="@style/MyDialogStyle" android:screenOrientation="portrait"/>
         <activity
             android:name=".WelcomeActivity"
-            android:theme="@style/Anim_style2" />
+            android:theme="@style/Anim_style2" android:screenOrientation="portrait"/>
 
         <!-- 忘记密码 -->
         <activity
             android:name=".ForgetPasswordStep1"
-            android:theme="@style/Anim_style2" />
+            android:theme="@style/Anim_style2" android:screenOrientation="portrait"/>
         <!-- 重设密码 -->
         <activity
             android:name=".UpdatePasswordActivity"
-            android:theme="@style/Anim_style2" />
+            android:theme="@style/Anim_style2" android:screenOrientation="portrait"/>
         <!-- 重设昵称 -->
         <activity
             android:name=".UpdateNicknameActivity"
-            android:theme="@style/MyDialogStyle" />
+            android:theme="@style/MyDialogStyle" android:screenOrientation="portrait"/>
         <activity
             android:name=".ShakeActivity"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait"/>
         <activity
             android:name="InfoXiaoheiHead"
-            android:theme="@style/HeadScale" />
+            android:theme="@style/HeadScale" android:screenOrientation="portrait"/>
         <activity
             android:name="LoadingActivity"
-            android:theme="@style/MyDialogStyle" />
+            android:theme="@style/MyDialogStyle" android:screenOrientation="portrait" />
         <activity
             android:name="MainTopRightDialog"
-            android:theme="@style/MyDialogStyleTop" />
+            android:theme="@style/MyDialogStyleTop" android:screenOrientation="portrait"/>
         <activity
             android:name=".send.SendMessageActivity"
-            android:theme="@style/Anim_style2" />
+            android:theme="@style/Anim_style2" android:screenOrientation="portrait" />
         <activity
             android:name=".send.RevSeeMessageActivity"
-            android:theme="@style/Anim_style2" />
+            android:theme="@style/Anim_style2" android:screenOrientation="portrait"/>
         <activity
             android:name=".send.SeeMessageActivity"
-            android:theme="@style/Anim_style2" />
+            android:theme="@style/Anim_style2" android:screenOrientation="portrait" />
         <activity
             android:name=".send.TimeSelectActivity"
-            android:theme="@style/MyDialogStyle" />
+            android:theme="@style/MyDialogStyle" android:screenOrientation="portrait"/>
         <activity
             android:name=".send.MoneyInputActivity"
-            android:theme="@style/MyDialogStyle" />
+            android:theme="@style/MyDialogStyle" android:screenOrientation="portrait"/>
         <activity
             android:name=".send.AreaSelectActivity"
-            android:theme="@style/MyDialogStyle" />
+            android:theme="@style/MyDialogStyle" android:screenOrientation="portrait"/>
          <activity
             android:name=".send.SendMessageLocationActivity"
-            android:theme="@style/MyDialogStyle" />
+            android:theme="@style/MyDialogStyle" android:screenOrientation="portrait"/>
         
         
         <activity
             android:name=".rev.RevSeeMessageActivity"
-            android:theme="@style/Anim_style2" />
+            android:theme="@style/Anim_style2" android:screenOrientation="portrait"/>
         <activity
             android:name=".rev.RevReport"
-            android:theme="@style/Anim_style2" />
+            android:theme="@style/Anim_style2" android:screenOrientation="portrait" />
         <activity
             android:name=".rev.RevAddContactActivity"
-            android:theme="@style/MyDialogStyle" />
+            android:theme="@style/MyDialogStyle" android:screenOrientation="portrait"/>
         <activity
             android:name=".AccountEscActivity"
-            android:theme="@style/MyDialogStyle" />      
+            android:theme="@style/MyDialogStyle" android:screenOrientation="portrait"/>      
        <activity
             android:name=".main.PhotoSelectActivity"
-            android:theme="@style/MyDialogStyle" />
+            android:theme="@style/MyDialogStyle" android:screenOrientation="portrait"/>
         <activity
             android:name="ThemeSetActivity"
-            android:theme="@style/Anim_style2" />
+            android:theme="@style/Anim_style2" android:screenOrientation="portrait"/>
         <activity
             android:name="ViewMessageActivity"
-            android:theme="@style/Anim_style2" />
+            android:theme="@style/Anim_style2" android:screenOrientation="portrait"/>
         <activity
             android:name=".AccountInfoActivity"
-            android:theme="@style/Anim_style2" />
+            android:theme="@style/Anim_style2" android:screenOrientation="portrait"/>
         <activity
             android:name="ContactInfoActivity"
-            android:theme="@style/Anim_style2" />
+            android:theme="@style/Anim_style2" android:screenOrientation="portrait"/>
         <activity
             android:name=".RevReport"
-            android:theme="@style/Anim_style2" />
+            android:theme="@style/Anim_style2" android:screenOrientation="portrait"/>
         <activity
             android:name=".SystemSetActivity"
-            android:theme="@style/Anim_style2" />
+            android:theme="@style/Anim_style2" android:screenOrientation="portrait"/>
         <activity
             android:name=".ComplianActivity"
-            android:theme="@style/Anim_style2" />
+            android:theme="@style/Anim_style2" android:screenOrientation="portrait"/>
 
         <!-- 系统升级 -->
         <activity
             android:name=".UpdateVersionActivity"
-            android:theme="@style/MyDialogStyle" />
+            android:theme="@style/MyDialogStyle" android:screenOrientation="portrait"/>
         <!-- 设置接收消息数量 -->
         <activity
             android:name=".systemset.MessageNumSelectActivity"
-            android:theme="@style/MyDialogStyle" />
+            android:theme="@style/MyDialogStyle" android:screenOrientation="portrait"/>
         <!-- 设置相似度 -->
         <activity
             android:name=".systemset.SimilaritySet"
-            android:theme="@style/MyDialogStyle" />
+            android:theme="@style/MyDialogStyle" android:screenOrientation="portrait"/>
         <!-- 设置有偿额度 -->
         <activity
             android:name=".systemset.PaidSet"
-            android:theme="@style/MyDialogStyle" />
+            android:theme="@style/MyDialogStyle" android:screenOrientation="portrait"/>
         <!-- 设置信誉等级 -->
         <activity
             android:name=".systemset.ReputationSet"
-            android:theme="@style/MyDialogStyle" />
+            android:theme="@style/MyDialogStyle" android:screenOrientation="portrait"/>
         <!-- 关于我们 -->
         <activity
             android:name=".systemset.AboutUs"
-            android:theme="@style/MyDialogStyle" />
+            android:theme="@style/MyDialogStyle" android:screenOrientation="portrait"/>
         <!-- 注消账号 -->
         <activity
             android:name=".PhotoSelectActivity"
-            android:theme="@style/MyDialogStyle" />
+            android:theme="@style/MyDialogStyle" android:screenOrientation="portrait"/>
         <activity
             android:name=".ThemeInputActivity"
-            android:theme="@style/Anim_style2" />
+            android:theme="@style/Anim_style2" android:screenOrientation="portrait" />
         <activity
             android:name=".ForgetPasswordStep2"
-            android:theme="@style/Anim_style2" />
+            android:theme="@style/Anim_style2" android:screenOrientation="portrait"/>
         <activity
             android:name=".ThemeSetMenuActivity"
-            android:theme="@style/MyDialogStyle" />
+            android:theme="@style/MyDialogStyle" android:screenOrientation="portrait" />
         <activity
             android:name="com.xinfan.blueblue.activity.MainActivity"
             android:screenOrientation="portrait" />
