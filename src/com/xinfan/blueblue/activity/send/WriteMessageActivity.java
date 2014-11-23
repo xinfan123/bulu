@@ -46,7 +46,7 @@ public class WriteMessageActivity extends BaseActivity implements OnClickListene
 
 	public EditText message_more_edit;
 
-	public TextView message_content_edit_count, message_more_edit_count;
+	public TextView message_content_edit_count, message_more_edit_count, message_area_location;
 
 	public static WriteMessageActivity instance;
 
@@ -55,7 +55,7 @@ public class WriteMessageActivity extends BaseActivity implements OnClickListene
 	LocationEntity location;
 
 	int num = 140;// 限制的最大字数　
-	
+
 	int morenum = 500;
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -71,6 +71,7 @@ public class WriteMessageActivity extends BaseActivity implements OnClickListene
 		time_select_label = (TextView) findViewById(R.id.time_select_label);
 		area_select_label = (TextView) findViewById(R.id.area_select_label);
 		send_message_btn = (TextView) findViewById(R.id.send_message_btn);
+		message_area_location = (TextView) findViewById(R.id.message_area_location);
 
 		money_select_label = (TextView) findViewById(R.id.money_select_label);
 		message_content_edit_count = (TextView) findViewById(R.id.message_content_edit_count);
@@ -87,25 +88,32 @@ public class WriteMessageActivity extends BaseActivity implements OnClickListene
 		instance = this;
 
 		initMoreBtn();
-		
+
 		initDefaultSelect();
 
 		initWordLimit();
 
 		location();
 	}
-	
-	public void initDefaultSelect(){
-		
-		TimeListVo timeListVo = new TimeListVo("60","60分钟");
-		AreaListVo areaListVo = new AreaListVo("2","本市");
-		
+
+	public void setLocation(LocationEntity entity) {
+		this.location = entity;
+		if (location != null) {
+			message_area_location.setText(location.getCity());
+		}
+	}
+
+	public void initDefaultSelect() {
+
+		TimeListVo timeListVo = new TimeListVo("60", "60分钟");
+		AreaListVo areaListVo = new AreaListVo("2", "本市");
+
 		time_select_label.setTag(timeListVo);
 		time_select_label.setText("60分钟");
-		
+
 		area_select_label.setTag(areaListVo);
 		area_select_label.setText("本市");
-		
+
 		money_select_label.setTag("");
 		money_select_label.setText("0");
 	}

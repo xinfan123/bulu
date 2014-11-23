@@ -71,16 +71,17 @@ public class SendMessageLocationActivity extends BaseActivity {
 		GpsLocationManager.addLocation(getApplicationContext(), new LocationListener() {
 
 			@Override
-			public void onLocationSucess(LocationEntity uersLocation) {
-				WriteMessageActivity.instance.location = uersLocation;
-				SendMessageLocationActivity.this.finish();
+			public void onLocationSucess(final LocationEntity uersLocation) {
+				
+				
+				WriteMessageActivity.instance.runOnUiThread(new Thread(){
 
-				/*
-				 * handler.post(new Runnable() {
-				 * 
-				 * @Override public void run() { view1.setVisibility(View.GONE);
-				 * view2.setVisibility(View.VISIBLE); } });
-				 */
+					@Override
+					public void run() {
+						WriteMessageActivity.instance.setLocation(uersLocation);
+						SendMessageLocationActivity.this.finish();
+					}
+				});
 			}
 
 			@Override
