@@ -29,10 +29,19 @@ public class TimeSelectActivity extends BaseActivity implements OnClickListener 
 		ListView listview = (ListView) findViewById(R.id.time_listView_select);
 		timeList = new ArrayList<TimeListVo>();
 
-		TimeListVo one = new TimeListVo("20", "20分钟");
-		TimeListVo two = new TimeListVo("60", "60分钟");
-		timeList.add(one);
-		timeList.add(two);
+		TimeListVo t1 = new TimeListVo("20", "20分钟");
+		TimeListVo t2 = new TimeListVo("60", "60分钟");
+		TimeListVo t3 = new TimeListVo("120", "2小时");
+		TimeListVo t4 = new TimeListVo("360", "6小时");
+		TimeListVo t5 = new TimeListVo("720", "12小时");
+		TimeListVo t6 = new TimeListVo("1440", "24小时");
+		
+		timeList.add(t1);
+		timeList.add(t2);
+		timeList.add(t3);
+		timeList.add(t4);
+		timeList.add(t5);
+		timeList.add(t6);
 
 		timeAdapter = new WriteMessageTimeAdapter(this, timeList);
 		listview.setAdapter(timeAdapter);
@@ -42,7 +51,7 @@ public class TimeSelectActivity extends BaseActivity implements OnClickListener 
 
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				TimeListVo select = timeList.get(arg2);
-				SendMessageActivity.instance.updateTimeSelect(select);
+				WriteMessageActivity.instance.updateTimeSelect(select);
 				TimeSelectActivity.this.finish();
 			}
 

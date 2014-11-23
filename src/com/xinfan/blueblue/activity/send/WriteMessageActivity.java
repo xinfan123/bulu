@@ -24,7 +24,7 @@ import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
 import com.xinfan.msgbox.http.service.vo.param.SendMessageParam;
 
-public class SendMessageActivity extends BaseActivity implements OnClickListener {
+public class WriteMessageActivity extends BaseActivity implements OnClickListener {
 
 	public Button message_more_btn;
 
@@ -48,7 +48,7 @@ public class SendMessageActivity extends BaseActivity implements OnClickListener
 
 	public TextView message_content_edit_count, message_more_edit_count;
 
-	public static SendMessageActivity instance;
+	public static WriteMessageActivity instance;
 
 	public RelativeLayout message_content_edit_layout, message_more_edit_layout;
 
@@ -87,10 +87,27 @@ public class SendMessageActivity extends BaseActivity implements OnClickListener
 		instance = this;
 
 		initMoreBtn();
+		
+		initDefaultSelect();
 
 		initWordLimit();
 
 		location();
+	}
+	
+	public void initDefaultSelect(){
+		
+		TimeListVo timeListVo = new TimeListVo("60","60分钟");
+		AreaListVo areaListVo = new AreaListVo("2","本市");
+		
+		time_select_label.setTag(timeListVo);
+		time_select_label.setText("60分钟");
+		
+		area_select_label.setTag(areaListVo);
+		area_select_label.setText("本市");
+		
+		money_select_label.setTag("");
+		money_select_label.setText("0");
 	}
 
 	public void initMoreBtn() {
@@ -169,7 +186,7 @@ public class SendMessageActivity extends BaseActivity implements OnClickListener
 
 	public void location() {
 		Intent intent = new Intent();
-		intent.setClass(SendMessageActivity.this, SendMessageLocationActivity.class);
+		intent.setClass(WriteMessageActivity.this, SendMessageLocationActivity.class);
 		startActivity(intent);
 	}
 
@@ -239,7 +256,7 @@ public class SendMessageActivity extends BaseActivity implements OnClickListener
 
 		AreaListVo areaListVo = (AreaListVo) area_select_label.getTag();
 
-		int area = 1;
+		int area = 2;
 		if (areaListVo != null) {
 			area = Integer.parseInt(areaListVo.getId());
 		}
@@ -289,8 +306,8 @@ public class SendMessageActivity extends BaseActivity implements OnClickListener
 			public void call(Request data) {
 				MainActivity.instance.listview2.refresh();
 				// 刷新历史信息
-				ToastUtil.showMessage(SendMessageActivity.this, "发送成功");
-				SendMessageActivity.this.finish();
+				ToastUtil.showMessage(WriteMessageActivity.this, "发送成功");
+				WriteMessageActivity.this.finish();
 			}
 		});
 

@@ -44,7 +44,7 @@ public class AreaSelectActivity extends BaseActivity implements OnClickListener 
 
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				AreaListVo select = areaList.get(arg2);
-				SendMessageActivity.instance.updateAreaSelect(select);
+				WriteMessageActivity.instance.updateAreaSelect(select);
 				AreaSelectActivity.this.finish();
 			}
 

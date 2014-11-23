@@ -44,7 +44,7 @@ public class SendMessageLocationActivity extends BaseActivity {
 				view2.setVisibility(View.GONE);
 
 				SendMessageLocationActivity.this.finish();
-				SendMessageActivity.instance.location();
+				WriteMessageActivity.instance.location();
 			}
 		});
 
@@ -53,7 +53,7 @@ public class SendMessageLocationActivity extends BaseActivity {
 			@Override
 			public void onClick(View v) {
 				SendMessageLocationActivity.this.finish();
-				SendMessageActivity.instance.finish();
+				WriteMessageActivity.instance.finish();
 			}
 		});
 
@@ -72,7 +72,7 @@ public class SendMessageLocationActivity extends BaseActivity {
 
 			@Override
 			public void onLocationSucess(LocationEntity uersLocation) {
-				SendMessageActivity.instance.location = uersLocation;
+				WriteMessageActivity.instance.location = uersLocation;
 				SendMessageLocationActivity.this.finish();
 
 				/*

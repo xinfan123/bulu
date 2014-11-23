@@ -20,7 +20,7 @@ import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.activity.context.VersionManager;
 import com.xinfan.blueblue.activity.rev.RevMessageListView;
-import com.xinfan.blueblue.activity.send.SendMessageActivity;
+import com.xinfan.blueblue.activity.send.WriteMessageActivity;
 import com.xinfan.blueblue.dao.RequestCacheKeyHelper;
 import com.xinfan.blueblue.gettui.GetuiPushReceiver;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
@@ -193,7 +193,7 @@ public class MainActivity extends BaseActivity implements OnViewChangeListener, 
 
 	public void uploadImage3(final Activity context) {
 		Intent intent = new Intent();
-		intent.setClass(this, SendMessageActivity.class);
+		intent.setClass(this, WriteMessageActivity.class);
 		startActivity(intent);
 		// this.finish();
 	}

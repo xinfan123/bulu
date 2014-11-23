@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.contact.ContactInfoMenu;
-import com.xinfan.blueblue.activity.send.SendMessageActivity;
+import com.xinfan.blueblue.activity.send.WriteMessageActivity;
 import com.xinfan.blueblue.util.BizUtils;
 import com.xinfan.blueblue.vo.LinkmanVo;
 
@@ -65,7 +65,7 @@ public class ContactInfoActivity extends BaseActivity {
 
 	public void send_private_message(View v) {
 		Intent intent = new Intent();
-		intent.setClass(ContactInfoActivity.this, SendMessageActivity.class);
+		intent.setClass(ContactInfoActivity.this, WriteMessageActivity.class);
 
 		startActivity(intent);
 	}

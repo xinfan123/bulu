@@ -39,7 +39,7 @@ public class MoneyInputActivity extends BaseActivity implements OnClickListener 
 					ToastUtil.showMessage(MoneyInputActivity.this, "请填写金额大小");
 					return;
 				}
-				SendMessageActivity.instance.updateMoney(value);
+				WriteMessageActivity.instance.updateMoney(value);
 				MoneyInputActivity.this.finish();
 			}
 		});
