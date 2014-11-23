@@ -33,11 +33,11 @@ public class SeeMessageActivity extends BaseActivity implements OnClickListener 
 
 	public TextView see_message_more_edit;
 
-	public TextView see_message_credit;
+	public TextView see_message_publishtime;
 
 	public TextView see_message_rev_count;
 
-	public TextView see_message_read_count;
+	public TextView see_message_read_count,see_message_refresh_count;
 
 	public TextView see_message_lasttime;
 
@@ -55,12 +55,14 @@ public class SeeMessageActivity extends BaseActivity implements OnClickListener 
 
 		see_time_select_label = (TextView) findViewById(R.id.see_time_select_label);
 		see_area_select_label = (TextView) findViewById(R.id.see_message_area);
-		see_message_credit = (TextView) findViewById(R.id.see_message_credit);
+		see_message_publishtime = (TextView) findViewById(R.id.see_message_publishtime);
 		see_money_select_label = (TextView) findViewById(R.id.see_money_select_label);
 
 		see_message_rev_count = (TextView) findViewById(R.id.see_message_rev_count);
 		see_message_read_count = (TextView) findViewById(R.id.see_message_read_count);
 		see_message_lasttime = (TextView) findViewById(R.id.see_message_lasttime);
+		see_message_refresh_count = (TextView) findViewById(R.id.see_message_refresh_count);
+		
 
 		instance = this;
 
@@ -95,25 +97,32 @@ public class SeeMessageActivity extends BaseActivity implements OnClickListener 
 	}
 
 	public void show(MessageVO messageVo) {
-
+		View see_message_more_edit_layout = this.findViewById(R.id.see_message_more_edit_layout);
 		if (messageVo.getContext() == null || messageVo.getContext().length() <= 1) {
-			see_message_more_edit.setVisibility(View.GONE);
+			see_message_more_edit_layout.setVisibility(View.GONE);
 		} else {
-			see_message_more_edit.setVisibility(View.VISIBLE);
+			see_message_more_edit_layout.setVisibility(View.VISIBLE);
 			see_message_more_edit.setText(messageVo.getContext());
 		}
 
 		see_message_content_edit.setText(messageVo.getTitle());
 
-		see_time_select_label.setText("有效时间（分）：" + messageVo.getDurationTime());
-		see_area_select_label.setText("地址范围：" + (messageVo.getSendType() == 1 ? "附近" : "本市"));
+		see_time_select_label.setText(String.valueOf(messageVo.getDurationTime()));
+		see_area_select_label.setText((messageVo.getSendType() == 1 ? "附近" : "本市"));
 
-		see_message_credit.setText("发布时间：" + DateUtil.formateLong(messageVo.getRefreshTime()));
-		see_money_select_label.setText("有偿金额：" + (messageVo.getAmount() == null ? 0 : messageVo.getAmount()));
-		see_message_read_count.setText("阅读数：" + (messageVo.getReadCount() == null ? 0 : messageVo.getReadCount()));
-		see_message_rev_count.setText("推送数:" + (messageVo.getPublishCount() == null ? 0 : messageVo.getPublishCount()));
+		see_message_publishtime.setText("发布时间：" + DateUtil.formateLong(messageVo.getRefreshTime()));
+		see_money_select_label.setText(String.valueOf(messageVo.getAmount() == null ? 0 : messageVo.getAmount()));
+		see_message_read_count.setText("阅读人数：" + String.valueOf(messageVo.getReadCount() == null ? 0 : messageVo.getReadCount()));
+		see_message_rev_count.setText("推送人数：" + String.valueOf(messageVo.getPublishCount() == null ? 0 : messageVo.getPublishCount()));
+		see_message_refresh_count.setText("刷新次数："+messageVo.getRefreshCount());
 
-		see_message_lasttime.setText(BizUtils.calUsefulTime(messageVo.getRefreshTime(), messageVo.getDurationTime())[1]);
+		String[] times = BizUtils.calUsefulTime(messageVo.getRefreshTime(), messageVo.getDurationTime());
+		if ("1".equals(times[0])) {
+			see_message_lasttime.setText("剩余时间：" + times[1]);
+		} else {
+			see_message_lasttime.setText("剩余时间：" + times[1]);
+		}
+
 	}
 
 	public void send_msg_back(View view) {
