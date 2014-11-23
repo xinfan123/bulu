@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.widget.PopupWindow;
 
 import com.xinfan.blueblue.activity.ContactInfoActivity;
 import com.xinfan.blueblue.activity.LinkmanListView;
+import com.xinfan.blueblue.activity.LoginActivity;
 import com.xinfan.blueblue.activity.MainActivity;
 import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
@@ -35,10 +37,12 @@ public class ContactInfoMenu extends PopupWindow {
 	private Button btnModify;
 	private View mMenuView;
 
-	private MarkModifyWindow window;
+	private Activity context;
 
 	public ContactInfoMenu(final Activity context) {
 		super(context);
+
+		this.context = context;
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		mMenuView = inflater.inflate(R.layout.contact_info_menu, null);
 
@@ -76,15 +80,15 @@ public class ContactInfoMenu extends PopupWindow {
 	public void onClickDelete(View v) {
 
 		LinkmanVo vo = ContactInfoActivity.instance.vo;
-		
+
 		Request request = new Request(FunIdConstants.DELETE_USER_LINKMAN);
-		
+
 		UserLinkmanParam param = new UserLinkmanParam();
 		param.setLinkUserId(vo.getLinkUserId());
 		param.setUserId(vo.getUserId());
-		
+
 		request.setParam(param);
-		
+
 		AnsynHttpRequest.requestSimpleByPost(ContactInfoActivity.instance, request, new RequestSucessCallBack() {
 			public void call(Request data) {
 				MainActivity.instance.listview3.refresh();
@@ -95,52 +99,9 @@ public class ContactInfoMenu extends PopupWindow {
 	}
 
 	public void onClickMark(final View v) {
-
-		window = new MarkModifyWindow(ContactInfoActivity.instance, new OnClickYesMark() {
-
-			public void onClickYesMark(String title) {
-
-				String str = title;
-				if (str == null || str.length() == 0) {
-					ToastUtil.showMessage(v.getContext(), "请输入内容");
-					return;
-				}
-				if (str.length() >= 20) {
-					ToastUtil.showMessage(v.getContext(), "内容过长");
-					return;
-				}
-				
-				LinkmanVo vo = ContactInfoActivity.instance.vo;
-				ContactInfoActivity.instance.updateMark(str);
-				ToastUtil.showMessage(v.getContext(), "修改成功");
-				window.dismiss();
-				
-				
-				Request request = new Request(FunIdConstants.UPDATE_USER_LINKMAN);
-				
-				UserLinkmanParam param = new UserLinkmanParam();
-				param.setLinkUserId(vo.getLinkUserId());
-				param.setUserId(vo.getUserId());
-				param.setLinkRemark(str);
-				
-				request.setParam(param);
-				request.setShowDialog(false);
-				
-				AnsynHttpRequest.requestSimpleByPost(ContactInfoActivity.instance, request, new RequestSucessCallBack() {
-					public void call(Request data) {
-						MainActivity.instance.listview3.refresh();
-						//ToastUtil.showMessage(ContactInfoActivity.instance, "删除成功");
-					}
-				});
-			}
-
-		});
-		
-		View parent = ContactInfoActivity.instance.findViewById(R.id.contact_layout_top);
-		window.showAtLocation(parent, Gravity.CENTER, 0, 0);
+		Intent intent = new Intent();
+		intent.setClass(this.context, ContactModifyRemarkActivity.class);
+		context.startActivity(intent);
+		this.dismiss();
 	}
-}
-
-interface OnClickYesMark {
-	public void onClickYesMark(String value);
 }
