@@ -415,6 +415,7 @@ public class SendedMessageListView extends ListView implements OnScrollListener,
 
 		request.setParam(param);
 		request.setCache(true);
+		request.setShowDialog(false);
 		request.setCacheKey(RequestCacheKeyHelper.generateSendedMessageListCacheKey(param));
 		
 
@@ -442,7 +443,8 @@ public class SendedMessageListView extends ListView implements OnScrollListener,
 		param.setPageSize(pageSize);
 
 		request.setParam(param);
-
+		request.setShowDialog(false);
+		
 		AnsynHttpRequest.requestSimpleByPost(context, request, new RequestSucessCallBack() {
 
 			public void call(Request data) {

@@ -25,8 +25,8 @@ import android.content.Context;
 import android.os.Handler;
 
 import com.alibaba.fastjson.JSONObject;
+import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.activity.context.SystemConfigContext;
-import com.xinfan.blueblue.common.LoadingDialogFragment;
 import com.xinfan.blueblue.dao.CacheDataDao;
 import com.xinfan.blueblue.dao.DaoFactory;
 import com.xinfan.blueblue.util.JSONUtils;
@@ -134,9 +134,14 @@ class MyRunnable implements Runnable {
 	@Override
 	public void run() {
 		String data = null;
-		LoadingDialogFragment loading = null;
 
-		request.setShowDialog(false);
+		if (request.isShowDialog() && context instanceof BaseActivity) {
+			((BaseActivity) context).preLoading();
+		}
+
+		if (request.getRequestStartCallBack() != null) {
+			request.getRequestStartCallBack().call(request);
+		}
 
 		if (Network.checkNetWorkType(context) == Network.NONETWORK) {
 			ToastUtil.showMessage(context, "没有网络连接，请检查网络");
@@ -157,11 +162,6 @@ class MyRunnable implements Runnable {
 		} else {
 
 			try {
-
-				if (request.isShowDialog() && context instanceof Activity) {
-					loading = LoadingDialogFragment.newInstance(request.getDialogMessage());
-					loading.open((Activity) context);
-				}
 
 				// 设置请求头超时请求参数
 				BasicHttpParams httpParams = new BasicHttpParams();
@@ -238,12 +238,6 @@ class MyRunnable implements Runnable {
 						}
 					});
 				}
-			} finally {
-				if (request.isShowDialog() && context instanceof Activity) {
-					if (loading != null) {
-						loading.close();
-					}
-				}
 			}
 		}
 
@@ -287,6 +281,14 @@ class MyRunnable implements Runnable {
 				 * });
 				 */
 			}
+		}
+		
+		if (request.isShowDialog() && context instanceof BaseActivity) {
+			((BaseActivity) context).afterLoading();
+		}
+
+		if (request.getRequestFinishCallBack() != null) {
+			request.getRequestFinishCallBack().call(request);
 		}
 	}
 

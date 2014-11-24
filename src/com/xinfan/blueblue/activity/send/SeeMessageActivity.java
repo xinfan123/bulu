@@ -73,7 +73,9 @@ public class SeeMessageActivity extends BaseActivity implements OnClickListener 
 	}
 
 	public void load() {
-
+		
+		
+		
 		Request request = new Request(FunIdConstants.GET_MESSAGE);
 		SendMessageParam param = new SendMessageParam();
 		param.setUserId(LoginUserContext.getUserId(this));

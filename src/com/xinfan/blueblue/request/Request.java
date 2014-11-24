@@ -34,6 +34,10 @@ public class Request implements java.io.Serializable {
 
 	private NetworkErrorCallBack networkErrorCallBack;
 
+	private RequestFinishCallBack requestFinishCallBack;
+
+	private RequestStartCallBack requestStartCallBack;
+
 	public String getCacheKey() {
 		return cacheKey;
 	}
@@ -160,6 +164,22 @@ public class Request implements java.io.Serializable {
 
 	public void setNetworkErrorCallBack(NetworkErrorCallBack networkErrorCallBack) {
 		this.networkErrorCallBack = networkErrorCallBack;
+	}
+
+	public RequestFinishCallBack getRequestFinishCallBack() {
+		return requestFinishCallBack;
+	}
+
+	public void setRequestFinishCallBack(RequestFinishCallBack requestFinishCallBack) {
+		this.requestFinishCallBack = requestFinishCallBack;
+	}
+
+	public RequestStartCallBack getRequestStartCallBack() {
+		return requestStartCallBack;
+	}
+
+	public void setRequestStartCallBack(RequestStartCallBack requestStartCallBack) {
+		this.requestStartCallBack = requestStartCallBack;
 	}
 
 }

@@ -13,6 +13,8 @@ import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.dao.RequestCacheKeyHelper;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.RequestFinishCallBack;
+import com.xinfan.blueblue.request.RequestStartCallBack;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.util.BizUtils;
 import com.xinfan.blueblue.util.DateUtil;
@@ -23,7 +25,7 @@ import com.xinfan.msgbox.http.service.vo.result.MessageRevResult;
 
 public class RevSeeMessageActivity extends BaseActivity implements OnClickListener {
 
-	public TextView see_time_select_label; 
+	public TextView see_time_select_label;
 
 	public TextView see_message_gps;
 
@@ -70,9 +72,9 @@ public class RevSeeMessageActivity extends BaseActivity implements OnClickListen
 	}
 
 	public void show(MessageRevDetailVO messageVo) {
-		
+
 		messageVo.setContext("破口大骂叶中吉地寺困踮起脚尖");
-		
+
 		if (messageVo.getContext() == null || messageVo.getContext().length() <= 1) {
 			see_message_more_edit.setVisibility(View.GONE);
 		} else {
@@ -85,14 +87,14 @@ public class RevSeeMessageActivity extends BaseActivity implements OnClickListen
 		String time = BizUtils.calUsefulTime(messageVo.getRefreshTime(), messageVo.getDurationTime())[1];
 
 		see_time_select_label.setText(time);
-		//see_area_select_label.setText(messageVo.getSendType() == 1 ? "附近" : "本市");
+		// see_area_select_label.setText(messageVo.getSendType() == 1 ? "附近" :
+		// "本市");
 		see_message_credit.setText("信用值：" + String.valueOf(messageVo.getSendUserCredit()));
 		see_money_select_label.setText("有偿：" + String.valueOf(messageVo.getAmount()));
 		rev_message_send_username.setText(messageVo.getSendUserName());
 		rev_message_send_time.setText(DateUtil.formateLong(messageVo.getRefreshTime()));
-		
-		
-		see_message_gps.setText("距离："+BizUtils.calGps2mToString(messageVo.getGpsx(), messageVo.getGpsy()));
+
+		see_message_gps.setText("距离：" + BizUtils.calGps2mToString(messageVo.getGpsx(), messageVo.getGpsy()));
 
 		BizUtils.showAvatar(this, rev_message_user_avatar, messageVo.getSendUserAvatar());
 	}

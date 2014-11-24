@@ -413,6 +413,7 @@ public class LinkmanListView extends ListView implements OnScrollListener, OnIte
 
 		request.setParam(param);
 		request.setCache(true);
+		request.setShowDialog(false);
 		request.setCacheKey(RequestCacheKeyHelper.generateContactListCacheKey(param));
 
 		AnsynHttpRequest.requestSimpleByPost(context, request, new RequestSucessCallBack() {
@@ -439,6 +440,7 @@ public class LinkmanListView extends ListView implements OnScrollListener, OnIte
 		param.setPageSize(pageSize);
 
 		request.setParam(param);
+		request.setShowDialog(false);
 
 		AnsynHttpRequest.requestSimpleByPost(context, request, new RequestSucessCallBack() {
 

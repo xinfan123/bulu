@@ -418,6 +418,7 @@ public class RevMessageListView extends ListView implements OnScrollListener, On
 
 		request.setParam(param);
 		request.setCache(true);
+		request.setShowDialog(false);
 		request.setCacheKey(RequestCacheKeyHelper.generateRevMessageListCacheKey(param));
 
 		AnsynHttpRequest.requestSimpleByPost(context, request, new RequestSucessCallBack() {
@@ -448,7 +449,8 @@ public class RevMessageListView extends ListView implements OnScrollListener, On
 		param.setPageSize(pageSize);
 
 		request.setParam(param);
-
+		request.setShowDialog(false);
+		
 		AnsynHttpRequest.requestSimpleByPost(context, request, new RequestSucessCallBack() {
 
 			public void call(Request data) {
