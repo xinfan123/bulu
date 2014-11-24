@@ -1,10 +1,10 @@
 package com.xinfan.blueblue.activity.rev;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xinfan.blueblue.activity.R;
@@ -23,9 +23,9 @@ import com.xinfan.msgbox.http.service.vo.result.MessageRevResult;
 
 public class RevSeeMessageActivity extends BaseActivity implements OnClickListener {
 
-	public TextView see_time_select_label;
+	public TextView see_time_select_label; 
 
-	public TextView see_area_select_label;
+	public TextView see_message_gps;
 
 	public TextView see_money_select_label;
 
@@ -38,6 +38,8 @@ public class RevSeeMessageActivity extends BaseActivity implements OnClickListen
 	public TextView rev_message_send_username;
 
 	public TextView rev_message_send_time;
+
+	public ImageView rev_message_user_avatar;
 
 	public static RevSeeMessageActivity instance;
 
@@ -52,22 +54,25 @@ public class RevSeeMessageActivity extends BaseActivity implements OnClickListen
 		see_message_content_edit = (TextView) findViewById(R.id.see_message_content_edit);
 
 		see_time_select_label = (TextView) findViewById(R.id.see_time_select_label);
-		see_area_select_label = (TextView) findViewById(R.id.see_message_area);
+		see_message_gps = (TextView) findViewById(R.id.see_message_gps);
 		see_message_credit = (TextView) findViewById(R.id.see_message_credit);
 		see_money_select_label = (TextView) findViewById(R.id.see_money_select_label);
 		rev_message_send_username = (TextView) findViewById(R.id.rev_message_send_username);
 		rev_message_send_time = (TextView) findViewById(R.id.rev_message_send_time);
+		rev_message_user_avatar = (ImageView) this.findViewById(R.id.rev_message_user_avatar);
 
 		instance = this;
 		Bundle data = this.getIntent().getExtras();
 
 		vo = (RevMessageSummaryVO) data.getSerializable("vo");
-		
+
 		load();
 	}
 
 	public void show(MessageRevDetailVO messageVo) {
-
+		
+		messageVo.setContext("破口大骂叶中吉地寺困踮起脚尖");
+		
 		if (messageVo.getContext() == null || messageVo.getContext().length() <= 1) {
 			see_message_more_edit.setVisibility(View.GONE);
 		} else {
@@ -80,11 +85,16 @@ public class RevSeeMessageActivity extends BaseActivity implements OnClickListen
 		String time = BizUtils.calUsefulTime(messageVo.getRefreshTime(), messageVo.getDurationTime())[1];
 
 		see_time_select_label.setText(time);
-		see_area_select_label.setText(messageVo.getSendType() == 1 ? "附近" : "本市");
+		//see_area_select_label.setText(messageVo.getSendType() == 1 ? "附近" : "本市");
 		see_message_credit.setText("信用值：" + String.valueOf(messageVo.getSendUserCredit()));
 		see_money_select_label.setText("有偿：" + String.valueOf(messageVo.getAmount()));
 		rev_message_send_username.setText(messageVo.getSendUserName());
 		rev_message_send_time.setText(DateUtil.formateLong(messageVo.getRefreshTime()));
+		
+		
+		see_message_gps.setText("距离："+BizUtils.calGps2mToString(messageVo.getGpsx(), messageVo.getGpsy()));
+
+		BizUtils.showAvatar(this, rev_message_user_avatar, messageVo.getSendUserAvatar());
 	}
 
 	public void load() {
@@ -97,7 +107,6 @@ public class RevSeeMessageActivity extends BaseActivity implements OnClickListen
 		request.setParam(param);
 		request.setCache(true);
 		request.setCacheKey(RequestCacheKeyHelper.generateSeeRevMessageCacheKey(param));
-		
 
 		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
 
