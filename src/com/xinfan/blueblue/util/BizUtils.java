@@ -1,5 +1,6 @@
 package com.xinfan.blueblue.util;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -92,7 +93,15 @@ public class BizUtils {
 			e.printStackTrace();
 		}
 
-		String mString = String.valueOf(Math.round((s / 1000))) + "km";
+		String mString = "";
+
+		double km = s / 1000;
+		if (km >= 1) {
+			mString = Math.round(km) + "km";
+		} else {
+			DecimalFormat df = new DecimalFormat("#.00");
+			mString = df.format(km) + "km";
+		}
 
 		return mString;
 	}

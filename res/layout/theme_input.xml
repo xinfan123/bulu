@@ -37,22 +37,40 @@
         android:background="#eee"
         android:padding="15dp" />
 
-    <EditText
-        android:id="@+id/theme_text"
+    <RelativeLayout
+        android:id="@+id/theme_input_edit_layout"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_margin="15dp"
-        android:background="@null"
-        android:hint="请输入您好的消息设置"
-        android:lines="4"
-        android:textColor="#ff555555"
-        android:textColorHint="#ffaaaaaa"
-        android:textSize="16.0sp" />
+        android:background="@drawable/input_message_layout"
+        android:padding="5dp" >
+
+        <EditText
+            android:id="@+id/theme_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="请输入您好的消息设置"
+            android:lines="4"
+            android:textColor="#ff555555"
+            android:textColorHint="#ffaaaaaa"
+            android:textSize="16.0sp" />
+
+        <TextView
+            android:id="@+id/theme_input_edit_count"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="0/140"
+            android:textColor="@color/gray_txt" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="1dip"
-        android:layout_margin="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:background="#eee" />
 
     <TextView
@@ -63,6 +81,7 @@
         android:background="#eb6100"
         android:gravity="center"
         android:padding="10dp"
+        android:text="提交"
         android:textColor="@color/white"
         android:textSize="@dimen/submit_text_size" />
 

@@ -11,6 +11,7 @@ import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Request;
+import com.xinfan.blueblue.request.RequestFinishCallBack;
 import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;
@@ -56,6 +57,9 @@ public class RevAddContactActivity extends BaseActivity implements OnClickListen
 				param.setUserId(messageVo.getReceivedUserid());
 
 				request.setParam(param);
+				request.setShowDialog(false);
+				
+		
 
 				AnsynHttpRequest.requestSimpleByPost(RevSeeMessageActivity.instance, request, new RequestSucessCallBack() {
 
@@ -64,7 +68,7 @@ public class RevAddContactActivity extends BaseActivity implements OnClickListen
 						MainActivity.instance.listview3.refresh();
 					}
 				});
-
+				
 				RevAddContactActivity.this.finish();
 			}
 		});
