@@ -49,6 +49,7 @@ public class UpdateNicknameActivity extends BaseActivity {
 			param.setUserId(LoginUserContext.getUserId(this));
 			param.setUserName(newNickname);
 			request.setParam(param);
+			request.setShowDialog(false);
 
 			AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
 
@@ -63,9 +64,10 @@ public class UpdateNicknameActivity extends BaseActivity {
 					} else {
 						ToastUtil.showMessage(UpdateNicknameActivity.this, result.getMsg());
 					}
-					UpdateNicknameActivity.this.finish();
 				}
 			});
+			
+			UpdateNicknameActivity.this.finish();
 		}
 	}
 

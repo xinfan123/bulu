@@ -34,38 +34,37 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:gravity="center"
+        android:orientation="horizontal"
         android:padding="20dp" >
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/point" 
-            android:paddingTop="2dp"/>
+            android:background="@drawable/point"
+            android:paddingTop="2dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="定制接收您感兴趣的消息主题"
             android:layout_marginLeft="10dp"
+            android:text="定制接收您感兴趣的消息主题"
             android:textColor="#CDC9C9"
             android:textSize="17sp" />
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="#eee"
         android:layout_marginLeft="8dp"
-         android:layout_marginRight="8dp" />
+        android:layout_marginRight="8dp"
+        android:background="#eee" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" 
-               android:padding="15dp">
+        android:orientation="horizontal"
+        android:padding="15dp" >
 
         <TextView
             android:id="@+id/theme_count_current"
@@ -83,12 +82,14 @@
             android:text="还神多少"
             android:textColor="#eb6100" />
     </LinearLayout>
-  <LinearLayout
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="#eee"
-         android:layout_marginLeft="8dp"
-         android:layout_marginRight="8dp" />
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="#eee" />
+
     <ListView
         android:id="@+id/theme_list"
         android:layout_width="fill_parent"
@@ -97,14 +98,23 @@
         android:background="@color/white" >
     </ListView>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:text="长按删除"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="right"
+        android:textColor="@color/gray_txt"
+        android:textSize="12dp" />
+
     <Button
         android:id="@+id/right_btn"
         android:layout_width="fill_parent"
         android:layout_height="43dp"
-     	android:layout_margin="20dp"
+        android:layout_margin="20dp"
         android:background="#eb6100"
         android:onClick="click_theme_add"
-      
         android:text="添加"
         android:textSize="15dp" />
 

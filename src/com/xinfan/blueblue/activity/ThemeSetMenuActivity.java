@@ -57,6 +57,7 @@ public class ThemeSetMenuActivity extends BaseActivity {
 		param.setId(id);
 		param.setUserId(LoginUserContext.getUserId(ThemeSetMenuActivity.this));
 		request.setParam(param);
+		request.setShowDialog(false);
 
 		AnsynHttpRequest.requestSimpleByPost(ThemeSetMenuActivity.this, request, new RequestSucessCallBack() {
 			public void call(Request request) {
@@ -64,7 +65,7 @@ public class ThemeSetMenuActivity extends BaseActivity {
 				ThemeSetMenuActivity.this.finish();
 			}
 		});
-
+		
 	}
 
 }
