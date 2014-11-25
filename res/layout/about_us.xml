@@ -3,7 +3,7 @@
     android:layout_width="280dip"
     android:layout_height="350dip"
     android:layout_gravity="center_vertical|center_horizontal"
-    android:background="@drawable/bottom_bar"
+    android:background="@drawable/alertdialog_bg"
     android:orientation="vertical" >
 
     <ImageView
