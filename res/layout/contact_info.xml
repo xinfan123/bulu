@@ -187,13 +187,13 @@
         android:background="#eee"
         android:orientation="vertical" />
       <Button
-        android:id="@+id/send_private_message"
+      
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
     	android:padding="12dp"	
     	android:layout_margin="15dp"
         android:background="#eb6100"
-        android:onClick="privatesend"
+        android:onClick="send_private_message"
         android:text="写私信"
         android:textColor="#ffffff" />
 </LinearLayout>

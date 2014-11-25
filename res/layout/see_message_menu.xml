@@ -20,8 +20,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:orientation="horizontal"
+            android:background="@drawable/input_top"
+      
             android:padding="15dp" >
 
             <ImageView
@@ -47,6 +47,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:focusable="true"
+             android:background="@drawable/input_button"
             android:focusableInTouchMode="true"
             android:orientation="horizontal"
             android:padding="15dp" >

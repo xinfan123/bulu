@@ -80,8 +80,8 @@
         android:layout_margin="15dp"
         android:background="#eb6100"
         android:gravity="center"
-        android:padding="10dp"
         android:text="提交"
+        android:padding="10dp"
         android:textColor="@color/white"
         android:textSize="@dimen/submit_text_size" />
 
