@@ -38,9 +38,9 @@ public final class Constants {
     	/** 服务器地址 */
     	public static final String http_request_uri = "MainService";
 
-    	//public static final String http_request_ip = "192.168.1.103:7001";
+    	public static final String http_request_ip = "192.168.1.103:7001";
     	
-    	public static final String http_request_ip = "112.124.37.223:9001";
+    	//public static final String http_request_ip = "112.124.37.223:9001";
 
     	//public static final String http_request_head = "http://192.168.1.102:7001/MainService";
     }

@@ -32,14 +32,10 @@
                     android:gravity="center"
                     android:padding="10dip"
                     android:text="收消息"
-                 android:textColor="@color/black"
+                 	android:textColor="@color/black"
                     android:textSize="15dip" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="@drawable/rowline" />
         </LinearLayout>
 
         <LinearLayout
@@ -62,10 +58,6 @@
                 android:textColor="@color/black"
                 android:textSize="15dip" />
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="@drawable/rowline" />
         </LinearLayout>
 
         <LinearLayout
@@ -86,11 +78,6 @@
                 android:text="联系人"
                 android:textColor="@color/black"
                 android:textSize="15dip" />
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="@drawable/rowline" />
         </LinearLayout>
     </LinearLayout>
 

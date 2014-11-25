@@ -34,10 +34,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:background="@null"
-                android:hint="手机号（请输入admin）"
+                android:hint="手机号"
                 android:paddingLeft="55dp"
                 android:singleLine="true"
-                android:text="18673119686"
+                android:text=""
                 android:textColor="#000"
                 android:textSize="15sp" />
         </TableRow>
@@ -81,10 +81,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:background="@null"
-                android:hint="密码(请输入1)"
+                android:hint="密码"
                 android:paddingLeft="55dp"
                 android:password="true"
-                android:text="1"
+                android:text=""
                 android:textColor="#000"
                 android:textSize="15sp" />
         </TableRow>

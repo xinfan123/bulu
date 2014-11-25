@@ -73,8 +73,6 @@ public class RevSeeMessageActivity extends BaseActivity implements OnClickListen
 
 	public void show(MessageRevDetailVO messageVo) {
 
-		messageVo.setContext("破口大骂叶中吉地寺困踮起脚尖");
-
 		if (messageVo.getContext() == null || messageVo.getContext().length() <= 1) {
 			see_message_more_edit.setVisibility(View.GONE);
 		} else {
