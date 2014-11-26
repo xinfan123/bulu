@@ -8,8 +8,14 @@
 	<classpathentry kind="lib" path="libs/httpcore-4.2.2.jar"/>
 	<classpathentry kind="lib" path="libs/fastjson-1.1.27.jar"/>
 	<classpathentry kind="lib" path="libs/client.jar"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry kind="lib" path="libs/commons-codec-1.7.jar"/>
+	<classpathentry kind="lib" path="libs/GetuiExt-2.0.3.jar"/>
+	<classpathentry kind="lib" path="libs/GetuiSdk2.3.0.0.jar"/>
+	<classpathentry kind="lib" path="libs/TencentLocationSDK_v4.0_r136087.jar"/>
+	<classpathentry kind="lib" path="libs/TencentMapSDK_Raster_v1.0.6.jar"/>
+	<classpathentry kind="lib" path="libs/universal-image-loader-1.9.3.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

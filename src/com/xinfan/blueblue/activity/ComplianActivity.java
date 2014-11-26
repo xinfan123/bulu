@@ -27,7 +27,7 @@ public class ComplianActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.complain);
-		mComplainText = (EditText) findViewById(id.complainText);
+		//mComplainText = (EditText) findViewById(id.complainText);
 	}
 
 	public void complain_send(View v) {

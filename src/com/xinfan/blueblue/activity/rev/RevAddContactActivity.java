@@ -11,7 +11,7 @@ import com.xinfan.blueblue.activity.R;
 import com.xinfan.blueblue.activity.base.BaseActivity;
 import com.xinfan.blueblue.request.AnsynHttpRequest;
 import com.xinfan.blueblue.request.Request;
-import com.xinfan.blueblue.request.RequestFinishCallBack;
+
 import com.xinfan.blueblue.request.RequestSucessCallBack;
 import com.xinfan.blueblue.util.ToastUtil;
 import com.xinfan.msgbox.http.service.vo.FunIdConstants;

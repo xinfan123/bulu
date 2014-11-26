@@ -50,7 +50,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:hint="请输入您好的消息设置"
+            android:hint="请输入您要接收的消息主题"
             android:lines="4"
             android:textColor="#ff555555"
             android:textColorHint="#ffaaaaaa"

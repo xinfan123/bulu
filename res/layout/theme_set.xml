@@ -111,11 +111,14 @@
     <Button
         android:id="@+id/right_btn"
         android:layout_width="fill_parent"
-        android:layout_height="43dp"
-        android:layout_margin="20dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         android:background="#eb6100"
+      	 android:gravity="center"
+        android:padding="10dp"
         android:onClick="click_theme_add"
         android:text="添加"
-        android:textSize="15dp" />
+        android:textColor="#ffffff"
+       />
 
 </LinearLayout>

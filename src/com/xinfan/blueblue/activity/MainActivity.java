@@ -193,7 +193,7 @@ public class MainActivity extends BaseActivity implements OnViewChangeListener, 
 
 	public void uploadImage3(final Activity context) {
 		Intent intent = new Intent();
-		intent.setClass(this, WriteMessageActivity.class);
+		intent.setClass(this,WriteMessageActivity.class);
 		startActivity(intent);
 		// this.finish();
 	}
