@@ -152,10 +152,10 @@ public class WriteMessageActivity extends BaseActivity implements OnClickListene
 
 			public void afterTextChanged(Editable s) {
 				int number = BizUtils.getWordCount(temp.toString());
-				message_content_edit_count.setText("" + number + "/" + morenum);
+				message_content_edit_count.setText("" + number + "/" + num);
 				selectionStart = message_content_edit.getSelectionStart();
 				selectionEnd = message_content_edit.getSelectionEnd();
-				if (BizUtils.getWordCount(temp.toString()) > morenum) {
+				if (BizUtils.getWordCount(temp.toString()) > num) {
 					s.delete(selectionStart - 1, selectionEnd);
 					int tempSelection = selectionEnd;
 					message_content_edit.setText(s);
@@ -179,10 +179,10 @@ public class WriteMessageActivity extends BaseActivity implements OnClickListene
 
 			public void afterTextChanged(Editable s) {
 				int number = BizUtils.getWordCount(temp.toString());
-				message_more_edit_count.setText("" + number + "/" + num);
+				message_more_edit_count.setText("" + number + "/" + morenum);
 				selectionStart = message_more_edit.getSelectionStart();
 				selectionEnd = message_more_edit.getSelectionEnd();
-				if (BizUtils.getWordCount(temp.toString()) > num) {
+				if (BizUtils.getWordCount(temp.toString()) > morenum) {
 					s.delete(selectionStart - 1, selectionEnd);
 					int tempSelection = selectionEnd;
 					message_more_edit.setText(s);
