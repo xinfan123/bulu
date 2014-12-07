@@ -11,6 +11,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.apache.http.message.BasicNameValuePair;
@@ -26,12 +27,15 @@ import android.os.Handler;
 
 import com.alibaba.fastjson.JSONObject;
 import com.xinfan.blueblue.activity.base.BaseActivity;
+import com.xinfan.blueblue.activity.context.LoginUserContext;
 import com.xinfan.blueblue.activity.context.SystemConfigContext;
 import com.xinfan.blueblue.dao.CacheDataDao;
 import com.xinfan.blueblue.dao.DaoFactory;
 import com.xinfan.blueblue.util.JSONUtils;
 import com.xinfan.blueblue.util.LogUtil;
 import com.xinfan.blueblue.util.ToastUtil;
+import com.xinfan.msgbox.http.service.vo.FunIdConstants;
+import com.xinfan.msgbox.http.service.vo.param.LoginParam;
 import com.xinfan.msgbox.http.service.vo.result.BaseResult;
 
 public class AnsynHttpRequest {
@@ -216,15 +220,19 @@ class MyRunnable implements Runnable {
 				}
 				System.out.println("~~~~~~~~~~~~~~~~~~~~" + (response.getStatusLine().getStatusCode()));
 				if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-					// httpClient.getCookieStore().getCookies().g
-					data = EntityUtils.toString(response.getEntity());
-					if (request.isCache()) {// 把数据缓存到本地
-						DaoFactory.getDao(CacheDataDao.class).addOrUpdateURLData(request.getCacheKey(), data);
+
+					List<Cookie> cookies = AnsynHttpRequest.mHttpClient.getCookieStore().getCookies();
+					String tmpcookies = "";
+					for (Cookie c : cookies) {
+						tmpcookies += c.toString() + ";";
 					}
+
+					data = EntityUtils.toString(response.getEntity());
 				} else {
 					ToastUtil.showMessage(context, "服务请求通信异常");
 					data = null;
 				}
+
 			} catch (Exception e) {
 				LogUtil.e(AnsynHttpRequest.tag, e);
 				ToastUtil.showMessage(context, "网络通信异常");
@@ -250,24 +258,34 @@ class MyRunnable implements Runnable {
 
 			if (request.getCode() < 0) {
 
-				if (request.getRequestErrorCallBack() != null) {
-
-					new Handler(context.getMainLooper()).post(new Runnable() {
-						public void run() {
-							request.getRequestErrorCallBack().call(request);
-						}
-					});
-
-					/*
-					 * ((Activity) context).runOnUiThread(new Thread() { public
-					 * void run() {
-					 * request.getRequestErrorCallBack().call(request); } });
-					 */
-
+				if (request.getCode() == -1) {
+					autoLogin(request);
 				} else {
-					ToastUtil.showMessage(context, request.getMessage());
+					if (request.getRequestErrorCallBack() != null) {
+
+						new Handler(context.getMainLooper()).post(new Runnable() {
+							public void run() {
+								request.getRequestErrorCallBack().call(request);
+							}
+						});
+
+						/*
+						 * ((Activity) context).runOnUiThread(new Thread() {
+						 * public void run() {
+						 * request.getRequestErrorCallBack().call(request); }
+						 * });
+						 */
+
+					} else {
+						ToastUtil.showMessage(context, request.getMessage());
+					}
 				}
+
 			} else {
+
+				if (request.isCache()) {// 把数据缓存到本地
+					DaoFactory.getDao(CacheDataDao.class).addOrUpdateURLData(request.getCacheKey(), data);
+				}
 
 				new Handler(context.getMainLooper()).post(new Runnable() {
 					public void run() {
@@ -282,7 +300,7 @@ class MyRunnable implements Runnable {
 				 */
 			}
 		}
-		
+
 		if (request.isShowDialog() && context instanceof BaseActivity) {
 			((BaseActivity) context).afterLoading();
 		}
@@ -292,22 +310,25 @@ class MyRunnable implements Runnable {
 		}
 	}
 
-	public void autoLogin(final RequestSucessCallBack call) {
+	public void autoLogin(final Request preRequest) {
 
-		/*
-		 * boolean login = LoginUserContext.getIsLogin(context); if (login) {
-		 * 
-		 * String mobile = LoginUserContext.getMobile(context); String enPasswd
-		 * = LoginUserContext.getPassword(context);
-		 * 
-		 * Request loginRequest = new Request(FunIdConstants.LOGIN); LoginParam
-		 * param = new LoginParam(); param.setMobile(mobile);
-		 * param.setPasswd(enPasswd); loginRequest.setParam(param);
-		 * 
-		 * AnsynHttpRequest.requestSimpleByPost(context, loginRequest, new
-		 * RequestSucessCallBack() { public void call(Request data) {
-		 * call.call(request); } }); }
-		 */
+		boolean login = LoginUserContext.getIsLogin(context);
+		if (login) {
+
+			String mobile = LoginUserContext.getMobile(context);
+			String enPasswd = LoginUserContext.getPassword(context);
+
+			Request loginRequest = new Request(FunIdConstants.LOGIN);
+			LoginParam param = new LoginParam();
+			param.setMobile(mobile);
+			param.setPasswd(enPasswd);
+			loginRequest.setParam(param);
+
+			AnsynHttpRequest.requestSimpleByPost(context, loginRequest, new RequestSucessCallBack() {
+				public void call(Request data) {
+					AnsynHttpRequest.requestSimpleByPost(context, preRequest, preRequest.getRequestSucessCallBack());
+				}
+			});
+		}
 	}
-
 }
