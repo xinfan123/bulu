@@ -17,46 +17,49 @@
         android:background="#eee"
         android:orientation="vertical" />
 
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:orientation="vertical" >
 
-        <TableRow>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="45dp"
                 android:src="@drawable/mobile" />
 
             <EditText
                 android:id="@+id/login_user_edit"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="35dp"
                 android:background="@null"
+                android:paddingLeft="10dp"
                 android:hint="手机号"
-                android:paddingLeft="55dp"
                 android:singleLine="true"
                 android:text=""
                 android:textColor="#000"
                 android:textSize="15sp" />
-        </TableRow>
-    </TableLayout>
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="3dp"
+            android:orientation="vertical" >
 
-
-    <LinearLayout
-        android:layout_width="288dp"
-        android:layout_height="5dp"
-        android:background="#eee"
-        android:orientation="vertical" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="1dp"
-        android:paddingLeft="45dp"
-        android:paddingRight="45dp"
-        android:src="@drawable/rowline" />
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:src="@drawable/rowline" />
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -64,62 +67,61 @@
         android:background="#eee"
         android:orientation="vertical" />
 
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:orientation="vertical" >
 
-        <TableRow>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="45dp"
                 android:src="@drawable/password" />
 
             <EditText
                 android:id="@+id/login_passwd_edit"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="35dp"
                 android:background="@null"
+                android:paddingLeft="10dp"
                 android:hint="密码"
-                android:paddingLeft="55dp"
                 android:password="true"
                 android:text=""
                 android:textColor="#000"
                 android:textSize="15sp" />
-        </TableRow>
-    </TableLayout>
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="288dp"
-        android:layout_height="5dp"
-        android:background="#eee"
-        android:orientation="vertical" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="3dp"
+            android:orientation="vertical" >
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="1dp"
-        android:paddingLeft="45dp"
-        android:paddingRight="45dp"
-        android:src="@drawable/rowline" />
-
-    <LinearLayout
-        android:layout_width="288dp"
-        android:layout_height="5dp"
-        android:background="#eee"
-        android:orientation="vertical" />
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:src="@drawable/rowline" />
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/main_login_btn"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         android:layout_gravity="center"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_marginTop="15dp"
         android:background="#eb6100"
         android:gravity="center"
         android:onClick="welcome_login"
-     	android:layout_marginRight="40dp"
-        android:layout_marginLeft="40dp"
         android:text="登录"
         android:textColor="#ffffff"
         android:textSize="18sp" />
@@ -135,11 +137,11 @@
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         android:layout_gravity="center"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_marginTop="15dp"
         android:background="#3b5997"
         android:onClick="welcome_register"
-        android:layout_marginRight="40dp"
-        android:layout_marginLeft="40dp"
         android:text="注册"
         android:textColor="#000000"
         android:textSize="18sp" />
