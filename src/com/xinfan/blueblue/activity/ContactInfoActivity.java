@@ -73,7 +73,7 @@ public class ContactInfoActivity extends BaseActivity {
 	public void onClickMenu(View v) {
 		menu = new ContactInfoMenu(this);
 
-		menu.showAtLocation(findViewById(R.id.contact_menu), Gravity.TOP | Gravity.RIGHT, 10, 150);
+		menu.showAtLocation(findViewById(R.id.contact_menu), Gravity.TOP | Gravity.RIGHT, 10, 280);
 	}
 	
 	public void updateMark(String mark){
