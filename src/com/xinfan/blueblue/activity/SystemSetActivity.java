@@ -60,7 +60,8 @@ public class SystemSetActivity extends Activity {
 		reputationText = (TextView) findViewById(R.id.reputation_sytem_tv);
 		system_set_version_text = (TextView) findViewById(R.id.system_set_version_text);
 		system_set_version_text.setText(SystemConfigContext.getVersion(this));
-		SharePreferenceUtil util = new SharePreferenceUtil(SystemSetActivity.this, Constants.USER_INFO);
+		SharePreferenceUtil util = new SharePreferenceUtil(
+				SystemSetActivity.this, Constants.USER_INFO);
 		userid = util.getUserId();
 		refresh();
 
@@ -71,68 +72,23 @@ public class SystemSetActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				final boolean is = messageNoticeBtn.isChecked();
-				Request request = new Request(FunIdConstants.SET_USERSET);
-				UserSetParam param = new UserSetParam();
-				if (is) {
-					param.setNewMsgNotify(1);
-				} else {
-					param.setNewMsgNotify(0);
-				}
-				param.setUserId(userid);
-				request.setParam(param);
-				AnsynHttpRequest.requestSimpleByPost(SystemSetActivity.this, request, new RequestSucessCallBack() {
-
-					public void call(Request data) {
-
-						BaseResult result = (BaseResult) data.getResult();
-
-						if (result.getResult() == 1) {
-
-							ToastUtil.showMessage(SystemSetActivity.this, result.getMsg());
-
-							SystemSetContext.setNewMsgNotify(SystemSetActivity.this, is, userid);
-
-						} else {
-							ToastUtil.showMessage(SystemSetActivity.this, result.getMsg());
-						}
-
-					}
-				});
+				SystemSetContext.setNewMsgNotify(SystemSetActivity.this, is, userid);	
+				SystemSetContext.setIsUpdate(SystemSetActivity.this, true, userid);	
+				refresh();
 			}
 		});
 		// 监听震动开关
 		vibrateBtn.setOnClickListener(new OnClickListener() {
 
+			/* (non-Javadoc)
+			 * @see android.view.View.OnClickListener#onClick(android.view.View)
+			 */
 			@Override
 			public void onClick(View v) {
 				final boolean is = vibrateBtn.isChecked();
-				Request request = new Request(FunIdConstants.SET_USERSET);
-				UserSetParam param = new UserSetParam();
-				if (is) {
-					param.setVibrate(1);
-				} else {
-					param.setVibrate(0);
-				}
-				param.setUserId(userid);
-				request.setParam(param);
-				AnsynHttpRequest.requestSimpleByPost(SystemSetActivity.this, request, new RequestSucessCallBack() {
-
-					public void call(Request data) {
-
-						BaseResult result = (BaseResult) data.getResult();
-
-						if (result.getResult() == 1) {
-
-							ToastUtil.showMessage(SystemSetActivity.this, result.getMsg());
-
-							SystemSetContext.setVibrate(SystemSetActivity.this, is, userid);
-
-						} else {
-							ToastUtil.showMessage(SystemSetActivity.this, result.getMsg());
-						}
-
-					}
-				});
+				SystemSetContext.setVibrate(SystemSetActivity.this, is, userid);	
+				SystemSetContext.setIsUpdate(SystemSetActivity.this, true, userid);	
+				refresh();
 			}
 		});
 		// 监听声音开关
@@ -141,33 +97,9 @@ public class SystemSetActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				final boolean is = voiceBtn.isChecked();
-				Request request = new Request(FunIdConstants.SET_USERSET);
-				UserSetParam param = new UserSetParam();
-				if (is) {
-					param.setVoice(1);
-				} else {
-					param.setVoice(0);
-				}
-				param.setUserId(userid);
-				request.setParam(param);
-				AnsynHttpRequest.requestSimpleByPost(SystemSetActivity.this, request, new RequestSucessCallBack() {
-
-					public void call(Request data) {
-
-						BaseResult result = (BaseResult) data.getResult();
-
-						if (result.getResult() == 1) {
-
-							ToastUtil.showMessage(SystemSetActivity.this, result.getMsg());
-
-							SystemSetContext.setVoice(SystemSetActivity.this, is, userid);
-
-						} else {
-							ToastUtil.showMessage(SystemSetActivity.this, result.getMsg());
-						}
-
-					}
-				});
+				SystemSetContext.setVoice(SystemSetActivity.this, is, userid);
+				SystemSetContext.setIsUpdate(SystemSetActivity.this, true, userid);	
+				refresh();
 			}
 		});
 		// 监听接收数量设置
@@ -178,7 +110,8 @@ public class SystemSetActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
-				intent.setClass(SystemSetActivity.this, MessageNumSelectActivity.class);
+				intent.setClass(SystemSetActivity.this,
+						MessageNumSelectActivity.class);
 				startActivity(intent);
 			}
 		});
@@ -225,7 +158,8 @@ public class SystemSetActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 
-				VersionManager manager = new VersionManager(SystemSetActivity.this);
+				VersionManager manager = new VersionManager(
+						SystemSetActivity.this);
 				manager.checkManualUpdate();
 
 			}
@@ -245,83 +179,85 @@ public class SystemSetActivity extends Activity {
 
 	}
 
-	private void refresh() {
-		Request request = new Request(FunIdConstants.GET_USERSET);
-		BaseParam param = new BaseParam();
-		param.setUserId(LoginUserContext.getUserId(this));
-		request.setParam(param);
+	public void refresh() {
+
+		boolean isupdate=SystemSetContext.getIsUpdate(SystemSetActivity.this, userid); //检查个人信息更新状态
+		boolean messageNotice=SystemSetContext.getNewMsgNotify(SystemSetActivity.this, userid);
+		boolean voice=SystemSetContext.getVoice(SystemSetActivity.this,userid);
+		boolean vibrate=SystemSetContext.getVibrate(SystemSetActivity.this, userid);
+		Integer receivenum=SystemSetContext.getReceivenum(SystemSetActivity.this, userid);
+		Integer similarity=SystemSetContext.getSimilarity(SystemSetActivity.this, userid);
+		Integer paid=SystemSetContext.getPaid(SystemSetActivity.this,userid);
+		Integer reputation=SystemSetContext.getReputation(SystemSetActivity.this, userid);
 		
+		messageNoticeBtn.setChecked(messageNotice);
+		voiceBtn.setChecked(voice);
+		vibrateBtn.setChecked(vibrate);
+		receivenumText.setText(receivenum+"条");
+		similarityText.setText(NumToChina.NumToChina(similarity)+"级");
+		if(paid==0){
+			paidText.setText("全部");
+		}else{
+			paidText.setText(paid+"元以上");
+		}
+		if(reputation==0){
+		reputationText.setText("全部");
+		}else{
+			reputationText.setText(reputation+"星");
+		}
+		
+		
+		if(isupdate){//同步服务器
+		Request request = new Request(FunIdConstants.SET_USERSET);
+		UserSetParam param = new UserSetParam();
+		param.setUserId(userid);
+		if (messageNotice) {
+			param.setNewMsgNotify(1);
+		} else {
+			param.setNewMsgNotify(0);
+		}
+		if (vibrate) {
+			param.setVibrate(1);
+		} else {
+			param.setVibrate(0);
+		}
+		if (voice) {
+			param.setVoice(1);
+		} else {
+			param.setVoice(0);
+		}
+		param.setMaxCount(receivenum);
+		param.setSimilarLevel(similarity);
+		param.setMinAmmount(paid);
+		param.setMinCredit(reputation);
+		request.setParam(param);
+
 		request.setCache(true);
-		request.setCacheKey(RequestCacheKeyHelper.generateSystemSetCacheKey(param));
+		request.setCacheKey(RequestCacheKeyHelper
+				.generateSystemSetCacheKey(param));
 
 		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
-
+			
 			public void call(Request data) {
-				UserSetResult result = (UserSetResult) data.getResult();
-				if (result.getResult() == 1) {
-					if (result.getNewMsgNotify() == 1) {
-						messageNoticeBtn.setChecked(true);
-					} else {
-						messageNoticeBtn.setChecked(false);
-					}
-					if (result.getVoice() == 1) {
-						voiceBtn.setChecked(true);
-					} else {
-						voiceBtn.setChecked(false);
-					}
-					if (result.getVibrate() == 1) {
-						vibrateBtn.setChecked(true);
-					} else {
-						vibrateBtn.setChecked(false);
-					}
-					receivenumText.setText(result.getMaxCount() + "条");
-					similarityText.setText(NumToChina.NumToChina(result.getSimilarLevel()) + "级");
-					if (result.getMinAmmount() == 0) {
-						paidText.setText("全部");
-					} else {
-						paidText.setText(result.getMinAmmount() + "元以上");
-					}
-					if (result.getMinCredit() == 0) {
-						reputationText.setText("全部");
-					} else {
-						reputationText.setText(NumToChina.NumToChina(result.getMinCredit()) + "星");
-					}
-				} else {
-					messageNoticeBtn.setChecked(SystemSetContext.getNewMsgNotify(SystemSetActivity.this, userid));
-					voiceBtn.setChecked(SystemSetContext.getVoice(SystemSetActivity.this, userid));
-					vibrateBtn.setChecked(SystemSetContext.getVibrate(SystemSetActivity.this, userid));
-					receivenumText.setText(SystemSetContext.getReceivenum(SystemSetActivity.this, userid));
-					similarityText.setText(SystemSetContext.getSimilarity(SystemSetActivity.this, userid));
-					paidText.setText(SystemSetContext.getPaid(SystemSetActivity.this, userid));
-					reputationText.setText(SystemSetContext.getReputation(SystemSetActivity.this, userid));
-				}
+				
+			BaseResult result = (BaseResult) data.getResult();
+			if(result.getResult()==1){
+				SystemSetContext.setIsUpdate(SystemSetActivity.this, false, userid);	
+				ToastUtil.showMessage(SystemSetActivity.this,"个人设置已生效");
+			}else{
+				ToastUtil.showMessage(SystemSetActivity.this,result.getMsg());
 			}
-		});
+		
+		}
+				});
 
+		}
 	}
 
 	public void SystemSetBack(View v) { // 返回
 		this.finish();
 	}
 
-	public void SetMesageNum(String name) {
-		receivenumText.setText(name);
-
-	}
-
-	public void SetSimilarity(String name) {
-		similarityText.setText(name);
-
-	}
-
-	public void SetPaid(String name) {
-		paidText.setText(name);
-
-	}
-
-	public void SetReputation(String name) {
-		reputationText.setText(name);
-
-	}
+	
 
 }

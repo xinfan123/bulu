@@ -73,34 +73,11 @@ public class PaidSet extends BaseActivity {
 
 	public void SaveMessage(int index) {
 
-final SelectVo select = list.get(index);
-		
-		Integer minAmmount=Integer.parseInt(select.getId());
-	
-		Request request = new Request(FunIdConstants.SET_USERSET);
-		UserSetParam param = new UserSetParam();
-		param.setMinAmmount(minAmmount);
-		param.setUserId(userid);
-		request.setParam(param);
-		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
-			
-		public void call(Request data) {
-			
-		BaseResult result = (BaseResult) data.getResult();
-	
-		if(result.getResult()==1){
-			
-			ToastUtil.showMessage(PaidSet.this,result.getMsg());
-			SystemSetContext.setPaid(PaidSet.this,select.getText(),userid);
-			SystemSetActivity.instance.SetPaid(select.getText());
-			PaidSet.this.finish();
-		}else{
-			ToastUtil.showMessage(PaidSet.this,result.getMsg());
-		}
-	
-	}
-});
-
+		final SelectVo select = list.get(index);
+		SystemSetContext.setPaid(PaidSet.this,Integer.parseInt(select.getId()),userid);
+		SystemSetContext.setIsUpdate(PaidSet.this, true, userid);
+		SystemSetActivity.instance.refresh();
+		PaidSet.this.finish();
 	}
 
 	public boolean onTouchEvent(MotionEvent event) {

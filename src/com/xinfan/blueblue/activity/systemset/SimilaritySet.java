@@ -34,23 +34,26 @@ public class SimilaritySet extends BaseActivity {
 
 	private SystemSetAdapter adapter;
 	private Long userid;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.set_massage_num);
 
 		messageSr = (ListView) findViewById(R.id.message_select_type);
-		SharePreferenceUtil util = new SharePreferenceUtil(SimilaritySet.this, Constants.USER_INFO);
-		userid=util.getUserId();
-		
+		SharePreferenceUtil util = new SharePreferenceUtil(SimilaritySet.this,
+				Constants.USER_INFO);
+		userid = util.getUserId();
+
 		init();
-		
+
 		adapter = new SystemSetAdapter(this, list);
 		// messagenumSr.setSelection(0, true);
 		messageSr.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
 				SaveMessage(arg2);
 			}
 
@@ -60,7 +63,6 @@ public class SimilaritySet extends BaseActivity {
 		adapter.notifyDataSetChanged();
 
 	}
-	
 
 	public void init() {
 		SelectVo one = new SelectVo("1", "一级");
@@ -76,38 +78,14 @@ public class SimilaritySet extends BaseActivity {
 		list.add(five);
 	}
 
-
 	public void SaveMessage(int v) {
-		
-	final SelectVo select = list.get(v);
-		
-		Integer similarLevel=Integer.parseInt(select.getId());
-		
-		Request request = new Request(FunIdConstants.SET_USERSET);
-		UserSetParam param = new UserSetParam();
-		param.setSimilarLevel(similarLevel);
-		param.setUserId(userid);
-		request.setParam(param);
-		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
-			
-		public void call(Request data) {
-			
-		BaseResult result = (BaseResult) data.getResult();
-	
-		if(result.getResult()==1){
-			
-			ToastUtil.showMessage(SimilaritySet.this,result.getMsg());
-			
-			SystemSetContext.setSimilarity(SimilaritySet.this,select.getText(),userid);
-			SystemSetActivity.instance.SetSimilarity(select.getText());
-			SimilaritySet.this.finish();
-		}else{
-			ToastUtil.showMessage(SimilaritySet.this,result.getMsg());
-		}
-	
-	}
-});
-		
+
+		final SelectVo select = list.get(v);
+		SystemSetContext.setSimilarity(SimilaritySet.this, Integer.parseInt(select.getId()),
+				userid);
+		SystemSetContext.setIsUpdate(SimilaritySet.this, true, userid);
+		SystemSetActivity.instance.refresh();
+		SimilaritySet.this.finish();
 
 	}
 

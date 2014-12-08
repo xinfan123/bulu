@@ -115,12 +115,10 @@ public class AnsynHttpRequest {
 		// requestUrl = requestUrl.substring(0,requestUrl.length()-1);
 		LogUtil.i("httpurl", requestUrl);
 		request.setAddress(requestUrl);
-
 		request.setRequestSucessCallBack(callBack);
-
 		// 异步请求数据
 		doAsynRequest(context, request);
-		System.out.println("~~~~~~~~~~~~~~~~~~~~" + requestUrl);
+	
 	}
 
 }
@@ -218,7 +216,6 @@ class MyRunnable implements Runnable {
 				default:
 					break;
 				}
-				System.out.println("~~~~~~~~~~~~~~~~~~~~" + (response.getStatusLine().getStatusCode()));
 				if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 
 					List<Cookie> cookies = AnsynHttpRequest.mHttpClient.getCookieStore().getCookies();

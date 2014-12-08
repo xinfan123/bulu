@@ -31,26 +31,29 @@ public class ReputationSet extends BaseActivity {
 	public ArrayList<SelectVo> list = new ArrayList<SelectVo>();
 
 	private SystemSetAdapter adapter;
-	
+
 	private static String[] m = { "全部", "一星", "二星", "三星", "4星", "五星" };
 	private Long userid;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.set_massage_num);
 
 		messageSr = (ListView) findViewById(R.id.message_select_type);
-		
-		SharePreferenceUtil util = new SharePreferenceUtil(ReputationSet.this, Constants.USER_INFO);
-		 userid=util.getUserId();
+
+		SharePreferenceUtil util = new SharePreferenceUtil(ReputationSet.this,
+				Constants.USER_INFO);
+		userid = util.getUserId();
 		init();
-		
+
 		adapter = new SystemSetAdapter(this, list);
 		// messagenumSr.setSelection(0, true);
 		messageSr.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
 				SaveMessage(arg2);
 			}
 
@@ -79,35 +82,11 @@ public class ReputationSet extends BaseActivity {
 	public void SaveMessage(int v) {
 
 		final SelectVo select = list.get(v);
-		
-		Integer requtation=Integer.parseInt(select.getId());
-
-		
-		Request request = new Request(FunIdConstants.SET_USERSET);
-		UserSetParam param = new UserSetParam();
-		param.setMinCredit(requtation);
-		param.setUserId(userid);
-		request.setParam(param);
-		AnsynHttpRequest.requestSimpleByPost(this, request, new RequestSucessCallBack() {
-			
-		public void call(Request data) {
-			
-		BaseResult result = (BaseResult) data.getResult();
-	
-		if(result.getResult()==1){
-			
-			ToastUtil.showMessage(ReputationSet.this,result.getMsg());
-			
-			SystemSetContext.setReputation(ReputationSet.this,select.getText(),userid);
-			SystemSetActivity.instance.SetReputation(select.getText());
-			ReputationSet.this.finish();
-		}else{
-			ToastUtil.showMessage(ReputationSet.this,result.getMsg());
-		}
-	
-	}
-});
-		
+		SystemSetContext.setReputation(ReputationSet.this, Integer.parseInt(select.getId()),
+				userid);
+		SystemSetContext.setIsUpdate(ReputationSet.this, true, userid);
+		SystemSetActivity.instance.refresh();
+		ReputationSet.this.finish();
 
 	}
 

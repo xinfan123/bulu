@@ -1,65 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"       
-        >
+        android:layout_height="fill_parent"
+        android:gravity="center_horizontal" >
 
         <LinearLayout
-             android:layout_width="fill_parent"
-             android:layout_height="fill_parent"  
+            android:id="@+id/esc_layout2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"        
+            android:layout_gravity="bottom"
+            android:background="#fff"
             android:gravity="center_horizontal"
-             >
-        
-       <LinearLayout
-        	android:id="@+id/esc_layout2"
-        	android:layout_width="fill_parent"
-        	android:layout_height="wrap_content"
-        	android:gravity="center_horizontal"
-        	android:layout_gravity="bottom"
-        	android:orientation="vertical"
-        	android:background="@drawable/exit_dialog_bg" >
+            android:orientation="vertical" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:gravity="center"
-            android:textColor="#fff"
-            android:textSize="16sp"
-            android:text="注消后可以使用其他账号进行登陆" />           
-            
-            <Button
-              android:id="@+id/escBtn0"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:text="注消"
-              android:textSize="18sp"
-              android:textColor="#fff"
-              android:layout_marginTop="15dp"
-              android:layout_marginLeft="10dp"
-              android:layout_marginRight="10dp"
-              android:background="@drawable/btn_style_alert_dialog_special"
-              android:gravity="center"
-			  android:onClick="escbutton0"
-              />
-            
-            <Button
-              android:id="@+id/escBtn1"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="15dp"
-              android:layout_marginLeft="10dp"
-              android:layout_marginRight="10dp"
-              android:layout_marginBottom="10dp"
-              android:text="在玩一会"
-              android:textSize="18sp"
-              android:textColor="#fff"
-              android:background="@drawable/btn_style_alert_dialog_cancel"
-              android:gravity="center"
-			  android:onClick="escbutton1"
-              />
-           
-       </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                 android:padding="10dp"
+                android:gravity="center"
+                android:text="注消后可以使用其他账号进行登陆"
+                android:textColor="#9D9D9D"
+                android:textSize="16sp" />
 
+            <Button
+                android:id="@+id/escBtn0"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="#eee"
+                android:gravity="center"
+                android:onClick="escbutton0"
+                android:padding="3dp"
+                android:text="注消"
+                android:textColor="#333"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/escBtn1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:background="#eb6100"
+                android:gravity="center"
+                android:onClick="escbutton1"
+                android:padding="3dp"
+                android:text="在玩一会"
+                android:textColor="#fff"
+                android:textSize="16sp" />
+        </LinearLayout>
     </LinearLayout>
+
 </RelativeLayout>

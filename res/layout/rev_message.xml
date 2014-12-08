@@ -235,10 +235,15 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/img03"
             android:layout_toLeftOf="@+id/img03"
-            android:background="@drawable/chatto_bg_focused"
+            android:background="@drawable/chatto_bg_focused"         
             android:text="你好！我能满足你的需求"
             android:textColor="@color/color_3"
-            android:textSize="12.0sp" />
+            android:textSize="12.0sp"
+            android:lineSpacingExtra="2dp"
+	        android:clickable="true"
+	        android:focusable="true" 
+	        android:gravity="left|center"
+	         android:minHeight="50dp" />
 
         <ImageView
             android:id="@+id/img04"
@@ -247,7 +252,8 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/my_message"
             android:background="@drawable/headshow5"
-            android:padding="5dp" />
+            android:padding="5dp"
+             />
 
         <TextView
             android:id="@+id/you_message"
@@ -258,7 +264,8 @@
             android:background="@drawable/chatfrom_bg_focused"
             android:text="是么，你电话多少，我们详聊"
             android:textColor="@color/color_3"
-            android:textSize="12.0sp" />
+            android:textSize="12.0sp" 
+            style="@style/chat_content_date_style"/>
 
         <ImageView
             android:id="@+id/img05"
@@ -278,7 +285,12 @@
             android:background="@drawable/chatto_bg_focused"
             android:text="1867488688"
             android:textColor="@color/color_3"
-            android:textSize="12.0sp" />
+            android:textSize="12.0sp" 
+            android:lineSpacingExtra="2dp"
+	        android:clickable="true"
+	        android:focusable="true" 
+	        android:gravity="left|center"
+	         android:minHeight="50dp"/>
 
         <ImageView
             android:id="@+id/img06"
@@ -298,7 +310,8 @@
             android:background="@drawable/chatfrom_bg_focused"
             android:text="ok!我call你"
             android:textColor="@color/color_3"
-            android:textSize="12.0sp" />
+            android:textSize="12.0sp"
+            style="@style/chat_content_date_style" />
     </RelativeLayout>
 
     <LinearLayout

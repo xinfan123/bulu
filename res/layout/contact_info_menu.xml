@@ -20,6 +20,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:background="@drawable/input_top"
             android:padding="20dp" >
 
             <ImageView
@@ -70,10 +71,10 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp" >
-        </LinearLayout>
+            android:layout_height="1dp"
+            android:background="#eee"
+        
+        />
     </LinearLayout>
 
 </RelativeLayout>

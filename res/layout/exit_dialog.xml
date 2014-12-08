@@ -5,7 +5,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:background="@drawable/confirm_dialog_bg2" >
+        android:background="@drawable/input_top" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,39 +25,57 @@
             android:textSize="16sp"
             android:gravity="center_horizontal"
             android:text="退出后，你将收不到新的消\n息.确定要退出？" /> 
-        
+         <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"   
+            android:padding="5dp"        
+            android:background="#eee"
+         
+            /> 
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"           
-            android:layout_marginTop="33dp"
-            android:layout_marginBottom="8dp"
+            android:padding="10dp"
              >
             
             <Button
               android:id="@+id/exitBtn0"
-              android:layout_width="110dp"
+              android:layout_width="wrap_content"
               android:layout_height="wrap_content"
+              android:paddingTop="5dp"
+           	 android:paddingLeft="50dp"
+              android:paddingRight="50dp"
+              android:paddingBottom="5dp"
               android:text="是"
               android:textSize="16sp"
               android:textColor="#fff"
-              android:background="@drawable/btn_style_green"
+              android:background="#eb6100"
               android:gravity="center"
 			  android:onClick="exitYesbutton"
               />
             
             <Button
               android:id="@+id/exitBtn1"
-              android:layout_width="110dp"
+              android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginLeft="10dp"
+              android:paddingTop="5dp"
+              android:paddingLeft="50dp"
+              android:paddingRight="50dp"
+              android:paddingBottom="5dp"
+              android:layout_marginLeft="25dp"
               android:text="否"
               android:textSize="16sp"
               android:textColor="#333"
-              android:background="@drawable/btn_style_white"
+              android:background="#eee"
               android:gravity="center"
 			  android:onClick="exitNobutton"
               />
         </LinearLayout>
-
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"           
+            android:background="#eee"
+            />
+		
     </LinearLayout>
