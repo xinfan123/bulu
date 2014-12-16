@@ -29,7 +29,8 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:cacheColorHint="@android:color/transparent"
-            android:divider="@drawable/reader_item_divider"
+            android:divider="@null"
+            android:dividerHeight = "3dp"
             android:listSelector="@drawable/main_list_selecter" >
         </com.xinfan.blueblue.activity.rev.RevMessageListView>
 
@@ -39,7 +40,8 @@
             android:layout_height="fill_parent"
             android:background="@color/white"
             android:cacheColorHint="@color/transparent"
-            android:divider="@drawable/reader_item_divider"
+            android:divider="@null"
+            android:dividerHeight = "3dp"
             android:listSelector="@drawable/main_list_selecter" >
         </com.xinfan.blueblue.activity.SendedMessageListView>
 
